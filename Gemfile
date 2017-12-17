@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
+# gem 'sqlite3', group: :development
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -32,7 +32,26 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#追加
+gem 'jquery-turbolinks'
+gem 'devise'
+gem 'omniauth-twitter'
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
+gem "font-awesome-rails"
+gem 'haml-rails'
+gem 'erb2haml'
+gem 'ransack'
+gem 'kaminari'
+gem 'paperclip'
+gem "paranoia"
+gem "gretel"
+# gem 'pg', '~> 0.20.0'
 gem "mysql2"
+gem 'select2-rails'
+gem 'acts-as-taggable-on'
+gem 'nokogiri', '~> 1.6'
+gem 'rename'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -40,6 +59,8 @@ gem "mysql2"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
+  gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
 end
 
 group :development do
