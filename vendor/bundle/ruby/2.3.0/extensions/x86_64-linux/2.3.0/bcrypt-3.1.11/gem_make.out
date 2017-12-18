@@ -1,0 +1,19 @@
+current directory: /home/ubuntu/workspace/repo_star/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.11/ext/mri
+/usr/local/rvm/rubies/ruby-2.3.4/bin/ruby -r ./siteconf20171218-14875-1ixfae8.rb extconf.rb
+creating Makefile
+
+current directory: /home/ubuntu/workspace/repo_star/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR=" clean
+
+current directory: /home/ubuntu/workspace/repo_star/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR="
+compiling bcrypt_ext.c
+compiling wrapper.c
+compiling crypt_gensalt.c
+compiling crypt.c
+compiling crypt_blowfish.c
+linking shared-object bcrypt_ext.so
+
+current directory: /home/ubuntu/workspace/repo_star/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.11/ext/mri
+make "DESTDIR=" install
+/usr/bin/install -m 0755 bcrypt_ext.so ./.gem.20171218-14875-1gnonwn

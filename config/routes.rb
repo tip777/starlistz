@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks", :registrations => "users/registrations",}
+  devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks", :registrations => "users/registrations", :confirmations => "users/confirmations"}
 
   root 'home#index'
   get 'home/show'
@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:show] #User MyPage
   resources :lists #プレイリスト用
-  
+
   get 'chart' , to: 'home#chart' #チャート
   get 'genre' , to: 'home#genre' #ジャンル一覧
   get 'search' , to: 'home#search' #検索結果
