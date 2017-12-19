@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
-         
+
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
       user.provider = auth["provider"]
@@ -22,5 +22,23 @@ class User < ApplicationRecord
       super
     end
   end
-    
+
+  belongs_to :user_profiles, dependent: :destroy
+
+  has_many :list_favorites, dependent: :destroy
+
+  has_many :lists, dependent: :destroy
+
+  has_many :purchases, dependent: :destroy
+  has_many :lists, through: :purchases
+
+  has_many :favoriting_relation, class_name: "User_favorite", foreign_key: "favoriting_id", dependent: :destroy
+  has_many :favoriting_users, through: :favoriting_relation, source: :favorited
+
+  has_many :favorited_relation, class_name: "User_favorite", foreign_key: "favorited_id", dependent: :destroy
+  has_many :favorited_users, through: :favorited_relation, source: :favoriting
+
+  #gem acts-as-taggable-on タグ機能
+  acts_as_ordered_taggable_on :usergenre
+
 end
