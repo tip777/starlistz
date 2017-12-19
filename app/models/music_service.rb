@@ -1,0 +1,2 @@
+class MusicService < ApplicationRecord
+end
