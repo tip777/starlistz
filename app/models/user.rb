@@ -33,10 +33,10 @@ class User < ApplicationRecord
   has_many :lists, through: :purchases
 
   has_many :favoriting_relation, class_name: "User_favorite", foreign_key: "favoriting_id", dependent: :destroy
-  has_many :favoriting_users, through: :favoriting_relation, source: :favorited
+  has_many :favoriting_users, through: :favoriting_relation, source: :favoriter
 
-  has_many :favorited_relation, class_name: "User_favorite", foreign_key: "favorited_id", dependent: :destroy
-  has_many :favorited_users, through: :favorited_relation, source: :favoriting
+  has_many :favoriter_relation, class_name: "User_favorite", foreign_key: "favoriter_id", dependent: :destroy
+  has_many :favoriter_users, through: :favoriter_relation, source: :favoriting
 
   #gem acts-as-taggable-on タグ機能
   acts_as_ordered_taggable_on :usergenre
