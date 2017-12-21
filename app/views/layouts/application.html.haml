@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %title Starlistz
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    /[if lte IE 8] <script src="assets/js/ie/html5shiv.js"></script>
+    // %link{:href => "assets/css/main.css", :rel => "stylesheet"}/
+    /[if lte IE 8] <link rel="stylesheet" href="assets/css/ie8.css" />
+    /[if lte IE 9] <link rel="stylesheet" href="assets/css/ie9.css" />
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    //bootstrap
+    %link{:href => "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %script{:src => "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"} :cdata
+  %body.index
+    = render :partial => "layouts/header"
+    #page-wrapper
+      = yield
+
+    / Scripts
+    // %script{:src => "assets/js/jquery.min.js"}
+    // %script{:src => "assets/js/jquery.dropotron.min.js"}
+    // %script{:src => "assets/js/jquery.scrolly.min.js"}
+    // %script{:src => "assets/js/jquery.scrollgress.min.js"}
+    // %script{:src => "assets/js/skel.min.js"}
+    // %script{:src => "assets/js/util.js"}
+    /[if lte IE 8] <script src="assets/js/ie/respond.min.js"></script>
+    // %script{:src => "assets/js/main.js"}
