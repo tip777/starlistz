@@ -1,20 +1,28 @@
 !!!
 %html
   %head
+    %title Starlistz
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title TestApp
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    /[if lte IE 8] <script src="assets/js/ie/html5shiv.js"></script>
+    // %link{:href => "assets/css/main.css", :rel => "stylesheet"}/
+    /[if lte IE 8] <link rel="stylesheet" href="assets/css/ie8.css" />
+    /[if lte IE 9] <link rel="stylesheet" href="assets/css/ie9.css" />
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    %header
-      %nav
-        - if user_signed_in?
-          = link_to 'プロフィール変更', edit_user_registration_path
-          = link_to 'ログアウト', destroy_user_session_path, method: :delete
-        - else
-          = link_to 'サインアップ', new_user_registration_path
-          = link_to 'ログイン', new_user_session_path
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+  %body.index
+    = render :partial => "layouts/header"
+    #page-wrapper
+      = yield
+
+    / Scripts
+    // %script{:src => "assets/js/jquery.min.js"}
+    // %script{:src => "assets/js/jquery.dropotron.min.js"}
+    // %script{:src => "assets/js/jquery.scrolly.min.js"}
+    // %script{:src => "assets/js/jquery.scrollgress.min.js"}
+    // %script{:src => "assets/js/skel.min.js"}
+    // %script{:src => "assets/js/util.js"}
+    /[if lte IE 8] <script src="assets/js/ie/respond.min.js"></script>
+    // %script{:src => "assets/js/main.js"}
