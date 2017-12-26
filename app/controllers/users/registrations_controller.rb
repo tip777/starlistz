@@ -8,9 +8,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    if resource.save
+        @profile = UserProfile.new
+        @profile.user_id = resource.id
+        @profile.save
+    end
+  end
 
   # GET /resource/edit
   # def edit
