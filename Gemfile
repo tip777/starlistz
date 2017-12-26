@@ -52,6 +52,7 @@ gem 'select2-rails'
 gem 'acts-as-taggable-on'
 gem 'nokogiri', '~> 1.6'
 gem 'rename'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
