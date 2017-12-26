@@ -42,7 +42,7 @@ class User < ApplicationRecord
   acts_as_ordered_taggable_on :usergenre
   
   #ユーザー名　validate
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, uniqueness: true, length: { minimum: 1,maximum: 50 }
  
 
 end
