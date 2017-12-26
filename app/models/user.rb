@@ -23,7 +23,7 @@ class User < ApplicationRecord
     end
   end
 
-  belongs_to :user_profiles, dependent: :destroy
+  has_one :user_profiles, dependent: :destroy
 
   has_many :list_favorites, dependent: :destroy
 
@@ -40,9 +40,9 @@ class User < ApplicationRecord
 
   #gem acts-as-taggable-on タグ機能
   acts_as_ordered_taggable_on :usergenre
-  
+
   #ユーザー名　validate
   validates :name, presence: true, uniqueness: true, length: { minimum: 1,maximum: 50 }
- 
+
 
 end
