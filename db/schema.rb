@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
-    t.string   "name"
+    t.string   "name",                                null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
