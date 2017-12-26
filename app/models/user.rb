@@ -40,5 +40,9 @@ class User < ApplicationRecord
 
   #gem acts-as-taggable-on タグ機能
   acts_as_ordered_taggable_on :usergenre
+  
+  #ユーザー名　validate
+  validates :name, presence: true, length: { maximum: 50 }
+ 
 
 end
