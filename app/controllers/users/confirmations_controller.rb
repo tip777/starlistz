@@ -16,6 +16,14 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     end
   end
 
+  def name_check(name)
+    ch = false
+    if User.group(:name).where(name: name).count > 0
+      ch = true
+    end
+    return ch
+  end
+
   # protected
 
   # The path used after resending confirmation instructions.

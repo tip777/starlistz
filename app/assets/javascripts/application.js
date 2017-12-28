@@ -50,3 +50,17 @@ $(function() {
     });
 
 });
+
+$("#user_name").change(function(){
+  var check;
+  var result = $.ajax({
+      type: 'GET',
+      url: '/users/sign_in',
+      async: false
+  }).responseText;
+  return check;
+
+  console.log(check);
+});
+
+//var result = test() //ちゃんと返り値が入ってる;
