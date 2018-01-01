@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
   get 'home/show'
+  # get 'name_check', to: 'home#name_check'#ユーザー名重複チェック用
+
 
 
   resources :users, :only => [:show] #User MyPage

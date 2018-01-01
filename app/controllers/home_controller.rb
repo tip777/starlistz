@@ -62,4 +62,14 @@ class HomeController < ApplicationController
     @tag["その他"] = ActsAsTaggableOn::Tag.where(id: otherno).pluck(:name)
 
   end
+
+  # def name_check(name)
+  #   ch = false
+  #   if User.group(:name).where(name: name).count > 0
+  #     ch = true
+  #   end
+  #   render nothing: true
+  #   return ch
+  # end
+
 end
