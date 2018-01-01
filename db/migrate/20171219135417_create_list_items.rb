@@ -3,7 +3,7 @@ class CreateListItems < ActiveRecord::Migration[5.0]
     create_table :list_items do |t|
       t.string :artist
       t.string :song
-      t.integer :favorite
+      t.integer :recommend
 
       t.timestamps null:false
     end
