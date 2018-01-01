@@ -1,2 +1,25 @@
 %h1 Lists#new
 %p Find me in app/views/lists/new.html.haml
+
+= form_for(@list) do |f|
+  - if @list.errors.any?
+  #error_explanation.alert.alert-danger
+    %h2
+      エラーがあります
+    %ul
+      - @list.errors.full_messages.each do |message|
+        %li= message
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name, autofocus: true
+  .field
+    = f.label :description
+    %br/
+    = f.description_field :description
+  .field
+    = f.label :price
+    %br/
+    = f.price_field :price
+  .actions
+    = f.submit "登録"

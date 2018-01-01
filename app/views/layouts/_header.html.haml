@@ -15,8 +15,9 @@
         %li.navlist-genre
           = link_to 'チャート', chart_path
         %li.navlist-upload
-          %a{:href => "#"}
-            %i.fa.fa-plus{"aria-hidden" => "true"}　アップロード
+          = link_to new_list_path do
+            %i.fa.fa-plus{"aria-hidden" => "true"}　
+            アップロード
       // .col-sm-3.col-md-3
       //   = search_form_for  @q, html: {class: 'navbar-form' }, :url => root_path do |f|
       //     .input-group
