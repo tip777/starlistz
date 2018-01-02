@@ -10,11 +10,13 @@ class ApplicationController < ActionController::Base
       @q2 = List.search(params[:q])
       @list = @q2.result(distinct: true)
   end
-  
-  
+
+
   protected
- 
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name]) #アカウント登録時にnameカラムも登録
+    devise_parameter_sanitizer.permit(:account_update,
+           keys: [:user_profiles => [:user_id, :description, :insta_url, :tw_url]]) #userモデル編集時にプロフィールも編集
   end
 end

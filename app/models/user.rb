@@ -24,6 +24,7 @@ class User < ApplicationRecord
   end
 
   has_one :user_profiles, dependent: :destroy
+  accepts_nested_attributes_for :user_profiles
 
   has_many :list_favorites, dependent: :destroy
 
@@ -37,6 +38,8 @@ class User < ApplicationRecord
 
   has_many :favoriter_relation, class_name: "User_favorite", foreign_key: "favoriter_id", dependent: :destroy
   has_many :favoriter_users, through: :favoriter_relation, source: :favoriting
+
+
 
   #gem acts-as-taggable-on タグ機能
   acts_as_ordered_taggable_on :usergenre
