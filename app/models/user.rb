@@ -23,7 +23,7 @@ class User < ApplicationRecord
     end
   end
 
-  has_one :user_profiles, dependent: :destroy
+  has_one :user_profiles, dependent: :destroy, inverse_of: :user
   accepts_nested_attributes_for :user_profiles
 
   has_many :list_favorites, dependent: :destroy
