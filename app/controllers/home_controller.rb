@@ -12,32 +12,32 @@ class HomeController < ApplicationController
   def genre
   end
 
-  def chart
-    #パラメータからリスト抽出
-    array = Array.new
-
-    if params[:genre][0] == "all" #ジャンルが空だったら
-      if params[:sort] == "ranking" #ランキングの場合
-        @genre_list = List.eager_load(:list_favorites).group(:list_id).order('count(list_id) desc')
-      else  # 新着の場合
-        @genre_list = List.order(:created_at)
-      end
-
-    else
-
-      params[:genre].each_with_index do |value, i| #ジャンルを配列に
-        array.push(value)
-      end
-      genrelist = List.tagged_with(array).pluck(:id)#ジャンルの対象のユーザーのIDの一覧取得
-
-      if params[:sort] == "ranking" #ランキングの場合
-        @genre_list = List.eager_load(:list_favorites).where(id: genrelist).group(:list_id).order('count(list_id) desc')
-      else  # 新着の場合
-        @genre_list = List.where(id: genrelist).order(:created_at)
-      end
-
-    end
-  end
+  # def chart
+  #   #パラメータからリスト抽出
+  #   array = Array.new
+  #
+  #   if params[:genre][0] == "all" #ジャンルが空だったら
+  #     if params[:sort] == "ranking" #ランキングの場合
+  #       @genre_list = List.eager_load(:list_favorites).group(:list_id).order('count(list_id) desc')
+  #     else  # 新着の場合
+  #       @genre_list = List.order(:created_at)
+  #     end
+  #
+  #   else
+  #
+  #     params[:genre].each_with_index do |value, i| #ジャンルを配列に
+  #       array.push(value)
+  #     end
+  #     genrelist = List.tagged_with(array).pluck(:id)#ジャンルの対象のユーザーのIDの一覧取得
+  #
+  #     if params[:sort] == "ranking" #ランキングの場合
+  #       @genre_list = List.eager_load(:list_favorites).where(id: genrelist).group(:list_id).order('count(list_id) desc')
+  #     else  # 新着の場合
+  #       @genre_list = List.where(id: genrelist).order(:created_at)
+  #     end
+  #
+  #   end
+  # end
 
   def set_genre
     # @base_genre = ListGenre.where(main: 1)

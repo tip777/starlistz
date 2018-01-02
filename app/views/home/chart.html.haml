@@ -1,37 +1,37 @@
 .content-container
-  .charts_aria
-    .charts_main
-      = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]]), class: "js-hide-search"
-    .charts_spacer
-    .charts_genre
-      = select_tag :person, grouped_options_for_select(@tag), class: "genre-search js-multiple"
-
-    .content-list
-      .span8
-        - @newlist.each do |list|
-          // -binding.pry
-          .newlist
-            .title
-              %h2
-                .favorite
-                  %span.author>= list.user.name
-                  %span.favorite-star
-                    %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
-                    = list.list_favorites.count
-                = list.name
-            %p= list.description
-            .list-genre
-              .more.label
-                %a{:href => "#"} Read more
-              .tags
-                - list.list_genres.each.with_index(0) do |listgenre, i|
-                  %span.btn-info
-                    %a{:href => "#"}= list.list_genres[i][:name]
-                
-            .clear
-            %hr/
+  -# .charts_aria
+  -#   .charts_main
+  -#     = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]]), class: "js-hide-search"
+  -#   .charts_spacer
+  -#   .charts_genre
+  -#     = select_tag :person, grouped_options_for_select(@tag), class: "genre-search js-multiple"
+  -#
+  -#   .content-list
+  -#     .span8
+  -#       - @newlist.each do |list|
+  -#         // -binding.pry
+  -#         .newlist
+  -#           .title
+  -#             %h2
+  -#               .favorite
+  -#                 %span.author>= list.user.name
+  -#                 %span.favorite-star
+  -#                   %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+  -#                   = list.list_favorites.count
+  -#               = list.name
+  -#           %p= list.description
+  -#           .list-genre
+  -#             .more.label
+  -#               %a{:href => "#"} Read more
+  -#             .tags
+  -#               - list.list_genres.each.with_index(0) do |listgenre, i|
+  -#                 %span.btn-info
+  -#                   %a{:href => "#"}= list.list_genres[i][:name]
+  -#
+  -#           .clear
+  -#           %hr/
   / Main
-  %article#main
+  -# %article#main
     // %header.special.container
     //   %span.icon.fa-bar-chart-o
     //   %h2

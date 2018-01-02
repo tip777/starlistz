@@ -1,18 +1,17 @@
 .content-container
-  = select_tag :person, grouped_options_for_select(@tag), include_blank: true, class: "genre-search js-multiple"
-
-  .content-genre     
-    %h1 メインジャンル
-    .row
-      - @base_genre.each do |base_genre|
-        .col-lg-3.col-md-3.col-sm-4.col-xs-4.genre-item
-          %a{:href => "#"}
-            %p= base_genre.name
-
+  %p privacy page
+  -# = select_tag :person, grouped_options_for_select(@tag), include_blank: true, class: "genre-search js-multiple"
+  -#
+  -# .content-genre
+  -#   %h1 メインジャンル
+  -#   .row
+  -#     - @base_genre.each do |base_genre|
+  -#       .col-lg-3.col-md-3.col-sm-4.col-xs-4.genre-item
+  -#         %a{:href => "#"}
+  -#           %p= base_genre.name
+  -#
   / Main
   %article#main
 
 
   = render :partial => "layouts/footer"
-  
-
