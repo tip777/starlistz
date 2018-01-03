@@ -12,12 +12,12 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0
+topdir = /Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0
 hdrdir = $(topdir)
-arch_hdrdir = /Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16
+arch_hdrdir = /Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/Users/ikedatakashinao/.rbenv/versions/2.3.1
+prefix = $(DESTDIR)/Users/ikedakyousuke/.rbenv/versions/2.3.1
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20171218-95684-1wfp05y
-sitelibdir = $(DESTDIR)./.gem.20171218-95684-1wfp05y
+sitearchdir = $(DESTDIR)./.gem.20180102-44596-hge9qv
+sitelibdir = $(DESTDIR)./.gem.20180102-44596-hge9qv
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -83,9 +83,9 @@ CCDLFLAGS = -fno-common
 CFLAGS   = $(CCDLFLAGS)  -O3 -Wno-error=shorten-64-to-32  -pipe  -DNOKOGIRI_USE_PACKAGED_LIBRARIES $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DHAVE_ICONV_H -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxslt/1.1.30/include -I/Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxml2/2.9.5/include/libxml2 -I/Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxml2/2.9.5/include/libxml2 -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags) "-DNOKOGIRI_LIBXML2_PATH=\"/Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxml2/2.9.5\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxslt/1.1.30\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\""
+CPPFLAGS = -DHAVE_ICONV_H -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxslt/1.1.30/include -I/Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxml2/2.9.5/include/libxml2 -I/Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxml2/2.9.5/include/libxml2 -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags) "-DNOKOGIRI_LIBXML2_PATH=\"/Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxml2/2.9.5\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxslt/1.1.30\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\""
 CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
-ldflags  = -L. -L/Users/ikedatakashinao/.rbenv/versions/2.3.1/lib  -fstack-protector -L/usr/local/lib
+ldflags  = -L. -L/Users/ikedakyousuke/.rbenv/versions/2.3.1/lib  -fstack-protector -L/usr/local/lib
 dldflags = -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
@@ -122,8 +122,8 @@ TOUCH = exit >
 
 preload = 
 
-libpath = . $(libdir) /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxml2/2.9.5/lib /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxslt/1.1.30/lib /usr/local/Cellar/xz/5.2.3/lib
-LIBPATH =  -L. -L$(libdir) -L/Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxml2/2.9.5/lib -L/Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxslt/1.1.30/lib -L/usr/local/Cellar/xz/5.2.3/lib
+libpath = . $(libdir) /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxml2/2.9.5/lib /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxslt/1.1.30/lib
+LIBPATH =  -L. -L$(libdir) -L/Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxml2/2.9.5/lib -L/Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxslt/1.1.30/lib
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -134,11 +134,11 @@ extout =
 extout_prefix = 
 target_prefix = /nokogiri
 LOCAL_LIBS = 
-LIBS =  /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxslt/1.1.30/lib/libexslt.a -lm -liconv -lpthread -llzma -lz /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxml2/2.9.5/lib/libxml2.a /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxslt/1.1.30/lib/libxslt.a -lm -liconv -lpthread -llzma -lz /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.4.0/libxml2/2.9.5/lib/libxml2.a -llzma -lpthread -ldl -lobjc  
-ORIG_SRCS = xml_comment.c xml_element_content.c html_element_description.c nokogiri.c xml_element_decl.c xml_node_set.c xml_namespace.c xml_encoding_handler.c xml_libxml2_hacks.c xml_relax_ng.c xml_sax_push_parser.c html_sax_parser_context.c xslt_stylesheet.c html_document.c xml_sax_parser_context.c xml_xpath_context.c html_entity_lookup.c xml_sax_parser.c xml_reader.c xml_syntax_error.c xml_node.c xml_attr.c html_sax_push_parser.c xml_schema.c xml_dtd.c xml_entity_decl.c xml_attribute_decl.c xml_io.c xml_entity_reference.c xml_processing_instruction.c xml_text.c xml_document_fragment.c xml_document.c xml_cdata.c
+LIBS =  /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxslt/1.1.30/lib/libexslt.a -lm -liconv -lpthread -lz /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxml2/2.9.5/lib/libxml2.a /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxslt/1.1.30/lib/libxslt.a -lm -liconv -lpthread -lz /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/x86_64-apple-darwin16.7.0/libxml2/2.9.5/lib/libxml2.a -llzma -lpthread -ldl -lobjc  
+ORIG_SRCS = html_document.c html_element_description.c html_entity_lookup.c html_sax_parser_context.c html_sax_push_parser.c nokogiri.c xml_attr.c xml_attribute_decl.c xml_cdata.c xml_comment.c xml_document.c xml_document_fragment.c xml_dtd.c xml_element_content.c xml_element_decl.c xml_encoding_handler.c xml_entity_decl.c xml_entity_reference.c xml_io.c xml_libxml2_hacks.c xml_namespace.c xml_node.c xml_node_set.c xml_processing_instruction.c xml_reader.c xml_relax_ng.c xml_sax_parser.c xml_sax_parser_context.c xml_sax_push_parser.c xml_schema.c xml_syntax_error.c xml_text.c xml_xpath_context.c xslt_stylesheet.c
 SRCS = $(ORIG_SRCS) 
-OBJS = xml_comment.o xml_element_content.o html_element_description.o nokogiri.o xml_element_decl.o xml_node_set.o xml_namespace.o xml_encoding_handler.o xml_libxml2_hacks.o xml_relax_ng.o xml_sax_push_parser.o html_sax_parser_context.o xslt_stylesheet.o html_document.o xml_sax_parser_context.o xml_xpath_context.o html_entity_lookup.o xml_sax_parser.o xml_reader.o xml_syntax_error.o xml_node.o xml_attr.o html_sax_push_parser.o xml_schema.o xml_dtd.o xml_entity_decl.o xml_attribute_decl.o xml_io.o xml_entity_reference.o xml_processing_instruction.o xml_text.o xml_document_fragment.o xml_document.o xml_cdata.o
-HDRS = $(srcdir)/xml_xpath_context.h $(srcdir)/xml_sax_parser_context.h $(srcdir)/html_document.h $(srcdir)/xslt_stylesheet.h $(srcdir)/xml_node.h $(srcdir)/xml_syntax_error.h $(srcdir)/xml_reader.h $(srcdir)/xml_sax_parser.h $(srcdir)/html_entity_lookup.h $(srcdir)/xml_dtd.h $(srcdir)/xml_entity_decl.h $(srcdir)/xml_schema.h $(srcdir)/html_sax_push_parser.h $(srcdir)/xml_attr.h $(srcdir)/xml_document_fragment.h $(srcdir)/xml_cdata.h $(srcdir)/xml_document.h $(srcdir)/xml_processing_instruction.h $(srcdir)/xml_text.h $(srcdir)/xml_entity_reference.h $(srcdir)/xml_attribute_decl.h $(srcdir)/xml_io.h $(srcdir)/xml_element_content.h $(srcdir)/xml_comment.h $(srcdir)/html_element_description.h $(srcdir)/xml_node_set.h $(srcdir)/xml_element_decl.h $(srcdir)/nokogiri.h $(srcdir)/xml_encoding_handler.h $(srcdir)/xml_libxml2_hacks.h $(srcdir)/xml_relax_ng.h $(srcdir)/xml_sax_push_parser.h $(srcdir)/html_sax_parser_context.h $(srcdir)/xml_namespace.h
+OBJS = html_document.o html_element_description.o html_entity_lookup.o html_sax_parser_context.o html_sax_push_parser.o nokogiri.o xml_attr.o xml_attribute_decl.o xml_cdata.o xml_comment.o xml_document.o xml_document_fragment.o xml_dtd.o xml_element_content.o xml_element_decl.o xml_encoding_handler.o xml_entity_decl.o xml_entity_reference.o xml_io.o xml_libxml2_hacks.o xml_namespace.o xml_node.o xml_node_set.o xml_processing_instruction.o xml_reader.o xml_relax_ng.o xml_sax_parser.o xml_sax_parser_context.o xml_sax_push_parser.o xml_schema.o xml_syntax_error.o xml_text.o xml_xpath_context.o xslt_stylesheet.o
+HDRS = $(srcdir)/html_document.h $(srcdir)/html_element_description.h $(srcdir)/html_entity_lookup.h $(srcdir)/html_sax_parser_context.h $(srcdir)/html_sax_push_parser.h $(srcdir)/nokogiri.h $(srcdir)/xml_attr.h $(srcdir)/xml_attribute_decl.h $(srcdir)/xml_cdata.h $(srcdir)/xml_comment.h $(srcdir)/xml_document.h $(srcdir)/xml_document_fragment.h $(srcdir)/xml_dtd.h $(srcdir)/xml_element_content.h $(srcdir)/xml_element_decl.h $(srcdir)/xml_encoding_handler.h $(srcdir)/xml_entity_decl.h $(srcdir)/xml_entity_reference.h $(srcdir)/xml_io.h $(srcdir)/xml_libxml2_hacks.h $(srcdir)/xml_namespace.h $(srcdir)/xml_node.h $(srcdir)/xml_node_set.h $(srcdir)/xml_processing_instruction.h $(srcdir)/xml_reader.h $(srcdir)/xml_relax_ng.h $(srcdir)/xml_sax_parser.h $(srcdir)/xml_sax_parser_context.h $(srcdir)/xml_sax_push_parser.h $(srcdir)/xml_schema.h $(srcdir)/xml_syntax_error.h $(srcdir)/xml_text.h $(srcdir)/xml_xpath_context.h $(srcdir)/xslt_stylesheet.h
 TARGET = nokogiri
 TARGET_NAME = nokogiri
 TARGET_ENTRY = Init_$(TARGET_NAME)

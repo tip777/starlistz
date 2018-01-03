@@ -19,4 +19,5 @@ if ARGV.first
   end
 end
 
-load Gem.activate_bin_path('sass', 'sass', version)
+gem 'sass', version
+load Gem.bin_path('sass', 'sass', version)

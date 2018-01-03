@@ -85,3 +85,17 @@ $(function() {
 
 
 //var result = test() //ちゃんと返り値が入ってる;
+
+
+
+
+
+
+$(function(){
+ 
+  $('.navbar-toggle').on('click', function(){
+    $('body').toggleClass("sp-menu-open");
+  });
+});
+
+

@@ -1,12 +1,5 @@
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
-/Users/ikedatakashinao/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20171218-95684-1c0i8vo.rb extconf.rb
-Ignoring bcrypt-3.1.11 because its extensions are not built.  Try: gem pristine bcrypt --version 3.1.11
-Ignoring bindex-0.5.0 because its extensions are not built.  Try: gem pristine bindex --version 0.5.0
-Ignoring byebug-9.1.0 because its extensions are not built.  Try: gem pristine byebug --version 9.1.0
-Ignoring ffi-1.9.18 because its extensions are not built.  Try: gem pristine ffi --version 1.9.18
-Ignoring mysql2-0.4.10 because its extensions are not built.  Try: gem pristine mysql2 --version 0.4.10
-Ignoring puma-3.11.0 because its extensions are not built.  Try: gem pristine puma --version 3.11.0
-Ignoring websocket-driver-0.6.5 because its extensions are not built.  Try: gem pristine websocket-driver --version 0.6.5
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
+/Users/ikedakyousuke/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20180102-44596-1xwn4q9.rb extconf.rb
 checking for unistd.h... yes
 checking for sys/select.h... yes
 checking for poll.h... yes
@@ -17,11 +10,16 @@ checking for port.h... no
 checking for sys/resource.h... yes
 creating Makefile
 
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0-static/nio4r-2.1.0/mkmf.log
+
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
 make "DESTDIR=" clean
 
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
 make "DESTDIR="
+compiling bytebuffer.c
 compiling monitor.c
 compiling nio4r_ext.c
 In file included from nio4r_ext.c:7:
@@ -137,7 +135,7 @@ In file included from nio4r_ext.c:7:
 ./../libev/ev.c:3750:36: warning: incompatible pointer types passing 'VALUE (void *)' (aka 'unsigned long (void *)') to parameter of type 'void *(*)(void *)' [-Wincompatible-pointer-types]
         rb_thread_call_without_gvl(ev_backend_poll, (void *)&poll_args, RUBY_UBF_IO, 0);
                                    ^~~~~~~~~~~~~~~
-/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/thread.h:28:42: note: passing argument to parameter 'func' here
+/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/thread.h:28:42: note: passing argument to parameter 'func' here
 void *rb_thread_call_without_gvl(void *(*func)(void *), void *data1,
                                          ^
 In file included from nio4r_ext.c:7:
@@ -240,9 +238,8 @@ In file included from nio4r_ext.c:7:
                         ^
 32 warnings generated.
 compiling selector.c
-compiling bytebuffer.c
 linking shared-object nio4r_ext.bundle
 
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/nio4r-2.1.0/ext/nio4r
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 nio4r_ext.bundle ./.gem.20171218-95684-1erm2is
+/usr/bin/install -c -m 0755 nio4r_ext.bundle ./.gem.20180102-44596-1130itc

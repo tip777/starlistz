@@ -19,4 +19,5 @@ if ARGV.first
   end
 end
 
-load Gem.activate_bin_path('thor', 'thor', version)
+gem 'thor', version
+load Gem.bin_path('thor', 'thor', version)

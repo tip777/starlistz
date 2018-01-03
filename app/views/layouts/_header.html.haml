@@ -1,29 +1,19 @@
 / Header
 %header#header
-  %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+  %nav.navbar.navbar-fixed-top{:role => "navigation"}
     / Brand and toggle get grouped for better mobile display
     .navbar-header
       %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to "Brand", root_path, { class: "navbar-brand" }
+        .div
+          %span.bun
+          %span.burger
+          %span.bun
+      %img{:alt => "", :src => "assets/amazing-1295347_1280.png"}
+      = link_to "StarListz", root_path, { class: "navbar-brand" }
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav.navbar-left
-        %li.navlist-genre
-          = link_to 'チャート', chart_path
-        %li.navlist-upload
-          = link_to new_list_path do
-            %i.fa.fa-plus{"aria-hidden" => "true"}　
-            アップロード
-      // .col-sm-3.col-md-3
-      //   = search_form_for  @q, html: {class: 'navbar-form' }, :url => root_path do |f|
-      //     .input-group
-      //       = f.search_field :created_at, placeholder: "search Playlist or Artist", class: "form-control"
-      //       .input-group-btn
-      //         = f.button "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn btn-default'
+      
+        
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %strong= link_to current_user.name, current_user
@@ -31,11 +21,28 @@
             =link_to 'ログアウト', destroy_user_session_path, method: :delete
           %li
             =link_to 'マイページ', edit_user_registration_path
+          %li.navlist-upload
+            = link_to new_list_path do
+              %i.fa.fa-plus{"aria-hidden" => "true"}　
+              アップロード
+          %li.navlist-genre
+            = link_to 'チャート', chart_path
+
+
         - else
-          %li
-            =link_to 'ログイン', new_user_session_path
+          = search_form_for  @q, html: {class: 'navbar-form' }, :url => root_path do |f|
+            .input-group
+              = f.search_field :name_cont, placeholder: "キーワード", class: "form-control search-box"
+              .input-group-btn
+                = f.button "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn btn-default search-btn'
+
           %li
             =link_to 'サインアップ', new_user_registration_path
+          %li.login
+            =link_to 'ログイン', new_user_session_path
+          
+          
+
         %li.dropdown.multi-level
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
             %span.glyphicon.glyphicon-option-horizontal
@@ -46,8 +53,4 @@
             %li.divider
             %li
               %a{:href => "#"} お問い合わせ
-    = search_form_for  @q, html: {class: 'navbar-form' }, :url => root_path do |f|
-      .input-group
-        = f.search_field :name_cont, placeholder: "search Playlist or Artist", class: "form-control search-box"
-        .input-group-btn
-          = f.button "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn btn-default search-btn'
+    

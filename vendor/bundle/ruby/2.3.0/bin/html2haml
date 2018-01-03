@@ -19,4 +19,5 @@ if ARGV.first
   end
 end
 
-load Gem.activate_bin_path('html2haml', 'html2haml', version)
+gem 'html2haml', version
+load Gem.bin_path('html2haml', 'html2haml', version)
