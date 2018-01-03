@@ -16,24 +16,12 @@
 //= require turbolinks
 //= require select2
 //= require_tree .
-$(function() {
-    var h;
-    //スマホの場合padding-top足す
-    if(!window.matchMedia('(min-width:736px)').matches){
-        h = $('#header').height() + 100;
-    }else{
-        h = $('#header').height();
-    }
-    $('#page-wrapper').css('padding-top', h);
-});
-//= require turbolinks
-//= require_tree .
+
 
 $(function() {
-    //header padding-top
-    // var h;
-    // h = $('#header').height();
-    // $('#page-wrapper').css('padding-top', h);
+    var h = $('header').height();
+    $('#page-wrapper').css('padding-top', h);
+    
 
     //select2 option
     $(".js-multiple").select2({
