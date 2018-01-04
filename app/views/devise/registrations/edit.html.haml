@@ -11,7 +11,7 @@
       .field_profile
         = m.label :description, "ユーザープロフィール"
         %br/
-        = m.text_field :description, placeholder: 'プロフィールを入力してください', class: 'form-control', required: true
+        = m.text_field :description, placeholder: 'プロフィールを入力してください', class: 'form-control'
     .field_email
       = f.label :email, "メールアドレス"
       %br/
@@ -33,11 +33,11 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "off"
+  -# .field
+  -#   = f.label :current_password
+  -#   %i (we need your current password to confirm your changes)
+  -#   %br/
+  -#   = f.password_field :current_password, autocomplete: "off"
   .actions
     = f.submit "Update"
 %h3 Cancel my account
