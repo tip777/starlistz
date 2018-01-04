@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
   before_action :search_header
   before_action :configure_permitted_parameters, if: :devise_controller?
-  protect_from_forgery with: :exception
 
   def search_header
       @q = User.ransack(params[:q])
@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name]) #アカウント登録時にnameカラムも登録
     devise_parameter_sanitizer.permit(:account_update,
-           keys: [:user_profiles => [:user_id, :description, :insta_url, :tw_url]]) #userモデル編集時にプロフィールも編集
+           keys: [:user_profiles => [:id, :user_id, :description, :insta_url, :tw_url]]) #userモデル編集時にプロフィールも編集
   end
 end
