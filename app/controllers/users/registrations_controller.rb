@@ -63,6 +63,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  # By default we want to require a password checks on update.
+  # You can overwrite this method in your own RegistrationsController.
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #   super(resource)

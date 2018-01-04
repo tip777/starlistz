@@ -7,7 +7,7 @@
       = f.label :name, "ユーザー名"
       %br/
       = f.text_field :name, autocomplete: "off"
-    = f.fields_for :user_profiles do |m|
+    = f.fields_for :user_profile do |m|
       .field_profile
         = m.label :description, "ユーザープロフィール"
         %br/
