@@ -23,7 +23,7 @@ class User < ApplicationRecord
     end
   end
 
-  has_one :user_profile, dependent: :destroy, inverse_of: :user
+  belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
   accepts_nested_attributes_for :user_profile
 
   has_many :list_favorites, dependent: :destroy
@@ -46,6 +46,5 @@ class User < ApplicationRecord
 
   #ユーザー名　validate
   validates :name, presence: true, uniqueness: true, length: { minimum: 1,maximum: 50 }
-
 
 end

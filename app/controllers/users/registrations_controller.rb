@@ -3,17 +3,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
   def create
     super
     if resource.save
-        @profile = UserProfile.new
-        @profile.user_id = resource.id
-        @profile.save
+        profile = UserProfile.new
+        profile.save
+        signup_user = User.find(resource.id)
+        signup_user.user_profile = profile
+        signup_user.save
     end
   end
 
@@ -57,7 +59,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
     devise_parameter_sanitizer.permit(:account_update) do |params|
       params.permit(:email, :password, :password_confirmation, :current_password, :name,
-                    user_profiles: [:id, :user_id, :description, :insta_url, :tw_url ])
+                    user_profiles: [:id, :description, :insta_url, :tw_url ])
     end
   end
 

@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(version: 20171220095540) do
   end
 
   create_table "user_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
     t.text     "description",         limit: 65535
     t.text     "insta_url",           limit: 65535
     t.text     "tw_url",              limit: 65535
@@ -115,7 +114,6 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.index ["user_id"], name: "index_user_profiles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -133,6 +131,7 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "user_profile_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "provider"
@@ -141,6 +140,7 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["user_profile_id"], name: "index_users_on_user_profile_id", using: :btree
   end
 
   add_foreign_key "item_services", "list_items"
@@ -150,5 +150,5 @@ ActiveRecord::Schema.define(version: 20171220095540) do
   add_foreign_key "lists", "users"
   add_foreign_key "purchases", "lists"
   add_foreign_key "purchases", "users"
-  add_foreign_key "user_profiles", "users"
+  add_foreign_key "users", "user_profiles"
 end
