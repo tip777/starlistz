@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
-
+        # :timeoutable, :omniauth_providers: [:twitter] #cloud9用
+        
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
       user.provider = auth["provider"]
@@ -21,6 +22,20 @@ class User < ApplicationRecord
     else
       super
     end
+  end
+  
+  # allow users to update their accounts without passwords
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+ 
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+ 
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 
   belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
