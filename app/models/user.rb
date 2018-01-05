@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-        :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
+         :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
         # :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
         
   def self.from_omniauth(auth)
@@ -39,7 +39,7 @@ class User < ApplicationRecord
   end
 
   belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
-  accepts_nested_attributes_for :user_profile
+  accepts_nested_attributes_for :user_profile, allow_destroy: true
 
   has_many :list_favorites, dependent: :destroy
 

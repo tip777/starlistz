@@ -26,10 +26,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # PUT /resource
-  def update
-    binding.pry
-    super
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
@@ -61,9 +60,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     
     devise_parameter_sanitizer.permit(:account_update) do |params|
       params.permit(:email, :password, :password_confirmation, :current_password, :name,
-                    user_profile: [:id, :description, :insta_url, :tw_url ])
+                    user_profile_attributes: [:id, :description, :insta_url, :tw_url ])
     end
-    binding.pry
   end
 
   # By default we want to require a password checks on update.
