@@ -1,4 +1,23 @@
-%p
-  Welcome #{@email}!
-%p You can confirm your account email through the link below:
-%p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+%p StarListz へようこそ！
+
+%p StarListzへのユーザー登録のご案内です。
+%br/
+　以下のURLをクリックすると、本登録が完了します。
+
+%p= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token)
+%br/
+※このURLをクリックしていただかないと、本登録が完了しません。必ずこのURLをクリックしてお進みください。
+
+%p ※このご案内メールは自動で送信されています。
+%br/
+　クリック有効時間を過ぎますと、ご登録をお受けすることができません。
+%br/
+　本メールにご返信をいただきましてもご質問等にはお答えできません。
+
+%p ---------------------------------
+%p お問い合わせ
+%br/
+　サポートページのURL
+%p StarListz LLC.
+%br/
+　ホームページのURL

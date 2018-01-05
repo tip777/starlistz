@@ -20,7 +20,7 @@
       %div
         Currently waiting confirmation for: #{resource.unconfirmed_email}
   .field
-    = f.label :password
+    = f.label :password, "パスワード変更"
     %i (leave blank if you don't want to change it)
     %br/
     = f.password_field :password, autocomplete: "off"
@@ -30,7 +30,7 @@
         = @minimum_password_length
         characters minimum
   .field
-    = f.label :password_confirmation
+    = f.label :password_confirmation, "パスワード確認"
     %br/
     = f.password_field :password_confirmation, autocomplete: "off"
   -# .field

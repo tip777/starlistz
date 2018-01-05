@@ -17,6 +17,13 @@
     %script{:src => "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"} :cdata
   %body.index
     = render :partial => "layouts/header"
+
+    - if notice
+      %p.alert.alert-notice= notice
+    - if alert
+      %p.alert.alert-error= alert
+
+
     #page-wrapper
       = yield
 
