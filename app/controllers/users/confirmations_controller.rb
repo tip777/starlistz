@@ -15,6 +15,19 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     super do |resource|
       sign_in(resource)
     end
+    # super do |resource|
+    #   if user_signed_in?#ログインしていたら
+    #     binding.pry
+    #     if current_user.email == resource.email
+    #       binding.pry
+    #       edit_user_registration_path(resource)
+    #     else
+    #       sign_in(resource)
+    #     end
+    #   else
+    #     sign_in(resource)
+    #   end
+    # end
   end
 
   # protected

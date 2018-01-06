@@ -57,7 +57,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     # devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-    
+
     devise_parameter_sanitizer.permit(:account_update) do |params|
       params.permit(:email, :password, :password_confirmation, :current_password, :name,
                     user_profile_attributes: [:id, :description, :insta_url, :tw_url ])

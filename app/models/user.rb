@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
         # :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
-        
+
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
       user.provider = auth["provider"]
@@ -23,19 +23,28 @@ class User < ApplicationRecord
       super
     end
   end
-  
+
   # allow users to update their accounts without passwords
   def update_without_current_password(params, *options)
     params.delete(:current_password)
- 
+
     if params[:password].blank? && params[:password_confirmation].blank?
       params.delete(:password)
       params.delete(:password_confirmation)
     end
- 
+
     result = update_attributes(params, *options)
     clean_up_passwords
     result
+  end
+
+  # override Devise::Models::Confirmable#send_on_create_confirmation_instructions
+  # 新規登録、メールアドレス変更とテンプレートを分ける
+  #　新規登録　confirmation_on_create_instructions
+  #  メールアドレス変更　confirmation_instructions
+  def send_on_create_confirmation_instructions
+    generate_confirmation_token!  unless @raw_confirmation_token
+    send_devise_notification(:confirmation_on_create_instructions, @raw_confirmation_token, {})
   end
 
   belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
