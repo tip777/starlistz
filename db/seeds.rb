@@ -43,5 +43,15 @@
 
 5.times do |i|
   List.create(user_id: 1, name: "プレイリスト #{i+1}", description: "プレイリストの説明 #{i+1}", price: "#{i}00")
-  UserFavorite.create(favoriting_id: "10", favorited_id: "1")
+end
+
+5.times do |i|
+  15.times do |n|
+    random = Random.new
+    if i == random.rand(1..15)
+      ListItem.create(list_id: i, artist: "アーティスト #{n+1}", song: "ソング #{n+1}", recommend: "1")
+    else
+      ListItem.create(list_id: i, artist: "アーティスト #{n+1}", song: "ソング #{n+1}", recommend: "")
+    end
+  end
 end

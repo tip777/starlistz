@@ -2,11 +2,7 @@ class List < ApplicationRecord
   belongs_to :user
   has_many :list_favorites, dependent: :destroy
 
-  has_many :list_contents, dependent: :destroy
-  has_many :list_items, through: :list_contents
-
-  has_many :listhub_genres, dependent: :destroy
-  has_many :list_genres, through: :listhub_genres
+  has_many :list_items, dependent: :destroy
 
   has_many :purchases, dependent: :destroy
   has_many :users, through: :users
