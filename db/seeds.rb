@@ -42,7 +42,8 @@
 
 
 5.times do |i|
-  List.create(user_id: 1, name: "プレイリスト #{i+1}", description: "プレイリストの説明 #{i+1}", price: "#{i}00")
+  # binding.pry
+  List.create(user_id: 1, title: "プレイリスト #{i+1}", description: "プレイリストの説明 #{i+1}", price: "#{i}00")
 end
 
 5.times do |i|

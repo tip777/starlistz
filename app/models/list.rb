@@ -3,6 +3,7 @@ class List < ApplicationRecord
   has_many :list_favorites, dependent: :destroy
 
   has_many :list_items, dependent: :destroy
+  accepts_nested_attributes_for :list_items, allow_destroy: true
 
   has_many :purchases, dependent: :destroy
   has_many :users, through: :users

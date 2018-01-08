@@ -55,7 +55,7 @@ class User < ApplicationRecord
   has_many :lists, dependent: :destroy
 
   has_many :purchases, dependent: :destroy
-  has_many :lists, through: :purchases
+  # has_many :lists, through: :purchases
 
   has_many :favoriting_relation, class_name: "User_favorite", foreign_key: "favoriting_id", dependent: :destroy
   has_many :favoriting_users, through: :favoriting_relation, source: :favoriter

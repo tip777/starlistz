@@ -38,26 +38,26 @@
           // -binding.pry
           .newlist
             .inner-list
-              .title
-                %h2
-                  .favorite
-                    %span.author>= list.user.name
-                    %span.favorite-star
-                      %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
-                      = list.list_favorites.count
-                  = list.name
-              %p= list.description
-              .list-genre
-                .more.label
-                  %a{:href => "#"} もっと見る
-                .tags
-                  - list.list_genres.each.with_index(0) do |listgenre, i|
-                    %span.btn-info
-                      %a{:href => "#"}= list.list_genres[i][:name]
-                
+              -# .title
+              -#   %h2
+              -#     .favorite
+              -#       %span.author>= list.user.name
+              -#       %span.favorite-star
+              -#         %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+              -#         = list.list_favorites.count
+              -#     = list.name
+              -# %p= list.description
+              -# .list-genre
+              -#   .more.label
+              -#     %a{:href => "#"} もっと見る
+              -#   .tags
+              -#     - list.list_genres.each.with_index(0) do |listgenre, i|
+              -#       %span.btn-info
+              -#         %a{:href => "#"}= list.list_genres[i][:name]
+
               .clear
             %hr/
-  
+
     / Main
     %article#main
       // %header.special.container

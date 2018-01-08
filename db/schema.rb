@@ -31,11 +31,13 @@ ActiveRecord::Schema.define(version: 20171220095540) do
   end
 
   create_table "list_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "list_id"
     t.string   "artist"
     t.string   "song"
     t.integer  "recommend"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_list_items_on_list_id", using: :btree
   end
 
   create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -147,6 +149,7 @@ ActiveRecord::Schema.define(version: 20171220095540) do
   add_foreign_key "item_services", "music_services"
   add_foreign_key "list_favorites", "lists"
   add_foreign_key "list_favorites", "users"
+  add_foreign_key "list_items", "lists"
   add_foreign_key "lists", "users"
   add_foreign_key "purchases", "lists"
   add_foreign_key "purchases", "users"
