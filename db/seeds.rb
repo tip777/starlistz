@@ -43,4 +43,5 @@
 
 5.times do |i|
   List.create(user_id: 1, name: "プレイリスト #{i+1}", description: "プレイリストの説明 #{i+1}", price: "#{i}00")
+  UserFavorite.create(favoriting_id: "10", favorited_id: "1")
 end

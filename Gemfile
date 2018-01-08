@@ -44,6 +44,7 @@ gem 'erb2haml'
 gem 'ransack'
 gem 'kaminari'
 gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
 gem "paranoia"
 gem "gretel"
 # gem 'pg', '~> 0.20.0'

@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20171220095540) do
 
   create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.string   "name"
+    t.string   "title"
     t.string   "description"
     t.integer  "price"
     t.datetime "created_at",         null: false

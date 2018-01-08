@@ -16,7 +16,11 @@
       .field_profile
         = m.label :description, "ユーザープロフィール"
         %br/
-        = m.text_field :description, placeholder: 'プロフィールを入力してください', class: 'form-control'
+        = m.text_field :description, placeholder: 'プロフィールを入力してください'
+
+        = m.label :avatar, "ユーザープロフィール"
+        %br/
+        = m.file_field :avatar
     .field_email
       = f.label :email, "メールアドレス"
       %br/
