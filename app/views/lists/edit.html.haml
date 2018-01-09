@@ -1,1 +1,21 @@
-%p list edit Page
+= form_for @list do |f|
+  .field_playlist
+    .list_title
+      = f.label :title, "プレイリスト名"
+      %br/
+      = f.text_field :title
+    .list_description
+      = f.label :description, "詳細"
+      %br/
+      = f.text_field :description
+    = @list.list_items.each do |items|
+      = f.fields_for :list_items, items do |item|
+        .field_items
+          .item_song
+            = item.label :song, "曲名"
+            %br/
+            = item.text_field :song
+          .item_artist
+            = item.label :artist, "アーティスト"
+            %br/
+            = item.text_field :artist
