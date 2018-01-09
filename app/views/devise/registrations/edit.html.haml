@@ -56,7 +56,7 @@
 - @list.each do |list|
   .field_lists
     .title
-      = list.title
+      = link_to list.title, edit_list_path(list)      
 
 %h3 Cancel my account
 %p

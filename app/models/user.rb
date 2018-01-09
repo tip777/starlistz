@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
+        :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
         # :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
 
   def self.from_omniauth(auth)
