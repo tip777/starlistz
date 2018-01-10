@@ -4,18 +4,21 @@
       = f.label :title, "プレイリスト名"
       %br/
       = f.text_field :title
-    .list_description
+    .list_description{:style => "margin-bottom: 50px;"}
       = f.label :description, "詳細"
       %br/
       = f.text_field :description
-    - @list.list_items.each do |items|
+    - @list.list_items.each_with_index do |items, i|
       = f.fields_for :list_items, items do |item|
-        .field_items
+        .field_items{:style => "margin-bottom: 50px;"}
           .item_song
-            = item.label :song, "曲名"
+            = item.label :song, "曲名#{i+1}"
             %br/
             = item.text_field :song
           .item_artist
             = item.label :artist, "アーティスト"
             %br/
             = item.text_field :artist
+          .item_reco
+            = item.label :recommend, "おすすめ"
+            = item.check_box :recommend
