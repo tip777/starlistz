@@ -5,6 +5,7 @@ class ListsController < ApplicationController
 
   def edit
     # @list = List.new
+    @listitem = ListItem.all
     set_list
   end
 

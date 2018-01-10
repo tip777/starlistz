@@ -8,7 +8,7 @@
       = f.label :description, "詳細"
       %br/
       = f.text_field :description
-    = @list.list_items.each do |items|
+    - @list.list_items.each do |items|
       = f.fields_for :list_items, items do |item|
         .field_items
           .item_song
