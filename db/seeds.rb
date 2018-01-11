@@ -50,9 +50,9 @@ end
   15.times do |n|
     random = Random.new
     if i == random.rand(1..15)
-      Track.create(list_id: i, artist: "アーティスト #{n+1}", song: "ソング #{n+1}", recommend: "1")
+      Track.create(list_id: i, artist: "アーティスト #{n+1}", song: "ソング #{n+1}", recommend: "1", no: n+1)
     else
-      Track.create(list_id: i, artist: "アーティスト #{n+1}", song: "ソング #{n+1}", recommend: "", no: i+1)
+      Track.create(list_id: i, artist: "アーティスト #{n+1}", song: "ソング #{n+1}", recommend: "", no: n+1)
     end
   end
 end

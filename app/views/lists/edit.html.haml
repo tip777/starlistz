@@ -8,7 +8,7 @@
       = f.label :description, "詳細"
       %br/
       = f.text_field :description
-    - @list.tracks.each_with_index do |tracks, i|
+    - @list.tracks.order(:no).each_with_index do |tracks, i|
       = f.fields_for :tracks, tracks do |track|
         .field_tracks{:style => "margin-bottom: 50px;"}
           .track_song
