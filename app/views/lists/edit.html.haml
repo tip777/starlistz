@@ -8,17 +8,17 @@
       = f.label :description, "詳細"
       %br/
       = f.text_field :description
-    - @list.list_items.each_with_index do |items, i|
-      = f.fields_for :list_items, items do |item|
-        .field_items{:style => "margin-bottom: 50px;"}
-          .item_song
-            = item.label :song, "曲名#{i+1}"
+    - @list.tracks.each_with_index do |tracks, i|
+      = f.fields_for :tracks, tracks do |track|
+        .field_tracks{:style => "margin-bottom: 50px;"}
+          .track_song
+            = track.label :song, "曲名#{i+1}"
             %br/
-            = item.text_field :song
-          .item_artist
-            = item.label :artist, "アーティスト"
+            = track.text_field :song
+          .track_artist
+            = track.label :artist, "アーティスト"
             %br/
-            = item.text_field :artist
-          .item_reco
-            = item.label :recommend, "おすすめ"
-            = item.check_box :recommend
+            = track.text_field :artist
+          .track_reco
+            = track.label :recommend, "おすすめ"
+            = track.check_box :recommend

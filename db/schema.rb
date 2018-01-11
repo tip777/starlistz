@@ -14,11 +14,11 @@ ActiveRecord::Schema.define(version: 20171220095540) do
 
   create_table "item_services", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "music_service_id"
-    t.integer  "list_item_id"
+    t.integer  "track_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["list_item_id"], name: "index_item_services_on_list_item_id", using: :btree
     t.index ["music_service_id"], name: "index_item_services_on_music_service_id", using: :btree
+    t.index ["track_id"], name: "index_item_services_on_track_id", using: :btree
   end
 
   create_table "list_favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -28,16 +28,6 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.datetime "updated_at", null: false
     t.index ["list_id"], name: "index_list_favorites_on_list_id", using: :btree
     t.index ["user_id"], name: "index_list_favorites_on_user_id", using: :btree
-  end
-
-  create_table "list_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "list_id"
-    t.string   "artist"
-    t.string   "song"
-    t.integer  "recommend"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["list_id"], name: "index_list_items_on_list_id", using: :btree
   end
 
   create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -96,6 +86,17 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
+  create_table "tracks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "list_id"
+    t.string   "artist"
+    t.string   "song"
+    t.integer  "recommend"
+    t.integer  "no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_tracks_on_list_id", using: :btree
+  end
+
   create_table "user_favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "favoriting_id"
     t.integer  "favoriter_id"
@@ -145,13 +146,13 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.index ["user_profile_id"], name: "index_users_on_user_profile_id", using: :btree
   end
 
-  add_foreign_key "item_services", "list_items"
   add_foreign_key "item_services", "music_services"
+  add_foreign_key "item_services", "tracks"
   add_foreign_key "list_favorites", "lists"
   add_foreign_key "list_favorites", "users"
-  add_foreign_key "list_items", "lists"
   add_foreign_key "lists", "users"
   add_foreign_key "purchases", "lists"
   add_foreign_key "purchases", "users"
+  add_foreign_key "tracks", "lists"
   add_foreign_key "users", "user_profiles"
 end
