@@ -4,7 +4,7 @@ class CreateTracks < ActiveRecord::Migration[5.0]
       t.references :list, foreign_key: true
       t.string :artist
       t.string :song
-      t.integer :recommend
+      t.boolean :recommend, default: false, null: false
       t.integer :no
 
       t.timestamps null:false

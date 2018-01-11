@@ -1,24 +1,16 @@
-= form_for @list do |f|
+= simple_form_for @list do |f|
   .field_playlist
     .list_title
-      = f.label :title, "プレイリスト名"
-      %br/
-      = f.text_field :title
+      = f.input :title, label: "プレイリスト名"
     .list_description{:style => "margin-bottom: 50px;"}
-      = f.label :description, "詳細"
-      %br/
-      = f.text_field :description
+      = f.input :description, label: "詳細"
     - @list.tracks.order(:no).each_with_index do |tracks, i|
       = f.fields_for :tracks, tracks do |track|
         .field_tracks{:style => "margin-bottom: 50px;"}
           .track_song
-            = track.label :song, "曲名#{i+1}"
-            %br/
-            = track.text_field :song
+            = track.input :song, label: "曲名#{i+1}"
           .track_artist
-            = track.label :artist, "アーティスト"
-            %br/
-            = track.text_field :artist
+            = track.input :artist, label: "アーティスト"
           .track_reco
-            = track.label :recommend, "おすすめ"
-            = track.check_box :recommend
+            = track.input :recommend, label: "おすすめ", as: :boolean, boolean_style: :inline
+            

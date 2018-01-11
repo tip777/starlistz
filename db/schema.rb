@@ -90,10 +90,10 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.integer  "list_id"
     t.string   "artist"
     t.string   "song"
-    t.integer  "recommend"
+    t.boolean  "recommend",  default: false, null: false
     t.integer  "no"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["list_id"], name: "index_tracks_on_list_id", using: :btree
   end
 
