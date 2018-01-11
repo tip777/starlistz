@@ -52,8 +52,10 @@ gem "mysql2"
 gem 'select2-rails'
 gem 'acts-as-taggable-on'
 gem 'nokogiri', '~> 1.6'
-gem 'rename'
+# gem 'rename'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem "cocoon"
+gem 'simple_form'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
