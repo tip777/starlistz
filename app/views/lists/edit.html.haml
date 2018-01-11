@@ -13,4 +13,6 @@
             = track.input :artist, label: "アーティスト"
           .track_reco
             = track.input :recommend, label: "おすすめ", as: :boolean, boolean_style: :inline
+    .field_track_add
+      = link_to_add_association '曲 追加', f, :tracks
             

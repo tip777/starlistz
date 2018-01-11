@@ -1,0 +1,7 @@
+.field_tracks{:style => "margin-bottom: 50px;"}
+  .track_song
+    = f.input :song, label: "曲名"
+  .track_artist
+    = f.input :artist, label: "アーティスト"
+  .track_reco
+    = f.input :recommend, label: "おすすめ", as: :boolean, boolean_style: :inline
