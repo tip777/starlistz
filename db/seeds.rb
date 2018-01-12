@@ -41,6 +41,11 @@
 # UserFavorite.create(favoriting_id: "10", favorited_id: "1")
 
 
+
+# 10.time do |i|
+#   User.create(name: 'test#{i}',email: 'test#{i}@gmail.com', password: 'testtest#{i}', password_confirmation: 'testtest#{i}')
+# end
+
 5.times do |i|
   # binding.pry
   List.create(user_id: 1, title: "プレイリスト #{i+1}", description: "プレイリストの説明 #{i+1}", price: "#{i}00")
