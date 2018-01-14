@@ -1,2 +1,27 @@
-%h1 Users#show
-%p Find me in app/views/users/show.html.haml
+- if current_user.id == @user.id
+  =link_to '編集ページに移動', edit_user_registration_path
+%br/
+%br/
+= image_tag @user.user_profile.avatar.url(:medium)
+%h2 #{@user.name}
+
+%p プロフィール
+= @user.user_profile.description
+
+%p ジャンル
+= render 'users/tag_list', tag_list: @user.usergenre_list
+
+%p フォロー中
+= @following
+
+%p フォロワー
+= @follower
+
+%p プレイリスト数
+= @lists
+
+%p "プレイリスト一覧"
+- @list.each do |list|
+  .field_lists
+    .title
+      -# = link_to list.title, list_path(list, list: list)

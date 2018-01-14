@@ -1,4 +1,6 @@
 class ListsController < ApplicationController
+  before_action :logged_in_user
+
   def new
     @list = List.new
   end

@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-        # :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
-        :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
+        :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
+        # :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
@@ -47,6 +47,23 @@ class User < ApplicationRecord
     send_devise_notification(:confirmation_on_create_instructions, @raw_confirmation_token, {})
   end
 
+  #フォロー機能
+  # 他のユーザーをフォローする
+  def follow(other_user)
+    following_relationships.find_or_create_by(followed_id: other_user.id)
+  end
+
+  # フォローしているユーザーをアンフォローする
+  def unfollow(other_user)
+    following_relationship = following_relationships.find_by(followed_id: other_user.id)
+    following_relationship.destroy if following_relationship
+  end
+
+  # あるユーザーをフォローしているかどうか？
+  def following?(other_user)
+    following_users.include?(other_user)
+  end
+
   belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
   accepts_nested_attributes_for :user_profile, allow_destroy: true
 
@@ -57,11 +74,11 @@ class User < ApplicationRecord
   has_many :purchases, dependent: :destroy
   # has_many :lists, through: :purchases
 
-  has_many :favoriting_relation, class_name: "User_favorite", foreign_key: "favoriting_id", dependent: :destroy
-  has_many :favoriting_users, through: :favoriting_relation, source: :favoriter
+  has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :following_users, through: :following_relationships, source: :followed
 
-  has_many :favoriter_relation, class_name: "User_favorite", foreign_key: "favoriter_id", dependent: :destroy
-  has_many :favoriter_users, through: :favoriter_relation, source: :favoriting
+  has_many :follower_relationships, class_name:  "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :follower_users, through: :follower_relationships, source: :follower
 
 
 

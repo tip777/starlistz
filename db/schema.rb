@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.index ["user_id"], name: "index_purchases_on_user_id", using: :btree
   end
 
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+    t.index ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+  end
+
   create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "tag_id"
     t.string   "taggable_type"
@@ -95,16 +105,6 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["list_id"], name: "index_tracks_on_list_id", using: :btree
-  end
-
-  create_table "user_favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "favoriting_id"
-    t.integer  "favoriter_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["favoriter_id"], name: "index_user_favorites_on_favoriter_id", using: :btree
-    t.index ["favoriting_id", "favoriter_id"], name: "index_user_favorites_on_favoriting_id_and_favoriter_id", unique: true, using: :btree
-    t.index ["favoriting_id"], name: "index_user_favorites_on_favoriting_id", using: :btree
   end
 
   create_table "user_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

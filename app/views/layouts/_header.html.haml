@@ -30,7 +30,8 @@
           %li
             =link_to 'ログアウト', destroy_user_session_path, method: :delete
           %li
-            =link_to 'マイページ', edit_user_registration_path
+            -# =link_to 'マイページ', edit_user_registration_path
+            =link_to 'マイページ', current_user
         - else
           %li
             =link_to 'ログイン', new_user_session_path
