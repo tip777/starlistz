@@ -46,8 +46,27 @@
 #   User.create(name: 'test#{i}',email: 'test#{i}@gmail.com', password: 'testtest#{i}', password_confirmation: 'testtest#{i}')
 # end
 
+10.times do |i|
+  profile = UserProfile.create(description: "これはユーザープロフィールの説明[ #{i+1} ]")
+  user = User.create(name: "test#{i+1}", email: "test#{i}@gmail.com", password: "testtest", password_confirmation: "testtest")
+  user.user_profile = profile
+  user.save
+end
+
+10.times do |i|
+  random = Random.new
+  random.rand(1..10)
+  10.times do |n|
+    random2 = Random.new
+    random2.rand(0..15)
+    # binding.pry
+    if random2.rand < 11
+      Relationship.create(follower_id: random2, followed_id: i+1)
+    end
+  end
+end
+
 5.times do |i|
-  # binding.pry
   List.create(user_id: 1, title: "プレイリスト #{i+1}", description: "プレイリストの説明 #{i+1}", price: "#{i}00")
 end
 
@@ -55,9 +74,9 @@ end
   15.times do |n|
     random = Random.new
     if i == random.rand(1..15)
-      Track.create(list_id: i, artist: "アーティスト #{n+1}", song: "ソング #{n+1}", recommend: true, no: n+1)
+      Track.create(list_id: i+1, artist: "アーティスト #{n+1}", song: "ソング #{n+1}", recommend: true, no: n+1)
     else
-      Track.create(list_id: i, artist: "アーティスト #{n+1}", song: "ソング #{n+1}", recommend: false, no: n+1)
+      Track.create(list_id: i+1, artist: "アーティスト #{n+1}", song: "ソング #{n+1}", recommend: false, no: n+1)
     end
   end
 end

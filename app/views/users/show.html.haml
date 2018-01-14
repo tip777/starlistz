@@ -5,22 +5,22 @@
 = image_tag @user.user_profile.avatar.url(:medium)
 %h2 #{@user.name}
 
-%p プロフィール
+%h3 プロフィール
 = @user.user_profile.description
 
-%p ジャンル
+%h3 ジャンル
 = render 'users/tag_list', tag_list: @user.usergenre_list
 
-%p フォロー中
+%h3 フォロー中
 = @following
 
-%p フォロワー
+%h3 フォロワー
 = @follower
 
-%p プレイリスト数
+%h3 プレイリスト数
 = @lists
 
-%p "プレイリスト一覧"
+%h3 "プレイリスト一覧"
 - @list.each do |list|
   .field_lists
     .title
