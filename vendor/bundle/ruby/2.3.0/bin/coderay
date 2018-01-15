@@ -19,4 +19,5 @@ if ARGV.first
   end
 end
 
-load Gem.activate_bin_path('coderay', 'coderay', version)
+gem 'coderay', version
+load Gem.bin_path('coderay', 'coderay', version)

@@ -19,4 +19,5 @@ if ARGV.first
   end
 end
 
-load Gem.activate_bin_path('oauth', 'oauth', version)
+gem 'oauth', version
+load Gem.bin_path('oauth', 'oauth', version)

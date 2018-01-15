@@ -1,6 +1,6 @@
 have_header: checking for unistd.h... -------------------- yes
 
-"clang -o conftest -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/ikedatakashinao/.rbenv/versions/2.3.1/lib -L. -L/Users/ikedatakashinao/.rbenv/versions/2.3.1/lib  -fstack-protector -L/usr/local/lib     -lruby-static -framework CoreFoundation  -lpthread -ldl -lobjc "
+"clang -o conftest -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/ikedakyousuke/.rbenv/versions/2.3.1/lib -L. -L/Users/ikedakyousuke/.rbenv/versions/2.3.1/lib  -fstack-protector -L/usr/local/lib     -lruby-static -framework CoreFoundation  -lpthread -ldl -lobjc "
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -11,7 +11,7 @@ checked program was:
 6: }
 /* end */
 
-"clang -E -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
+"clang -E -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -23,7 +23,7 @@ checked program was:
 
 have_header: checking for sys/select.h... -------------------- yes
 
-"clang -E -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
+"clang -E -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -35,7 +35,7 @@ checked program was:
 
 have_header: checking for poll.h... -------------------- yes
 
-"clang -E -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
+"clang -E -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -47,7 +47,7 @@ checked program was:
 
 have_header: checking for sys/epoll.h... -------------------- no
 
-"clang -E -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
+"clang -E -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
 conftest.c:3:10: fatal error: 'sys/epoll.h' file not found
 #include <sys/epoll.h>
          ^~~~~~~~~~~~~
@@ -63,7 +63,7 @@ checked program was:
 
 have_header: checking for sys/event.h... -------------------- yes
 
-"clang -E -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
+"clang -E -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -75,7 +75,7 @@ checked program was:
 
 have_header: checking for sys/queue.h... -------------------- yes
 
-"clang -E -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
+"clang -E -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -87,7 +87,7 @@ checked program was:
 
 have_header: checking for port.h... -------------------- no
 
-"clang -E -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
+"clang -E -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
 conftest.c:3:10: fatal error: 'port.h' file not found
 #include <port.h>
          ^~~~~~~~
@@ -103,7 +103,7 @@ checked program was:
 
 have_header: checking for sys/resource.h... -------------------- yes
 
-"clang -E -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedatakashinao/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
+"clang -E -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin16 -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/ikedakyousuke/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
 checked program was:
 /* begin */
 1: #include "ruby.h"

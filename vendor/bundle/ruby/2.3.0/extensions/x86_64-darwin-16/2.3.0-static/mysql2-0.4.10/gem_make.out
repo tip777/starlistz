@@ -1,6 +1,5 @@
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/mysql2-0.4.10/ext/mysql2
-/Users/ikedatakashinao/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20171218-95684-zy3v4f.rb extconf.rb
-Ignoring puma-3.11.0 because its extensions are not built.  Try: gem pristine puma --version 3.11.0
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/mysql2-0.4.10/ext/mysql2
+/Users/ikedakyousuke/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20180102-44596-1atvaqv.rb extconf.rb
 checking for rb_absint_size()... yes
 checking for rb_absint_singlebit_p()... yes
 checking for ruby/thread.h... yes
@@ -28,15 +27,18 @@ Setting rpath to /usr/local/Cellar/mysql/5.7.20/lib
 -----
 creating Makefile
 
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/mysql2-0.4.10/ext/mysql2
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0-static/mysql2-0.4.10/mkmf.log
+
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/mysql2-0.4.10/ext/mysql2
 make "DESTDIR=" clean
 
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/mysql2-0.4.10/ext/mysql2
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/mysql2-0.4.10/ext/mysql2
 make "DESTDIR="
-compiling infile.c
 compiling client.c
+compiling infile.c
 compiling mysql2_ext.c
-compiling statement.c
 compiling result.c
 result.c:326:40: warning: incompatible pointer types assigning to 'my_bool *' (aka 'char *') from 'bool *' [-Wincompatible-pointer-types]
     wrapper->result_buffers[i].is_null = &wrapper->is_null[i];
@@ -45,8 +47,9 @@ result.c:328:40: warning: incompatible pointer types assigning to 'my_bool *' (a
     wrapper->result_buffers[i].error   = &wrapper->error[i];
                                        ^ ~~~~~~~~~~~~~~~~~~
 2 warnings generated.
+compiling statement.c
 linking shared-object mysql2/mysql2.bundle
 
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/mysql2-0.4.10/ext/mysql2
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/mysql2-0.4.10/ext/mysql2
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 mysql2.bundle ./.gem.20171218-95684-17128re/mysql2
+/usr/bin/install -c -m 0755 mysql2.bundle ./.gem.20180102-44596-1smcj5x/mysql2

@@ -1,21 +1,25 @@
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/puma-3.11.0/ext/puma_http11
-/Users/ikedatakashinao/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20171218-95684-ku3hye.rb extconf.rb
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/puma-3.11.0/ext/puma_http11
+/Users/ikedakyousuke/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20180102-44596-a3hxwo.rb extconf.rb
 checking for BIO_read() in -lcrypto... yes
 checking for SSL_CTX_new() in -lssl... yes
 checking for openssl/bio.h... yes
 creating Makefile
 
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/puma-3.11.0/ext/puma_http11
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0-static/puma-3.11.0/mkmf.log
+
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/puma-3.11.0/ext/puma_http11
 make "DESTDIR=" clean
 
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/puma-3.11.0/ext/puma_http11
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/puma-3.11.0/ext/puma_http11
 make "DESTDIR="
+compiling http11_parser.c
 compiling io_buffer.c
 compiling mini_ssl.c
 compiling puma_http11.c
-compiling http11_parser.c
 linking shared-object puma/puma_http11.bundle
 
-current directory: /Users/ikedatakashinao/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/puma-3.11.0/ext/puma_http11
+current directory: /Users/ikedakyousuke/Desktop/repo_star/vendor/bundle/ruby/2.3.0/gems/puma-3.11.0/ext/puma_http11
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 puma_http11.bundle ./.gem.20171218-95684-y5z2ft/puma
+/usr/bin/install -c -m 0755 puma_http11.bundle ./.gem.20180102-44596-1hyw0pj/puma

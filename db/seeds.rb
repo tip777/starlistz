@@ -53,20 +53,6 @@
   user.save
 end
 
-# 10.times do |i|
-#   random = Random.new
-#   random.rand(1..10)
-#   10.times do |n|
-#     random2 = Random.new
-#     random2.rand(0..15)
-#     # binding.pry
-#     if random2.rand < 11
-#       binding.pry
-#       Relationship.create(follower_id: random2, followed_id: i+1)
-#     end
-#   end
-# end
-
 Relationship.create(follower_id: "1", followed_id: "2")
 Relationship.create(follower_id: "2", followed_id: "3")
 Relationship.create(follower_id: "3", followed_id: "4")
