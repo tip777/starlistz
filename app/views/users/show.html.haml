@@ -11,14 +11,16 @@
 %h3 ジャンル
 = render 'users/tag_list', tag_list: @user.usergenre_list
 
-%h3 フォロー中
+=link_to(following_user_path) do
+  %h3 フォロー中
 = @following
 
-%h3 フォロワー
+=link_to(follower_user_path) do
+  %h3 フォロワー
 = @follower
 
 %h3 プレイリスト数
-= @lists
+= @list.count
 
 %h3 "プレイリスト一覧"
 - @list.each do |list|

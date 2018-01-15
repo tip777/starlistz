@@ -1,0 +1,10 @@
+%div
+  %h3
+    フォロワー (#{@relationship})
+  - if @relationship.nil?
+  - else
+    %ol.follow
+      - @follower.each do |fw|
+        %li{:id => "following-#{fw.id}"}
+          =link_to(fw) do
+            %span.name= fw.name

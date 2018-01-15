@@ -7,7 +7,13 @@ Rails.application.routes.draw do
 
 
 
-  resources :users, :only => [:show] #User MyPage
+  resources :users, :only => [:show] do
+    member do
+       get 'following'
+       get 'follower'
+      # get 'favoriting'
+    end
+   end 
   resources :lists #プレイリスト用
 
   get 'chart' , to: 'home#chart' #チャート

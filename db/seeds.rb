@@ -53,18 +53,29 @@
   user.save
 end
 
-10.times do |i|
-  random = Random.new
-  random.rand(1..10)
-  10.times do |n|
-    random2 = Random.new
-    random2.rand(0..15)
-    # binding.pry
-    if random2.rand < 11
-      Relationship.create(follower_id: random2, followed_id: i+1)
-    end
-  end
-end
+# 10.times do |i|
+#   random = Random.new
+#   random.rand(1..10)
+#   10.times do |n|
+#     random2 = Random.new
+#     random2.rand(0..15)
+#     # binding.pry
+#     if random2.rand < 11
+#       binding.pry
+#       Relationship.create(follower_id: random2, followed_id: i+1)
+#     end
+#   end
+# end
+
+Relationship.create(follower_id: "1", followed_id: "2")
+Relationship.create(follower_id: "2", followed_id: "3")
+Relationship.create(follower_id: "3", followed_id: "4")
+Relationship.create(follower_id: "4", followed_id: "5")
+Relationship.create(follower_id: "6", followed_id: "7")
+Relationship.create(follower_id: "7", followed_id: "8")
+Relationship.create(follower_id: "8", followed_id: "9")
+Relationship.create(follower_id: "9", followed_id: "10")
+Relationship.create(follower_id: "10", followed_id: "1")
 
 5.times do |i|
   List.create(user_id: 1, title: "プレイリスト #{i+1}", description: "プレイリストの説明 #{i+1}", price: "#{i}00")
