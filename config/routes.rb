@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
    end 
   resources :lists #プレイリスト用
+  resources :relationships, only: [:create, :destroy]#フォロー、アンフォロー
 
   get 'chart' , to: 'home#chart' #チャート
   get 'genre' , to: 'home#genre' #ジャンル一覧
