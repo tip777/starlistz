@@ -16,6 +16,16 @@
 //= require turbolinks
 //= require select2
 //= require cocoon
+$(function() {
+    var h;
+    //スマホの場合padding-top足す
+    if(!window.matchMedia('(min-width:736px)').matches){
+        h = $('#header').height() + 100;
+    }else{
+        h = $('#header').height();
+    }
+    $('#page-wrapper').css('padding-top', h);
+});
 //= require_tree .
 
 
