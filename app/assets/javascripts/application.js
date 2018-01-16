@@ -70,21 +70,38 @@ $(function() {
 //
 // });
 
-
-
-
 //var result = test() //ちゃんと返り値が入ってる;
-
-
-
-
-
 
 $(function(){
  
   $('.navbar-toggle').on('click', function(){
     $('body').toggleClass("sp-menu-open");
   });
+});
+
+
+//user edit ジャンルselectbox用
+// $(document).ready(function() {
+//   $('.js-tags-input').each(function() {
+//     $(this).select2({
+//       tags: true,
+//       tokenSeparators: [','],
+//       theme: 'bootstrap',
+//       width: '100%',
+//       placeholder: 'Separated by comma'
+//       });
+//     });
+// });
+$(function() {
+  $('.js-tags-input').each(function() {
+    $(this).select2({
+      tags: true,
+      tokenSeparators: [','],
+      theme: 'bootstrap',
+      width: '100%',
+      placeholder: 'Separated by comma'
+      });
+    });
 });
 
 
