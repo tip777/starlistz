@@ -11,27 +11,17 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
+//= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
 //= require select2
 //= require cocoon
-$(function() {
-    var h;
-    //スマホの場合padding-top足す
-    if(!window.matchMedia('(min-width:736px)').matches){
-        h = $('#header').height() + 100;
-    }else{
-        h = $('#header').height();
-    }
-    $('#page-wrapper').css('padding-top', h);
-});
 //= require_tree .
 
-
 $(function() {
-    var h = $('header').height();
-    $('#page-wrapper').css('padding-top', h);
+    var h = $('nav').outerHeight();
+    console.log(h);
+    $('body').css('padding-top',h);
     
 
     //select2 option
@@ -84,7 +74,7 @@ $(function() {
 
 $(function(){
  
-  $('.navbar-toggle').on('click', function(){
+  $('.menu-button').on('click', function(){
     $('body').toggleClass("sp-menu-open");
   });
 });
@@ -113,5 +103,20 @@ $(function() {
       });
     });
 });
+
+
+
+
+
+
+$(window).on('scroll',function(){
+s = $(window).scrollTop();
+if(s < 10){
+  $('.navbar-fixed-top').removeClass('is-fixed');
+} else {
+  $('.navbar-fixed-top').addClass('is-fixed');
+}
+});
+
 
 
