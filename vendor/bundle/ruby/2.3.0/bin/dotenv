@@ -19,5 +19,4 @@ if ARGV.first
   end
 end
 
-gem 'dotenv', version
-load Gem.bin_path('dotenv', 'dotenv', version)
+load Gem.activate_bin_path('dotenv', 'dotenv', version)

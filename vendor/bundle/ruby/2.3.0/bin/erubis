@@ -19,5 +19,4 @@ if ARGV.first
   end
 end
 
-gem 'erubis', version
-load Gem.bin_path('erubis', 'erubis', version)
+load Gem.activate_bin_path('erubis', 'erubis', version)

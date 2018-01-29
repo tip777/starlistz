@@ -2,7 +2,7 @@
   =link_to '編集ページに移動', edit_user_registration_path
 %br/
 %br/
-= image_tag @user.user_profile.avatar.url(:medium)
+= image_tag @user.user_profile.avatar.url(:thumb)
 %h2 #{@user.name}
 = render 'follow_form' if user_signed_in? 
 

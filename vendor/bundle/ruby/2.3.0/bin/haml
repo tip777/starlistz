@@ -19,5 +19,4 @@ if ARGV.first
   end
 end
 
-gem 'haml', version
-load Gem.bin_path('haml', 'haml', version)
+load Gem.activate_bin_path('haml', 'haml', version)
