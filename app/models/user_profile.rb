@@ -7,8 +7,7 @@ class UserProfile < ApplicationRecord
                     :styles => {
                       :thumb => "100x100>",
                       :medium => '300x240>'
-                    },
-                    :default_url => ActionController::Base.helpers.asset_path('noimage.png')
+                    }
 
   def s3_credentials
       {:bucket => 'starlistz-bucket', :aws_access_key_id => ENV["AWS_ACCESS_KEY_ID"], :aws_secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]}
