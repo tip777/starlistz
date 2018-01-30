@@ -6,7 +6,7 @@ class UserProfile < ApplicationRecord
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
                     :styles => {
                       :thumb => "100x100#",
-                      :medium => '300x240>'
+                      :medium => '300x240#'
                     }
 
   def s3_credentials
