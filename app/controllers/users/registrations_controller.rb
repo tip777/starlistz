@@ -75,9 +75,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.update_without_current_password(params)
   end
 
-  #マイページ更新後に編集画面表示
+  #マイページ更新後にマイページ表示
   def after_update_path_for(resource)
-    edit_user_registration_path
+    current_user
   end
 
   # The path used after sign up.
