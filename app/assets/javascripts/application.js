@@ -18,12 +18,16 @@
 //= require cocoon
 //= require_tree .
 
-$(function() {
-    var h = $('nav').outerHeight();
+// turbolinks対応文
+// $(document).on('turbolinks:load', function() {
+//   ...your javascript goes here...
+// });
+
+$(document).on('turbolinks:load', function() {
+  var h = $('nav').outerHeight();
     console.log(h);
     $('body').css('padding-top',h);
     
-
     //select2 option
     $(".js-multiple").select2({
         width:      200
@@ -37,7 +41,6 @@ $(function() {
     $('.genre-search').change(function() {
         console.log("yeah man");
     });
-
 });
 
 // $(function() {
@@ -72,8 +75,7 @@ $(function() {
 
 //var result = test() //ちゃんと返り値が入ってる;
 
-$(function(){
- 
+$(document).on('turbolinks:load', function() {
   $('.menu-button').on('click', function(){
     $('body').toggleClass("sp-menu-open");
   });
@@ -92,7 +94,8 @@ $(function(){
 //       });
 //     });
 // });
-$(function() {
+
+$(document).on('turbolinks:load', function() {
   $('.js-tags-input').each(function() {
     $(this).select2({
       tags: true,
@@ -103,11 +106,6 @@ $(function() {
       });
     });
 });
-
-
-
-
-
 
 $(window).on('scroll',function(){
 s = $(window).scrollTop();
