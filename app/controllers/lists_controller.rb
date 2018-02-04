@@ -16,4 +16,8 @@ class ListsController < ApplicationController
   def set_list
     @list = List.find(params[:id])
   end
+
+  def track_params
+    params.require(:list).permit(:artist, :song, :recommend, :row_order)
+  end
 end

@@ -3,4 +3,8 @@ class Track < ApplicationRecord
 #   has_many :lists
   has_many :item_services, dependent: :destroy
   has_many :music_servises, through: :item_services
+
+  #sortable用
+  include RankedModel
+  ranks :row_order
 end

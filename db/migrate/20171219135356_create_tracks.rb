@@ -5,7 +5,7 @@ class CreateTracks < ActiveRecord::Migration[5.0]
       t.string :artist
       t.string :song
       t.boolean :recommend, default: false, null: false
-      t.integer :no
+      t.integer :row_order
 
       t.timestamps null:false
     end

@@ -4,14 +4,20 @@
       = f.input :title, label: "プレイリスト名"
     .list_description{:style => "margin-bottom: 50px;"}
       = f.input :description, label: "詳細"
-    - @lists.tracks.order(:no).each_with_index do |tracks, i|
-      = f.fields_for :tracks, tracks do |track|
-        .field_tracks{:style => "margin-bottom: 50px;"}
-          .track_song
-            = track.input :song, label: "曲名#{i+1}"
-          .track_artist
-            = track.input :artist, label: "アーティスト"
-          .track_reco
-            = track.input :recommend, label: "おすすめ", as: :boolean, boolean_style: :inline
+    -# - @lists.tracks.order(:no).each_with_index do |tracks, i|
+    -#   = f.fields_for :tracks, tracks do |track|
+    -#     .field_tracks{:style => "margin-bottom: 50px;"}
+    -#       .track_song
+    -#         = track.input :song, label: "曲名#{i+1}"
+    -#       .track_artist
+    -#         = track.input :artist, label: "アーティスト"
+    -#       .track_reco
+    -#         = track.input :recommend, label: "おすすめ", as: :boolean, boolean_style: :inline
+    -# .field_track_add
+    -#   = link_to_add_association '曲 追加', f, :tracks
+  %table.table.table-bordered.table-sortable
+    %tbody#lines
+      = f.fields_for :tracks, f.tracks.sort_by(&:row_order) do |track|
+        = render 'track_fields', f: track
     .field_track_add
       = link_to_add_association '曲 追加', f, :tracks
