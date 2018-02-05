@@ -11,6 +11,6 @@
       = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
         = render 'track_fields', f: track
   .field_track_add
-    = link_to_add_association '曲 追加', f, :tracks
+    = link_to_add_association '曲 追加', f, :tracks,:"data-association-insertion-node" => "tbody#lines",:"data-association-insertion-method" => "append"
   .actions
     = f.submit
