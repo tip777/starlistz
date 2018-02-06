@@ -7,4 +7,8 @@ class Track < ApplicationRecord
   #sortable用
   include RankedModel
   ranks :row_order
+  
+  #validate
+  validates :artist, presence: true
+  validates :song, presence: true
 end

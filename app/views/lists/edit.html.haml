@@ -1,3 +1,8 @@
+- if @list.errors.any?
+  #error_explanation.alert.alert-danger
+    %ul
+      - @list.errors.full_messages.each do |message|
+        %li= message
 = simple_form_for @list do |f|
   .field_playlist
     .list_title

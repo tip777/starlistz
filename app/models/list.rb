@@ -13,4 +13,8 @@ class List < ApplicationRecord
 
   #gem acts-as-taggable-on タグ機能
   acts_as_ordered_taggable_on :maingenres, :othergenres
+  
+  #validate
+  validates :title, presence: true
+  validates :title, presence: true
 end
