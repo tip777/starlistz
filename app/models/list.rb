@@ -26,7 +26,6 @@ class List < ApplicationRecord
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   do_not_validate_attachment_file_type :image
 
-  #validate
-  validates :title, presence: true
-  validates :title, presence: true
+  #validation
+  validates_with RegularValidator, column_name: :title
 end

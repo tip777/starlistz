@@ -1,1 +1,10 @@
 %p #{@list.title} show Page
+
+
+= image_tag @list.image.url(:thumb)
+
+%h3 プレイリスト名
+= @list.title
+
+%h3 ジャンル
+= render 'users/tag_list', tag_list: @user.usergenre_list
