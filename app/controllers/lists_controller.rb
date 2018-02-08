@@ -14,7 +14,7 @@ class ListsController < ApplicationController
   end
   
   def create
-    @list = List.new(list_params)
+    @list = current_user.lists.new(list_params)
     if @list.save
       redirect_to current_user
     else
@@ -32,6 +32,7 @@ class ListsController < ApplicationController
   end
   
   def destroy
+    @list = List.find(params[:id])
     @list.destroy
     redirect_to current_user
   end
