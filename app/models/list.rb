@@ -10,7 +10,7 @@ class List < ApplicationRecord
 
   #gem acts-as-taggable-on タグ機能
   acts_as_ordered_taggable_on :maingenres, :othergenres
-  
+
   #paperclip設定
   has_attached_file :image,
                     :storage => :s3,
@@ -27,5 +27,6 @@ class List < ApplicationRecord
   do_not_validate_attachment_file_type :image
 
   #validation
-  validates_with RegularValidator, column_name: :title
+  include ActiveModel::Validations
+  validates_with RegularValidator, attributes: [:title]
 end
