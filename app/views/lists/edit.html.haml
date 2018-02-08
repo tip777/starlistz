@@ -5,6 +5,9 @@
         %li= message
 = simple_form_for @list do |f|
   .field_playlist
+    .list_image
+      = image_tag @list.image.url(:thumb)
+      = f.input :image, as: :file, label: false
     .list_title
       = f.input :title, label: "プレイリスト名"
     .list_description

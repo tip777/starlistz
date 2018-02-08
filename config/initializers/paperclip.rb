@@ -7,4 +7,4 @@ end
 Paperclip::Attachment.default_options[:s3_host_name] = 's3-ap-northeast-1.amazonaws.com'
 Paperclip::Attachment.default_options[:s3_region] = 'ap-northeast-1'
 Paperclip::Attachment.default_options[:bucket] = 'starlistz-bucket'
-Paperclip::Attachment.default_options[:default_url] = "/images/default/thumb_noimage.jpg"
+# Paperclip::Attachment.default_options[:default_url] = "/images/default/thumb_noimage.jpg"

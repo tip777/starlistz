@@ -1,6 +1,10 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!
-
+  
+  def show
+    @list = List.find(params[:id])
+  end
+  
   def new
     @list = List.new
   end
@@ -10,7 +14,7 @@ class ListsController < ApplicationController
   end
   
   def create
-    @list = List.new(track_params)
+    @list = List.new(list_params)
     if @list.save
       redirect_to current_user
     else
@@ -20,7 +24,7 @@ class ListsController < ApplicationController
   
   def update
     @list = List.find(params[:id])
-    if @list.update(track_params)
+    if @list.update(list_params)
       redirect_to current_user
     else
       render 'edit'
@@ -38,7 +42,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
   end
 
-  def track_params
-    params.require(:list).permit(:title, :description, :price, tracks_attributes:[:id, :artist, :song, :recommend, :row_order, :_destroy])
+  def list_params
+    params.require(:list).permit(:title, :description, :price, :image, tracks_attributes:[:id, :artist, :song, :recommend, :row_order, :_destroy])
   end
 end
