@@ -23,4 +23,10 @@ $(document).on 'turbolinks:load', ->
 
   $('.table-sortable').on 'cocoon:after-insert', (e, insertedItem) ->
     $(insertedItem).find('.sort_order').val $(insertedItem).index()
+    #曲のrecommendのid
+    # $(insertedItem).find('.custom-check-box').id "custom-checkbox" + $(insertedItem).index()
+    # $(insertedItem).find('.track_recommend').id "custom-checkbox" + $(insertedItem).index()
+    $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index())
+    $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
+    
     return

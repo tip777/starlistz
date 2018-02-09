@@ -28,5 +28,5 @@ class List < ApplicationRecord
 
   #validation
   include ActiveModel::Validations
-  validates_with RegularValidator, attributes: [:title]
+  # validates_with RegularValidator, attributes: [:title]
 end

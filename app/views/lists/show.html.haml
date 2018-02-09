@@ -16,9 +16,11 @@
             %th アーティスト
             %th 曲名
             %th スター
-    - @list.tracks.each do |track|
+    - @list.tracks.each_with_index do |track, i|
         %tr.track
             %td= track.artist
             %td= track.song
-            %td= check_box 'track', 'recommend', {:checked => track.recommend, :disabled  => true}
+            %td
+                = check_box 'track', 'recommend', {:checked => track.recommend, :disabled  => true, id: "custom-checkbox#{i}", class: "custom-check-box"}
+                %label{for: "custom-checkbox#{i}"}
 
