@@ -1,10 +1,24 @@
-%p #{@list.title} show Page
-
-
 = image_tag @list.image.url(:thumb)
 
 %h3 プレイリスト名
 = @list.title
 
-%h3 ジャンル
-= render 'users/tag_list', tag_list: @user.usergenre_list
+%h3 詳細
+= @list.description
+
+%h3 金額
+%p "#{@list.price}円"
+
+
+%table.table.table-bordered.table-sortable
+    %tbody#lines
+        %tr
+            %th アーティスト
+            %th 曲名
+            %th スター
+    - @list.tracks.each do |track|
+        %tr.track
+            %td= track.artist
+            %td= track.song
+            %td= check_box 'track', 'recommend', {:checked => track.recommend, :disabled  => true}
+
