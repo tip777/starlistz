@@ -1,4 +1,4 @@
-- if current_user.id == @user.id
+- if is_signin(current_user.id, @user.id)
   =link_to '編集ページに移動', edit_user_registration_path
 %br/
 %br/
