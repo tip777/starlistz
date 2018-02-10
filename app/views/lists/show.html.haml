@@ -21,7 +21,7 @@
             %th アーティスト
             %th 曲名
             %th スター
-    - @list.tracks.each_with_index do |track, i|
+    - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
         %tr.track
             %td= track.artist
             %td= track.song
