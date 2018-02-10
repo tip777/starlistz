@@ -3,9 +3,9 @@ class List < ApplicationRecord
   has_many :list_favorites, dependent: :destroy
 
   has_many :tracks, dependent: :destroy
-  accepts_nested_attributes_for :tracks, allow_destroy: true
+  accepts_nested_attributes_for :tracks, reject_if: :all_blank, allow_destroy: true
 
-  has_many :purchases, dependent: :destroy
+  has_many :purchases
   # has_many :users, through: :users
 
   #gem acts-as-taggable-on タグ機能

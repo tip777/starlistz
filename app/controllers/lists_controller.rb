@@ -32,6 +32,7 @@ class ListsController < ApplicationController
   end
   
   def destroy
+    binding.pry
     @list = List.find(params[:id])
     @list.destroy
     redirect_to current_user
