@@ -10,7 +10,7 @@
 = @user.user_profile.description
 
 %h3 ジャンル
-= render 'users/tag_list', tag_list: @user.usergenre_list
+= render 'tag_list', tag_list: @user.usergenre_list
 
 =link_to(following_user_path) do
   %h3 フォロー中
@@ -27,4 +27,5 @@
 - @list.each do |list|
   .field_lists
     .title
+      = render 'lists/is_image', list: list
       = link_to list.title, list_path(list)
