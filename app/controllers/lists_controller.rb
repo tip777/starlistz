@@ -1,10 +1,10 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def show
     @list = List.find(params[:id])
   end
-  
+
   def new
     @list = List.new
   end
@@ -12,7 +12,7 @@ class ListsController < ApplicationController
   def edit
     set_lists
   end
-  
+
   def create
     @list = current_user.lists.new(list_params)
     if @list.save
@@ -21,7 +21,7 @@ class ListsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def update
     @list = List.find(params[:id])
     if @list.update(list_params)
@@ -30,14 +30,14 @@ class ListsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
     binding.pry
     @list = List.find(params[:id])
     @list.destroy
     redirect_to current_user
   end
-  
+
   private
   def set_lists
     @list.tap { @list = nil }

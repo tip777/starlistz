@@ -29,4 +29,12 @@ class List < ApplicationRecord
   #validation
   include ActiveModel::Validations
   # validates_with RegularValidator, attributes: [:title]
+
+  #５曲以上入っているか確認
+  after_save do
+    if self.tracks.count <= 5
+      self.errors.add(:base, "５曲以上登録してください")
+      raise ActiveRecord::Rollback
+    end
+  end
 end
