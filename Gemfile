@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 
 #追加
 gem 'jquery-turbolinks'
+gem 'jquery-ui-rails'
 gem 'devise'
 gem 'omniauth-twitter'
 gem 'bootstrap-sass'
@@ -56,6 +57,7 @@ gem 'nokogiri', '~> 1.6'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem "cocoon"
 gem 'simple_form'
+gem 'ranked-model'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

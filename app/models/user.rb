@@ -79,13 +79,14 @@ class User < ApplicationRecord
 
   has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower
-  
+
 
 
   #gem acts-as-taggable-on タグ機能
   acts_as_ordered_taggable_on :usergenres
 
   #ユーザー名　validate
-  validates :name, presence: true, uniqueness: true, length: { minimum: 1,maximum: 50 }
+  #これから
+
 
 end

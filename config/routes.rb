@@ -14,7 +14,9 @@ Rails.application.routes.draw do
       # get 'favoriting'
     end
    end 
-  resources :lists #プレイリスト用
+  resources :lists do #プレイリスト用
+    put :sort
+  end
   resources :relationships, only: [:create, :destroy]#フォロー、アンフォロー
 
   get 'chart' , to: 'home#chart' #チャート

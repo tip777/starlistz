@@ -1,25 +1,28 @@
-%h1 Lists#new
-%p Find me in app/views/lists/new.html.haml
-
-= form_for(@list) do |f|
-  - if @list.errors.any?
+- if @list.errors.any?
   #error_explanation.alert.alert-danger
-    %h2
-      エラーがあります
     %ul
       - @list.errors.full_messages.each do |message|
         %li= message
-  .field
-    = f.label :name
-    %br/
-    = f.text_field :name, autofocus: true
-  .field
-    = f.label :description
-    %br/
-    = f.description_field :description
-  .field
-    = f.label :price
-    %br/
-    = f.price_field :price
+= simple_form_for @list do |f|
+  .field_playlist
+    .list_image
+      = image_tag @list.image.url(:thumb)
+      = f.input :image, as: :file, label: false
+    .list_title
+      = f.input :title, label: "プレイリスト名"
+    .list_description
+      = f.input :description, label: "詳細"
+    .list_price{:style => "margin-bottom: 50px;"}
+      = f.input :price, label: "金額"
+  %table.table.table-bordered.table-sortable
+    %tbody#lines
+      %tr
+        %th アーティスト
+        %th 曲名
+        %th スター
+      = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
+        = render 'track_fields', f: track
+  .field_track_add
+    = link_to_add_association '曲 追加', f, :tracks,:"data-association-insertion-node" => "tbody#lines",:"data-association-insertion-method" => "append"
   .actions
-    = f.submit "登録"
+    = f.submit

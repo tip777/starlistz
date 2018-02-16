@@ -1,1 +1,31 @@
-%p #{list.title} show Page
+//ログインしていたら編集できる
+- if is_signin(current_user.id, @list.user.id)
+    =link_to 'プレイリスト編集', edit_list_path(@list, list: @list)
+%br/
+%br/
+= image_tag @list.image.url(:thumb)
+
+%h3 プレイリスト名
+= @list.title
+
+%h3 詳細
+= @list.description
+
+%h3 金額
+%p "#{@list.price}円"
+
+
+%table.table.table-bordered.table-sortable
+    %tbody#lines
+        %tr
+            %th アーティスト
+            %th 曲名
+            %th スター
+    - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
+        %tr.track
+            %td= track.artist
+            %td= track.song
+            %td
+                = check_box 'track', 'recommend', {:checked => track.recommend, :disabled  => true, id: "custom-checkbox#{i}", class: "custom-check-box"}
+                %label{for: "custom-checkbox#{i}"}
+

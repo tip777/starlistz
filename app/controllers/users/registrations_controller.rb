@@ -22,7 +22,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     @list = current_user.lists
-    # binding.pry
     super
   end
 

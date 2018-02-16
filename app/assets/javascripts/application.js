@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require select2
+//= require jquery-ui/widgets/sortable
+//= require jquery-ui/effects/effect-highlight
 //= require cocoon
 //= require_tree .
 
@@ -27,7 +29,7 @@ $(document).on('turbolinks:load', function() {
   var h = $('nav').outerHeight();
     console.log(h);
     $('body').css('padding-top',h);
-    
+
     //select2 option
     $(".js-multiple").select2({
         width:      200
@@ -115,6 +117,3 @@ if(s < 10){
   $('.navbar-fixed-top').addClass('is-fixed');
 }
 });
-
-
-
