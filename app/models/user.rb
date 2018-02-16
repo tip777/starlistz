@@ -86,9 +86,7 @@ class User < ApplicationRecord
   acts_as_ordered_taggable_on :usergenres
 
   #ユーザー名　validate
-  validates :name, presence: true, uniqueness: true, length: { minimum: 1,maximum: 50 }, format: { with: /\A^[!a-zA-Z0-9_.]+$\Z/,
-    message: "半角英数字、アンダーバー（_）、コンマ（.）以外は使用できません" }
-  validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  #これから
 
 
 end

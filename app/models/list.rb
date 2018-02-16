@@ -27,11 +27,7 @@ class List < ApplicationRecord
   do_not_validate_attachment_file_type :image
 
   #validation
-  include ActiveModel::Validations
-  # validates_with RegularValidator, attributes: [:title]
-  # validates_with RegularValidator, column_name: :title
-  validates :title, presence: true, format: { with: /\A^[!a-zA-Z0-9_.]+$\Z/,
-    message: "半角英数字、アンダーバー（_）、コンマ（.）以外は使用できません" }
+  #これから
 
   #５曲以上入っているか確認
   after_save do
