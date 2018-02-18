@@ -27,16 +27,17 @@
       .row
         .col-sm-8
           %ul
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            
+            - @newlist.each do |list|
+              %li ヒップポップ
+              %li ヒップポップ
+              %li ヒップポップ
+              %li ヒップポップ
+              %li ヒップポップ
+              %li ヒップポップ
+              %li ヒップポップ
+              %li ヒップポップ
+              %li ヒップポップ
+
         .col-sm-4.text-center
           %a.button{:href => "#"} ジャンルを探す &raquo;
 

@@ -77,3 +77,10 @@ end
     end
   end
 end
+
+#ジャンルタグ設定
+list = ['JPOP', 'HIP HOP', 'R&B / SOUL', 'DJ', 'EDM', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'アニメ / ボーカロイド']
+
+list.each do |tag|
+  ActsAsTaggableOn::Tag.new(name: tag, context: "maingenres").save
+end
