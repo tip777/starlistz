@@ -27,16 +27,8 @@
       .row
         .col-sm-8
           %ul
-            - @newlist.each do |list|
-              %li ヒップポップ
-              %li ヒップポップ
-              %li ヒップポップ
-              %li ヒップポップ
-              %li ヒップポップ
-              %li ヒップポップ
-              %li ヒップポップ
-              %li ヒップポップ
-              %li ヒップポップ
+            - @genre.each do |genre|
+              %li genre.name
 
         .col-sm-4.text-center
           %a.button{:href => "#"} ジャンルを探す &raquo;
