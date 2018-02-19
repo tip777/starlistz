@@ -28,7 +28,7 @@
         .col-sm-8
           %ul
             - @genre.each do |genre|
-              %li genre.name
+              %li= genre.name
 
         .col-sm-4.text-center
           %a.button{:href => "#"} ジャンルを探す &raquo;
@@ -42,22 +42,23 @@
           // -binding.pry
           .newlist
             .inner-list
-              -# .title
-              -#   %h2
-              -#     .favorite
-              -#       %span.author>= list.user.name
-              -#       %span.favorite-star
-              -#         %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
-              -#         = list.list_favorites.count
-              -#     = list.name
-              -# %p= list.description
-              -# .list-genre
-              -#   .more.label
-              -#     %a{:href => "#"} もっと見る
-              -#   .tags
-              -#     - list.list_genres.each.with_index(0) do |listgenre, i|
-              -#       %span.btn-info
-              -#         %a{:href => "#"}= list.list_genres[i][:name]
+              .title
+                = render 'lists/is_image', list: list
+                %h2
+                  .favorite
+                    %span.author>= list.user.name
+                    %span.favorite-star
+                      %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+                      = list.list_favorites.count
+                  = list.title
+              %p= list.description
+              .list-genre
+                .more.label
+                  %a{:href => "#"} もっと見る
+                .tags
+                  // - list.list_genres.each.with_index(0) do |listgenre, i|
+                  //   %span.btn-info
+                  //     %a{:href => "#"}= list.list_genres[i][:name]
 
               .clear
             %hr/

@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
   before_action :set_genre, only: [:genre, :chart]
   def index
-    mainno = ActsAsTaggableOn::Tagging.where(context: "maingenres").pluck(:tag_id)
-    @genre = ActsAsTaggableOn::Tag.where(id: mainno)
-    @newlist = List.order('created_at')
+    # mainno = ActsAsTaggableOn::Tagging.where(context: "maingenres").pluck(:tag_id)
+    # @genre = ActsAsTaggableOn::Tag.where(id: mainno)
+    @genre = ActsAsTaggableOn::Tag.where(taggings_count: 0) #メインジャンル
+    @newlist = List.order('created_at') #新着のプレイリスト
   end
 
   def show
