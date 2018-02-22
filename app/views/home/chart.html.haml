@@ -1,10 +1,11 @@
 .content-container
   .charts_aria
     .charts_main
-      = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]]), class: "js-hide-search"
+      = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]]), class: "select-main js-hide-search"
     .charts_spacer
       .charts_genre
-        = select_tag :person, grouped_options_for_select(@tag), class: "genre-search js-multiple"
+        = select_tag :person, grouped_options_for_select(@tag), multiple: true, class: "js-multiple"
+
     
   .content-list
     .span8
@@ -151,3 +152,63 @@
     //         %a.button{:href => "#"} See More
 
 = render :partial => "layouts/footer"
+
+:javascript
+  $(".js-multiple").select2({
+      width:      200
+  });
+  $(".js-hide-search").select2({
+      minimumResultsForSearch: Infinity,
+      width:      100,
+  });
+  
+  var url = add();//パラメーター取得
+  if ( url.length > 0) {
+    $('.select-main').val(url[0]).trigger('change');//select2 sort set value
+  }else{
+    $('.select-main').val("new").trigger('change');
+  }
+  
+  //select2 multi val parameters
+  var multiVal = [];
+  if(url.length > 1){
+      $.each(url, function(i, val){
+          if(i != 0){
+              multiVal[i-1] = val
+          }
+      });
+  }else{
+      multiVal[0] = "all"//controllerからもらう値にする
+  }
+  $(".js-multiple").val(multiVal).trigger("change");//select2 multi set value
+  
+  $('.select-main').on('change', param_change);
+  
+  $('.js-multiple').on('change', param_change);
+  
+  //parameter get
+  function add () {
+      var url = location.href;
+      var paramArray = [];
+      if ( url.indexOf('?') != -1) {
+        params = url.split("?");
+        spparams = params[1].split("&");
+        for ( i = 0; i < spparams.length; i++ ) {
+            vol = spparams[i].split("=");
+            paramArray.push(vol[1]);
+        }
+      }
+      return paramArray;
+  }
+  
+  //select tag parameter send
+  function param_change () {
+      var array = $(".js-multiple").val();
+      var url = 'sort=' + $('.select-main').val();
+      if (array){
+          $.each(array, function(i, val){
+              url = url + '&genre[]=' + val
+          });
+      }
+      window.location.search = url
+  }

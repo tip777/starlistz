@@ -16,12 +16,17 @@ class HomeController < ApplicationController
   def chart
     #パラメータからリスト抽出
     array = Array.new
-    binding.pry
-    if params[:genre][0] == "all" #ジャンルが空だったら
-      if params[:sort] == "ranking" #ランキングの場合
-        @genre_list = List.eager_load(:list_favorites).group(:list_id).order('count(list_id) desc')
-      else  # 新着の場合
+    # binding.pry
+    if params[:genre].nil? #ジャンルが空だったら
+      # if params[:sort] == "ranking" #ランキングの場合
+      #   @genre_list = List.eager_load(:list_favorites).group(:list_id).order('count(list_id) desc')
+      # else  # 新着の場合
+      #   @genre_list = List.order(:created_at)
+      # end
+      if params[:sort] == "new" || params[:sort].nil? #sortが新着or空欄の場合
         @genre_list = List.order(:created_at)
+      else  # 新着の場合
+        @genre_list = List.eager_load(:list_favorites).group(:list_id).order('count(list_id) desc')
       end
   
     else
@@ -31,10 +36,15 @@ class HomeController < ApplicationController
       end
       genrelist = List.tagged_with(array).pluck(:id)#ジャンルの対象のユーザーのIDの一覧取得
   
-      if params[:sort] == "ranking" #ランキングの場合
-        @genre_list = List.eager_load(:list_favorites).where(id: genrelist).group(:list_id).order('count(list_id) desc')
-      else  # 新着の場合
+      # if params[:sort] == "ranking" #ランキングの場合
+      #   @genre_list = List.eager_load(:list_favorites).where(id: genrelist).group(:list_id).order('count(list_id) desc')
+      # else  # 新着の場合
+      #   @genre_list = List.where(id: genrelist).order(:created_at)
+      # end
+      if params[:sort] == "new" || params[:sort].nil? #sortが新着or空欄の場合
         @genre_list = List.where(id: genrelist).order(:created_at)
+      else  # 新着の場合
+        @genre_list = List.eager_load(:list_favorites).where(id: genrelist).group(:list_id).order('count(list_id) desc')
       end
   
     end
