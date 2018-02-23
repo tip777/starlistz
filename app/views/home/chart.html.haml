@@ -32,183 +32,65 @@
   
             .clear
           %hr/
-  / Main
-  -# %article#main
-    // %header.special.container
-    //   %span.icon.fa-bar-chart-o
-    //   %h2
-    //     As this is my
-    //     %strong twentieth
-    //     freebie for HTML5 UP
-    //     %br/
-    //     I decided to give it a really creative name.
-    //   %p
-    //     Turns out
-    //     %strong Twenty
-    //     was the best I could come up with. Anyway, lame name aside,
-    //     %br/
-    //     it's minimally designed, fully responsive, built on HTML5/CSS3/
-    //     %strong> skel
-    //     ,
-    //     and, like all my stuff,
-    //     %br/
-    //     released for free under the
-    //     %a{:href => "http://html5up.net/license"} Creative Commons Attribution 3.0
-    //     license. Have fun!
-    // / One
-    // %section.wrapper.style2.container.special-alt
-    //   .row{:class => "50%"}
-    //     .8u{:class => "12u(narrower)"}
-    //       %header
-    //         %h2
-    //           Behold the
-    //           %strong icons
-    //           that visualize what you’re all about. or just take up space. your call bro.
-    //       %p Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu comteger ut fermentum lorem. Lorem ipsum dolor sit amet. Sed tristique purus vitae volutpat ultrices. eu elit eget commodo. Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo.
-    //       %footer
-    //         %ul.buttons
-    //           %li
-    //             %a.button{:href => "#"} Find Out More
-    //     .4u{:class => "12u(narrower) important(narrower)"}
-    //       %ul.featured-icons
-    //         %li
-    //           %span.icon.fa-clock-o
-    //             %span.label Feature 1
-    //         %li
-    //           %span.icon.fa-volume-up
-    //             %span.label Feature 2
-    //         %li
-    //           %span.icon.fa-laptop
-    //             %span.label Feature 3
-    //         %li
-    //           %span.icon.fa-inbox
-    //             %span.label Feature 4
-    //         %li
-    //           %span.icon.fa-lock
-    //             %span.label Feature 5
-    //         %li
-    //           %span.icon.fa-cog
-    //             %span.label Feature 6
-    // / Two
-    // %section.wrapper.style1.container.special
-    //   .row
-    //     .4u{:class => "12u(narrower)"}
-    //       %section
-    //         %span.icon.featured.fa-check
-    //         %header
-    //           %h3 This is Something
-    //         %p Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.
-    //     .4u{:class => "12u(narrower)"}
-    //       %section
-    //         %span.icon.featured.fa-check
-    //         %header
-    //           %h3 Also Something
-    //         %p Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.
-    //     .4u{:class => "12u(narrower)"}
-    //       %section
-    //         %span.icon.featured.fa-check
-    //         %header
-    //           %h3 Probably Something
-    //         %p Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.
-    // / Three
-    // %section.wrapper.style3.container.special
-    //   %header.major
-    //     %h2
-    //       Next look at this
-    //       %strong cool stuff
-    //   .row
-    //     .6u{:class => "12u(narrower)"}
-    //       %section
-    //         %a.image.featured{:href => "#"}
-    //           %img{:alt => "", :src => "images/pic01.jpg"}/
-    //         %header
-    //           %h3 A Really Fast Train
-    //         %p Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.
-    //     .6u{:class => "12u(narrower)"}
-    //       %section
-    //         %a.image.featured{:href => "#"}
-    //           %img{:alt => "", :src => "images/pic02.jpg"}/
-    //         %header
-    //           %h3 An Airport Terminal
-    //         %p Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.
-    //   .row
-    //     .6u{:class => "12u(narrower)"}
-    //       %section
-    //         %a.image.featured{:href => "#"}
-    //           %img{:alt => "", :src => "images/pic03.jpg"}/
-    //         %header
-    //           %h3 Hyperspace Travel
-    //         %p Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.
-    //     .6u{:class => "12u(narrower)"}
-    //       %section
-    //         %a.image.featured{:href => "#"}
-    //           %img{:alt => "", :src => "images/pic04.jpg"}/
-    //         %header
-    //           %h3 And Another Train
-    //         %p Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.
-    //   %footer.major
-    //     %ul.buttons
-    //       %li
-    //         %a.button{:href => "#"} See More
 
 = render :partial => "layouts/footer"
 
 :javascript
-  $(".js-multiple").select2({
-      width:      200
-  });
-  $(".js-hide-search").select2({
-      minimumResultsForSearch: Infinity,
-      width:      100,
-  });
+  // $(".js-multiple").select2({
+  //     width:      200
+  // });
+  // $(".js-hide-search").select2({
+  //     minimumResultsForSearch: Infinity,
+  //     width:      100,
+  // });
   
-  var url = add();//パラメーター取得
-  if ( url.length > 0) {
-    $('.select-main').val(url[0]).trigger('change');//select2 sort set value
-  }else{
-    $('.select-main').val("new").trigger('change');
-  }
+  // var url = add();//パラメーター取得
+  // if ( url.length > 0) {
+  //   $('.select-main').val(url[0]).trigger('change');//select2 sort set value
+  // }else{
+  //   $('.select-main').val("new").trigger('change');
+  // }
   
-  //select2 multi val parameters
-  var multiVal = [];
-  if(url.length > 1){
-      $.each(url, function(i, val){
-          if(i != 0){
-              multiVal[i-1] = val
-          }
-      });
-  }else{
-      multiVal[0] = "all"//controllerからもらう値にする
-  }
-  $(".js-multiple").val(multiVal).trigger("change");//select2 multi set value
+  // //select2 multi val parameters
+  // var multiVal = [];
+  // if(url.length > 1){
+  //     $.each(url, function(i, val){
+  //         if(i != 0){
+  //             multiVal[i-1] = val
+  //         }
+  //     });
+  // }else{
+  //     multiVal[0] = "all"//controllerからもらう値にする
+  // }
+  // $(".js-multiple").val(multiVal).trigger("change");//select2 multi set value
   
-  $('.select-main').on('change', param_change);
+  // $('.select-main').on('change', param_change);
   
-  $('.js-multiple').on('change', param_change);
+  // $('.js-multiple').on('change', param_change);
   
-  //parameter get
-  function add () {
-      var url = location.href;
-      var paramArray = [];
-      if ( url.indexOf('?') != -1) {
-        params = url.split("?");
-        spparams = params[1].split("&");
-        for ( i = 0; i < spparams.length; i++ ) {
-            vol = spparams[i].split("=");
-            paramArray.push(vol[1]);
-        }
-      }
-      return paramArray;
-  }
+  // //parameter get
+  // function add () {
+  //     var url = location.href;
+  //     var paramArray = [];
+  //     if ( url.indexOf('?') != -1) {
+  //       params = url.split("?");
+  //       spparams = params[1].split("&");
+  //       for ( i = 0; i < spparams.length; i++ ) {
+  //           vol = spparams[i].split("=");
+  //           paramArray.push(vol[1]);
+  //       }
+  //     }
+  //     return paramArray;
+  // }
   
-  //select tag parameter send
-  function param_change () {
-      var array = $(".js-multiple").val();
-      var url = 'sort=' + $('.select-main').val();
-      if (array){
-          $.each(array, function(i, val){
-              url = url + '&genre[]=' + val
-          });
-      }
-      window.location.search = url
-  }
+  // //select tag parameter send
+  // function param_change () {
+  //     var array = $(".js-multiple").val();
+  //     var url = 'sort=' + $('.select-main').val();
+  //     if (array){
+  //         $.each(array, function(i, val){
+  //             url = url + '&genre[]=' + val
+  //         });
+  //     }
+  //     window.location.search = url
+  // }
