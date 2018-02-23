@@ -10,10 +10,12 @@
       = f.input :image, as: :file, label: false
     .list_title
       = f.input :title, label: "プレイリスト名"
+    .list_genre
+      = f.input :othergenre_list, collection: @genres, label: "ジャンル", input_html: { multiple: true, class: "js-tags-input tags-input" }
     .list_description
       = f.input :description, label: "詳細"
     .list_price{:style => "margin-bottom: 50px;"}
-      = f.input :price, label: "金額"
+      = f.input :price, label: "金額", :collection => %w[100 150 200 250]
   %table.table.table-bordered.table-sortable
     %tbody#lines
       %tr

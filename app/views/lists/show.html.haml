@@ -8,6 +8,9 @@
 %h3 プレイリスト名
 = @list.title
 
+%h3 ジャンル
+= render 'layouts/tag_list', tag_list: @list.othergenre_list
+
 %h3 詳細
 = @list.description
 

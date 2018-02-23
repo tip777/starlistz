@@ -43,8 +43,14 @@ class ListsController < ApplicationController
     @list.tap { @list = nil }
     @list = List.find(params[:id])
   end
+  
+  def set_lsit_genre
+    listGenre = List.all_tag
+    mainGenre = ActsAsTaggableOn::Tag.where(taggings_count: 0)
+    @genre = listGenre + mainGenre
+  end
 
   def list_params
-    params.require(:list).permit(:title, :description, :price, :image, tracks_attributes:[:id, :artist, :song, :recommend, :row_order, :_destroy])
+    params.require(:list).permit(:title, :description, :price, :image, othergenre_list: [], tracks_attributes:[:id, :artist, :song, :recommend, :row_order, :_destroy])
   end
 end
