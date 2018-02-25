@@ -11,7 +11,13 @@
     .list_title
       = f.input :title, label: "プレイリスト名"
     .list_genre
-      = f.input :othergenre_list, collection: @genres, label: "ジャンル", input_html: { multiple: true, class: "js-tags-input tags-input" }
+      %label ジャンル
+      -# = f.input :othergenre_list, collection: @list.othergenre_list, grouped_options_for_select(@tag), label: "ジャンル", input_html: { multiple: true, class: "js-tags-input tags-input" }
+      -# - binding.pry
+      -# = f.input :othergenre_list, grouped_options_for_select(@tag), label: "ジャンル", input_html: { multiple: true, class: "js-tags-input tags-input" }
+      = f.association :othergenre_list do
+        = f.select :othergenre_list, grouped_options_for_select(@tag,{ :selected => @list.othergenre_list }), {}, {class: 'js-tags-input tags-input', multiple: true}
+
     .list_description
       = f.input :description, label: "詳細"
     .list_price{:style => "margin-bottom: 50px;"}

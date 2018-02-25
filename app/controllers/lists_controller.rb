@@ -7,10 +7,12 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
+    set_list_genre
   end
 
   def edit
     set_lists
+    set_list_genre
   end
 
   def create
@@ -43,11 +45,14 @@ class ListsController < ApplicationController
     @list.tap { @list = nil }
     @list = List.find(params[:id])
   end
-  
+
   def set_lsit_genre
-    listGenre = List.all_tag
-    mainGenre = ActsAsTaggableOn::Tag.where(taggings_count: 0)
-    @genre = listGenre + mainGenre
+    # binding.pry
+    # listGenre = List.all_tag
+    # mainGenre = ActsAsTaggableOn::Tag.where(taggings_count: 0)
+    # @genre = listGenre + mainGenre
+    # binding.pry
+    @genre = ActsAsTaggableOn::Tag.all
   end
 
   def list_params
