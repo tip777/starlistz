@@ -31,7 +31,11 @@ $(document).on('turbolinks:load', function() {
     $('body').css('padding-top',h);
 
     //select2 option
-    $(".js-multiple").select2({
+    // $(".js-multiple").select2({
+    //     width:      200
+    // });
+    
+    $(".js-search").select2({
         width:      200
     });
 

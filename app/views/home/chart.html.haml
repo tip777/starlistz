@@ -4,7 +4,8 @@
       = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]]), class: "select-main js-hide-search"
     .charts_spacer
       .charts_genre
-        = select_tag :person, grouped_options_for_select(@tag), multiple: true, class: "js-multiple"
+        // = select_tag :person, grouped_options_for_select(@tag), multiple: true, class: "js-multiple"
+        = select_tag :person, grouped_options_for_select(@tag), class: "js-search"
 
     
   .content-list
