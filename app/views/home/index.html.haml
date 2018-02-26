@@ -25,10 +25,11 @@
   %section.genre
     .container-fluid.l-container
       .row
-        .col-sm-8
+        .col-sm-8s
           %ul
             - @genre.each do |genre|
-              %li= genre.name
+              %li
+                = link_to genre.name, chart_path(sort: "new",genre: genre.name)
 
         .col-sm-4.text-center
           %a.button{:href => "#"} ジャンルを探す &raquo;
