@@ -30,23 +30,39 @@ $(document).on('turbolinks:load', function() {
     console.log(h);
     $('body').css('padding-top',h);
 
-    //select2 option
+    
     // $(".js-multiple").select2({
     //     width:      200
     // });
     
+    //select2 setting
     $(".js-search").select2({
         width:      200
     });
-
     $(".js-hide-search").select2({
         minimumResultsForSearch: Infinity,
         width:      150
     });
-
-    $('.genre-search').change(function() {
-        console.log("yeah man");
-    });
+  
+    $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
+    
+    $('.select-main').on('change', param_change);
+    
+    $('.js-search').on('change', param_change);
+    
+    //select tag parameter send
+    function param_change () {
+        var genre = ""
+        if (!$(".js-search").val()){
+          genre = "All"
+        }else{
+          genre = $(".js-search").val();
+        }
+        var url = 'sort=' + $('.select-main').val();
+        url = url + '&genre=' + genre
+        window.location.search = url
+    }
+  
 });
 
 // $(function() {

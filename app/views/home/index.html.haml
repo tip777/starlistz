@@ -29,7 +29,7 @@
           %ul
             - @genre.each do |genre|
               %li
-                = link_to genre.name, chart_path(sort: "new",genre: genre.name)
+                = link_to genre.name, chart_path(genre: genre.name, sort: Constants::SORT)
 
         .col-sm-4.text-center
           %a.button{:href => "#"} ジャンルを探す &raquo;

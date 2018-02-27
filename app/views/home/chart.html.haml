@@ -1,11 +1,14 @@
 .content-container
   .charts_aria
     .charts_main
-      = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]]), class: "select-main js-hide-search"
+      // -binding.pry
+      // = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]]), class: "select-main js-hide-search"
+      = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]], selected: params[:sort]), class: "select-main js-hide-search"
     .charts_spacer
       .charts_genre
         // = select_tag :person, grouped_options_for_select(@tag), multiple: true, class: "js-multiple"
-        = select_tag :person, grouped_options_for_select(@tag), class: "js-search"
+        // = select_tag :person, grouped_options_for_select(@tag), class: "js-search"
+        = select_tag :person, grouped_options_for_select(@tag, selected: params[:genre]), class: "js-search"
 
     
   .content-list
@@ -35,3 +38,5 @@
           %hr/
 
 = render :partial => "layouts/footer"
+    
+    
