@@ -80,3 +80,21 @@
 		    flex-grow: 1;
 		}
 	}
+	
+	
+/*  Genre */
+	.tab, .tab li, .tab li a {
+	    float: left;
+	    padding:3px;
+	    margin-right:2px;
+	    list-style: none;
+	}
+	a:hover {
+	    opacity: 0.8;
+	}
+	.content {
+	    clear: both;
+	}
+	.area {
+	    display: none;
+	}
