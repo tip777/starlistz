@@ -12,8 +12,8 @@
       = f.input :title, label: "プレイリスト名"
     .list_genre
       %label ジャンル
-      = f.association :othergenre_list do
-        = f.select :othergenre_list, grouped_options_for_select(@tag,{ :selected => @list.othergenre_list }), {}, {class: 'js-tags-input tags-input', multiple: true}
+      = f.association :tag_list do
+        = f.select :tag_list, options_for_select(@tag,{ :selected => @list.tag_list }), {}, {class: 'js-tags-input tags-input', multiple: true}
     .list_description
       = f.input :description, label: "詳細"
     .list_price{:style => "margin-bottom: 50px;"}

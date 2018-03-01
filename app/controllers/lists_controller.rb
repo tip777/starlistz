@@ -7,12 +7,14 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    set_list_genre
+    taggings = set_list_genre
+    @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
   end
 
   def edit
     set_lists
-    set_list_genre
+    taggings = set_list_genre
+    @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
   end
 
   def create
@@ -34,7 +36,6 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @list = List.find(params[:id])
     @list.destroy
     redirect_to current_user
@@ -44,15 +45,6 @@ class ListsController < ApplicationController
   def set_lists
     @list.tap { @list = nil }
     @list = List.find(params[:id])
-  end
-
-  def set_lsit_genre
-    # binding.pry
-    # listGenre = List.all_tag
-    # mainGenre = ActsAsTaggableOn::Tag.where(taggings_count: 0)
-    # @genre = listGenre + mainGenre
-    # binding.pry
-    @genre = ActsAsTaggableOn::Tag.all
   end
 
   def list_params

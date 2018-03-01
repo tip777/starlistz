@@ -8,7 +8,7 @@
       .charts_genre
         // = select_tag :person, grouped_options_for_select(@tag), multiple: true, class: "js-multiple"
         // = select_tag :person, grouped_options_for_select(@tag), class: "js-search"
-        = select_tag :person, grouped_options_for_select(@tag, selected: params[:genre]), class: "js-search"
+        = select_tag :person, options_for_select(@tag, selected: params[:genre]), class: "js-search"
 
     
   .content-list

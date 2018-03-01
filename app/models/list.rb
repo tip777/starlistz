@@ -8,8 +8,8 @@ class List < ApplicationRecord
   has_many :purchases
   # has_many :users, through: :users
 
-  #gem acts-as-taggable-on タグ機能
-  acts_as_ordered_taggable_on :maingenres, :othergenres
+  # #gem acts-as-taggable-on タグ機能
+  acts_as_taggable
 
   #paperclip設定
   has_attached_file :image,

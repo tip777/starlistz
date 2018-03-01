@@ -13,25 +13,23 @@
 //   %article#main
 .content-container
   %ul.tab
-    // %li
-    //   %a{:href => "#tab1"} tab1
-    // %li
-    //   %a{:href => "#tab2"} tab2
     %li search
     %li ranking
-  / ここが切り替わる部分
+  // ここが切り替わる部分
   .content
     #search.area
-      Tab1テキストテキストテキストテキスト
       %h1
         | ジャンル検索
       = form_tag(url_for(:action => 'genre'), :remote => true) do
         = text_field_tag :search
         = submit_tag "検索"
-      #genre_search= render 'genresrh'
+      #genre_search= render 'genresrh', tag: @tag
+      
     #ranking.area
-      Tab2テキストテキストテキストテキスト
-
+      %h1
+        | ジャンル TOP20
+      = render 'genresrh', tag: @tag_top
+      
 = render :partial => "layouts/footer"
 
 :javascript

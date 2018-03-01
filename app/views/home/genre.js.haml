@@ -1,2 +1,2 @@
 //ジャンル検索用
-$('#genre_search').html('#{escape_javascript(render("genresrh"))}');
+$('#genre_search').html('#{escape_javascript(render("genresrh", tag: @tag))}');

@@ -12,11 +12,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_list_genre
-    mainno = ActsAsTaggableOn::Tag.where(taggings_count: 0)
-    otherno = ActsAsTaggableOn::Tagging.where(context: "othergenres").pluck(:tag_id)
-    @tag = Hash.new{|h,k| h[k] = {} }
-    @tag["メインジャンル"] = ActsAsTaggableOn::Tag.where(id: mainno).pluck(:name)
-    @tag["その他"] = ActsAsTaggableOn::Tag.where(id: otherno).pluck(:name)
+    #Listのタグだけ抽出
+    return ActsAsTaggableOn::Tagging.where(taggable_type: "List").group("tag_id").pluck(:tag_id)
   end
 
   protected

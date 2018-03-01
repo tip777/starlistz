@@ -9,8 +9,8 @@
 //   = submit_tag "検索"
 
 %table
-  - if @tag then
-    - @tag.each do |student|
+  - if tag then
+    - tag.each do |student|
       %tr
         %td
           = student.name

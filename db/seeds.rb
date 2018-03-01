@@ -80,10 +80,10 @@ end
 end
 
 #ジャンルタグ設定
-list = ['All', 'JPOP', 'HIPHOP', 'R&B/SOUL', 'DJ', 'EDM', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'アニメ/ボーカロイド']
+# list = ['All', 'JPOP', 'HIPHOP', 'R&B/SOUL', 'DJ', 'EDM', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'アニメ/ボーカロイド']
 
-list.each do |tag|
-  target = ActsAsTaggableOn::Tag.new(name: tag,)
-  target.save
-  # binding.pry
-end
+# list.each do |tag|
+#   target = ActsAsTaggableOn::Tag.new(name: tag,)
+#   target.save
+#   # binding.pry
+# end
