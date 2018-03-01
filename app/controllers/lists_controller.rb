@@ -48,6 +48,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:title, :description, :price, :image, othergenre_list: [], tracks_attributes:[:id, :artist, :song, :recommend, :row_order, :_destroy])
+    params.require(:list).permit(:title, :description, :price, :image, tag_list: [], tracks_attributes:[:id, :artist, :song, :recommend, :row_order, :_destroy])
   end
 end
