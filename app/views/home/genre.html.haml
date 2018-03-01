@@ -23,11 +23,16 @@
   .content
     #search.area
       Tab1テキストテキストテキストテキスト
+      %h1
+        | ジャンル検索
+      = form_tag(url_for(:action => 'genre'), :remote => true) do
+        = text_field_tag :search
+        = submit_tag "検索"
+      #genre_search= render 'genresrh'
     #ranking.area
       Tab2テキストテキストテキストテキスト
 
 = render :partial => "layouts/footer"
-
 
 :javascript
   $(document).ready(function(){
@@ -45,3 +50,5 @@
           }
       })
   });
+  
+  

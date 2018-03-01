@@ -9,7 +9,28 @@ class HomeController < ApplicationController
   end
 
   def genre
+    # @q = ActsAsTaggableOn::Tag.ransack(params[:q])
+    # @students = @q.result(distinct: true)
+    #Listのタグだけ抽出
+    taggings = ActsAsTaggableOn::Tagging.where(taggable_type: "List").pluck(:tag_id)
+    list_tag = ActsAsTaggableOn::Tag.where(id: taggings)
+    #ジャンル検索
+    if params[:search].nil?
+      @tag = nil
+    else
+      tags = list_tag.where("name like '%" + params[:search] + "%'")
+    @tag = tags
+    end
+    
+    #ジャンルトップ20
+    
   end
+  
+  # def search
+  #   @q = ActsAsTaggableOn::Tag.search(search_params)
+  #   # @students = @q.result(distinct: true)
+  #   @students = @q.result
+  # end
   
   def chart
     #パラメータからリスト抽出
@@ -28,6 +49,12 @@ class HomeController < ApplicationController
         @genre_list = List.eager_load(:list_favorites).where(id: genre).group(:list_id).order('count(list_id) desc')
       end
     end
+  end
+  
+  private
+  
+  def search_params
+    params.require(:q).permit!
   end
   
   #マルチ用
