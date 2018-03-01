@@ -10,9 +10,11 @@
 
 %table
   - if tag then
-    - tag.each do |student|
+    - tag.each do |tag|
       %tr
         %td
-          = student.name
+          = tag.name
+        %td
+          = tag.taggings_count
 
   
