@@ -2,4 +2,5 @@
 module Constants
     ## Constants::SORTでアクセスできる
     SORT = "new"
+    GENRE = "All genre"
 end

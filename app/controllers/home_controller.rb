@@ -26,9 +26,10 @@ class HomeController < ApplicationController
     #セレクトボックス用のタグ
     taggings = set_list_genre
     @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
+    @tag.unshift("All genre") #先頭に"All genre"追加
     
     #パラメータからリスト抽出
-    if params[:genre] == "All" || params[:genre].nil? #ジャンルが空だったら
+    if params[:genre] == "All genre" || params[:genre].nil? #ジャンルが空だったら
       if params[:sort] == "new" || params[:sort].nil? #sortが新着or空欄の場合
         @genre_list = List.order(:created_at)
       else  # 新着の場合
