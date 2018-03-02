@@ -63,9 +63,10 @@ Relationship.create(follower_id: "8", followed_id: "9")
 Relationship.create(follower_id: "9", followed_id: "10")
 Relationship.create(follower_id: "10", followed_id: "1")
 
-5.times do |i|
-  List.create(user_id: 1, title: "プレイリスト #{i+1}", description: "プレイリストの説明 #{i+1}", price: "#{i}00")
-  List.create(user_id: 2, title: "プレイリスト #{i+1}", description: "プレイリストの説明 #{i+1}", price: "#{i}00")
+9.times do |i|
+  5.times do |n|
+    List.create(user_id: i+1, title: "プレイリスト #{(i+n)+1}", description: "プレイリストの説明 #{(i+n)+1}", price: "#{n}00")
+  end
 end
 
 5.times do |i|
@@ -79,11 +80,35 @@ end
   end
 end
 
+$list = ""
 #ジャンルタグ設定
 # list = ['All', 'JPOP', 'HIPHOP', 'R&B/SOUL', 'DJ', 'EDM', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'アニメ/ボーカロイド']
+9.times do |i|
+  if i == 0
+    $list = ['PlayList_Genre1','PlayList_Genre2','PlayList_Genre3','PlayList_Genre4','PlayList_Genre5']
+  else
+    $list.push("PlayList_Genre1-#{i+2}","PlayList_Genre2-#{i+2}","PlayList_Genre3-#{i+2}","PlayList_Genre4-#{i+2}","PlayList_Genre5-#{i+2}")
+  end
+end
+$list.push('All', 'JPOP', 'HIPHOP', 'R&B/SOUL', 'DJ', 'EDM', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'アニメ/ボーカロイド')
 
-# list.each do |tag|
-#   target = ActsAsTaggableOn::Tag.new(name: tag,)
-#   target.save
-#   # binding.pry
-# end
+$list.each do |tag|
+  target = ActsAsTaggableOn::Tag.new(name: tag,)
+  target.save
+end
+
+binding.pry
+
+list_itiran = List.all
+list_itiran.each_with_index do |tag, i|
+  target = ActsAsTaggableOn::Tagging.new(tag_id: i+1, taggable_type: "List", taggable_id: i+1, context: "tags")
+  target.save
+  
+  if i.even?
+    random = Random.new
+    n = random.rand(1..50)
+    n2 = random.rand(51..64)
+    target = ActsAsTaggableOn::Tagging.new(tag_id: n2, taggable_type: "List", taggable_id: n, context: "tags")
+    target.save
+  end
+end
