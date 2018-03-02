@@ -16,7 +16,8 @@
         = m.input :avatar, as: :file, label: false
       = f.input :name, label: "ユーザー名", autocomplete: "off"
       
-      = f.input :usergenre_list, collection: current_user.usergenre_list, label: "ジャンル", input_html: { multiple: true, class: "js-tags-input tags-input" }
+      %label ジャンル
+      = f.text_field :usergenre_list, value: f.object.usergenre_list.to_s
       
       = f.fields_for :user_profile do |m|
         .field_profile

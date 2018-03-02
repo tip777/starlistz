@@ -24,6 +24,6 @@ class ApplicationController < ActionController::Base
     #       keys: [:usergenre_list, :user_profiles => [:id,:user_id, :description, :insta_url, :tw_url, :avatar]]) #userモデル編集時にプロフィールも編集
     #user edit ジャンルのselectbox用
     devise_parameter_sanitizer.permit(:account_update,
-           keys: [usergenre_list: [], :user_profiles => [:id,:user_id, :description, :insta_url, :tw_url, :avatar]]) #userモデル編集時にプロフィールも編集
+           keys: [:usergenre_list, :user_profiles => [:id,:user_id, :description, :insta_url, :tw_url, :avatar]]) #userモデル編集時にプロフィールも編集
   end
 end
