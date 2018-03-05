@@ -8,6 +8,10 @@ class List < ApplicationRecord
   has_many :purchases
   # has_many :users, through: :users
 
+  #プレイリストお気に入り機構
+  has_many :list_favorites, dependent: :destroy
+  has_many :favorite_lists, through: :list_favorites, source: :user
+
   # #gem acts-as-taggable-on タグ機能
   acts_as_taggable
 
@@ -28,7 +32,7 @@ class List < ApplicationRecord
 
   #validation
   #これから
-  
+
   #５曲以上入っているか確認　validation作業に入ったらコメント外す
   # after_save do
   #   if self.tracks.count <= 5

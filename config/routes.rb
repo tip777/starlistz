@@ -13,11 +13,12 @@ Rails.application.routes.draw do
        get 'follower'
       # get 'favoriting'
     end
-   end 
+   end
   resources :lists do #プレイリスト用
     put :sort
   end
   resources :relationships, only: [:create, :destroy]#フォロー、アンフォロー
+  resources :favorites, only: [:create, :destroy]#プレイリストお気に入り、解除
 
   get 'chart' , to: 'home#chart' #チャート
   get 'genre' , to: 'home#genre' #ジャンル一覧
