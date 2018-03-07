@@ -1,7 +1,13 @@
 module ApplicationHelper
-    def is_signin(user_id, other_id)
+    def is_signed(user_id, other_id)
         if user_id == other_id
             return  true 
         end
-    end 
+    end
+    
+    def is_signin
+        if current_user != nil
+            return  true 
+        end
+    end
 end

@@ -1,29 +1,30 @@
 .newlist
   .inner-list
-    .title
-      = render 'lists/is_image', list: list
-      %h2
-        .favorite
-          %span.author>= list.user.name
-          %span.favorite-star
-            %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
-            = list.list_favorites.count
-        = list.title
-      - if current_user != nil
-        -# プレイリストお気入り機能
-        %div{:id => "favorite_change-#{list.id}"}
-          - if current_user.favorite?(list)
-            = render "lists/unfavorite",list: list
-          - else
-            = render "lists/favorite",list: list
-    %p= list.description
-    .list-genre
-      .more.label
-        %span.btn-info{:style => "margin-right:5px;"}
-          %a{:href => "#"} もっと見る
-      .tags
-        - list.tag_list.each.with_index(0) do |listgenre, i|
+    = link_to list_path(list) do
+      .title
+        = render 'lists/is_image', list: list
+        %h2
+          .favorite
+            %span.author>= list.user.name
+            %span.favorite-star
+              %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+              = list.list_favorites.count
+          = list.title
+        - if current_user != nil
+          -# プレイリストお気入り機能
+          %div{:id => "favorite_change-#{list.id}"}
+            - if current_user.favorite?(list)
+              = render "lists/unfavorite",list: list
+            - else
+              = render "lists/favorite",list: list
+      %p= list.description
+      .list-genre
+        .more.label
           %span.btn-info{:style => "margin-right:5px;"}
-            %a{:href => "#"}= listgenre
-    .clear
+            %a{:href => "#"} もっと見る
+        .tags
+          - list.tag_list.each.with_index(0) do |listgenre, i|
+            %span.btn-info{:style => "margin-right:5px;"}
+              %a{:href => "#"}= listgenre
+      .clear
   %hr/

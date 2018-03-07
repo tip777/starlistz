@@ -1,6 +1,7 @@
 //ログインしていたら編集できる
-- if is_signin(current_user.id, @list.user.id)
-    =link_to 'プレイリスト編集', edit_list_path(@list, list: @list)
+- if is_signin
+    - if is_signed(current_user.id, @list.user.id)
+        =link_to 'プレイリスト編集', edit_list_path(@list, list: @list)
 %br/
 %br/
 = image_tag @list.image.url(:thumb)
