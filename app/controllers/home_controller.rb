@@ -32,15 +32,17 @@ class HomeController < ApplicationController
     if params[:genre] == "All genre" || params[:genre].nil? #ジャンルが空だったら
       if params[:sort] == "new" || params[:sort].nil? #sortが新着or空欄の場合
         @genre_list = List.order(:created_at)
-      else  # 新着の場合
-        @genre_list = List.eager_load(:list_favorites).group(:list_id).order('count(list_id) desc')
+      else  # ランキングの場合
+        @genre_list = List.joins(:list_favorites).group(:list_id).order('count(list_id) desc')
       end
     else
-      genre = List.tagged_with(params[:genre]).pluck(:id)#ジャンルの対象のユーザーのIDの一覧取得
+      genre = List.tagged_with(params[:genre]).pluck(:id)#ジャンルの対象のリストのIDの一覧取得
+      # binding.pry
       if params[:sort] == "new" || params[:sort].nil? #sortが新着or空欄の場合
+        binding.pry
         @genre_list = List.where(id: genre).order(:created_at)
-      else  # 新着の場合
-        @genre_list = List.eager_load(:list_favorites).where(id: genre).group(:list_id).order('count(list_id) desc')
+      else  # ランキングの場合
+        @genre_list = List.joins(:list_favorites).where(id: genre).group(:list_id).order('count(list_id) desc')
       end
     end
   end

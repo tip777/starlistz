@@ -51,7 +51,8 @@ gem "gretel"
 # gem 'pg', '~> 0.20.0'
 gem "mysql2"
 gem 'select2-rails'
-gem 'acts-as-taggable-on'
+# gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'nokogiri', '~> 1.6'
 # gem 'rename'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
