@@ -63,10 +63,19 @@ Relationship.create(follower_id: "8", followed_id: "9")
 Relationship.create(follower_id: "9", followed_id: "10")
 Relationship.create(follower_id: "10", followed_id: "1")
 
-9.times do |i|
+h = 0
+10.times do |i|
   5.times do |n|
-    List.create(user_id: i+1, title: "プレイリスト #{((i+1)*n)}", description: "プレイリストの説明 #{((i+1)*n)}", price: "#{n}00")
+    h = h + 1
+    List.create(user_id: i+1, title: "プレイリスト #{h}", description: "プレイリストの説明 #{h}", price: "#{n}00")
   end
+end
+
+40.times do |i|
+  random = Random.new
+  n = random.rand(1..10)
+  n2 = random.rand(1..50)
+  ListFavorite.create(user_id: n, list_id: n2)
 end
 
 5.times do |i|
@@ -81,15 +90,6 @@ end
 end
 
 $list = ""
-#ジャンルタグ設定
-# list = ['All', 'JPOP', 'HIPHOP', 'R&B/SOUL', 'DJ', 'EDM', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'アニメ/ボーカロイド']
-# 9.times do |i|
-#   if i == 0
-#     $list = ['PlayList_Genre1','PlayList_Genre2','PlayList_Genre3','PlayList_Genre4','PlayList_Genre5']
-#   else
-#     $list.push("PlayList_Genre1-#{i+2}","PlayList_Genre2-#{i+2}","PlayList_Genre3-#{i+2}","PlayList_Genre4-#{i+2}","PlayList_Genre5-#{i+2}")
-#   end
-# end
 9.times do |i|
   if i == 0
     $list = ['playlist_genre1','playlist_genre2','playlist_genre3','playlist_genre4','playlist_genre5']
@@ -97,7 +97,7 @@ $list = ""
     $list.push("playlist_genre1-#{i+2}","playlist_genre2-#{i+2}","playlist_genre3-#{i+2}","playlist_genre4-#{i+2}","playlist_genre5-#{i+2}")
   end
 end
-$list.push('All', 'JPOP', 'HIPHOP', 'R&B/SOUL', 'DJ', 'EDM', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'アニメ/ボーカロイド')
+$list.push('all', 'jpop', 'hiphop', 'randb', 'dj', 'edm', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'ボーカロイド')
 
 $list.each do |tag|
   target = ActsAsTaggableOn::Tag.new(name: tag,)
@@ -109,11 +109,9 @@ list_itiran.each_with_index do |tag, i|
   target = ActsAsTaggableOn::Tagging.new(tag_id: i+1, taggable_type: "List", taggable_id: i+1, context: "tags")
   target.save
 
-  if i.even?
-    random = Random.new
-    n = random.rand(1..50)
-    n2 = random.rand(51..64)
-    target = ActsAsTaggableOn::Tagging.new(tag_id: n2, taggable_type: "List", taggable_id: n, context: "tags")
-    target.save
-  end
+  random = Random.new
+  n = random.rand(1..50)
+  n2 = random.rand(51..64)
+  target = ActsAsTaggableOn::Tagging.new(tag_id: n2, taggable_type: "List", taggable_id: n, context: "tags")
+  target.save
 end
