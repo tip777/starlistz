@@ -1,5 +1,7 @@
-- if is_signin(current_user.id, @user.id)
-  =link_to '編集ページに移動', edit_user_registration_path
+//ログインしていたら編集できる
+- if is_signin
+  - if is_signed(current_user.id, @user.id)
+    =link_to '編集ページに移動', edit_user_registration_path
 %br/
 %br/
 = image_tag @user.user_profile.avatar.url(:thumb)

@@ -39,7 +39,7 @@ class HomeController < ApplicationController
       genre = List.tagged_with(params[:genre]).pluck(:id)#ジャンルの対象のリストのIDの一覧取得
       # binding.pry
       if params[:sort] == "new" || params[:sort].nil? #sortが新着or空欄の場合
-        binding.pry
+        # binding.pry
         @genre_list = List.where(id: genre).order(:created_at)
       else  # ランキングの場合
         @genre_list = List.joins(:list_favorites).where(id: genre).group(:list_id).order('count(list_id) desc')

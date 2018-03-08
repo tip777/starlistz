@@ -65,7 +65,7 @@ Relationship.create(follower_id: "10", followed_id: "1")
 
 9.times do |i|
   5.times do |n|
-    List.create(user_id: i+1, title: "プレイリスト #{(i+n)+1}", description: "プレイリストの説明 #{(i+n)+1}", price: "#{n}00")
+    List.create(user_id: i+1, title: "プレイリスト #{((i+1)*n)}", description: "プレイリストの説明 #{((i+1)*n)}", price: "#{n}00")
   end
 end
 
@@ -83,11 +83,18 @@ end
 $list = ""
 #ジャンルタグ設定
 # list = ['All', 'JPOP', 'HIPHOP', 'R&B/SOUL', 'DJ', 'EDM', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'アニメ/ボーカロイド']
+# 9.times do |i|
+#   if i == 0
+#     $list = ['PlayList_Genre1','PlayList_Genre2','PlayList_Genre3','PlayList_Genre4','PlayList_Genre5']
+#   else
+#     $list.push("PlayList_Genre1-#{i+2}","PlayList_Genre2-#{i+2}","PlayList_Genre3-#{i+2}","PlayList_Genre4-#{i+2}","PlayList_Genre5-#{i+2}")
+#   end
+# end
 9.times do |i|
   if i == 0
-    $list = ['PlayList_Genre1','PlayList_Genre2','PlayList_Genre3','PlayList_Genre4','PlayList_Genre5']
+    $list = ['playlist_genre1','playlist_genre2','playlist_genre3','playlist_genre4','playlist_genre5']
   else
-    $list.push("PlayList_Genre1-#{i+2}","PlayList_Genre2-#{i+2}","PlayList_Genre3-#{i+2}","PlayList_Genre4-#{i+2}","PlayList_Genre5-#{i+2}")
+    $list.push("playlist_genre1-#{i+2}","playlist_genre2-#{i+2}","playlist_genre3-#{i+2}","playlist_genre4-#{i+2}","playlist_genre5-#{i+2}")
   end
 end
 $list.push('All', 'JPOP', 'HIPHOP', 'R&B/SOUL', 'DJ', 'EDM', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'アニメ/ボーカロイド')
