@@ -46,6 +46,7 @@
 #   User.create(name: 'test#{i}',email: 'test#{i}@gmail.com', password: 'testtest#{i}', password_confirmation: 'testtest#{i}')
 # end
 
+#ユーザー設定
 10.times do |i|
   profile = UserProfile.create(description: "これはユーザープロフィールの説明[ #{i+1} ]")
   user = User.create(name: "test#{i+1}", email: "test#{i}@gmail.com", password: "testtest", password_confirmation: "testtest")
@@ -53,6 +54,18 @@
   user.save
 end
 
+#ユーザーののジャンル設定
+$user_list = ""
+$user_list = ['カメラマン','dj','trainer','インスタグラマー','artist','singer','アーティスト','rapper','らっぱー','芸能人']
+$user_list.each_with_index do |tag, i|
+  target = ActsAsTaggableOn::Tag.new(name: tag,)
+  target.save
+  
+  target2 = ActsAsTaggableOn::Tagging.new(tag_id: i+1, taggable_type: "User", taggable_id: 1, context: "tags")
+  target2.save
+end
+
+#フォロー、フォロワー設定
 Relationship.create(follower_id: "1", followed_id: "2")
 Relationship.create(follower_id: "2", followed_id: "3")
 Relationship.create(follower_id: "3", followed_id: "4")
@@ -63,6 +76,7 @@ Relationship.create(follower_id: "8", followed_id: "9")
 Relationship.create(follower_id: "9", followed_id: "10")
 Relationship.create(follower_id: "10", followed_id: "1")
 
+#プレイリスト作成
 h = 0
 10.times do |i|
   5.times do |n|
@@ -71,6 +85,7 @@ h = 0
   end
 end
 
+#プレイリストお気に入り設定
 40.times do |i|
   random = Random.new
   n = random.rand(1..10)
@@ -78,6 +93,7 @@ end
   ListFavorite.create(user_id: n, list_id: n2)
 end
 
+#曲設定
 5.times do |i|
   15.times do |n|
     random = Random.new
@@ -89,6 +105,7 @@ end
   end
 end
 
+#プレイリストのジャンル設定
 $list = ""
 9.times do |i|
   if i == 0
@@ -106,12 +123,12 @@ end
 
 list_itiran = List.all
 list_itiran.each_with_index do |tag, i|
-  target = ActsAsTaggableOn::Tagging.new(tag_id: i+1, taggable_type: "List", taggable_id: i+1, context: "tags")
+  target = ActsAsTaggableOn::Tagging.new(tag_id: i+11, taggable_type: "List", taggable_id: i+1, context: "tags")
   target.save
 
   random = Random.new
   n = random.rand(1..50)
-  n2 = random.rand(51..64)
+  n2 = random.rand(61..74)
   target = ActsAsTaggableOn::Tagging.new(tag_id: n2, taggable_type: "List", taggable_id: n, context: "tags")
   target.save
 end
