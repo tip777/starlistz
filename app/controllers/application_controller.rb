@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
       @search_user = @q.result(distinct: true)
 
       @q2 = List.search(params[:q])
-      @list = @q2.result(distinct: true)
+      @search_list = @q2.result(distinct: true)
   end
 
   def set_list_genre

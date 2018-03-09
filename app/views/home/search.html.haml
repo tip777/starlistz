@@ -1,18 +1,19 @@
 .content-container
-  %p search
+  %h1
+  | 検索結果
   
-  -# = select_tag :person, grouped_options_for_select(@tag), include_blank: true, class: "genre-search js-multiple"
-  -#
-  -# .content-genre
-  -#   %h1 メインジャンル
-  -#   .row
-  -#     - @base_genre.each do |base_genre|
-  -#       .col-lg-3.col-md-3.col-sm-4.col-xs-4.genre-item
-  -#         %a{:href => "#"}
-  -#           %p= base_genre.name
-  -#
-  / Main
-  %article#main
-
+  %ul.tab
+    %li user
+    %li list
+    
+  #user.area
+    %h2
+      | ユーザー
+    = render :partial => "header_search/user", locals: {user: @search_user}
+      
+  #list.area
+    %h2
+      | プレイリスト
+    = render :partial => "header_search/list", locals: {list: @search_list}
 
   = render :partial => "layouts/footer"
