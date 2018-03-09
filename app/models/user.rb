@@ -100,7 +100,7 @@ class User < ApplicationRecord
 
 
   #gem acts-as-taggable-on タグ機能
-  acts_as_ordered_taggable_on :usergenres
+  acts_as_taggable
 
   #ユーザー名　validate
   #これから

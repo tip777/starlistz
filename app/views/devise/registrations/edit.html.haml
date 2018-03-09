@@ -17,7 +17,7 @@
       = f.input :name, label: "ユーザー名", autocomplete: "off"
 
       %label ジャンル
-      = f.text_field :usergenre_list, value: f.object.usergenre_list.to_s
+      = f.text_field :tag_list, value: f.object.tag_list.to_s
 
       = f.fields_for :user_profile do |m|
         .field_profile

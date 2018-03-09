@@ -62,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # params.permit(:email, :password, :password_confirmation, :current_password, :name, :usergenre_list,
       #               user_profile_attributes: [:id, :description, :insta_url, :tw_url, :avatar ])
       #user edit ジャンルのselectbox用
-      params.permit(:email, :password, :password_confirmation, :current_password, :name, :usergenre_list,
+      params.permit(:email, :password, :password_confirmation, :current_password, :name, :tag_list,
                     user_profile_attributes: [:id, :description, :insta_url, :tw_url, :avatar ])
     end
   end

@@ -60,10 +60,16 @@ $user_list = ['カメラマン','dj','trainer','インスタグラマー','artis
 $user_list.each_with_index do |tag, i|
   target = ActsAsTaggableOn::Tag.new(name: tag,)
   target.save
-  
-  target2 = ActsAsTaggableOn::Tagging.new(tag_id: i+1, taggable_type: "User", taggable_id: 1, context: "tags")
+end
+
+15.times do |i|
+  random = Random.new
+  n = random.rand(1..10)
+  n2 = random.rand(1..10)
+  target2 = ActsAsTaggableOn::Tagging.new(tag_id: n, taggable_type: "User", taggable_id: n2, context: "tags")
   target2.save
 end
+
 
 #フォロー、フォロワー設定
 Relationship.create(follower_id: "1", followed_id: "2")

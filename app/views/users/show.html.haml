@@ -12,7 +12,7 @@
 = @user.user_profile.description
 
 %h3 ジャンル
-= render 'layouts/tag_list', tag_list: @user.usergenre_list
+= render 'layouts/tag_list', tag_list: @user.tag_list
 
 =link_to(following_user_path) do
   %h3 フォロー中
