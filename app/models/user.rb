@@ -48,6 +48,12 @@ class User < ApplicationRecord
   end
 
   #フォロー機能
+  has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :following_users, through: :following_relationships, source: :followed
+
+  has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :follower_users, through: :follower_relationships, source: :follower
+
   # 他のユーザーをフォローする
   def follow(other_user)
     following_relationships.find_or_create_by(followed_id: other_user.id)
@@ -64,6 +70,24 @@ class User < ApplicationRecord
     following_users.include?(other_user)
   end
 
+  #プレイリストお気に入り機構
+  has_many :list_favorites, dependent: :destroy
+  has_many :favorite_lists, through: :list_favorites, source: :list
+
+  def favorite(list)
+    list_favorites.find_or_create_by(list_id: list.id)
+  end
+
+  #お気に入り削除
+  def unfavorite(list)
+    favorite = list_favorites.find_by(list_id: list.id)
+    favorite.destroy if favorite_lists
+  end
+
+  def favorite?(list)
+    favorite_lists.include?(list)
+  end
+
   belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
   accepts_nested_attributes_for :user_profile, allow_destroy: true
 
@@ -74,16 +98,9 @@ class User < ApplicationRecord
   has_many :purchases, dependent: :destroy
   # has_many :lists, through: :purchases
 
-  has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :following_users, through: :following_relationships, source: :followed
-
-  has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :follower_users, through: :follower_relationships, source: :follower
-
-
 
   #gem acts-as-taggable-on タグ機能
-  acts_as_ordered_taggable_on :usergenres
+  acts_as_taggable
 
   #ユーザー名　validate
   #これから

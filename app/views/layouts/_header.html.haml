@@ -28,7 +28,7 @@
                 %i.fa.fa-plus{"aria-hidden" => "true"}　
                 アップロード
             %li.navlist-genre
-              = link_to 'チャート', chart_path
+              = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
 
 
           - else

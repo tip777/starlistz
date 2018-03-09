@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
 
   def show
     @list = List.find(params[:id])
@@ -7,10 +7,14 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
+    taggings = set_list_genre
+    @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
   end
 
   def edit
     set_lists
+    taggings = set_list_genre
+    @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
   end
 
   def create
@@ -32,7 +36,6 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @list = List.find(params[:id])
     @list.destroy
     redirect_to current_user
@@ -45,6 +48,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:title, :description, :price, :image, tracks_attributes:[:id, :artist, :song, :recommend, :row_order, :_destroy])
+    params.require(:list).permit(:title, :description, :price, :image, :tag_list, tracks_attributes:[:id, :artist, :song, :recommend, :row_order, :_destroy])
   end
 end

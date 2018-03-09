@@ -25,20 +25,14 @@
   %section.genre
     .container-fluid.l-container
       .row
-        .col-sm-8
+        .col-sm-8s
           %ul
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            %li ヒップポップ
-            
+            - @genre.each do |genre|
+              %li
+                = link_to genre.name, chart_path(genre: genre.name, sort: Constants::SORT)
+
         .col-sm-4.text-center
-          %a.button{:href => "#"} ジャンルを探す &raquo;
+          = link_to "ジャンルを探す", genre_path, { :class => "button" }
 
 
 
@@ -46,28 +40,30 @@
       %h1.content-title Newプレイリスト
       .span8
         - @newlist.each do |list|
-          // -binding.pry
-          .newlist
-            .inner-list
-              -# .title
-              -#   %h2
-              -#     .favorite
-              -#       %span.author>= list.user.name
-              -#       %span.favorite-star
-              -#         %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
-              -#         = list.list_favorites.count
-              -#     = list.name
-              -# %p= list.description
-              -# .list-genre
-              -#   .more.label
-              -#     %a{:href => "#"} もっと見る
-              -#   .tags
-              -#     - list.list_genres.each.with_index(0) do |listgenre, i|
-              -#       %span.btn-info
-              -#         %a{:href => "#"}= list.list_genres[i][:name]
-
-              .clear
-            %hr/
+          = render list, list: list
+          -# // -binding.pry
+          -# .newlist
+          -#   .inner-list
+          -#     .title
+          -#       = render 'lists/is_image', list: list
+          -#       %h2
+          -#         .favorite
+          -#           %span.author>= list.user.name
+          -#           %span.favorite-star
+          -#             %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+          -#             = list.list_favorites.count
+          -#         = list.title
+          -#     %p= list.description
+          -#     .list-genre
+          -#       .more.label
+          -#         %a{:href => "#"} もっと見る
+          -#       .tags
+          -#         // - list.list_genres.each.with_index(0) do |listgenre, i|
+          -#         //   %span.btn-info
+          -#         //     %a{:href => "#"}= list.list_genres[i][:name]
+          -#
+          -#     .clear
+          -#   %hr/
 
 
 

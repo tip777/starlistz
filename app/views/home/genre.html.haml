@@ -1,16 +1,52 @@
+// .content-container
+//   = select_tag :person, grouped_options_for_select(@tag), include_blank: true, class: "genre-search js-multiple"
+
+//   -# .content-genre
+//   -#   %h1 メインジャンル
+//   -#   .row
+//   -#     - @base_genre.each do |base_genre|
+//   -#       .col-lg-3.col-md-3.col-sm-4.col-xs-4.genre-item
+//   -#         %a{:href => "#"}
+//   -#           %p= base_genre.name
+
+//   / Main
+//   %article#main
 .content-container
-  = select_tag :person, grouped_options_for_select(@tag), include_blank: true, class: "genre-search js-multiple"
+  %ul.tab
+    %li search
+    %li ranking
+  // ここが切り替わる部分
+  .content
+    #search.area
+      %h1
+        | ジャンル検索
+      = form_tag(url_for(:action => 'genre'), :remote => true) do
+        = text_field_tag :search
+        = submit_tag "検索"
+      #genre_search= render 'genrelist', tag: @tag
+      
+    #ranking.area
+      %h1
+        | ジャンル TOP20
+      = render 'genrelist', tag: @tag_top
+      
+= render :partial => "layouts/footer"
 
-  -# .content-genre
-  -#   %h1 メインジャンル
-  -#   .row
-  -#     - @base_genre.each do |base_genre|
-  -#       .col-lg-3.col-md-3.col-sm-4.col-xs-4.genre-item
-  -#         %a{:href => "#"}
-  -#           %p= base_genre.name
-
-  / Main
-  %article#main
-
-
-  = render :partial => "layouts/footer"
+:javascript
+  $(document).ready(function(){
+      $('.contents').hide(); //初期では非表示
+      $('.tab li').click(function() {
+          if($(this).hasClass('active')){
+              $('.area').hide();
+              $("#" + $(this).text()).fadeOut();
+              $('.tab li').removeClass('active');
+          }else{
+              $('.tab li').removeClass('active');
+              $('.area').hide();
+              $("#" + $(this).text()).fadeIn();
+              $(this).addClass('active');
+          }
+      })
+  });
+  
+  

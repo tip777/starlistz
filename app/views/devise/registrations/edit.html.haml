@@ -15,15 +15,15 @@
         = image_tag resource.user_profile.avatar.url(:thumb)
         = m.input :avatar, as: :file, label: false
       = f.input :name, label: "ユーザー名", autocomplete: "off"
+
       %label ジャンル
-      // = f.text_field :usergenre_list, value: f.object.usergenre_list.to_s
-      = f.input :usergenre_list, collection: current_user.usergenre_list, label: "ジャンル", input_html: { multiple: true, class: "js-tags-input tags-input" }
-      
+      = f.text_field :tag_list, value: f.object.tag_list.to_s
+
       = f.fields_for :user_profile do |m|
         .field_profile
           = m.input :description, label: "ユーザープロフィール", placeholder: 'プロフィールを入力してください', autofocus: true
-        
-      
+
+
     .field_email
       = f.input :email, label: "メールアドレス", required: true
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
@@ -39,9 +39,10 @@
 
 %h2 "プレイリスト一覧"
 - @list.each do |list|
-  .field_lists
-    .title
-      = link_to list.title, edit_list_path(list, list: list)
+  = render file: "/lists/_list.html.haml", locals: {list: list}
+  -# .field_lists
+  -#   .title
+  -#     = link_to list.title, edit_list_path(list, list: list)
       = link_to "delete", list, method: :delete, data: { confirm: "#{list.title}を削除してもよろしいですか?" }
 
 %h3 Cancel my account

@@ -13,3 +13,4 @@ $('.field_track_add')
       track_to_be_removed.fadeOut('slow')
     .on 'cocoon:after-remove', (e, removed_track) ->
       console.log('after remove')
+    

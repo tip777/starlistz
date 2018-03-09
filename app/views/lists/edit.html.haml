@@ -10,6 +10,16 @@
       = f.input :image, as: :file, label: false
     .list_title
       = f.input :title, label: "プレイリスト名"
+    .list_genre
+      %label ジャンル
+      -# = f.input :othergenre_list, collection: @list.othergenre_list, grouped_options_for_select(@tag), label: "ジャンル", input_html: { multiple: true, class: "js-tags-input tags-input" }
+      -# - binding.pry
+      -# = f.input :othergenre_list, grouped_options_for_select(@tag), label: "ジャンル", input_html: { multiple: true, class: "js-tags-input tags-input" }
+      // = f.association :tag_list do
+      //   = f.select :tag_list, options_for_select(@tag,{ :selected => @list.tag_list }), {}, {class: 'js-tags-input tags-input', multiple: true}
+      %label ジャンル
+      = f.text_field :tag_list, value: f.object.tag_list.to_s
+      
     .list_description
       = f.input :description, label: "詳細"
     .list_price{:style => "margin-bottom: 50px;"}

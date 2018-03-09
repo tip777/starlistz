@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/mbleigh/acts-as-taggable-on.git
+  revision: 38fefffc8f104455f87fdccd77841a2f550b16c6
+  specs:
+    acts-as-taggable-on (5.0.0)
+      activerecord (>= 4.2.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,8 +45,6 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (5.0.0)
-      activerecord (>= 4.2.8)
     arel (7.1.4)
     autoprefixer-rails (7.2.3)
       execjs
@@ -286,7 +291,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on
+  acts-as-taggable-on!
   aws-sdk (~> 2.3)
   bootstrap-sass
   byebug

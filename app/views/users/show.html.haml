@@ -1,16 +1,18 @@
-- if is_signin(current_user.id, @user.id)
-  =link_to '編集ページに移動', edit_user_registration_path
+//ログインしていたら編集できる
+- if is_signin
+  - if is_signed(current_user.id, @user.id)
+    =link_to '編集ページに移動', edit_user_registration_path
 %br/
 %br/
 = image_tag @user.user_profile.avatar.url(:thumb)
 %h2 #{@user.name}
-= render 'follow_form' if user_signed_in? 
+= render 'follow_form' if user_signed_in?
 
 %h3 プロフィール
 = @user.user_profile.description
 
 %h3 ジャンル
-= render 'tag_list', tag_list: @user.usergenre_list
+= render 'layouts/tag_list', tag_list: @user.tag_list
 
 =link_to(following_user_path) do
   %h3 フォロー中
@@ -25,7 +27,8 @@
 
 %h3 "プレイリスト一覧"
 - @list.each do |list|
-  .field_lists
-    .title
-      = render 'lists/is_image', list: list
-      = link_to list.title, list_path(list)
+  = render list, list: list
+  -# .field_lists
+  -#   .title
+  -#     = render 'lists/is_image', list: list
+  -#     = link_to list.title, list_path(list)

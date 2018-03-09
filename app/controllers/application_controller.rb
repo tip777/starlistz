@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
       @list = @q2.result(distinct: true)
   end
 
+  def set_list_genre
+    #Listのタグだけ抽出
+    return ActsAsTaggableOn::Tagging.where(taggable_type: "List").group("tag_id").pluck(:tag_id)
+  end
 
   protected
 
@@ -20,6 +24,6 @@ class ApplicationController < ActionController::Base
     #       keys: [:usergenre_list, :user_profiles => [:id,:user_id, :description, :insta_url, :tw_url, :avatar]]) #userモデル編集時にプロフィールも編集
     #user edit ジャンルのselectbox用
     devise_parameter_sanitizer.permit(:account_update,
-           keys: [usergenre_list: [], :user_profiles => [:id,:user_id, :description, :insta_url, :tw_url, :avatar]]) #userモデル編集時にプロフィールも編集
+           keys: [:tag_list, :user_profiles => [:id,:user_id, :description, :insta_url, :tw_url, :avatar]]) #userモデル編集時にプロフィールも編集
   end
 end
