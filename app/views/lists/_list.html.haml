@@ -24,6 +24,6 @@
       .tags
         - list.tag_list.each.with_index(0) do |listgenre, i|
           %span.btn-info{:style => "margin-right:5px;"}
-            %a{:href => "#"}= listgenre
+            = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
     .clear
   %hr/

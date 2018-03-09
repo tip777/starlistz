@@ -13,7 +13,7 @@
     - tag.each do |tag|
       %tr
         %td
-          = tag.name
+          = link_to tag.name, chart_path(genre: tag.name, sort: Constants::SORT)
         %td
           = tag.taggings_count
 
