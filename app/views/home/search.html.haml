@@ -9,11 +9,13 @@
   #user.area
     %h2
       | ユーザー
-    = render :partial => "header_search/user", locals: {user: @search_user}
+    - if @search_user != nil
+      = render :partial => "header_search/user", locals: {user: @search_user}
       
   #list.area
     %h2
       | プレイリスト
-    = render :partial => "header_search/list", locals: {list: @search_list}
+    - if @search_list != nil
+      = render :partial => "header_search/list", locals: {list: @search_list}
 
   = render :partial => "layouts/footer"
