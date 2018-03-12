@@ -15,7 +15,9 @@ class HomeController < ApplicationController
     if genre_params[:search].nil?
       @tag = nil
     else
-      @tag = ActsAsTaggableOn::Tag.where(id: taggings).where("name like '%" + genre_params[:search] + "%'")
+      search_str = genre_params[:search].gsub(/[\s|　]+/, '')#文字列の中のスペースを削除
+      # binding.pry
+      @tag = ActsAsTaggableOn::Tag.where(id: taggings).where("name like '%" + search_str + "%'")
     end
 
     #ジャンルトップ20
