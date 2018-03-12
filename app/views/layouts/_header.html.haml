@@ -32,7 +32,7 @@
 
 
           - else
-            = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path do |f|
+            = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
               .input-group
                 = text_field_tag :q, "", placeholder: "キーワード", class: "form-control search-box"
                 .input-group-btn

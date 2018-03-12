@@ -47,14 +47,6 @@ class HomeController < ApplicationController
     end
   end
   
-  private
-  
-  def search_params
-    params.require(:q).permit!
-  end
-  
-  
-  
   #マルチ用
   # def chart
   #   #パラメータからリスト抽出

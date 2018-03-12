@@ -5,19 +5,25 @@ class ApplicationController < ActionController::Base
 
   def search_header
       if params[:q] != nil and params[:q] != ""
-        key_words = params[:q].split(/[\p{blank}\s]+/)#スペースがあったら区切る
+        key_words = search_params.split(/[\p{blank}\s]+/)#スペースがあったら区切る
         @q = User.ransack(name_cont_any: key_words)
         @search_user = @q.result(distinct: true)
         
         @search_list = List.ransack(title_cont_any: key_words).result(distinct: true)
       else
-        @q = User.search(params[:q])
+        @q = User.search
       end
   end
 
   def set_list_genre
     #Listのタグだけ抽出
     return ActsAsTaggableOn::Tagging.where(taggable_type: "List").group("tag_id").pluck(:tag_id)
+  end
+  
+  private
+  
+  def search_params
+    params.require(:q)
   end
 
   protected
