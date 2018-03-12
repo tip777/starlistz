@@ -9,13 +9,16 @@
   #user.area
     %h2
       | ユーザー
-    - if @search_user != nil
-      = render :partial => "header_search/user", locals: {user: @search_user}
+    - if @search_user != nil and not @search_user.empty?
+      - @search_user.each do |user|
+        = render :partial => "users/user", locals: {user: user}
       
   #list.area
     %h2
       | プレイリスト
-    - if @search_list != nil
-      = render :partial => "header_search/list", locals: {list: @search_list}
+      // -binding.pry
+    - if @search_list != nil and not @search_list.empty?
+      - @search_list.each do |list|
+        = render :partial => "lists/list", locals: {list: list}
 
   = render :partial => "layouts/footer"

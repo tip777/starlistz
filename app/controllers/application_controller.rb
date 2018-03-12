@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
 
   def search_header
       if params[:q] != nil and params[:q] != ""
-        # key_words = params[:q][:q].split(/[\p{blank}\s]+/) # スペースがあったら分ける
-        key_words = params[:q].split(/[\p{blank}\s]+/)
+        key_words = params[:q].split(/[\p{blank}\s]+/)#スペースがあったら区切る
         @q = User.ransack(name_cont_any: key_words)
         @search_user = @q.result(distinct: true)
         
