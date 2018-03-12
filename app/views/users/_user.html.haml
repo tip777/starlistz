@@ -1,0 +1,20 @@
+.user_container
+    =link_to (user_path(user)) do
+        = image_tag user.user_profile.avatar.url(:thumb)
+        %h2 #{user.name}
+        = render 'follow_form' if user_signed_in?
+    
+    %h3 プロフィール
+    = user.user_profile.description
+    
+    %h3 ジャンル
+    = render 'layouts/tag_list', tag_list: user.tag_list
+    
+    // -binding.pry
+    =link_to(following_user_path(user)) do
+        %h3 フォロー中
+    = user.following_relationships.count
+    
+    =link_to(follower_user_path(user)) do
+        %h3 フォロワー
+    = user.follower_relationships.count

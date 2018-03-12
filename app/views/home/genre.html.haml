@@ -24,29 +24,27 @@
         = text_field_tag :search
         = submit_tag "検索"
       #genre_search= render 'genrelist', tag: @tag
-      
+
     #ranking.area
       %h1
         | ジャンル TOP20
       = render 'genrelist', tag: @tag_top
-      
+
 = render :partial => "layouts/footer"
 
-:javascript
-  $(document).ready(function(){
-      $('.contents').hide(); //初期では非表示
-      $('.tab li').click(function() {
-          if($(this).hasClass('active')){
-              $('.area').hide();
-              $("#" + $(this).text()).fadeOut();
-              $('.tab li').removeClass('active');
-          }else{
-              $('.tab li').removeClass('active');
-              $('.area').hide();
-              $("#" + $(this).text()).fadeIn();
-              $(this).addClass('active');
-          }
-      })
-  });
-  
-  
+// :javascript
+//   $(document).ready(function(){
+//       $('.contents').hide(); //初期では非表示
+//       $('.tab li').click(function() {
+//           if($(this).hasClass('active')){
+//               $('.area').hide();
+//               $("#" + $(this).text()).fadeOut();
+//               $('.tab li').removeClass('active');
+//           }else{
+//               $('.tab li').removeClass('active');
+//               $('.area').hide();
+//               $("#" + $(this).text()).fadeIn();
+//               $(this).addClass('active');
+//           }
+//       })
+//   });

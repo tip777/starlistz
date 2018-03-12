@@ -103,20 +103,6 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
-
-//user edit ジャンルselectbox用
-// $(document).ready(function() {
-//   $('.js-tags-input').each(function() {
-//     $(this).select2({
-//       tags: true,
-//       tokenSeparators: [','],
-//       theme: 'bootstrap',
-//       width: '100%',
-//       placeholder: 'Separated by comma'
-//       });
-//     });
-// });
-
 $(document).on('turbolinks:load', function() {
   $('.js-tags-input').each(function() {
     $(this).select2({
@@ -127,6 +113,23 @@ $(document).on('turbolinks:load', function() {
       placeholder: 'Separated by comma'
       });
     });
+});
+
+// ジャンル・ヘッダー検索ページの切り替え用
+$(document).ready(function(){
+    $('.contents').hide(); //初期では非表示
+    $('.tab li').click(function() {
+        if($(this).hasClass('active')){
+            $('.area').hide();
+            $("#" + $(this).text()).fadeOut();
+            $('.tab li').removeClass('active');
+        }else{
+            $('.tab li').removeClass('active');
+            $('.area').hide();
+            $("#" + $(this).text()).fadeIn();
+            $(this).addClass('active');
+        }
+    })
 });
 
 $(window).on('scroll',function(){
