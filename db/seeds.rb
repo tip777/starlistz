@@ -49,7 +49,7 @@
 #ユーザー設定
 10.times do |i|
   profile = UserProfile.create(description: "これはユーザープロフィールの説明[ #{i+1} ]")
-  user = User.create(name: "test#{i+1}", email: "test#{i}@gmail.com", password: "testtest", password_confirmation: "testtest")
+  user = User.create(id: i+1,name: "test#{i+1}", email: "test#{i}@gmail.com", password: "testtest", password_confirmation: "testtest")
   user.user_profile = profile
   user.save
 end
@@ -58,7 +58,7 @@ end
 $user_list = ""
 $user_list = ['カメラマン','dj','trainer','インスタグラマー','artist','singer','アーティスト','rapper','らっぱー','芸能人']
 $user_list.each_with_index do |tag, i|
-  target = ActsAsTaggableOn::Tag.new(name: tag,)
+  target = ActsAsTaggableOn::Tag.new(id: i+1, name: tag,)
   target.save
 end
 
@@ -87,7 +87,7 @@ h = 0
 10.times do |i|
   5.times do |n|
     h = h + 1
-    List.create(user_id: i+1, title: "プレイリスト #{h}", description: "プレイリストの説明 #{h}", price: "#{n}00")
+    List.create(id: h,user_id: i+1, title: "プレイリスト #{h}", description: "プレイリストの説明 #{h}", price: "#{n}00")
   end
 end
 
@@ -122,8 +122,10 @@ $list = ""
 end
 $list.push('all', 'jpop', 'hiphop', 'randb', 'dj', 'edm', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'ボーカロイド')
 
+h = 0
 $list.each do |tag|
-  target = ActsAsTaggableOn::Tag.new(name: tag,)
+  h = h + 11
+  target = ActsAsTaggableOn::Tag.new(id: h, name: tag,)
   target.save
 end
 
