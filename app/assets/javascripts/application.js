@@ -29,7 +29,6 @@ $(document).on('turbolinks:load', function() {
   var h = $('nav').outerHeight();
     console.log(h);
     $('body').css('padding-top',h);
-
     
     // $(".js-multiple").select2({
     //     width:      200
@@ -116,7 +115,7 @@ $(document).on('turbolinks:load', function() {
 });
 
 // ジャンル・ヘッダー検索ページの切り替え用
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
     $('.contents').hide(); //初期では非表示
     $('.tab li').click(function() {
         if($(this).hasClass('active')){
