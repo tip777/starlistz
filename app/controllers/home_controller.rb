@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def index
     taggings = set_list_genre
     @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル
-    @newlist = List.order('created_at') #新着のプレイリスト
+    @newlist = List.order('created_at').first(20) #新着のプレイリスト
   end
 
   def show

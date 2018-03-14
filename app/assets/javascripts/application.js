@@ -29,7 +29,6 @@ $(document).on('turbolinks:load', function() {
   var h = $('nav').outerHeight();
     console.log(h);
     $('body').css('padding-top',h);
-
     
     // $(".js-multiple").select2({
     //     width:      200

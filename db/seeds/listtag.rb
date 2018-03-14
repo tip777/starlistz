@@ -1,6 +1,6 @@
 #プレイリストのジャンル設定
 $list = ""
-9.times do |i|
+4.times do |i|
   if i == 0
     $list = ['playlist_genre1','playlist_genre2','playlist_genre3','playlist_genre4','playlist_genre5']
   else
@@ -22,7 +22,7 @@ list_itiran.each_with_index do |tag, i|
   target.save
 
   random = Random.new
-  n = random.rand(1..50)
+  n = random.rand(1..20)
   n2 = random.rand(61..74)
   target = ActsAsTaggableOn::Tagging.new(tag_id: n2, taggable_type: "List", taggable_id: n, context: "tags")
   target.save
