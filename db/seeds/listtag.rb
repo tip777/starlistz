@@ -9,9 +9,9 @@ $list = ""
 end
 $list.push('all', 'jpop', 'hiphop', 'randb', 'dj', 'edm', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'ボーカロイド')
 
-h = 0
+h = 10
 $list.each do |tag|
-  h = h + 11
+  h = h + 1
   target = ActsAsTaggableOn::Tag.new(id: h, name: tag,)
   target.save
 end
