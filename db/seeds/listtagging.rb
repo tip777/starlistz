@@ -4,8 +4,8 @@ list_itiran.each_with_index do |tag, i|
   target.save
 
   random = Random.new
-  n = random.rand(1..50)
-  n2 = random.rand(61..74)
+  n = random.rand(1..20)
+  n2 = random.rand(31..74)
   target = ActsAsTaggableOn::Tagging.new(tag_id: n2, taggable_type: "List", taggable_id: n, context: "tags")
   target.save
 end
