@@ -11,6 +11,7 @@ class HomeController < ApplicationController
 
   def genre
     taggings = set_list_genre
+    
     #ジャンル検索
     if genre_params[:search].nil?
       @tag = nil
