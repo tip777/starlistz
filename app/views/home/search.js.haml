@@ -4,11 +4,11 @@
 //     $("#list .list_area").html("#{j(render :partial => 'lists/list', locals: {lists: @list_pages})}");
 // }
 
-if ($('#userlist').class == "active"){
-$("#user .user_area").html("#{j(render :partial => 'users/user', locals: {users: @user_pages})}");  
-}else if ($('#playlistlist').class == "active"){
-$("#list .list_area").html("#{j(render :partial => 'lists/list', locals: {lists: @list_pages})}");
-}
+- if @search_user != nil and not @search_user.empty?
+    $("#user .user_area").html("#{j(render :partial => 'users/user', locals: {users: @user_pages})}");  
+- if @search_list != nil and not @search_list.empty?
+    $("#list .list_area").html("#{j(render :partial => 'lists/list', locals: {lists: @list_pages})}");
+
 
 // ページトップに戻る
 window.scrollTo(0,50)

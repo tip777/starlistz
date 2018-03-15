@@ -16,6 +16,7 @@
         = render :partial => "users/user", locals: {users: @user_pages}
       
     = paginate @user_pages, param_name: 'user_page', :remote => true
+    
   #list.area
     .list_area
       %h2
