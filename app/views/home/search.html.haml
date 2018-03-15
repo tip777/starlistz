@@ -10,15 +10,20 @@
     %h2
       | ユーザー
     - if @search_user != nil and not @search_user.empty?
-      - @search_user.each do |user|
+      - @user_pages.each do |user|
         = render :partial => "users/user", locals: {user: user}
       
+      = paginate @user_pages, param_name: 'user_page'
   #list.area
     %h2
       | プレイリスト
       // -binding.pry
     - if @search_list != nil and not @search_list.empty?
-      - @search_list.each do |list|
+      - @list_pages.each do |list|
         = render :partial => "lists/list", locals: {list: list}
-
+      
+      = paginate @list_pages, param_name: 'list_page'
+  
   = render :partial => "layouts/footer"
+  
+
