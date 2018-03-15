@@ -1,1 +1,4 @@
-$("items").html("<%= j(render :partial => 'items') %>");
+$("#list .list_area").html("#{j(render :partial => 'lists/list', locals: {lists: @list_pages})}");
+// ページトップに戻る
+window.scrollTo(0,50)
+

@@ -12,6 +12,11 @@ class ApplicationController < ActionController::Base
         
         @user_pages = @search_user.page(params[:user_page])
         @list_pages = @search_list.page(params[:list_page])
+        
+        respond_to do |format|
+          format.html
+          format.js
+        end
       else
         @q = User.search
       end

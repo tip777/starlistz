@@ -15,14 +15,15 @@
       
       = paginate @user_pages, param_name: 'user_page', :remote => true
   #list.area
-    %h2
-      | プレイリスト
-      // -binding.pry
-    - if @search_list != nil and not @search_list.empty?
-      - @list_pages.each do |list|
-        = render :partial => "lists/list", locals: {list: list}
+    .list_area
+      %h2
+        | プレイリスト
+      - if @search_list != nil and not @search_list.empty?
+        // - @list_pages.each do |list|
+        //   = render :partial => "lists/list", locals: {list: list}
+        = render :partial => "lists/list", locals: {lists: @list_pages}
       
-      = paginate @list_pages, param_name: 'list_page', :remote => true
+    = paginate @list_pages, param_name: 'list_page', :remote => true
   
   = render :partial => "layouts/footer"
   
