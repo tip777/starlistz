@@ -13,7 +13,7 @@
       - @user_pages.each do |user|
         = render :partial => "users/user", locals: {user: user}
       
-      = paginate @user_pages, param_name: 'user_page'
+      = paginate @user_pages, param_name: 'user_page', :remote => true
   #list.area
     %h2
       | プレイリスト
@@ -22,7 +22,7 @@
       - @list_pages.each do |list|
         = render :partial => "lists/list", locals: {list: list}
       
-      = paginate @list_pages, param_name: 'list_page'
+      = paginate @list_pages, param_name: 'list_page', :remote => true
   
   = render :partial => "layouts/footer"
   
