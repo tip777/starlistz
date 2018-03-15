@@ -3,17 +3,19 @@
   | 検索結果
   
   %ul.tab
-    %li user
-    %li list
+    %li#userlist user
+    %li#playlistlist list
     
   #user.area
-    %h2
-      | ユーザー
-    - if @search_user != nil and not @search_user.empty?
-      - @user_pages.each do |user|
-        = render :partial => "users/user", locals: {user: user}
+    .user_area
+      %h2
+        | ユーザー
+      - if @search_user != nil and not @search_user.empty?
+        // - @user_pages.each do |user|
+        //   = render :partial => "users/user", locals: {user: user}
+        = render :partial => "users/user", locals: {users: @user_pages}
       
-      = paginate @user_pages, param_name: 'user_page', :remote => true
+    = paginate @user_pages, param_name: 'user_page', :remote => true
   #list.area
     .list_area
       %h2

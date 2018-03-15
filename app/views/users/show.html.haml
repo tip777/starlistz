@@ -26,9 +26,8 @@
 = @list.count
 
 %h3 "プレイリスト一覧"
-- @list.each do |list|
-  = render list, list: list
-  -# .field_lists
-  -#   .title
-  -#     = render 'lists/is_image', list: list
-  -#     = link_to list.title, list_path(list)
+// - @list.each do |list|
+//   = render list, list: list
+= render list, list: @list
+
+

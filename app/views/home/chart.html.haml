@@ -12,9 +12,10 @@
 
   .content-list
     .span8
-      - @pages.each do |list|
-        = render list, list: list
-
+      // - @pages.each do |list|
+      //   = render list, list: list
+      = render list, lists: @pages
+      
 = render :partial => "layouts/footer"
 
 = paginate @pages 

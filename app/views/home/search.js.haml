@@ -1,4 +1,15 @@
+// if ($('#userlist').class == "active") {
+//     $("#user .user_area").html("#{j(render :partial => 'users/user', locals: {users: @user_pages})}");  
+// } elseif($('#playlistlist').class == "active") {
+//     $("#list .list_area").html("#{j(render :partial => 'lists/list', locals: {lists: @list_pages})}");
+// }
+
+if ($('#userlist').class == "active"){
+$("#user .user_area").html("#{j(render :partial => 'users/user', locals: {users: @user_pages})}");  
+}else if ($('#playlistlist').class == "active"){
 $("#list .list_area").html("#{j(render :partial => 'lists/list', locals: {lists: @list_pages})}");
+}
+
 // ページトップに戻る
 window.scrollTo(0,50)
 
