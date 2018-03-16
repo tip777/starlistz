@@ -39,6 +39,6 @@
       .span8
         // - @newlist.each do |list|
         //   = render list, list: list
-        = render :partial => "lists/list", locals: {lists: @newlist}
+        = render :partial => "lists/list", locals: {lists: @newlist, flg: false}
 
 = render :partial => "layouts/footer"

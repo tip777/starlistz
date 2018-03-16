@@ -38,12 +38,7 @@
     = f.button :submit, "Update"
 
 %h2 "プレイリスト一覧"
-- @list.each do |list|
-  = render file: "/lists/_list.html.haml", locals: {list: list}
-  -# .field_lists
-  -#   .title
-  -#     = link_to list.title, edit_list_path(list, list: list)
-      = link_to "delete", list, method: :delete, data: { confirm: "#{list.title}を削除してもよろしいですか?" }
+= render file: "/lists/_list.html.haml", locals: {lists: @list, flg: true}
 
 %h3 Cancel my account
 %p

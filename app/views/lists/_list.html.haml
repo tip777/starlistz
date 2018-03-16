@@ -28,5 +28,7 @@
               = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
       .clear
     %hr/
-  
+    // flg = ユーザー編集ページか判定
+  -if flg == true and flg != nil 
+    = link_to "delete", list, method: :delete, data: { confirm: "#{list.title}を削除してもよろしいですか?" }
   

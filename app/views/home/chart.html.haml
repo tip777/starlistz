@@ -14,7 +14,7 @@
     .span8
       // - @pages.each do |list|
       //   = render list, list: list
-      = render :partial => "lists/list", locals: {lists: @pages}
+      = render :partial => "lists/list", locals: {lists: @pages, flg: false}
       
 = render :partial => "layouts/footer"
 
