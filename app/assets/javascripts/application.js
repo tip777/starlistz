@@ -29,11 +29,11 @@ $(document).on('turbolinks:load', function() {
   var h = $('nav').outerHeight();
     console.log(h);
     $('body').css('padding-top',h);
-    
+
     // $(".js-multiple").select2({
     //     width:      200
     // });
-    
+
     //select2 setting
     $(".js-search").select2({
         width:      200
@@ -42,13 +42,13 @@ $(document).on('turbolinks:load', function() {
         minimumResultsForSearch: Infinity,
         width:      150
     });
-  
+
     $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
-    
+
     $('.select-main').on('change', param_change);
-    
+
     $('.js-search').on('change', param_change);
-    
+
     //select tag parameter send
     function param_change () {
         var genre = ""
@@ -61,7 +61,7 @@ $(document).on('turbolinks:load', function() {
         url = url + '&genre=' + genre
         window.location.search = url
     }
-  
+
 });
 
 // $(function() {
@@ -117,6 +117,15 @@ $(document).on('turbolinks:load', function() {
 // ジャンル・ヘッダー検索ページの切り替え用
 $(document).on('turbolinks:load', function() {
     $('.contents').hide(); //初期では非表示
+    //初期に表示する項目設定
+    $('.tab li').each(function() {
+      if($(this).hasClass('active')){
+        $('.tab li').removeClass('active');
+        $('.area').hide();
+        $("#" + $(this).text()).fadeIn();
+        $(this).addClass('active');
+      }
+    });
     $('.tab li').click(function() {
         if($(this).hasClass('active')){
             $('.area').hide();

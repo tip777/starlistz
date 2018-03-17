@@ -14,13 +14,8 @@
 %h3 ジャンル
 = render 'layouts/tag_list', tag_list: @user.tag_list
 
-=link_to(following_user_path) do
-  %h3 フォロー中
-= @following
-
-=link_to(follower_user_path) do
-  %h3 フォロワー
-= @follower
+%h3 フォロワー
+= "#{@follower}　人"
 
 %h3 プレイリスト数
 = @list.count
@@ -29,5 +24,3 @@
 // - @list.each do |list|
 //   = render list, list: list
 = render :partial => "lists/list", locals: {lists: @list, flg: false}
-
-
