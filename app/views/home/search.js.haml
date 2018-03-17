@@ -1,16 +1,15 @@
 // if ($('#userlist').class == "active") {
-//     $("#user .user_area").html("#{j(render :partial => 'users/user', locals: {users: @user_pages})}");  
+//     $("#user .user_area").html("#{j(render :partial => 'users/user', locals: {users: @user_pages})}");
 // } elseif($('#playlistlist').class == "active") {
 //     $("#list .list_area").html("#{j(render :partial => 'lists/list', locals: {lists: @list_pages})}");
 // }
 
 - if @search_user != nil and not @search_user.empty?
-    $("#user .user_area").html("#{j(render :partial => 'users/user', locals: {users: @user_pages})}");
+    $("#user .user_area").html("#{j(render 'users/user', users: @user_pages)}");
     $("#user_paginator").html("#{escape_javascript(paginate @user_pages, param_name: 'user_page', :remote => true)}");
 - if @search_list != nil and not @search_list.empty?
-    $("#list .list_area").html("#{j(render :partial => 'lists/list', locals: {lists: @list_pages, flg: false})}");
+    $("#list .list_area").html("#{j(render "lists/list", lists: @list_pages)}");
     $("#list_paginator").html("#{escape_javascript(paginate @list_pages, param_name: 'list_page', :remote => true)}");
 
 // ページトップに戻る
 window.scrollTo(0,50)
-

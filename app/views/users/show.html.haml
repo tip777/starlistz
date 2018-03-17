@@ -23,4 +23,5 @@
 %h3 "プレイリスト一覧"
 // - @list.each do |list|
 //   = render list, list: list
-= render :partial => "lists/list", locals: {lists: @list, flg: false}
+= render "lists/list", lists: @pages
+= paginate @pages

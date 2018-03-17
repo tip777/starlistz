@@ -13,7 +13,7 @@
       - if @search_user != nil and not @search_user.empty?
         // - @user_pages.each do |user|
         //   = render :partial => "users/user", locals: {user: user}
-        = render :partial => "users/user", locals: {users: @user_pages}
+        = render "users/user", users: @user_pages
 
     #user_paginator
       = paginate @user_pages, param_name: 'user_page', :remote => true
@@ -25,7 +25,7 @@
       - if @search_list != nil and not @search_list.empty?
         // - @list_pages.each do |list|
         //   = render :partial => "lists/list", locals: {list: list}
-        = render :partial => "lists/list", locals: {lists: @list_pages, flg: false}
+        = render "lists/list", lists: @list_pages
 
     #list_paginator
       = paginate @list_pages, param_name: 'list_page', :remote => true
