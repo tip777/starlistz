@@ -34,37 +34,11 @@
         .col-sm-4.text-center
           = link_to "ジャンルを探す", genre_path, { :class => "button" }
 
-
-
     .content-area
       %h1.content-title Newプレイリスト
       .span8
-        - @newlist.each do |list|
-          = render list, list: list
-          -# // -binding.pry
-          -# .newlist
-          -#   .inner-list
-          -#     .title
-          -#       = render 'lists/is_image', list: list
-          -#       %h2
-          -#         .favorite
-          -#           %span.author>= list.user.name
-          -#           %span.favorite-star
-          -#             %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
-          -#             = list.list_favorites.count
-          -#         = list.title
-          -#     %p= list.description
-          -#     .list-genre
-          -#       .more.label
-          -#         %a{:href => "#"} もっと見る
-          -#       .tags
-          -#         // - list.list_genres.each.with_index(0) do |listgenre, i|
-          -#         //   %span.btn-info
-          -#         //     %a{:href => "#"}= list.list_genres[i][:name]
-          -#
-          -#     .clear
-          -#   %hr/
-
-
+        // - @newlist.each do |list|
+        //   = render list, list: list
+        = render :partial => "lists/list", locals: {lists: @newlist, flg: false}
 
 = render :partial => "layouts/footer"

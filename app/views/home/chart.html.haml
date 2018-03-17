@@ -12,7 +12,10 @@
 
   .content-list
     .span8
-      - @genre_list.each do |list|
-        = render list, list: list
-
+      // - @pages.each do |list|
+      //   = render list, list: list
+      = render :partial => "lists/list", locals: {lists: @pages, flg: false}
+      
 = render :partial => "layouts/footer"
+
+= paginate @pages 

@@ -1,5 +1,5 @@
 #ユーザー設定
-10.times do |i|
+50.times do |i|
   profile = UserProfile.create(description: "これはユーザープロフィールの説明[ #{i+1} ]")
   user = User.create(id: i+1,name: "test#{i+1}", email: "test#{i}@gmail.com", password: "testtest", password_confirmation: "testtest")
   user.user_profile = profile

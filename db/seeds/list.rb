@@ -31,7 +31,7 @@
 #プレイリスト作成
 h = 0
 10.times do |i|
-  2.times do |n|
+  5.times do |n|
     h = h + 1
     List.create(id: h,user_id: i+1, title: "プレイリスト #{h}", description: "プレイリストの説明 #{h}", price: "#{n}00")
   end

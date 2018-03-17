@@ -6,14 +6,17 @@ Rails.application.routes.draw do
   # get 'name_check', to: 'home#name_check'#ユーザー名重複チェック用
 
 
+#フォロー、フォロワー　ページ用
+  # resources :users, :only => [:show] do
+  #   member do
+  #      get 'following'
+  #      get 'follower'
+  #     # get 'favoriting'
+  #   end
+  #  end
 
-  resources :users, :only => [:show] do
-    member do
-       get 'following'
-       get 'follower'
-      # get 'favoriting'
-    end
-   end
+  resources :users, :only => [:show]
+
   resources :lists do #プレイリスト用
     put :sort
   end
