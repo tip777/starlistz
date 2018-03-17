@@ -7,24 +7,24 @@
     %li#playlistlist list
 
   #user.area
-    .user_area
-      %h2
-        | ユーザー
-      - if @search_user != nil and not @search_user.empty?
-        // - @user_pages.each do |user|
-        //   = render :partial => "users/user", locals: {user: user}
+    %h2
+      | ユーザー
+    - if @search_user != nil and not @search_user.empty?
+      // - @user_pages.each do |user|
+      //   = render :partial => "users/user", locals: {user: user}
+      .user_area
         = render "users/user", users: @user_pages
 
     #user_paginator
       = paginate @user_pages, param_name: 'user_page', :remote => true
 
   #list.area
-    .list_area
-      %h2
-        | プレイリスト
-      - if @search_list != nil and not @search_list.empty?
-        // - @list_pages.each do |list|
-        //   = render :partial => "lists/list", locals: {list: list}
+    %h2
+      | プレイリスト
+    - if @search_list != nil and not @search_list.empty?
+      // - @list_pages.each do |list|
+      //   = render :partial => "lists/list", locals: {list: list}
+      .list_area
         = render "lists/list", lists: @list_pages
 
     #list_paginator
