@@ -9,17 +9,15 @@
   .inner
 
     %header
-      %h2 少年よ、大志を抱け
+      %h2 あの人のいつもの曲が、よくわかる。
 
     %p
-      STARLSITZへようこそSTARLSITZへようこそ
+      上司のゴマすり、二次会カラオケ、ナンパにお仕事中。
       %br/
-      STARLSITZへようこそSTARLSITZへようこそ
-      %br/
-      STARLSITZへようこそSTARLSITZへようこそ
-      %br/
+      みんなの好きな音楽で、ちょっとおいしい明日に。
+      
     %footer
-      %a.button{:href => "#main"} はじめる
+      %a.button{:href => "#main"} 無料登録する
 
 .l-wrapper
   %section.genre
@@ -34,8 +32,8 @@
         .col-sm-4.text-center
           = link_to "ジャンルを探す", genre_path, { :class => "button" }
 
-    .content-area
-      %h1.content-title Newプレイリスト
+    .container-fluid.l-container
+      %h2.content-title NEW PLAYLIST
       .span8
         // - @newlist.each do |list|
         //   = render list, list: list

@@ -1,15 +1,15 @@
 .content-container
   #search
-    %h1
-      | ジャンル検索
+    %h2
+      ジャンル検索
     = form_tag(url_for(:action => 'genre'), :remote => true) do
       = text_field_tag :search
       = submit_tag "検索"
     #genre_search= render 'genrelist', tag: @tag
 
   #ranking
-    %h1
-      | ジャンル TOP20
+    %h2
+      ジャンル TOP20
     = render 'genrelist', tag: @tag_top
 
 = render :partial => "layouts/footer"
