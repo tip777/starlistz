@@ -3,31 +3,37 @@
     %ul
       - @list.errors.full_messages.each do |message|
         %li= message
-= simple_form_for @list do |f|
-  .field_playlist
-    .list_image
-      = image_tag @list.image.url(:thumb)
-      = f.input :image, as: :file, label: false
-    .list_title
-      = f.input :title, label: "プレイリスト名"
-    .list_genre
-      // = f.association :tag_list do
-      //   = f.select :tag_list, options_for_select(@tag,{ :selected => @list.tag_list }), {}, {class: 'js-tags-input tags-input', multiple: true}
-      %label ジャンル
-      = f.text_field :tag_list, value: f.object.tag_list.to_s
-    .list_description
-      = f.input :description, label: "詳細"
-    .list_price{:style => "margin-bottom: 50px;"}
-      = f.input :price, label: "金額", :collection => %w[100 150 200 250]
-  %table.table.table-bordered.table-sortable
-    %tbody#lines
-      %tr
-        %th アーティスト
-        %th 曲名
-        %th スター
-      = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
-        = render 'track_fields', f: track
-  .field_track_add
-    = link_to_add_association '曲 追加', f, :tracks,:"data-association-insertion-node" => "tbody#lines",:"data-association-insertion-method" => "append"
-  .actions
-    = f.submit
+
+.container-fluid.l-container
+  
+  %h2.content-title アップロード
+  = simple_form_for @list do |f|
+    .field_playlist.l-new-playlist
+      .ll-new-playlist
+        .list_image.ll-new-playlist
+          = image_tag @list.image.url(:thumb)
+          = f.input :image, as: :file, label: false
+      .rr-new-playlist
+        .list_title.list
+          = f.input :title, label: "プレイリスト名"
+        .list_description.list
+          = f.input :description, label: "詳細"
+        .list_genre.list
+          // = f.association :tag_list do
+          //   = f.select :tag_list, options_for_select(@tag,{ :selected => @list.tag_list }), {}, {class: 'js-tags-input tags-input', multiple: true}
+          %label ジャンル
+          = f.text_field :tag_list, value: f.object.tag_list.to_s
+        .list_price.list
+          = f.input :price, label: "金額", :collection => %w[100 150 200 250]
+    %table.new-playlist-table.table-sortable
+      %tbody#lines
+        %tr
+          %th アーティスト
+          %th 曲名
+          %th お気に入り
+        = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
+          = render 'track_fields', f: track
+    .field_track_add
+      = link_to_add_association '曲を追加する »', f, :tracks,:"data-association-insertion-node" => "tbody#lines",:"data-association-insertion-method" => "append"
+    .actions.text-center
+      = f.submit

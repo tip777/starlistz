@@ -1,15 +1,18 @@
-- users.each do |user|
-    .user_container
-        =link_to (user_path(user)) do
-            = image_tag user.user_profile.avatar.url(:thumb)
-            %h2 #{user.name}
-            = render 'follow_form' if user_signed_in?
+.container-fluid.l-container
+    - users.each do |user|
+        .user_container
+            =link_to (user_path(user)) do
+                = image_tag user.user_profile.avatar.url(:thumb)
+                %h2 #{user.name}
+                = render 'follow_form' if user_signed_in?
 
-        %h3 プロフィール
-        = user.user_profile.description
+            %h3 プロフィール
+            = user.user_profile.description
 
-        %h3 ジャンル
-        = render 'layouts/tag_list', tag_list: user.tag_list
+            %h3 ジャンル
+            = render 'layouts/tag_list', tag_list: user.tag_list
 
-        %h3 フォロワー
-        = user.follower_relationships.count
+            %h3 フォロワー
+            = user.follower_relationship.container-fluid.l-container
+            s.count
+

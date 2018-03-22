@@ -1,35 +1,36 @@
-//ログインしていたら編集できる
-- if is_signin
+.container-fluid.l-container
+  //ログインしていたら編集できる
+  - if is_signin
     - if is_signed(current_user.id, @list.user.id)
-        =link_to 'プレイリスト編集', edit_list_path(@list, list: @list)
-%br/
-%br/
-= image_tag @list.image.url(:thumb)
+      =link_to 'プレイリスト編集', edit_list_path(@list, list: @list)
+  
+  .l-playlist
+    .ll-playlist
+      = image_tag @list.image.url(:thumb)
 
-%h3 プレイリスト名
-= @list.title
+    .rr-playlist
+      %h3 プレイリスト名
+      .span.listtitle= @list.title
 
-%h3 ジャンル
-= render 'layouts/tag_list', tag_list: @list.tag_list
+      %h3 詳細
+      .span= @list.description
 
-%h3 詳細
-= @list.description
+      .span= render 'layouts/tag_list', tag_list: @list.tag_list
 
-%h3 金額
-%p "#{@list.price}円"
+      %h3 金額
+      .span #{@list.price}円
 
 
-%table.table.table-bordered.table-sortable
+  %table.table.table-bordered.table-sortable
     %tbody#lines
-        %tr
-            %th アーティスト
-            %th 曲名
-            %th スター
+      %tr
+        %th アーティスト
+        %th 曲名
+        %th スター
     - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
-        %tr.track
-            %td= track.artist
-            %td= track.song
-            %td
-                = check_box 'track', 'recommend', {:checked => track.recommend, :disabled  => true, id: "custom-checkbox#{i}", class: "custom-check-box"}
-                %label{for: "custom-checkbox#{i}"}
-
+      %tr.track
+        %td= track.artist
+        %td= track.song
+        %td
+          = check_box 'track', 'recommend', {:checked => track.recommend, :disabled  => true, id: "custom-checkbox#{i}", class: "custom-check-box"}
+          %label{for: "custom-checkbox#{i}"}

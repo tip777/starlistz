@@ -8,13 +8,13 @@
 //   = text_field_tag :search
 //   = submit_tag "検索"
 
-%table
+%ul.genre-list
   - if tag then
     - tag.each do |tag|
-      %tr
-        %td
+      %li
+        .title
           = link_to tag.name, chart_path(genre: tag.name, sort: Constants::SORT)
-        %td
+        .number
           = tag.taggings_count
 
   

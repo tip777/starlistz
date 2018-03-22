@@ -22,19 +22,15 @@
 .l-wrapper
   %section.genre
     .container-fluid.l-container
-      .row
-        .col-sm-8s
-          %ul
-            - @genre.each do |genre|
-              %li
-                = link_to genre.name, chart_path(genre: genre.name, sort: Constants::SORT)
-
-        .col-sm-4.text-center
-          = link_to "ジャンルを探す", genre_path, { :class => "button" }
+      %h2.content-title ジャンルTOP10
+      %ul.bigblock
+        - @genre.each do |genre|
+          %li
+            = link_to genre.name, chart_path(genre: genre.name, sort: Constants::SORT)
 
     .container-fluid.l-container
-      %h2.content-title NEW PLAYLIST
-      .span8
+      %h2.content-title NEWプレイリスト
+      .outer-cardlist
         // - @newlist.each do |list|
         //   = render list, list: list
         = render :partial => "lists/list", locals: {lists: @newlist, flg: false}

@@ -5,7 +5,8 @@
 
 /*  TopPage */
 .content-title {
-  margin: 60px 0 20px; }
+  margin: 60px 0 30px;
+  font-weight: 700; }
 
 .content-area {
   margin: 100px 0; }
@@ -57,21 +58,5 @@
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1; }
-
-/*  Genre */
-.tab, .tab li, .tab li a {
-  float: left;
-  padding: 3px;
-  margin-right: 2px;
-  list-style: none; }
-
-a:hover {
-  opacity: 0.8; }
-
-.content {
-  clear: both; }
-
-.area {
-  display: none; }
 
 /*# sourceMappingURL=home.css.map */

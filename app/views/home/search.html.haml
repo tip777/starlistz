@@ -1,33 +1,34 @@
 .content-container
-  %h1
-  | 検索結果
+  %h2 検索結果
 
   %ul.tab
-    %li#userlist.active user
-    %li#playlistlist list
+    %li.active
+      %a{:href => "#tab-list"} プレイリスト
+    %li
+      %a{:href => "#tab-user"} ユーザー
 
-  #user.area
-    .user_area
-      %h2
-        | ユーザー
-      - if @search_user != nil and not @search_user.empty?
-        // - @user_pages.each do |user|
-        //   = render :partial => "users/user", locals: {user: user}
-        = render :partial => "users/user", locals: {users: @user_pages}
+  .l-tabbox
+    #tab-list.tabbox
+      .list_area
+        %h2.content-title プレイリスト
+        - if @search_list != nil and not @search_list.empty?
+          // - @list_pages.each do |list|
+          //   = render :partial => "lists/list", locals: {list: list}
+          = render :partial => "lists/list", locals: {lists: @list_pages, flg: false}
 
-    #user_paginator
-      = paginate @user_pages, param_name: 'user_page', :remote => true
+      #list_paginator
+        = paginate @list_pages, param_name: 'list_page', :remote => true
 
-  #list.area
-    .list_area
-      %h2
-        | プレイリスト
-      - if @search_list != nil and not @search_list.empty?
-        // - @list_pages.each do |list|
-        //   = render :partial => "lists/list", locals: {list: list}
-        = render :partial => "lists/list", locals: {lists: @list_pages, flg: false}
 
-    #list_paginator
-      = paginate @list_pages, param_name: 'list_page', :remote => true
+    #tab-user.tabbox
+      .user_area
+        %h2.content-title ユーザー
+        - if @search_user != nil and not @search_user.empty?
+          // - @user_pages.each do |user|
+          //   = render :partial => "users/user", locals: {user: user}
+          = render :partial => "users/user", locals: {users: @user_pages}
 
-  = render :partial => "layouts/footer"
+      #user_paginator
+        = paginate @user_pages, param_name: 'user_page', :remote => true
+
+    = render :partial => "layouts/footer"

@@ -114,31 +114,24 @@ $(document).on('turbolinks:load', function() {
     });
 });
 
-// ジャンル・ヘッダー検索ページの切り替え用
+
 $(document).on('turbolinks:load', function() {
-    $('.contents').hide(); //初期では非表示
-    //初期に表示する項目設定
-    $('.tab li').each(function() {
-      if($(this).hasClass('active')){
-        $('.tab li').removeClass('active');
-        $('.area').hide();
-        $("#" + $(this).text()).fadeIn();
-        $(this).addClass('active');
-      }
-    });
-    $('.tab li').click(function() {
-        if($(this).hasClass('active')){
-            $('.area').hide();
-            $("#" + $(this).text()).fadeOut();
-            $('.tab li').removeClass('active');
-        }else{
-            $('.tab li').removeClass('active');
-            $('.area').hide();
-            $("#" + $(this).text()).fadeIn();
-            $(this).addClass('active');
-        }
-    })
+$('.tabbox:first').show();
+
+  $('.tab li').click(function() {
+    $('.tab li').removeClass('active');
+    $(this).addClass('active');
+    $('.l-tabbox .tabbox').hide();
+    $($(this).find('a').attr('href')).fadeIn();
+    return false;
+  });
 });
+
+
+
+
+
+
 
 $(window).on('scroll',function(){
 s = $(window).scrollTop();
@@ -147,4 +140,11 @@ if(s < 10){
 } else {
   $('.navbar-fixed-top').addClass('is-fixed');
 }
+});
+
+
+$(document).on('turbolinks:load', function() {
+var url = window.location.pathname;
+        $('.nav li a[href="'+url+'"]').addClass('active');
+        alert(url);
 });

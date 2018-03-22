@@ -1,26 +1,32 @@
-//ログインしていたら編集できる
-- if is_signin
-  - if is_signed(current_user.id, @user.id)
-    =link_to '編集ページに移動', edit_user_registration_path
-%br/
-%br/
-= image_tag @user.user_profile.avatar.url(:thumb)
-%h2 #{@user.name}
-= render 'follow_form' if user_signed_in?
+.container-fluid.l-container
+  .l-profile
+    .ll-profile
+      = image_tag @user.user_profile.avatar.url(:thumb)
 
-%h3 プロフィール
-= @user.user_profile.description
+    .rr-profile
 
-%h3 ジャンル
-= render 'layouts/tag_list', tag_list: @user.tag_list
+      //ログインしていたら編集できる
+      - if is_signin
+        - if is_signed(current_user.id, @user.id)
+          .text-right
+            =link_to 'プロフィール編集', edit_user_registration_path, class: "go-edit"
+            
+      %h2 #{@user.name}
+      = render 'follow_form' if user_signed_in?
 
-%h3 フォロワー
-= "#{@follower}　人"
+      %h3 プロフィール
+      = @user.user_profile.description
 
-%h3 プレイリスト数
-= @list.count
+      %h3 ジャンル
+      = render 'layouts/tag_list', tag_list: @user.tag_list
 
-%h3 "プレイリスト一覧"
-// - @list.each do |list|
-//   = render list, list: list
-= render :partial => "lists/list", locals: {lists: @list, flg: false}
+      %h3 フォロワー
+      = "#{@follower} 人"
+
+      %h3 プレイリスト数
+      = @list.count
+
+  %h3 プレイリスト一覧
+  // - @list.each do |list|
+  //   = render list, list: list
+  = render :partial => "lists/list", locals: {lists: @list, flg: false}

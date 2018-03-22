@@ -1,10 +1,7 @@
 // Place all the styles related to the Lists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-td label{
-    width:40px;
-    height:40px;
-}
+
 
 //曲のお気に入り設定　チェックボックスを画像に変更
 .custom-check-box {
@@ -12,19 +9,28 @@ td label{
     vertical-align: middle;
     
     & + label:after {
-        content: ''; // Replace this with content: '';
-        padding: 16px;
-        display: inline-block;
-        background-image: url(/images/star_grey.png);
-        background-repeat: no-repeat;
-        vertical-align: middle;
-        background-size: 50%;
-        cursor: pointer; 
+    content: "\f005";
+    padding: 0 10px;
+    display: inline-block;
+    vertical-align: middle ;
+    cursor: pointer;
+    display: inline-block;
+    font-family:FontAwesome;
+    font-size:22px;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #ddd;
     }
      
     &:checked + label:after {
-        content: ''; // Replace this with content: '';
-        background-image: url(/images/star.png);
+    color:#b6eb34;
     }
-
+}
+.list_tracks_recommend {
+color:#ccc;
+font-weight:700;
+label{
+font-size: 12px;
+}
 }
