@@ -1,53 +1,67 @@
 / Header
 
-%header.navbar-fixed-top
+//      %button.menu-button{"data-target" => "#collapse-menu", "data-toggle" => "collapse", :type => "button"}
+//        .div
+//          %span.bun
+//          %span.burger
+//          %span.bun
+
+%header.navbar-fixed-left
   %nav{:role => "navigation"}
-    .container-fluid
-      / Brand and toggle get grouped for better mobile display
-      .navbar-header
-        %button.menu-button{"data-target" => "#collapse-menu", "data-toggle" => "collapse", :type => "button"}
-          .div
-            %span.bun
-            %span.burger
-            %span.bun
-        %img{:alt => "", :src => "../assets/Logo.png"}/
-        = link_to "Star Listz", root_path, { class: "navbar-brand" }
-      / Collect the nav links, forms, and other content for toggling
-      #collapse-menu.collapse
+    .navbar-header
+      %img{:alt => "", :src => "../assets/Logo.png"}/
+      = link_to "Star Listz", root_path, { class: "navbar-brand" }
+    / Collect the nav links, forms, and other content for toggling
+    /#collapse-menu.collapse.in
 
 
-        %ul.nav
+    %ul.nav
+      %li.collapse-down
+        %a{:href => "#"}
+          %i.fas.fa-home
+          %span TOP
+
+      %li.collapse-down
+        %a
+          %i.fas.fa-list-ul
+          %span プレイリスト
+        %ul.collapse-down-menu
+          %li.navlist-upload
+            = link_to new_list_path do 
+              アップロード
+          %li.navlist-genre
+            = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
+
+      %li.collapse-down
+        %a{:href => "#"}
+          %i.fas.fa-search
+          %span サーチ
+      %li.collapse-down
+        %a
+          %i.fas.fa-cog
+          %span セッティング
+        %ul.collapse-down-menu
           - if user_signed_in?
             %li
-              =link_to 'ログアウト', destroy_user_session_path, method: :delete
-            %li
               =link_to 'マイページ', current_user
-            %li.navlist-upload
-              = link_to new_list_path do
-                %i.fa.fa-plus{"aria-hidden" => "true"}　
-                アップロード
-            %li.navlist-genre
-              = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
-
-
+            %li
+              =link_to 'ログアウト', destroy_user_session_path, method: :delete
           - else
             %li
               =link_to 'サインアップ', new_user_registration_path
             %li.login
               =link_to 'ログイン', new_user_session_path
-          %li.dropdown.multi-level
-            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              %span.glyphicon.glyphicon-option-horizontal
-            %ul.dropdown-menu
-              %li.dropdown-submenu
-                %a{:href => "#"} Playlistzについて
-              %li.divider
-              %li
-                %a{:href => "#"} お問い合わせ
 
-      .l-search-form
-        = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
+          %li
+            %a{:href => "#"} Playlistzについて
           
-          = text_field_tag :q, "", placeholder: "キーワード", class: "form-control search-box"
-          
-          = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn'
+          %li
+            %a{:href => "#"} お問い合わせ
+          %li
+
+    .l-search-form
+      = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
+        
+        = text_field_tag :q, "", placeholder: "キーワード", class: "form-control search-box"
+        
+        = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn'

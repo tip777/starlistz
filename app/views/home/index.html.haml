@@ -19,20 +19,20 @@
     %footer
       %a.button{:href => "#main"} 無料登録する
 
-.l-wrapper
-  %section.genre
-    .container-fluid.l-container
-      %h2.content-title ジャンルTOP10
-      %ul.bigblock
-        - @genre.each do |genre|
-          %li
-            = link_to genre.name, chart_path(genre: genre.name, sort: Constants::SORT)
 
-    .container-fluid.l-container
-      %h2.content-title NEWプレイリスト
-      .outer-cardlist
-        // - @newlist.each do |list|
-        //   = render list, list: list
-        = render :partial => "lists/list", locals: {lists: @newlist, flg: false}
+%section.genre
+  .container-fluid.l-container
+    %h2.content-title ジャンルTOP10
+    %ul.bigblock
+      - @genre.each do |genre|
+        %li
+          = link_to genre.name, chart_path(genre: genre.name, sort: Constants::SORT)
+
+  .container-fluid.l-container
+    %h2.content-title NEWプレイリスト
+    .outer-cardlist
+      // - @newlist.each do |list|
+      //   = render list, list: list
+      = render :partial => "lists/list", locals: {lists: @newlist, flg: false}
 
 = render :partial => "layouts/footer"

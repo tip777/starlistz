@@ -25,11 +25,16 @@
 //   ...your javascript goes here...
 // });
 
+/*
 $(document).on('turbolinks:load', function() {
   var h = $('nav').outerHeight();
     console.log(h);
     $('body').css('padding-top',h);
-
+*/
+$(document).on('turbolinks:load', function() {
+  var h = $('nav').outerWidth();
+    console.log(h);
+    $('body').css('padding-left',h);
     // $(".js-multiple").select2({
     //     width:      200
     // });
@@ -145,6 +150,30 @@ if(s < 10){
 
 $(document).on('turbolinks:load', function() {
 var url = window.location.pathname;
-        $('.nav li a[href="'+url+'"]').addClass('active');
-        alert(url);
+        $('.nav li a[href="'+url+'"]').parents('.collapse-down').addClass('active');
+
+        if ( url.match(/chart/)) {
+          $('.nav li a[ href *= "chart" ]').parents('.collapse-down').addClass('active');
+//strにhogeを含む場合の処理
+}
+
 });
+
+
+
+
+
+$(document).on('turbolinks:load', function() {
+
+$("ul.nav li.collapse-down").hover(function(){
+  $(this).children("ul").slideDown();
+  $(this).addClass("open");
+  },function() {
+  $(this).children("ul").slideUp();
+  $(this).removeClass("open");
+  });
+
+});
+
+
+
