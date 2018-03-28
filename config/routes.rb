@@ -24,8 +24,6 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy]#プレイリストお気に入り、解除
 
   get 'chart' , to: 'home#chart' #チャート
-  get 'genre' , to: 'home#genre' #ジャンル一覧
-  post 'genre' , to: 'home#genre' #ジャンル検索用
   get 'search' , to: 'home#search' #検索結果
   get 'about' , to: 'home#about' #プレイリストについて
   get 'privacy' , to: 'home#privacy' #個人情報保護

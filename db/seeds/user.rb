@@ -6,22 +6,6 @@
   user.save
 end
 
-#ユーザーののジャンル設定
-$user_list = ""
-$user_list = ['カメラマン','dj','trainer','インスタグラマー','artist','singer','アーティスト','rapper','らっぱー','芸能人']
-$user_list.each_with_index do |tag, i|
-  target = ActsAsTaggableOn::Tag.new(id: i+1, name: tag,)
-  target.save
-end
-
-15.times do |i|
-  random = Random.new
-  n = random.rand(1..10)
-  n2 = random.rand(1..10)
-  target2 = ActsAsTaggableOn::Tagging.new(tag_id: n, taggable_type: "User", taggable_id: n2, context: "tags")
-  target2.save
-end
-
 #フォロー、フォロワー設定
 Relationship.create(follower_id: "1", followed_id: "2")
 Relationship.create(follower_id: "2", followed_id: "3")

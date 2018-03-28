@@ -3,31 +3,52 @@
   | 検索結果
 
   %ul.tab
-    %li#userlist.active user
-    %li#playlistlist list
-
+    %li.active user
+    %li list
+    %li usergenre
+    %li listgenre
+  
+  %br/
+  
   #user.area
     %h2
       | ユーザー
     - if @search_user != nil and not @search_user.empty?
-      // - @user_pages.each do |user|
-      //   = render :partial => "users/user", locals: {user: user}
       .user_area
         = render "users/user", users: @user_pages
-
-    #user_paginator
-      = paginate @user_pages, param_name: 'user_page', :remote => true
+    -if @user_pages != nil
+      #user_paginator
+        = paginate @user_pages, param_name: 'user_page', :remote => true
 
   #list.area
     %h2
       | プレイリスト
     - if @search_list != nil and not @search_list.empty?
-      // - @list_pages.each do |list|
-      //   = render :partial => "lists/list", locals: {list: list}
       .list_area
         = render "lists/list", lists: @list_pages
+    -if @list_pages != nil
+      #list_paginator
+        = paginate @list_pages, param_name: 'list_page', :remote => true
+      
+  #usergenre.area
+    %h2
+      | ユーザージャンル
+    - if @search_usergenre != nil and not @search_usergenre.empty?
+      .usergenre_area
+        = render 'home/genre_partial/genrelist', tag: @genreuser_pages
+    -if @search_usergenre != nil
+      #usergenre_paginator
+        = paginate @genreuser_pages, param_name: 'genreuser_page', :remote => true
+        
+  #listgenre.area
+    %h2
+      | プレイリストジャンル
+    - if @search_listgenre != nil and not @search_listgenre.empty?
+      .listgenre_area
+        = render 'home/genre_partial/genrelist', tag: @genrelist_pages
+    -if @search_listgenre != nil
+      #listgenre_paginator
+        = paginate @genrelist_pages, param_name: 'genrelist_page', :remote => true
 
-    #list_paginator
-      = paginate @list_pages, param_name: 'list_page', :remote => true
 
   = render :partial => "layouts/footer"

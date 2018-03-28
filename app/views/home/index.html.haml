@@ -31,9 +31,6 @@
               %li
                 = link_to genre.name, chart_path(genre: genre.name, sort: Constants::SORT)
 
-        .col-sm-4.text-center
-          = link_to "ジャンルを探す", genre_path, { :class => "button" }
-
     .content-area
       %h1.content-title Newプレイリスト
       .span8

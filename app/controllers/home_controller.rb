@@ -9,21 +9,6 @@ before_action :stripe
   def show
   end
 
-  def genre
-    taggings = set_list_genre
-    #ジャンル検索
-    if genre_params[:search].nil?
-      @tag = nil
-    else
-      search_str = genre_params[:search].gsub(/[\s|　]+/, '')#文字列の中のスペースを削除
-      # binding.pry
-      @tag = ActsAsTaggableOn::Tag.where(id: taggings).where("name like '%" + search_str + "%'")
-    end
-
-    #ジャンルトップ20
-    @tag_top = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(20)
-  end
-
   def chart
     #セレクトボックス用のタグ
     taggings = set_list_genre
@@ -77,50 +62,12 @@ before_action :stripe
   private
 
   def genre_params
-    params.permit(:search)
+    params.permit(:user_search, :list_search)
   end
 
   def chart_params
     params.permit(:genre, :sort)
   end
-
-  #マルチ用
-  # def chart
-  #   #パラメータからリスト抽出
-  #   array = Array.new
-  #   # binding.pry
-  #   if params[:genre].nil? #ジャンルが空だったら
-  #     # if params[:sort] == "ranking" #ランキングの場合
-  #     #   @genre_list = List.eager_load(:list_favorites).group(:list_id).order('count(list_id) desc')
-  #     # else  # 新着の場合
-  #     #   @genre_list = List.order(:created_at)
-  #     # end
-  #     if params[:sort] == "new" || params[:sort].nil? #sortが新着or空欄の場合
-  #       @genre_list = List.order(:created_at)
-  #     else  # 新着の場合
-  #       @genre_list = List.eager_load(:list_favorites).group(:list_id).order('count(list_id) desc')
-  #     end
-
-  #   else
-
-  #     params[:genre].each_with_index do |value, i| #ジャンルを配列に
-  #       array.push(value)
-  #     end
-  #     genrelist = List.tagged_with(array).pluck(:id)#ジャンルの対象のユーザーのIDの一覧取得
-
-  #     # if params[:sort] == "ranking" #ランキングの場合
-  #     #   @genre_list = List.eager_load(:list_favorites).where(id: genrelist).group(:list_id).order('count(list_id) desc')
-  #     # else  # 新着の場合
-  #     #   @genre_list = List.where(id: genrelist).order(:created_at)
-  #     # end
-  #     if params[:sort] == "new" || params[:sort].nil? #sortが新着or空欄の場合
-  #       @genre_list = List.where(id: genrelist).order(:created_at)
-  #     else  # 新着の場合
-  #       @genre_list = List.eager_load(:list_favorites).where(id: genrelist).group(:list_id).order('count(list_id) desc')
-  #     end
-
-  #   end
-  # end
 
   # def name_check(name)
   #   ch = false
