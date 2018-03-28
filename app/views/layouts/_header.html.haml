@@ -8,6 +8,8 @@
 
 %header.navbar-fixed-left
   %nav{:role => "navigation"}
+
+
     .navbar-header
       %img{:alt => "", :src => "../assets/Logo.png"}/
       = link_to "Star Listz", root_path, { class: "navbar-brand" }
@@ -49,12 +51,16 @@
           //%i.icono-gear
           %span.main-tit セッティング
         %ul.collapse-down-menu
+
+
+
           - if user_signed_in?
             %li
               =link_to 'マイページ', current_user
             %li
               =link_to 'ログアウト', destroy_user_session_path, method: :delete
           - else
+
             %li
               =link_to 'サインアップ', new_user_registration_path
             %li.login
@@ -65,3 +71,10 @@
           
           %li
             %a{:href => "#"} お問い合わせ
+
+          
+      = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
+        .input-group
+          = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
+          .input-group-btn
+            = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn btn-default search-btn'

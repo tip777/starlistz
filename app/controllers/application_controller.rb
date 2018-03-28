@@ -5,14 +5,16 @@ class ApplicationController < ActionController::Base
 
   def search_header
       if params[:q] != nil and params[:q] != ""
+        @search_word = search_params[:q]
         key_words = search_params[:q].split(/[\p{blank}\s]+/)#スペースがあったら区切る
         @q = User.ransack(name_cont_any: key_words)
         @search_user = @q.result(distinct: true)
         @search_list = List.ransack(title_cont_any: key_words).result(distinct: true)
-        
+
         @user_pages = @search_user.page(params[:user_page])
         @list_pages = @search_list.page(params[:list_page])
-        
+
+        # @flg = false
         respond_to do |format|
           format.html
           format.js

@@ -8,6 +8,7 @@
         // = select_tag :person, grouped_options_for_select(@tag), class: "js-search"
         = select_tag :person, options_for_select(@tag, selected: params[:genre]), class: "js-search"
 
+
     %span.searchchart-main
       // -binding.pry
       // = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]]), class: "select-main js-hide-search"
@@ -17,8 +18,8 @@
     
     // - @pages.each do |list|
     //   = render list, list: list
-    = render :partial => "lists/list", locals: {lists: @pages, flg: false}
-      
+    = render "lists/list", lists: @pages
+
 = render :partial => "layouts/footer"
 
-= paginate @pages 
+= paginate @pages

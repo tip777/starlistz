@@ -19,7 +19,7 @@
       //   = f.select :tag_list, options_for_select(@tag,{ :selected => @list.tag_list }), {}, {class: 'js-tags-input tags-input', multiple: true}
       %label ジャンル
       = f.text_field :tag_list, value: f.object.tag_list.to_s
-      
+
     .list_description
       = f.input :description, label: "詳細"
     .list_price{:style => "margin-bottom: 50px;"}
@@ -38,3 +38,4 @@
     = link_to_add_association '曲 追加', f, :tracks,:"data-association-insertion-node" => "tbody#item_area",:"data-association-insertion-method" => "append"
   .actions
     = f.submit
+    = link_to "delete", @list, method: :delete, data: { confirm: "#{@list.title}を削除してもよろしいですか?" }

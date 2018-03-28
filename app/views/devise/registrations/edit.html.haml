@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .container-fluid.l-container
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     .alert.alert-warning
@@ -44,3 +45,48 @@
   %p
     Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
   = link_to "Back", :back
+=======
+- if devise_mapping.confirmable? && resource.pending_reconfirmation?
+  .alert.alert-warning
+    メールアドレスの変更が完了していません。確認のメールを #{resource.unconfirmed_email}に送信しました。変更を完了してください。
+
+
+%h2
+  アカウント編集 #{resource_name.to_s.humanize}
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = f.error_notification
+  .form-inputs
+    .field_name
+      = f.fields_for :user_profile do |m|
+        .field_profile_image
+        = m.label :avatar, "プロフィール画像"
+        = image_tag resource.user_profile.avatar.url(:thumb)
+        = m.input :avatar, as: :file, label: false
+      = f.input :name, label: "ユーザー名", autocomplete: "off"
+
+      %label ジャンル
+      = f.text_field :tag_list, value: f.object.tag_list.to_s
+
+      = f.fields_for :user_profile do |m|
+        .field_profile
+          = m.input :description, label: "ユーザープロフィール", placeholder: 'プロフィールを入力してください', autofocus: true
+
+
+    .field_email
+      = f.input :email, label: "メールアドレス", required: true
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %p
+          Currently waiting confirmation for: #{resource.unconfirmed_email}
+    .field_password
+      = f.input :password, label: "パスワード変更", autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
+    .field_password_confirmation
+      = f.input :password_confirmation, label: "メールアドレス確認", required: false
+
+  .form-actions
+    = f.button :submit, "Update"
+
+%h3 Cancel my account
+%p
+  Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+= link_to "Back", :back
+>>>>>>> 8be17f820d9afb2cecd968401610cf042c9a6991

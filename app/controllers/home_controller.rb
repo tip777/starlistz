@@ -47,7 +47,7 @@ class HomeController < ApplicationController
         @genre_list = List.joins(:list_favorites).where(id: genre).group(:list_id).order('count(list_id) desc')
       end
     end
-    
+
      @pages = @genre_list.page(params[:page])
   end
 

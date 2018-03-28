@@ -2381,7 +2381,7 @@ p.or {
   height: 43px;
   position: relative;
   font-size: 0;
-  margin: 60px 0 0; }
+  margin: 60px 0 60px; }
   .tab:before {
     position: absolute;
     height: 3px;

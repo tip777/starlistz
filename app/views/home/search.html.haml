@@ -2,42 +2,46 @@
   .l-search-form
     %h2.content-title
       検索
-    = search_form_for @q, html: {class: 'form' }, url: search_path, enforce_utf8: false do |f|
+
+    = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
       
-      = text_field_tag :q, "", placeholder: "キーワード", class: " search-box"
-      
-      = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn'
+      = text_field_tag :q, @search_word, placeholder: "キーワード", class: "search-box"
+      .input-group-btn
+        = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn'
       %i.glyphicon.glyphicon-search
 
 
   %ul.tab
+
     %li.active
       %a{:href => "#tab-list"} プレイリスト
     %li
       %a{:href => "#tab-user"} ユーザー
 
   .l-tabbox
+
+
     #tab-list.tabbox
       .list_area
-        %h2 プレイリスト
         - if @search_list != nil and not @search_list.empty?
           // - @list_pages.each do |list|
           //   = render :partial => "lists/list", locals: {list: list}
-          = render :partial => "lists/list", locals: {lists: @list_pages, flg: false}
+          .list_area
+            = render "lists/list", lists: @list_pages
 
-          //      #list_paginator
-          //        = paginate @list_pages, param_name: 'list_page', :remote => true
-
+        #list_paginator
+          = paginate @list_pages, param_name: 'list_page', :remote => true
 
     #tab-user.tabbox
       .user_area
-        %h2 ユーザー
         - if @search_user != nil and not @search_user.empty?
           // - @user_pages.each do |user|
           //   = render :partial => "users/user", locals: {user: user}
-          = render :partial => "users/user", locals: {users: @user_pages}
+          .user_area
+            = render "users/user", users: @user_pages
 
-          //      #user_paginator
-          //        = paginate @user_pages, param_name: 'user_page', :remote => true
+        #user_paginator
+          = paginate @user_pages, param_name: 'user_page', :remote => true
 
-    = render :partial => "layouts/footer"
+
+  = render :partial => "layouts/footer"

@@ -33,6 +33,6 @@
     .outer-cardlist
       // - @newlist.each do |list|
       //   = render list, list: list
-      = render :partial => "lists/list", locals: {lists: @newlist, flg: false}
+      = render "lists/list", lists: @newlist
 
 = render :partial => "layouts/footer"
