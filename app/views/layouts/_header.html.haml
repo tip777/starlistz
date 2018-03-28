@@ -16,30 +16,38 @@
 
 
     %ul.nav
-      %li.collapse-down
-        %a{:href => "#"}
+      %li.collapse-down.menu-trigger
+        = link_to root_path do
           %i.fas.fa-home
-          %span TOP
+          //%i.icono-home
+          %span.main-tit TOP
 
       %li.collapse-down
-        %a
+        %a.menu-trigger
           %i.fas.fa-list-ul
-          %span プレイリスト
+          //%i.icono-list
+          %span.main-tit プレイリスト
         %ul.collapse-down-menu
-          %li.navlist-upload
+          %li
             = link_to new_list_path do 
               アップロード
-          %li.navlist-genre
+          %li
             = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
+          %li
+            = link_to genre_path do
+              ジャンル
 
-      %li.collapse-down
-        %a{:href => "#"}
+
+      %li.collapse-down.menu-trigger
+        = link_to search_path do
           %i.fas.fa-search
-          %span サーチ
+          //%i.icono-search
+          %span.main-tit サーチ
       %li.collapse-down
-        %a
+        %a.menu-trigger
           %i.fas.fa-cog
-          %span セッティング
+          //%i.icono-gear
+          %span.main-tit セッティング
         %ul.collapse-down-menu
           - if user_signed_in?
             %li
@@ -57,11 +65,3 @@
           
           %li
             %a{:href => "#"} お問い合わせ
-          %li
-
-    .l-search-form
-      = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
-        
-        = text_field_tag :q, "", placeholder: "キーワード", class: "form-control search-box"
-        
-        = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn'

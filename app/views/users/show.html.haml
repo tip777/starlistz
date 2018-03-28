@@ -4,13 +4,6 @@
       = image_tag @user.user_profile.avatar.url(:thumb)
 
     .rr-profile
-
-      //ログインしていたら編集できる
-      - if is_signin
-        - if is_signed(current_user.id, @user.id)
-          .text-right
-            =link_to 'プロフィール編集', edit_user_registration_path, class: "go-edit"
-            
       %h2 #{@user.name}
       = render 'follow_form' if user_signed_in?
 
@@ -26,7 +19,14 @@
       %h3 プレイリスト数
       = @list.count
 
-  %h3 プレイリスト一覧
+      //ログインしていたら編集できる
+      - if is_signin
+        - if is_signed(current_user.id, @user.id)
+          .text-left
+            =link_to 'プロフィール編集', edit_user_registration_path, class: "go-edit"
+
+
+  %h2.content-title プレイリスト一覧
   // - @list.each do |list|
   //   = render list, list: list
   = render :partial => "lists/list", locals: {lists: @list, flg: false}
