@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-
+before_action :stripe
   def index
     taggings = set_list_genre
     @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル
@@ -7,21 +7,6 @@ class HomeController < ApplicationController
   end
 
   def show
-  end
-
-  def genre
-    taggings = set_list_genre
-    #ジャンル検索
-    if genre_params[:search].nil?
-      @tag = nil
-    else
-      search_str = genre_params[:search].gsub(/[\s|　]+/, '')#文字列の中のスペースを削除
-      # binding.pry
-      @tag = ActsAsTaggableOn::Tag.where(id: taggings).where("name like '%" + search_str + "%'")
-    end
-
-    #ジャンルトップ20
-    @tag_top = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(20)
   end
 
   def chart
@@ -51,53 +36,38 @@ class HomeController < ApplicationController
      @pages = @genre_list.page(params[:page])
   end
 
+  def stripe
+    require 'net/http'
+    require 'uri'
+
+    uri = URI.parse("https://connect.stripe.com/oauth/token")
+    request = Net::HTTP::Post.new(uri)
+    request.set_form_data(
+      "client_secret" => "sk_test_cqhiyTcvoKhdGDSMYa7YY3Kr",
+      "code" => "ac_CW3BNmomboRYJfukpCpFC8sKZ3t8JMio",
+      "grant_type" => "authorization_code",
+    )
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+    result = ActiveSupport::JSON.decode(response.body)
+    response.code
+  end
+
   private
 
   def genre_params
-    params.permit(:search)
+    params.permit(:user_search, :list_search)
   end
 
   def chart_params
     params.permit(:genre, :sort)
   end
-
-  #マルチ用
-  # def chart
-  #   #パラメータからリスト抽出
-  #   array = Array.new
-  #   # binding.pry
-  #   if params[:genre].nil? #ジャンルが空だったら
-  #     # if params[:sort] == "ranking" #ランキングの場合
-  #     #   @genre_list = List.eager_load(:list_favorites).group(:list_id).order('count(list_id) desc')
-  #     # else  # 新着の場合
-  #     #   @genre_list = List.order(:created_at)
-  #     # end
-  #     if params[:sort] == "new" || params[:sort].nil? #sortが新着or空欄の場合
-  #       @genre_list = List.order(:created_at)
-  #     else  # 新着の場合
-  #       @genre_list = List.eager_load(:list_favorites).group(:list_id).order('count(list_id) desc')
-  #     end
-
-  #   else
-
-  #     params[:genre].each_with_index do |value, i| #ジャンルを配列に
-  #       array.push(value)
-  #     end
-  #     genrelist = List.tagged_with(array).pluck(:id)#ジャンルの対象のユーザーのIDの一覧取得
-
-  #     # if params[:sort] == "ranking" #ランキングの場合
-  #     #   @genre_list = List.eager_load(:list_favorites).where(id: genrelist).group(:list_id).order('count(list_id) desc')
-  #     # else  # 新着の場合
-  #     #   @genre_list = List.where(id: genrelist).order(:created_at)
-  #     # end
-  #     if params[:sort] == "new" || params[:sort].nil? #sortが新着or空欄の場合
-  #       @genre_list = List.where(id: genrelist).order(:created_at)
-  #     else  # 新着の場合
-  #       @genre_list = List.eager_load(:list_favorites).where(id: genrelist).group(:list_id).order('count(list_id) desc')
-  #     end
-
-  #   end
-  # end
 
   # def name_check(name)
   #   ch = false

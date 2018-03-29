@@ -59,6 +59,7 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem "cocoon"
 gem 'simple_form'
 gem 'ranked-model'
+gem 'stripe'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,8 +1,3 @@
-// if ($('#userlist').class == "active") {
-//     $("#user .user_area").html("#{j(render :partial => 'users/user', locals: {users: @user_pages})}");
-// } elseif($('#playlistlist').class == "active") {
-//     $("#list .list_area").html("#{j(render :partial => 'lists/list', locals: {lists: @list_pages})}");
-// }
 
 - if @search_user != nil and not @search_user.empty?
     $("#user .user_area").html("#{j(render 'users/user', users: @user_pages)}");
@@ -10,6 +5,12 @@
 - if @search_list != nil and not @search_list.empty?
     $("#list .list_area").html("#{j(render "lists/list", lists: @list_pages)}");
     $("#list_paginator").html("#{escape_javascript(paginate @list_pages, param_name: 'list_page', :remote => true)}");
+- if @search_usergenre != nil and not @search_usergenre.empty?
+    $("#usergenre .usergenre_area").html("#{j(render 'home/genre_partial/genrelist', tag: @genreuser_pages)}");
+    $("#usergenre_paginator").html("#{escape_javascript(paginate @genreuser_pages, param_name: 'genreuser_page', :remote => true)}");
+- if @search_listgenre != nil and not @search_listgenre.empty?
+    $("#listgenre .listgenre_area").html("#{j(render 'home/genre_partial/genrelist', tag: @genrelist_pages)}");
+    $("#listgenre_paginator").html("#{escape_javascript(paginate @genrelist_pages, param_name: 'genrelist_page', :remote => true)}");
 
 // ページトップに戻る
 window.scrollTo(0,50)

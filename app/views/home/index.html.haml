@@ -31,8 +31,6 @@
   .container-fluid.l-container
     %h2.content-title NEWプレイリスト
     .outer-cardlist
-      // - @newlist.each do |list|
-      //   = render list, list: list
       = render "lists/list", lists: @newlist
 
 = render :partial => "layouts/footer"
