@@ -30,6 +30,7 @@
       %tr
         %th アーティスト
         %th 曲名
+        %th 説明
         %th スター
     %tbody#item_area
     = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
