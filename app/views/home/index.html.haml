@@ -21,15 +21,15 @@
 
 
 %section.genre
-  .container-fluid.l-container
-    %h2.content-title ジャンルTOP10
+  .container-fluid.sc
+    %h2.ntm ジャンルTOP10
     %ul.bigblock
       - @genre.each do |genre|
         %li
           = link_to genre.name, chart_path(genre: genre.name, sort: Constants::SORT)
 
-  .container-fluid.l-container
-    %h2.content-title NEWプレイリスト
+  .container-fluid.sc
+    %h2.ntm NEWプレイリスト
     .outer-cardlist
       = render "lists/list", lists: @newlist
 

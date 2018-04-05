@@ -1,19 +1,17 @@
-.container-fluid.l-container
+.sc.bg-whi
+  %h2.h-tit プレイリストチャート
   .l-searchchart
-    %h2 プレイリストチャート
-
     %span.searchchart-sub
-      %span.chart-genre
-        // = select_tag :person, grouped_options_for_select(@tag), multiple: true, class: "js-multiple"
-        // = select_tag :person, grouped_options_for_select(@tag), class: "js-search"
-        = select_tag :person, options_for_select(@tag, selected: params[:genre]), class: "js-search"
-
+      // = select_tag :person, grouped_options_for_select(@tag), multiple: true, class: "js-multiple"
+      // = select_tag :person, grouped_options_for_select(@tag), class: "js-search"
+      = select_tag :person, options_for_select(@tag, selected: params[:genre]), class: "js-search"
 
     %span.searchchart-main
       // -binding.pry
       // = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]]), class: "select-main js-hide-search"
       = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]], selected: params[:sort]), class: "select-main js-hide-search"
 
+.sc
   .outer-cardlist
     
     // - @pages.each do |list|

@@ -1,30 +1,33 @@
-.container-fluid.l-container
+.sc
   .l-profile
     .ll-profile
       = image_tag @user.user_profile.avatar.url(:thumb)
 
     .rr-profile
-      %h2 #{@user.name}
-      = render 'follow_form' if user_signed_in?
-
-      %h3 プロフィール
-      = @user.user_profile.description
-
-      %h3 ジャンル
-      = render 'layouts/tag_list', tag_list: @user.tag_list
-
-      %h3 フォロワー
-      = "#{@follower} 人"
-
-      %h3 プレイリスト数
-      = @list.count
-
       //ログインしていたら編集できる
       - if is_signin
         - if is_signed(current_user.id, @user.id)
-          .text-left
+          .l-go-edit
             =link_to 'プロフィール編集', edit_user_registration_path, class: "go-edit"
 
+      %h2.nm #{@user.name}
+      = render 'follow_form' if user_signed_in?
 
-  %h2.content-title プレイリスト一覧
+      .description
+        = @user.user_profile.description
+
+      %h3 ユーザージャンル
+      = render 'layouts/tag_list', tag_list: @user.tag_list
+
+      .numbers
+        %h3
+          = "#{@follower}"
+          %span フォロワー
+
+        %h3
+          = "#{@list.count}"
+          %span プレイリスト
+
+.sc
+  %h2.ntm プレイリスト一覧
   = render :partial => "lists/list", locals: {lists: @list, flg: false}
