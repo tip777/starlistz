@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   # before_action :authenticate_user!, only[:following, :follower]
-  before_action :gon_current_user, only: [:show]
   def show
     @user = User.find(params[:id])
     @list = @user.lists

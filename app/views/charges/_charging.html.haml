@@ -1,0 +1,42 @@
+-# Stripe決済部分
+= form_tag charges_path do
+  %article
+    - if flash[:error].present?
+      #error_explanation
+        %p= flash[:error]
+    %label.amount
+      %span
+        #{list.price} 円
+
+  %script{:src => "https://checkout.stripe.com/checkout.js"}
+
+  %button#customButton 購入
+
+  :javascript
+    var handler = StripeCheckout.configure({
+      key: "#{Rails.configuration.stripe[:publishable_key]}",
+      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      locale: 'auto',
+    });
+
+    document.getElementById('customButton').addEventListener('click', function(e) {
+      if(gon.current_user == null){
+        console.log("してない");
+        window.location.href = "/users/sign_in"; // 通常の遷移
+      }else{
+        // Open Checkout with further options:
+        handler.open({
+          name: 'StarListz',
+          description: "#{list.title}",
+          email: "#{customer.email}",
+          currency: "jpy",
+          amount: "#{list.price}"
+        });
+      }
+      e.preventDefault();
+    });
+
+    // Close Checkout on page navigation:
+    window.addEventListener('popstate', function() {
+      handler.close();
+    });

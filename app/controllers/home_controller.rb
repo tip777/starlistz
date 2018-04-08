@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
-before_action :stripe
-before_action :gon_current_user, only: [:index, :chart, :search]
+
   def index
     taggings = set_list_genre
     @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル
@@ -35,29 +34,6 @@ before_action :gon_current_user, only: [:index, :chart, :search]
     end
 
      @pages = @genre_list.page(params[:page])
-  end
-
-  def stripe
-    require 'net/http'
-    require 'uri'
-
-    uri = URI.parse("https://connect.stripe.com/oauth/token")
-    request = Net::HTTP::Post.new(uri)
-    request.set_form_data(
-      "client_secret" => "sk_test_cqhiyTcvoKhdGDSMYa7YY3Kr",
-      "code" => "ac_CW3BNmomboRYJfukpCpFC8sKZ3t8JMio",
-      "grant_type" => "authorization_code",
-    )
-
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
-
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end
-    result = ActiveSupport::JSON.decode(response.body)
-    response.code
   end
 
   private

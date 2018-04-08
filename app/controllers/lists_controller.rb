@@ -4,6 +4,8 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    #Customer取得
+    @customer = find_or_create_stripe_customer(current_user)
   end
 
   def new

@@ -167,9 +167,6 @@ var url = window.location.pathname;
 
 });
 
-
-
-
 // t: current time, b: begInnIng value, c: change In value, d: duration
 jQuery.easing['jswing'] = jQuery.easing['swing'];
 jQuery.extend( jQuery.easing,
@@ -211,5 +208,3 @@ opened.removeClass("open");
 }
 
 });
-
-

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :search_header
   before_action :configure_permitted_parameters, if: :devise_controller?
+  helper_method :is_purchase?
 
   def search_header
       if params[:q] != nil and params[:q] != ""
@@ -48,6 +49,82 @@ class ApplicationController < ActionController::Base
 
   def gon_current_user
     gon.current_user = current_user
+  end
+
+  #プレイリストの購入履歴があるか
+  def is_purchase?(user, list)
+    if user.nil?
+      return false
+    else
+      !user.purchases.where(list_id: list.id).empty?
+    end
+  end
+
+  #アカウント情報取得
+  def set_stripe_id(stripe_code)
+      #Stripeからデータ取得
+      stripe_data = get_stripe_data(stripe_code)
+
+      #stripe_user_idを登録
+      current_user.update_attributes(stripe_acct_id: stripe_data["stripe_user_id"])
+      #Cutomerデータ登録
+      find_or_create_stripe_customer(current_user)
+  end
+
+  #Account検索
+  def get_stripe_account_id(user)
+    Stripe::Account.retrieve(user.stripe_acct_id.to_s)
+  end
+
+  #Customer保存
+  def save_stripe_customer_id(user, stripe_customer)
+    User.where('id = ?', user.id).first.update_attributes(stripe_cus_id: stripe_customer.id)
+  end
+
+  #Customer検索
+  def get_stripe_customer_id(user)
+    Stripe::Customer.retrieve(user.stripe_cus_id.to_s)
+  end
+
+  def find_or_create_stripe_customer(user)
+    if user.nil?
+      cutomer = nil
+    else
+      if user.stripe_cus_id.blank?
+        customer = Stripe::Customer.create(
+            :description => "user_id: #{user.id.to_s}",
+            :email => user.email.to_s
+        )
+      else
+        customer = get_stripe_customer_id(user)
+      end
+
+      save_stripe_customer_id(user, customer)
+      return customer
+    end
+  end
+
+  def get_stripe_data(stripe_code)
+    require 'net/http'
+    require 'uri'
+
+    uri = URI.parse("https://connect.stripe.com/oauth/token")
+    request = Net::HTTP::Post.new(uri)
+    request.set_form_data(
+      "client_secret" => "sk_test_cqhiyTcvoKhdGDSMYa7YY3Kr",
+      "code" => stripe_code,
+      "grant_type" => "authorization_code",
+    )
+
+    req_options = {
+      use_ssl: uri.scheme == "https",
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+    result = ActiveSupport::JSON.decode(response.body)
+    return result
   end
 
   private
