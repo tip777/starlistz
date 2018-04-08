@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
 before_action :stripe
+before_action :gon_current_user, only: [:index, :chart, :search]
   def index
     taggings = set_list_genre
     @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル

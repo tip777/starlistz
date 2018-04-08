@@ -60,6 +60,7 @@ gem "cocoon"
 gem 'simple_form'
 gem 'ranked-model'
 gem 'stripe'
+gem 'gon'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

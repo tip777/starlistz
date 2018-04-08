@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   resources :lists do #プレイリスト用
     put :sort
   end
+  resources :charges #決済用
+
   resources :relationships, only: [:create, :destroy]#フォロー、アンフォロー
   resources :favorites, only: [:create, :destroy]#プレイリストお気に入り、解除
 

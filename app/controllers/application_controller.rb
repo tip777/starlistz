@@ -8,19 +8,19 @@ class ApplicationController < ActionController::Base
         @search_word = search_params[:q]
         key_words = search_params[:q].split(/[\p{blank}\s]+/)#スペースがあったら区切る
         @q = User.ransack(name_cont_any: key_words)
-        
+
         #ユーザー、プレイリスト検索結果
         @search_user = @q.result(distinct: true)
         @search_list = List.ransack(title_cont_any: key_words).result(distinct: true)
-        
+
         #ジャンル検索結果
         list_taggings = set_list_genre
         user_taggings = set_user_genre
         @search_usergenre = ActsAsTaggableOn::Tag.where(id: user_taggings).ransack(name_cont_any: key_words).result(distinct: true)
         @search_listgenre = ActsAsTaggableOn::Tag.where(id: list_taggings).ransack(name_cont_any: key_words).result(distinct: true)
-        
+
         # binding.pry
-        
+
         @user_pages = @search_user.page(params[:user_page])
         @list_pages = @search_list.page(params[:list_page])
         @genreuser_pages = @search_usergenre.page(params[:genreuser_page])
@@ -40,10 +40,14 @@ class ApplicationController < ActionController::Base
     #Listのタグだけ抽出
     return ActsAsTaggableOn::Tagging.where(taggable_type: "List").group("tag_id").pluck(:tag_id)
   end
-  
+
   def set_user_genre
     #Userのタグだけ抽出
     return ActsAsTaggableOn::Tagging.where(taggable_type: "User").group("tag_id").pluck(:tag_id)
+  end
+
+  def gon_current_user
+    gon.current_user = current_user
   end
 
   private
