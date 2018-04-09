@@ -35,9 +35,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  #アカウント削除時
+  def destroy
+    customer = find_or_create_stripe_customer(current_user)
+    account = get_stripe_account_id(current_user)
+    if customer != nil #Customer削除
+      customer.delete
+    end
+    if account != nil #Account削除
+      account.delete
+    end
+    
+    super
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
