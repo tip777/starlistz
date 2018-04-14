@@ -90,6 +90,7 @@ class ApplicationController < ActionController::Base
     if user.nil?
       cutomer = nil
     else
+      binding.pry
       if user.stripe_cus_id.blank?
         customer = Stripe::Customer.create(
             :description => "user_id: #{user.id.to_s}",

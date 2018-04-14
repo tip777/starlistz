@@ -1,42 +1,31 @@
--# Stripe決済部分
+// Stripe決済部分
 = form_tag charges_path do
   %article
     - if flash[:error].present?
       #error_explanation
         %p= flash[:error]
     %label.amount
-      %span
-        #{list.price} 円
-
-  %script{:src => "https://checkout.stripe.com/checkout.js"}
-
-  %button#customButton 購入
-
-  :javascript
-    var handler = StripeCheckout.configure({
-      key: "#{Rails.configuration.stripe[:publishable_key]}",
-      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-      locale: 'auto',
-    });
-
-    document.getElementById('customButton').addEventListener('click', function(e) {
-      if(gon.current_user == null){
-        console.log("してない");
-        window.location.href = "/users/sign_in"; // 通常の遷移
-      }else{
-        // Open Checkout with further options:
-        handler.open({
-          name: 'StarListz',
-          description: "#{list.title}",
-          email: "#{customer.email}",
-          currency: "jpy",
-          amount: "#{list.price}"
-        });
-      }
-      e.preventDefault();
-    });
-
-    // Close Checkout on page navigation:
-    window.addEventListener('popstate', function() {
-      handler.close();
-    });
+      %span Amount: $5.00
+  - if customer.nil?
+    %script.stripe-button{"data-amount" => "#{list.price}", 
+      "data-description" => "#{list.title}", 
+      "data-email" => "", 
+      "data-key" => "#{Rails.configuration.stripe[:publishable_key]}", 
+      "data-label" => "購入",
+       "data-locale" => "auto", 
+      "data-name" => "StarListz",
+       "data-panel-label" => "プレイリストを購入", 
+      :src => "https://checkout.stripe.com/checkout.js"}
+  - else
+    %script.stripe-button{"data-amount" => "#{list.price}", 
+      "data-description" => "#{list.title}", 
+      "data-email" => "#{customer.email}", 
+      "data-key" => "#{Rails.configuration.stripe[:publishable_key]}", 
+      "data-label" => "購入",
+       "data-locale" => "auto", 
+      "data-name" => "StarListz",
+       "data-panel-label" => "プレイリストを購入", 
+      :src => "https://checkout.stripe.com/checkout.js"}
+      
+// 購入前のログイン判定用
+%button.buy_btn.btn.btn-primary{:type => "button"} 購入
