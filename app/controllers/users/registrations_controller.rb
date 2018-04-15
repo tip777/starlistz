@@ -45,7 +45,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if account != nil #Account削除
       account.delete
     end
-    
+
     super
   end
 

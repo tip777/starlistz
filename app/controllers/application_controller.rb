@@ -4,6 +4,34 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :is_purchase?
 
+  after_action  :store_location
+  def store_location
+      if (request.fullpath != "/users/sign_in" &&
+          request.fullpath != "/users/sign_up" &&
+          request.fullpath !~ Regexp.new("\\A/users/password.*\\z") &&
+          !request.xhr?) # don't store ajax calls
+        session[:previous_url] = request.fullpath
+      end
+  end
+
+  #ログイン後のリダイレクト先
+  def after_sign_in_path_for(resource)
+    if (session[:previous_url] == root_path)
+      super
+    else
+      session[:previous_url] || root_path
+    end
+  end
+
+  #ログアウト後のリダイレクト先
+  def after_sign_out_path_for(resource)
+    if (session[:previous_url] == root_path)
+      super
+    else
+      session[:previous_url] || root_path
+    end
+  end
+
   def search_header
       if params[:q] != nil and params[:q] != ""
         @search_word = search_params[:q]
@@ -90,7 +118,6 @@ class ApplicationController < ActionController::Base
     if user.nil?
       cutomer = nil
     else
-      binding.pry
       if user.stripe_cus_id.blank?
         customer = Stripe::Customer.create(
             :description => "user_id: #{user.id.to_s}",
