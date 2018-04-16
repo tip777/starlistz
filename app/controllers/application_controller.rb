@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
       session[:previous_url] || root_path
     end
   end
+  
 
   def search_header
       if params[:q] != nil and params[:q] != ""
