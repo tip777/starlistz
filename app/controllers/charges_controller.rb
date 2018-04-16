@@ -4,11 +4,12 @@ class ChargesController < ApplicationController
       # Amount in cents
       @amount = 500
       @fee = @amount*0.2-@amount*0.036 #決済金額の20%からStripe決済手数料3.6%を引いた分を手数料とする
+      list = List.find_by(id: params[:list])
+      
+      if list.nil? 
+          redirect_to :back, alert: 'プレイリストが存在しません。トップページから操作をやり直してください。'
+      end
 
-      # customer = Stripe::Customer.create(
-      #   :email => params[:stripeEmail],
-      #   :source  => params[:stripeToken]
-      # )
       token = params[:stripeToken]
 
       customer = find_or_create_stripe_customer(current_user)
@@ -30,7 +31,7 @@ class ChargesController < ApplicationController
 
       #購入履歴
       purchase = current_user.purchases.create
-      purchase.amount = @amount
+      purchase.list_id = list.id
       purchase.save
 
       redirect_to :back, notice: "プレイリストを購入しました"

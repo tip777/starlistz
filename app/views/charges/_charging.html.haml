@@ -1,11 +1,13 @@
 // Stripe決済部分
-= form_tag charges_path do
+= form_tag charges_path(list: list) do
   %article
     - if flash[:error].present?
       #error_explanation
         %p= flash[:error]
     %label.amount
       %span Amount: $5.00
+    %datafield
+      = hidden_field :list, :id
   - if customer.nil?
     %script.stripe-button{"data-amount" => "#{list.price}",
       "data-description" => "#{list.title}",

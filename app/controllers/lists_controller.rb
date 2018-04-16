@@ -4,6 +4,9 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    my_list = current_user.lists.pluck(:id)
+    @is_list = my_list.include?(params[:id].to_i)#ログインユーザーのプレイリストの購入ボタンを省くため
+    
     #Customer取得
     @customer = find_or_create_stripe_customer(current_user)
   end
