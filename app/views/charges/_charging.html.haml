@@ -6,36 +6,40 @@
         %p= flash[:error]
     %label.amount
       %span Amount: $5.00
-    %datafield
+    .datafield
       = hidden_field :list, :id
-  - if customer.nil?
-    %script.stripe-button{"data-amount" => "#{list.price}",
-      "data-description" => "#{list.title}",
-      "data-email" => "",
-      "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
-      "data-label" => "購入",
-       "data-locale" => "auto",
-      "data-name" => "StarListz",
-       "data-panel-label" => "プレイリストを購入",
-      :src => "https://checkout.stripe.com/checkout.js"}
-  - else
-    %script.stripe-button{"data-amount" => "#{list.price}",
-      "data-description" => "#{list.title}",
-      "data-email" => "#{customer.email}",
-      "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
-      "data-label" => "購入",
-       "data-locale" => "auto",
-      "data-name" => "StarListz",
-       "data-panel-label" => "プレイリストを購入",
-      :src => "https://checkout.stripe.com/checkout.js"}
+  
+  .hide_checkout
+    - if customer.nil?
+      %script.stripe-button{"data-amount" => "#{list.price}",
+        "data-description" => "#{list.title}",
+        "data-email" => "",
+        "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+        "data-label" => "購入",
+         "data-locale" => "auto",
+        "data-name" => "StarListz",
+         "data-panel-label" => "プレイリストを購入",
+        :src => "https://checkout.stripe.com/checkout.js"}
+    - else
+      %script.stripe-button{"data-amount" => "#{list.price}",
+        "data-description" => "#{list.title}",
+        "data-email" => "#{customer.email}",
+        "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+        "data-label" => "購入",
+         "data-locale" => "auto",
+        "data-name" => "StarListz",
+         "data-panel-label" => "プレイリストを購入",
+        :src => "https://checkout.stripe.com/checkout.js"}
 
 // 購入前のログイン判定用
 %button.buy_btn.btn.btn-primary{:type => "button"} 購入
 
 :javascript
-  // 購入ボタンクリック時判定
-  $(document).on('turbolinks:load', function() {
-    $('.stripe-button-el').hide();
+  $(document).on('turbolinks:render', function() {
+    // checkoutの本当のボタンは非表示
+    $('.hide_checkout').hide();
+    
+    // 購入ボタンクリック時判定
     $('.buy_btn').on('click', function(e){
       if(gon.current_user == null){
         console.log("してない");
