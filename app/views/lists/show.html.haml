@@ -13,9 +13,11 @@
       %h3 プレイリスト名
       .span.listtitle= @list.title
       // Stripe決済部分
-      - if @is_list == false #ログインユーザーのプレイリストじゃなかったら
+      - if is_signin
+        - if @is_list == false #ログインユーザーのプレイリストじゃなかったら
+          = render "charges/stripe_checkout", customer: @customer, list: @list
+      - else
         = render "charges/stripe_checkout", customer: @customer, list: @list
-
 
       %h3 詳細
       .span= @list.description

@@ -84,18 +84,6 @@ $(document).on('turbolinks:load', function() {
       }
     });
   }
-  
-  $('.hide_checkout').hide();
-  $('.buy_btn').on('click', function(e){
-    if(gon.current_user == null){
-      console.log("してない");
-      window.location.href = "/users/sign_in"; // 通常の遷移
-    }else{
-      $('.stripe-button-el').trigger('click');
-    }
-    console.log(gon.current_user);
-    e.preventDefault();
-  });
 
 });
 
@@ -131,50 +119,50 @@ $(document).on('turbolinks:load', function() {
 
 //var result = test() //ちゃんと返り値が入ってる;
 
-$(document).on('turbolinks:render', function() {
-  $('.js-tags-input').each(function() {
-    $(this).select2({
-      tags: true,
-      tokenSeparators: [','],
-      theme: 'bootstrap',
-      width: '100%',
-      placeholder: 'Separated by comma'
-    });
-  });
+// $(document).on('turbolinks:load', function() {
+//   $('.js-tags-input').each(function() {
+//     $(this).select2({
+//       tags: true,
+//       tokenSeparators: [','],
+//       theme: 'bootstrap',
+//       width: '100%',
+//       placeholder: 'Separated by comma'
+//     });
+//   });
   
-  // $(".js-multiple").select2({
-  //     width:      200
-  // });
+//   // $(".js-multiple").select2({
+//   //     width:      200
+//   // });
 
-  //select2 setting
-  $(".js-search").select2({
-      width: 200
-  });
-  $(".js-hide-search").select2({
-      minimumResultsForSearch: Infinity,
-      width: 150
-  });
+//   //select2 setting
+//   $(".js-search").select2({
+//       width: 200
+//   });
+//   $(".js-hide-search").select2({
+//       minimumResultsForSearch: Infinity,
+//       width: 150
+//   });
 
-  $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
+//   $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
 
-  $('.select-main').on('change', param_change);
+//   $('.select-main').on('change', param_change);
 
-  $('.js-search').on('change', param_change);
+//   $('.js-search').on('change', param_change);
   
-  //select tag parameter send
-  function param_change () {
-      var genre = ""
-      if (!$(".js-search").val()){
-        genre = "All"
-      }else{
-        genre = $(".js-search").val();
-      }
-      var url = 'sort=' + $('.select-main').val();
-      url = url + '&genre=' + genre
-      window.location.search = url
-  }
+//   //select tag parameter send
+//   function param_change () {
+//       var genre = ""
+//       if (!$(".js-search").val()){
+//         genre = "All"
+//       }else{
+//         genre = $(".js-search").val();
+//       }
+//       var url = 'sort=' + $('.select-main').val();
+//       url = url + '&genre=' + genre
+//       window.location.search = url
+//   }
     
-});
+// });
 
 $(window).on('scroll',function(){
   s = $(window).scrollTop();
