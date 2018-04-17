@@ -4,7 +4,7 @@
             =link_to (user_path(user)) do
                 = image_tag user.user_profile.avatar.url(:thumb)
                 %h2 #{user.name}
-                = render 'follow_form' if user_signed_in?
+                = render 'users/follow_form' if user_signed_in?
 
             %h3 プロフィール
             = user.user_profile.description
@@ -15,4 +15,3 @@
             //%h3 フォロワー
             //= user.follower_relationship.container-fluid.l-container
             //s.count
-
