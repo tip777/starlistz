@@ -8,7 +8,7 @@
       %span Amount: $5.00
     .datafield
       = hidden_field :list, :id
-  
+
   .hide_checkout
     - if customer.nil?
       %script.stripe-button{"data-amount" => "#{list.price}",
@@ -35,10 +35,10 @@
 %button.buy_btn.btn.btn-primary{:type => "button"} 購入
 
 :javascript
-  $(document).on('turbolinks:render', function() {
+  $(document).on('turbolinks:load', function() {
     // checkoutの本当のボタンは非表示
     $('.hide_checkout').hide();
-    
+
     // 購入ボタンクリック時判定
     $('.buy_btn').on('click', function(e){
       if(gon.current_user == null){
