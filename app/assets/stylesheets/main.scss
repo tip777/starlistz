@@ -1263,7 +1263,9 @@ p.or{
       padding: 5px 0;
       color: #999;
     }
-    .genretag{
+  }
+}
+.genretag{
       color: #fff;
       background-color: #b6eb34;
       border-color: #b6eb34;
@@ -1272,8 +1274,6 @@ p.or{
       display: inline-block;
       margin: 0 3px;
     }
-  }
-}
 
 
 
@@ -1345,6 +1345,24 @@ p.or{
     }
   }
 }
+@media only screen and (max-width: 767px) {
+.l-playlist{
+  display: block;
+
+.ll-playlist{
+  display: block;
+  padding: 0;
+  img{
+    width:auto;
+  }
+}
+.rr-playlist{
+  display: block;
+}
+
+}
+
+}
 
 
 
@@ -1412,6 +1430,21 @@ p.or{
       }
     }
   }
+}
+@media only screen and (max-width: 767px) {
+.l-profile{
+  display: block;
+
+.ll-profile{
+  display: block;
+  padding: 0;
+}
+.rr-profile{
+  display: block;
+}
+
+}
+
 }
 
 
@@ -1772,6 +1805,51 @@ header.subheader{
     }
   }
 }
+
+
+
+
+
+
+.l-userprofile{
+display: table;
+width: 100%;
+margin-bottom: 20px;
+.img{
+    display: table-cell;
+    width: 120px;
+    vertical-align: middle;
+    img{
+      border-radius: 50%;
+    }
+}
+.l-text{
+  display: table-cell;
+  vertical-align: middle;
+  padding: 15px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

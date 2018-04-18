@@ -2137,14 +2137,15 @@ p.or {
       margin: 0;
       padding: 5px 0;
       color: #999; }
-    .l-cardlist .cardlist-right .genretag {
-      color: #fff;
-      background-color: #b6eb34;
-      border-color: #b6eb34;
-      border-radius: 2em;
-      padding: 0 10px;
-      display: inline-block;
-      margin: 0 3px; }
+
+.genretag {
+  color: #fff;
+  background-color: #b6eb34;
+  border-color: #b6eb34;
+  border-radius: 2em;
+  padding: 0 10px;
+  display: inline-block;
+  margin: 0 3px; }
 
 .l-searchchart .searchchart-sub,
 .l-searchchart .searchchart-main {
@@ -2199,6 +2200,14 @@ p.or {
       display: inline-block;
       margin: 0 3px; }
 
+@media only screen and (max-width: 767px) {
+  .l-playlist {
+    display: block; }
+    .l-playlist .ll-playlist {
+      display: block;
+      padding: 0; }
+    .l-playlist .rr-playlist {
+      display: block; } }
 .l-profile {
   display: table;
   width: 100%; }
@@ -2246,6 +2255,14 @@ p.or {
           color: #ccc;
           font-weight: 400; }
 
+@media only screen and (max-width: 767px) {
+  .l-profile {
+    display: block; }
+    .l-profile .ll-profile {
+      display: block;
+      padding: 0; }
+    .l-profile .rr-profile {
+      display: block; } }
 .l-go-edit {
   padding-left: 150px; }
   .l-go-edit .go-edit {
@@ -2490,5 +2507,20 @@ header.subheader .l-form {
       position: absolute;
       right: 0;
       top: 0; }
+
+.l-userprofile {
+  display: table;
+  width: 100%;
+  margin-bottom: 20px; }
+  .l-userprofile .img {
+    display: table-cell;
+    width: 120px;
+    vertical-align: middle; }
+    .l-userprofile .img img {
+      border-radius: 50%; }
+  .l-userprofile .l-text {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 15px; }
 
 /*# sourceMappingURL=main.css.map */

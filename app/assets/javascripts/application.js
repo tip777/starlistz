@@ -170,30 +170,13 @@ var url = window.location.pathname;
 
 
 
-// t: current time, b: begInnIng value, c: change In value, d: duration
-jQuery.easing['jswing'] = jQuery.easing['swing'];
-jQuery.extend( jQuery.easing,
-{
-  def: 'easeOutQuad',
-  swing: function (x, t, b, c, d) {
-    //alert(jQuery.easing.default);
-    return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
-  },
-  easeInQuad: function (x, t, b, c, d) {
-    return c*(t/=d)*t + b;
-  },
-  easeOutQuad: function (x, t, b, c, d) {
-    return -c *(t/=d)*(t-2) + b;
-  }
-});
-
 
 $(document).on('turbolinks:load', function() {
 var windowWidth = window.innerWidth;
 if (windowWidth > 768) {
 
 $('.menu-trigger').click(function(e){
-      $('+ .collapse-down-menu', this).slideToggle(300,"easeOutQuad");
+      $('+ .collapse-down-menu', this).slideToggle(300);
     })
  }else{
 $('.menu-trigger').click(function(e){
@@ -211,5 +194,8 @@ opened.removeClass("open");
 }
 
 });
+
+
+  
 
 
