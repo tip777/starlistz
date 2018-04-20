@@ -1,30 +1,81 @@
-- lists.each do |list|
+- lists.each_with_index do |list, i|
   .l-cardlist
-    .cardlist-left
-      = render 'lists/is_image', list: list
-    .cardlist-right
-      %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
-      %span.author= link_to list.user.name, user_path(list.user)
-      %span.favorite-star
-        %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
-        = list.list_favorites.count
+    -if is_signin && is_signed(current_user.id, list.user.id)
+      =link_to edit_list_path(list, list: list) do
+        .cardlist-left
+          = render 'lists/is_image', list: list
+        .cardlist-right
+          %span.listtitle= list.title
+          %span.author= list.user.name
+          %span.favorite-star
+            %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+            = list.list_favorites.count
+    
+          %p= list.description
+          .tags
+            - list.tag_list.each.with_index(0) do |listgenre, i|
+              %span.genretag
+                // = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+                = listgenre
+    -else
+      - if is_purchase?(current_user, list)
+        .cardlist-left
+          = render 'lists/is_image', list: list
+        .cardlist-right
+          %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
+          %span.author= link_to list.user.name, user_path(list.user)
+          %span.favorite-star
+            %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+            = list.list_favorites.count
+          %span.label.label-warning 購入済み
+            
+          - if current_user != nil
+            -# プレイリストお気入り機能
+            %div{:id => "favorite_change-#{list.id}"}
+              - if current_user.favorite?(list)
+                = render "lists/unfavorite",list: list
+              - else
+                = render "lists/favorite",list: list
+    
+          %p= list.description
+          .tags
+            - list.tag_list.each.with_index(0) do |listgenre, i|
+              %span.genretag
+                = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+            
+      - else
+        %a.modal-syncer.button-link{"data-target" => "modal-content-#{i}"} 
+          .cardlist-left
+            = render 'lists/is_image', list: list
+          .cardlist-right
+            // %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
+            %span.listtitle= list.title
+            // %span.author= link_to list.user.name, user_path(list.user)
+            %span.author= list.user.name
+            %span.favorite-star
+              %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+              = list.list_favorites.count
+      
+            %p= list.description
+            .tags
+              - list.tag_list.each.with_index(0) do |listgenre, i|
+                %span.genretag
+                  // = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+                  = listgenre
         
-      - if current_user != nil
-        -# プレイリストお気入り機能
-        %div{:id => "favorite_change-#{list.id}"}
-          - if current_user.favorite?(list)
-            = render "lists/unfavorite",list: list
-          - else
-            = render "lists/favorite",list: list
-
-      %p= list.description
-      // .more.label
-      //   %span.btn-info{:style => "margin-right:5px;"}
-      //     %a{:href => "#"} もっと見る
-      .tags
-        - list.tag_list.each.with_index(0) do |listgenre, i|
-          %span.genretag
-            = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
-      
     %hr/
-      
+
+  // ここからモーダルウィンドウ
+  .modal-content{:id => "modal-content-#{i}"}
+    // モーダルウィンドウのコンテンツ開始
+    %p= list.title
+    %p= link_to list.user.name, user_path(list.user)
+    %p= list.description
+    .tags
+      - list.tag_list.each.with_index(0) do |listgenre, i|
+        %span.genretag
+          = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+    %p
+      %a#modal-close.button-link 閉じる
+    // モーダルウィンドウのコンテンツ終了
+

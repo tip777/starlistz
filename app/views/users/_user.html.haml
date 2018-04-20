@@ -5,7 +5,7 @@
 
             .l-text
                 %h2.name #{user.name}
-                = render 'follow_form' if user_signed_in?
+                = render 'users/follow_form', user: user if user_signed_in?
 
                 .discrition= user.user_profile.description
 
