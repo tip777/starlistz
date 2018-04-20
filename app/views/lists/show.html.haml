@@ -3,7 +3,8 @@
   - if is_signin
     - if is_signed(current_user.id, @list.user.id)
       =link_to 'プレイリスト編集', edit_list_path(@list, list: @list)
-  
+
+
   .l-playlist
     .ll-playlist
       = image_tag @list.image.url(:thumb)
@@ -11,6 +12,12 @@
     .rr-playlist
       %h3 プレイリスト名
       .span.listtitle= @list.title
+      // Stripe決済部分
+      - if is_signin
+        - if @is_list == false #ログインユーザーのプレイリストじゃなかったら
+          = render "charges/stripe_checkout", customer: @customer, list: @list
+      - else
+        = render "charges/stripe_checkout", customer: @customer, list: @list
 
       %h3 詳細
       .span= @list.description
@@ -36,3 +43,5 @@
         %td
           = check_box 'track', 'recommend', {:checked => track.recommend, :disabled  => true, id: "custom-checkbox#{i}", class: "custom-check-box"}
           %label{for: "custom-checkbox#{i}"}
+
+  

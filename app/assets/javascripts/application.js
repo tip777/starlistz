@@ -32,48 +32,58 @@ $(document).on('turbolinks:load', function() {
     $('body').css('padding-top',h);
 */
 $(document).on('turbolinks:load', function() {
-
-
-var windowWidth = window.innerWidth;
-if (windowWidth > 768) {
-var w = $('nav').outerWidth();
+  var windowWidth = window.innerWidth;
+  if (windowWidth > 768) {
+    var w = $('nav').outerWidth();
     $('body').css('padding-left',w);
   } else {
-var h = $('nav').outerHeight();
+    var h = $('nav').outerHeight();
     $('body').css('padding-bottom',h);
   }
+  
+  $('.menu-button').on('click', function(){
+    $('body').toggleClass("sp-menu-open");
+  });
+  
+  // タブの切り替え処理
+  $('.tabbox:first').show();
+  $('.tab li').click(function() {
+    $('.tab li').removeClass('active');
+    $(this).addClass('active');
+    $('.l-tabbox .tabbox').hide();
+    $($(this).find('a').attr('href')).fadeIn();
+    return false;
+  });
+  
+  
+  // グロバールナビゲーション選択ページの判定
+  var url = window.location.pathname;
+  $('.nav li a[href="'+url+'"]').parents('.collapse-down').addClass('active');
 
-    // $(".js-multiple").select2({
-    //     width:      200
-    // });
-
-    //select2 setting
-    $(".js-search").select2({
-        width:      200
+  if ( url.match(/chart/)) {
+            $('.nav li a[ href *= "chart" ]').parents('.collapse-down').addClass('active');
+  //strにhogeを含む場合の処理
+  }
+  
+  
+  var windowWidth = window.innerWidth;
+  if (windowWidth > 768) {
+  
+    $('.menu-trigger').click(function(e){
+      $('+ .collapse-down-menu', this).slideToggle(300,"easeOutQuad");
+    })
+  }else{
+    $('.menu-trigger').click(function(e){
+      var opened = $('+ .collapse-down-menu', this);
+      if(opened.hasClass("open")){
+        opened.removeClass("open");
+      } else{
+        $('.collapse-down-menu').removeClass("open");
+        opened.toggleClass("open");
+        return true;
+      }
     });
-    $(".js-hide-search").select2({
-        minimumResultsForSearch: Infinity,
-        width:      150
-    });
-
-    $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
-
-    $('.select-main').on('change', param_change);
-
-    $('.js-search').on('change', param_change);
-
-    //select tag parameter send
-    function param_change () {
-        var genre = ""
-        if (!$(".js-search").val()){
-          genre = "All"
-        }else{
-          genre = $(".js-search").val();
-        }
-        var url = 'sort=' + $('.select-main').val();
-        url = url + '&genre=' + genre
-        window.location.search = url
-    }
+  }
 
 });
 
@@ -109,62 +119,58 @@ var h = $('nav').outerHeight();
 
 //var result = test() //ちゃんと返り値が入ってる;
 
-$(document).on('turbolinks:load', function() {
-  $('.menu-button').on('click', function(){
-    $('body').toggleClass("sp-menu-open");
-  });
-});
+// $(document).on('turbolinks:load', function() {
+//   $('.js-tags-input').each(function() {
+//     $(this).select2({
+//       tags: true,
+//       tokenSeparators: [','],
+//       theme: 'bootstrap',
+//       width: '100%',
+//       placeholder: 'Separated by comma'
+//     });
+//   });
+  
+//   // $(".js-multiple").select2({
+//   //     width:      200
+//   // });
 
-$(document).on('turbolinks:load', function() {
-  $('.js-tags-input').each(function() {
-    $(this).select2({
-      tags: true,
-      tokenSeparators: [','],
-      theme: 'bootstrap',
-      width: '100%',
-      placeholder: 'Separated by comma'
-      });
-    });
-});
+//   //select2 setting
+//   $(".js-search").select2({
+//       width: 200
+//   });
+//   $(".js-hide-search").select2({
+//       minimumResultsForSearch: Infinity,
+//       width: 150
+//   });
 
+//   $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
 
-$(document).on('turbolinks:load', function() {
-$('.tabbox:first').show();
+//   $('.select-main').on('change', param_change);
 
-  $('.tab li').click(function() {
-    $('.tab li').removeClass('active');
-    $(this).addClass('active');
-    $('.l-tabbox .tabbox').hide();
-    $($(this).find('a').attr('href')).fadeIn();
-    return false;
-  });
-});
-
-
-
-
-
-
+//   $('.js-search').on('change', param_change);
+  
+//   //select tag parameter send
+//   function param_change () {
+//       var genre = ""
+//       if (!$(".js-search").val()){
+//         genre = "All"
+//       }else{
+//         genre = $(".js-search").val();
+//       }
+//       var url = 'sort=' + $('.select-main').val();
+//       url = url + '&genre=' + genre
+//       window.location.search = url
+//   }
+    
+// });
 
 $(window).on('scroll',function(){
-s = $(window).scrollTop();
-if(s < 10){
-  $('.navbar-fixed-top').removeClass('is-fixed');
-} else {
-  $('.navbar-fixed-top').addClass('is-fixed');
-}
-});
-
-
-$(document).on('turbolinks:load', function() {
-var url = window.location.pathname;
-        $('.nav li a[href="'+url+'"]').parents('.collapse-down').addClass('active');
-
-        if ( url.match(/chart/)) {
-          $('.nav li a[ href *= "chart" ]').parents('.collapse-down').addClass('active');
-//strにhogeを含む場合の処理
-}
-
+  s = $(window).scrollTop();
+  if(s < 10){
+    $('.navbar-fixed-top').removeClass('is-fixed');
+  } else {
+    $('.navbar-fixed-top').addClass('is-fixed');
+  }
 });
 
 

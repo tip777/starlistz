@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-before_action :stripe
+
   def index
     taggings = set_list_genre
     @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル
@@ -24,9 +24,7 @@ before_action :stripe
       end
     else
       genre = List.tagged_with(chart_params[:genre]).pluck(:id)#ジャンルの対象のリストのIDの一覧取得
-      # binding.pry
       if chart_params[:sort] == "new" || chart_params[:sort].nil? #sortが新着or空欄の場合
-        # binding.pry
         @genre_list = List.where(id: genre).order(:created_at)
       else  # ランキングの場合
         @genre_list = List.joins(:list_favorites).where(id: genre).group(:list_id).order('count(list_id) desc')
@@ -34,29 +32,6 @@ before_action :stripe
     end
 
      @pages = @genre_list.page(params[:page])
-  end
-
-  def stripe
-    require 'net/http'
-    require 'uri'
-
-    uri = URI.parse("https://connect.stripe.com/oauth/token")
-    request = Net::HTTP::Post.new(uri)
-    request.set_form_data(
-      "client_secret" => "sk_test_cqhiyTcvoKhdGDSMYa7YY3Kr",
-      "code" => "ac_CW3BNmomboRYJfukpCpFC8sKZ3t8JMio",
-      "grant_type" => "authorization_code",
-    )
-
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
-
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end
-    result = ActiveSupport::JSON.decode(response.body)
-    response.code
   end
 
   private

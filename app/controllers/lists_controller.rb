@@ -1,8 +1,16 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!, except: :show
+  before_action :gon_current_user, only: [:show]
 
   def show
     @list = List.find(params[:id])
+    if current_user != nil
+      my_list = current_user.lists.pluck(:id)
+      @is_list = my_list.include?(params[:id].to_i)#ログインユーザーのプレイリストの購入ボタンを省くため
+    end
+    
+    #Customer取得
+    @customer = find_or_create_stripe_customer(current_user)
   end
 
   def new
