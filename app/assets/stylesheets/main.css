@@ -1771,7 +1771,6 @@ input[type="reset"],
   top: 0;
   left: 0;
   z-index: 1030;
-  overflow: scroll;
   border-right: 2px solid #efefef; }
 
 .navbar-header {
@@ -2206,6 +2205,8 @@ p.or {
     .l-playlist .ll-playlist {
       display: block;
       padding: 0; }
+      .l-playlist .ll-playlist img {
+        width: auto; }
     .l-playlist .rr-playlist {
       display: block; } }
 .l-profile {
