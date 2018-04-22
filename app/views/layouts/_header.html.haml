@@ -30,9 +30,14 @@
           //%i.icono-list
           %span.main-tit プレイリスト
         %ul.collapse-down-menu
-          %li
-            = link_to new_list_path do
-              アップロード
+          - if is_signin
+            %li
+              - if is_stripe_account_id?(current_user)
+                = link_to new_list_path do
+                  アップロード
+              -else
+                = link_to edit_user_registration_path do
+                  アップロード
           %li
             = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
           // %li
@@ -68,11 +73,11 @@
 
           %li
             %a{:href => "#"} Playlistzについて
-          
+
           %li
             %a{:href => "#"} お問い合わせ
 
-          
+
       // = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
       //   .input-group
       //     = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
@@ -85,8 +90,3 @@
     = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
       = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
       = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn', :name => nil
-
-
-
-
-

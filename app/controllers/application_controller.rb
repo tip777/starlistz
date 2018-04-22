@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :search_header
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :is_purchase?
+  helper_method :is_stripe_account_id?
 
   after_action  :store_location
   def store_location
@@ -31,7 +32,7 @@ class ApplicationController < ActionController::Base
       session[:previous_url] || root_path
     end
   end
-  
+
 
   def search_header
       if params[:q] != nil and params[:q] != ""
@@ -100,7 +101,26 @@ class ApplicationController < ActionController::Base
       find_or_create_stripe_customer(current_user)
   end
 
-  #Account検索
+  #Account登録しているか判定
+  def is_stripe_account_id?(user)
+    begin
+      if user.stripe_acct_id.blank?
+        return false
+      else
+        Stripe::Account.retrieve(user.stripe_acct_id.to_s)
+        return true
+      end
+    rescue => e
+      return false
+    end
+  end
+
+  #Account保存
+  def save_stripe_account_id(user, stripe_customer)
+    User.where('id = ?', user.id).first.update_attributes(stripe_cus_id: stripe_customer.id)
+  end
+
+  #Account取得
   def get_stripe_account_id(user)
     Stripe::Account.retrieve(user.stripe_acct_id.to_s)
   end
