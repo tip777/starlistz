@@ -134,7 +134,7 @@ class ApplicationController < ActionController::Base
   def get_stripe_customer_id(user)
     Stripe::Customer.retrieve(user.stripe_cus_id.to_s)
   end
-
+  
   def find_or_create_stripe_customer(user)
     if user.nil?
       cutomer = nil

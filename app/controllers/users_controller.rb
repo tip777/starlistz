@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     @following = @user.following_relationships.count
     @follower = @user.follower_relationships.count
     @pages = @list.page(params[:page])
+    #Customer取得
+    @customer = find_or_create_stripe_customer(current_user)
   end
 
   def following

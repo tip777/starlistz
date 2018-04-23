@@ -31,6 +31,6 @@
   .container-fluid.sc
     %h2.ntm NEWプレイリスト
     .outer-cardlist
-      = render "lists/list", lists: @newlist
+      = render "lists/list", lists: @newlist, customer: @customer
 
 = render :partial => "layouts/footer"

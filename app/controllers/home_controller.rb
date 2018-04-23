@@ -1,9 +1,12 @@
 class HomeController < ApplicationController
+  before_action :gon_current_user, only: [:show]
 
   def index
     taggings = set_list_genre
     @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル
     @newlist = List.order('created_at').first(20) #新着のプレイリスト
+    #Customer取得
+    @customer = find_or_create_stripe_customer(current_user)
   end
 
   def show
@@ -32,6 +35,13 @@ class HomeController < ApplicationController
     end
 
      @pages = @genre_list.page(params[:page])
+     #Customer取得
+     @customer = find_or_create_stripe_customer(current_user)
+  end
+  
+  def search
+    #Customer取得
+    @customer = find_or_create_stripe_customer(current_user)
   end
 
   private
