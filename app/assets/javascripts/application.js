@@ -160,31 +160,45 @@ $(window).on('scroll',function(){
 });
 
 
+$(document).on('turbolinks:load', function() {
+  var windowWidth = window.innerWidth;
+  if (windowWidth > 768) {
+  
+  $('.menu-trigger').click(function(e){
+        $('+ .collapse-down-menu', this).slideToggle(300);
+      })
+   }else{
+  $('.menu-trigger').click(function(e){
+  
+  var opened = $('+ .collapse-down-menu', this);
+  
+    if(opened.hasClass("open")){
+  opened.removeClass("open");
+  } else{
+        $('.collapse-down-menu').removeClass("open");
+        opened.toggleClass("open");
+        return true;
+      }
+      })
+  }
 
-
+});
 
 $(document).on('turbolinks:load', function() {
-var windowWidth = window.innerWidth;
-if (windowWidth > 768) {
+  // checkoutの本当のボタンは非表示
+  $('.hide_checkout').hide();
 
-$('.menu-trigger').click(function(e){
-      $('+ .collapse-down-menu', this).slideToggle(300);
-    })
- }else{
-$('.menu-trigger').click(function(e){
-
-var opened = $('+ .collapse-down-menu', this);
-
-  if(opened.hasClass("open")){
-opened.removeClass("open");
-} else{
-      $('.collapse-down-menu').removeClass("open");
-      opened.toggleClass("open");
-      return true;
+  // 購入ボタンクリック時判定
+  $('.buy_btn').on('click', function(e){
+    if(gon.current_user == null){
+      console.log("してない");
+      window.location.href = "/users/sign_in"; // 通常の遷移
+    }else{
+      $('.stripe-button-el').trigger('click');
     }
-    })
-}
-
+    console.log(gon.current_user);
+    e.preventDefault();
+  });
 });
 
 // モーダル表示　複数対応

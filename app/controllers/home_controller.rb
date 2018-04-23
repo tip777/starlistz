@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :gon_current_user, only: [:show]
+  before_action :gon_current_user, only: [:show, :chart, :search]
 
   def index
     taggings = set_list_genre
