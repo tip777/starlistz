@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :is_purchase?
   helper_method :is_stripe_account_id?
+  
+  def reject_page
+    begin
+      redirect_to :back
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+    end
+  end
 
   after_action  :store_location
   def store_location
