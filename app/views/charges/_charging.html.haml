@@ -7,7 +7,7 @@
     %label.amount
       // %span Amount: $5.00
     .datafield
-      = hidden_field :list, :id
+      = hidden_field_tag :list, list.id
 
   .hide_checkout
     - if customer.nil?

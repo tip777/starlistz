@@ -17,11 +17,11 @@ class ChargesController < ApplicationController
         customer.source = token
         customer.save!
   
-        token = Stripe::Token.create!({
+        token = Stripe::Token.create({
           :customer => customer.id,
         }, {:stripe_account => "acct_1C7ARIC6dAi2stvc"})
   
-        charge = Stripe::Charge.create!({
+        charge = Stripe::Charge.create({
           :amount      => @amount,
           :description => 'Rails Stripe customer',
           :currency    => 'jpy',

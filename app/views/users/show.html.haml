@@ -30,4 +30,5 @@
 
 .sc
   %h2.ntm プレイリスト一覧
-  = render :partial => "lists/list", locals: {lists: @list, customer: @customer}
+  // = render :partial => "lists/list", locals: {lists: @list, customer: @customer}
+  = render "lists/list", lists: @list, customer: @customer

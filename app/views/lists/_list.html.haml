@@ -1,6 +1,7 @@
 - lists.each_with_index do |list, i|
   .l-cardlist
     -if is_signin && is_signed(current_user.id, list.user.id)
+      
       =link_to list_path(list, list: list) do
         .cardlist-left
           = render 'lists/is_image', list: list

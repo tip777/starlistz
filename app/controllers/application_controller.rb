@@ -148,7 +148,7 @@ class ApplicationController < ActionController::Base
       cutomer = nil
     else
       if user.stripe_cus_id.blank?
-        customer = Stripe::Customer.create!(
+        customer = Stripe::Customer.create(
             :description => "user_id: #{user.id.to_s}",
             :email => user.email.to_s
         )
