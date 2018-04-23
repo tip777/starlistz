@@ -96,7 +96,7 @@ class ApplicationController < ActionController::Base
       stripe_data = get_stripe_data(stripe_code)
 
       #stripe_user_idを登録
-      current_user.update_attributes(stripe_acct_id: stripe_data["stripe_user_id"])
+      current_user.update_attributes!(stripe_acct_id: stripe_data["stripe_user_id"])
       #Cutomerデータ登録
       find_or_create_stripe_customer(current_user)
   end
@@ -117,7 +117,7 @@ class ApplicationController < ActionController::Base
 
   #Account保存
   def save_stripe_account_id(user, stripe_customer)
-    User.where('id = ?', user.id).first.update_attributes(stripe_cus_id: stripe_customer.id)
+    User.where('id = ?', user.id).first.update_attributes!(stripe_cus_id: stripe_customer.id)
   end
 
   #Account取得
@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
 
   #Customer保存
   def save_stripe_customer_id(user, stripe_customer)
-    User.where('id = ?', user.id).first.update_attributes(stripe_cus_id: stripe_customer.id)
+    User.where('id = ?', user.id).first.update_attributes!(stripe_cus_id: stripe_customer.id)
   end
 
   #Customer検索
@@ -140,7 +140,7 @@ class ApplicationController < ActionController::Base
       cutomer = nil
     else
       if user.stripe_cus_id.blank?
-        customer = Stripe::Customer.create(
+        customer = Stripe::Customer.create!(
             :description => "user_id: #{user.id.to_s}",
             :email => user.email.to_s
         )
