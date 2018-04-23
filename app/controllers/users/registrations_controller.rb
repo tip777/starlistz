@@ -25,15 +25,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:code] != nil
        set_stripe_id(params[:code])
     end
-
-    #Stripe連携しているか判定
-    is_account = is_stripe_account_id?(current_user)
-    if is_account != true
-      flash.now[:alert] = "Stripe連携が完了していません。<br>
-                        「Stripe接続」からStripe連携を完了しなければプレイリストを作成できません。".html_safe
-    end
-
-    @list = current_user.lists
+    
+    # @list = current_user.lists
     super
   end
 

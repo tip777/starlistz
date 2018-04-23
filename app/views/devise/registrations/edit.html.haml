@@ -3,7 +3,7 @@
   .alert.alert-warning
     メールアドレスの変更が完了していません。確認のメールを #{resource.unconfirmed_email}に送信しました。変更を完了してください。
 
-= link_to "Stripe接続", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write"
+// = link_to "Stripe接続", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write"
 
 .sc.imwl
   %h2.h-tit プロフィール編集 #{resource_name.to_s.humanize}
@@ -41,8 +41,8 @@
       = f.button :submit, "Update"
 
 .sc
-  %h2.ntm プレイリスト一覧
-  = render file: "/lists/_list.html.haml", locals: {lists: @list, flg: true}
+  // %h2.ntm プレイリスト一覧
+  // = render file: "/lists/_list.html.haml", locals: {lists: @list, customer: @customer}
 
   %h3 Cancel my account
   %p

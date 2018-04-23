@@ -6,8 +6,22 @@ class UsersController < ApplicationController
     @following = @user.following_relationships.count
     @follower = @user.follower_relationships.count
     @pages = @list.page(params[:page])
-    #Customer取得
-    @customer = find_or_create_stripe_customer(current_user)
+    
+    
+    if current_user != nil
+      #Customer取得
+      @customer = find_or_create_stripe_customer(current_user)
+      if current_user.id == @user.id
+        #Stripe連携しているか判定
+        is_account = is_stripe_account_id?(current_user)
+        if is_account != true
+          flash.now[:alert] = "Stripe連携が完了していません。<br>
+                            「Stripe接続」からStripe連携を完了しなければプレイリストを作成できません。".html_safe
+        end
+      end
+    end
+    
+    
   end
 
   def following
