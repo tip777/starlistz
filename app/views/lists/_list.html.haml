@@ -69,9 +69,10 @@
   // ここからモーダルウィンドウ
   .modal-content{:id => "modal-content-#{i}"}
     // モーダルウィンドウのコンテンツ開始
+    
     // Stripe決済部分
     //ログインユーザーのプレイリストじゃなかったら
-    = render "charges/stripe_checkout", customer: customer, list: list
+    = render "charges/stripe_checkout", customer: customer, list: list, cont_no: i
 
     %p= list.title
     %p #{list.price} 円

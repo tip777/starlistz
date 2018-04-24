@@ -194,7 +194,9 @@ $(document).on('turbolinks:load', function() {
       console.log("してない");
       window.location.href = "/users/sign_in"; // 通常の遷移
     }else{
-      $('.stripe-button-el').trigger('click');
+      //$(this).attr("name")　これで番号がとれる
+      // $('.stripe-button-el').trigger('click');
+      $('#modal-content-' + $(this).attr("name") + ' .stripe-button-el').trigger('click');
     }
     console.log(gon.current_user);
     e.preventDefault();

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only[:following, :follower]
+  before_action :authenticate_user!, only: [:following, :follower]
   before_action :gon_current_user, only: [:show]
   
   def show
@@ -14,6 +14,10 @@ class UsersController < ApplicationController
       #Customer取得
       @customer = find_or_create_stripe_customer(current_user)
       if current_user.id == @user.id
+        #パラメータでcodeがあればstripeのデータ取得
+        if params[:code] != nil
+           set_stripe_id(params[:code])
+        end
         #Stripe連携しているか判定
         is_account = is_stripe_account_id?(current_user)
         if is_account != true

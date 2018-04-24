@@ -21,10 +21,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    #パラメータでcodeがあればstripeのデータ取得
-    if params[:code] != nil
-       set_stripe_id(params[:code])
-    end
+    # #パラメータでcodeがあればstripeのデータ取得
+    # if params[:code] != nil
+    #   set_stripe_id(params[:code])
+    # end
     
     # @list = current_user.lists
     super

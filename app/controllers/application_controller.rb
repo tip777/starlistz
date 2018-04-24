@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
   helper_method :is_purchase?
   helper_method :is_stripe_account_id?
   
+  # 改行コードを<br />タグに変換
+  def conv_br(str) 
+  html_escape(str).gsub(/\r\n|\r|\n/, "<br />").html_safe 
+end
+  
   def reject_page
     begin
       redirect_to :back
