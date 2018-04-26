@@ -15,7 +15,7 @@ class ChargesController < ApplicationController
       
       customer = find_or_create_stripe_customer(current_user)
       customer.source = token
-      customer.save!
+      customer.save
 
       
       token = Stripe::Token.create({
@@ -44,7 +44,22 @@ class ChargesController < ApplicationController
     rescue Stripe::AuthenticationError => e
       flash[:error] = "StripeのAPIによる認証に失敗しました<br/>（最近APIキーを変更した可能性があります）"
     rescue Stripe::CardError => e
+      binding.pry
       flash[:error] = e.message
+      
+      # Since it's a decline, Stripe::CardError will be caught
+      body = e.json_body
+      err  = body[:error]
+    
+      puts "Status is: #{e.http_status}"
+      puts "Type is: #{err[:type]}"
+      puts "Charge ID is: #{err[:charge]}"
+      # The following fields are optional
+      puts "Code is: #{err[:code]}" if err[:code]
+      puts "Decline code is: #{err[:decline_code]}" if err[:decline_code]
+      puts "Param is: #{err[:param]}" if err[:param]
+      puts "Message is: #{err[:message]}" if err[:message]
+      binding.pry
     rescue Stripe::InvalidRequestError => e
       p e.message
       flash[:error] = '無効なパラメータがStripeのAPIに供給されました'
