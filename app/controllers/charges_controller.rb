@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
       end
       # プレイリストの金額
       @amount = list.price
-      @fee = @amount*0.2-@amount*0.036 #決済金額の20%からStripe決済手数料3.6%を引いた分を手数料とする
+      @fee = @amount*0.1 #StarListz決済手数料：決済金額の10% 
 
       token = params[:stripeToken]
       
@@ -27,7 +27,7 @@ class ChargesController < ApplicationController
         :description => 'Rails Stripe customer',
         :currency    => 'jpy',
         :source => token.id,
-        :application_fee => @fee.round
+        :application_fee => @fee.floor
       }, :stripe_account => "acct_1C7ARIC6dAi2stvc")
 
 
