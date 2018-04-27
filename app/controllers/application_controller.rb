@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :is_purchase?
   helper_method :is_stripe_account_id?
-  
+
   def reject_page
     begin
       redirect_back(fallback_location: root_path)
@@ -46,11 +46,11 @@ class ApplicationController < ActionController::Base
       if params[:q] != nil and params[:q] != ""
         @search_word = search_params[:q]
         key_words = search_params[:q].split(/[\p{blank}\s]+/)#スペースがあったら区切る
-        @q = User.ransack(name_cont_any: key_words)
+        @q = User.includes(:user_profile, :taggings).ransack(name_cont_any: key_words)
 
         #ユーザー、プレイリスト検索結果
         @search_user = @q.result(distinct: true)
-        @search_list = List.ransack(title_cont_any: key_words).result(distinct: true)
+        @search_list = List.includes({user: [:user_profile]}, :taggings).ransack(title_cont_any: key_words).result(distinct: true)
 
         #ジャンル検索結果
         list_taggings = set_list_genre
@@ -142,7 +142,7 @@ class ApplicationController < ActionController::Base
   def get_stripe_customer_id(user)
     Stripe::Customer.retrieve(user.stripe_cus_id.to_s)
   end
-  
+
   def find_or_create_stripe_customer(user)
     if user.nil?
       cutomer = nil

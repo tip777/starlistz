@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:following, :follower]
   before_action :gon_current_user, only: [:show]
-  
+
   def show
     @user = User.find(params[:id])
-    @list = @user.lists
+    @list = @user.lists.includes(:taggings)
     @following = @user.following_relationships.count
     @follower = @user.follower_relationships.count
     @pages = @list.page(params[:page])
-    
-    
+
+
     if current_user != nil
       #Customer取得
       @customer = find_or_create_stripe_customer(current_user)
@@ -26,8 +26,8 @@ class UsersController < ApplicationController
         end
       end
     end
-    
-    
+
+
   end
 
   def following
