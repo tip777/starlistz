@@ -23,17 +23,18 @@ class HomeController < ApplicationController
       if chart_params[:sort] == "new" || chart_params[:sort].nil? #sortが新着or空欄の場合
         @genre_list = List.includes({user: [:user_profile]}, :taggings).order(:created_at)
       else  # ランキングの場合
-        @genre_list = List.joins(:list_favorites).group(:list_id).order('count(list_id) desc')
+        @genre_list = List.includes({user: [:user_profile]}, :taggings).joins(:list_favorites).group(:list_id).order('count(list_id) desc')
       end
     else
       genre = List.tagged_with(chart_params[:genre]).pluck(:id)#ジャンルの対象のリストのIDの一覧取得
       if chart_params[:sort] == "new" || chart_params[:sort].nil? #sortが新着or空欄の場合
         @genre_list = List.includes({user: [:user_profile]}, :taggings).where(id: genre).order(:created_at)
       else  # ランキングの場合
-        @genre_list = List.joins(:list_favorites).where(id: genre).group(:list_id).order('count(list_id) desc')
+        @genre_list = List.includes({user: [:user_profile]}, :taggings).joins(:list_favorites).where(id: genre).group(:list_id).order('count(list_id) desc')
       end
     end
 
+    # binding.pry
      @pages = @genre_list.page(params[:page])
      #Customer取得
      @customer = find_or_create_stripe_customer(current_user)
