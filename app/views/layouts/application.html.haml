@@ -26,6 +26,9 @@
       %p.alert.alert-notice= notice
     - if alert
       %p.alert.alert-error= alert
+    - if flash[:error].present?
+      #error_explanation
+        %p.error.error-error= alert= flash[:error].html_safe
 
 
     .l-wrapper

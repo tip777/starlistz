@@ -1,9 +1,6 @@
 // Stripe決済部分
 = form_tag charges_path do
   %article
-    - if flash[:error].present?
-      #error_explanation
-        %p= flash[:error].html_safe
     %label.amount
       // %span Amount: $5.00
     .datafield

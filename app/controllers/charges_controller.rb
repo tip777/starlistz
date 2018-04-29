@@ -44,13 +44,15 @@ class ChargesController < ApplicationController
     rescue Stripe::AuthenticationError => e
       flash[:error] = "StripeのAPIによる認証に失敗しました<br/>（最近APIキーを変更した可能性があります）"
     rescue Stripe::CardError => e
-      binding.pry
-      flash[:error] = e.message
-      
       # Since it's a decline, Stripe::CardError will be caught
       body = e.json_body
       err  = body[:error]
-    
+      if err[:code] == "card_declined"
+        flash[:error] = "このカードは拒否されました。"
+      else
+        flash[:error] = e.message
+      end
+      
       puts "Status is: #{e.http_status}"
       puts "Type is: #{err[:type]}"
       puts "Charge ID is: #{err[:charge]}"
@@ -59,7 +61,6 @@ class ChargesController < ApplicationController
       puts "Decline code is: #{err[:decline_code]}" if err[:decline_code]
       puts "Param is: #{err[:param]}" if err[:param]
       puts "Message is: #{err[:message]}" if err[:message]
-      binding.pry
     rescue Stripe::InvalidRequestError => e
       p e.message
       flash[:error] = '無効なパラメータがStripeのAPIに供給されました'
