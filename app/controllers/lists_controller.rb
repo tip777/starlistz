@@ -6,7 +6,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     #自分のプレイリスト、購入したプレイリスト以外は見れないように
     if current_user.nil?
-      redirect_to :back
+      reject_page
     else
       my_list = current_user.lists.pluck(:id)
       purchase_list = current_user.purchases.pluck(:list_id)

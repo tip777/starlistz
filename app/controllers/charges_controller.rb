@@ -13,8 +13,6 @@ class ChargesController < ApplicationController
         return
       end
       
-      binding.pry
-      
       # プレイリストの金額
       @amount = list.price
       @fee = @amount*0.1 #StarListz決済手数料：決済金額の10% 
@@ -83,7 +81,7 @@ class ChargesController < ApplicationController
         redirect_to  list_url(list), notice: "プレイリストを購入しました"
       else
         redirect_back(fallback_location: root_path, alart: "プレイリストの購入に失敗しました")
-        flash[:notice] = 'プレイリストの購入に失敗しました'
+        flash[:alert] = 'プレイリストの購入に失敗しました'
       end
     end
   end
