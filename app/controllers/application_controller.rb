@@ -2,9 +2,27 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :search_header
   before_action :configure_permitted_parameters, if: :devise_controller?
-  helper_method :is_purchase?
-  helper_method :is_stripe_account_id?
-
+  helper_method :is_purchase?, :is_stripe_account_id?
+  
+  def set_user_genre
+    #Userのタグだけ抽出
+    return ActsAsTaggableOn::Tagging.where(taggable_type: "User").group("tag_id").pluck(:tag_id)
+  end
+  
+  #プレイリストの購入履歴があるか
+  def is_purchase?(user, list)
+    if user.nil?
+      return false
+    else
+      !user.purchases.where(list_id: list.id).empty?
+    end
+  end
+  
+  #ログインしているか判定
+  def gon_current_user
+    gon.current_user = current_user
+  end
+  
   def reject_page
     begin
       redirect_back(fallback_location: root_path)
@@ -78,24 +96,6 @@ class ApplicationController < ActionController::Base
   def set_list_genre
     #Listのタグだけ抽出
     return ActsAsTaggableOn::Tagging.where(taggable_type: "List").group("tag_id").pluck(:tag_id)
-  end
-
-  def set_user_genre
-    #Userのタグだけ抽出
-    return ActsAsTaggableOn::Tagging.where(taggable_type: "User").group("tag_id").pluck(:tag_id)
-  end
-
-  def gon_current_user
-    gon.current_user = current_user
-  end
-
-  #プレイリストの購入履歴があるか
-  def is_purchase?(user, list)
-    if user.nil?
-      return false
-    else
-      !user.purchases.where(list_id: list.id).empty?
-    end
   end
 
   #アカウント情報取得

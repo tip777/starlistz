@@ -7,6 +7,14 @@ class ChargesController < ApplicationController
       if list.nil? 
           redirect_to :back, alert: 'プレイリストが存在しません。トップページから操作をやり直してください。'
       end
+      
+      if is_purchase?(current_user, list)
+        list_purchase = true
+        return
+      end
+      
+      binding.pry
+      
       # プレイリストの金額
       @amount = list.price
       @fee = @amount*0.1 #StarListz決済手数料：決済金額の10% 
@@ -61,7 +69,6 @@ class ChargesController < ApplicationController
       puts "Message is: #{err[:message]}" if err[:message]
     rescue Stripe::InvalidRequestError => e
       p e.message
-      binding.pry
       flash[:error] = '無効なパラメータがStripeのAPIに供給されました'
     rescue Stripe::StripeError => e
       p e.message
@@ -70,7 +77,9 @@ class ChargesController < ApplicationController
       p e.message
       flash[:error] = "エラーが発生しました"
     ensure
-      if flash[:error].nil? 
+      if list_purchase == true
+        redirect_to  list_url(list), notice: "既にプレイリストは購入されています"
+      elsif flash[:error].nil? 
         redirect_to  list_url(list), notice: "プレイリストを購入しました"
       else
         redirect_back(fallback_location: root_path, alart: "プレイリストの購入に失敗しました")
