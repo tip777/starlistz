@@ -16,7 +16,6 @@ class ChargesController < ApplicationController
       customer = find_or_create_stripe_customer(current_user)
       customer.source = token
       customer.save
-
       
       token = Stripe::Token.create({
         :customer => customer.id,
@@ -28,8 +27,7 @@ class ChargesController < ApplicationController
         :currency    => 'jpy',
         :source => token.id,
         :application_fee => @fee.floor
-      }, :stripe_account => "acct_1C7ARIC6dAi2stvc")
-
+      }, :stripe_account => list.user.stripe_acct_id)
 
       #購入履歴
       purchase = current_user.purchases.create
@@ -63,6 +61,7 @@ class ChargesController < ApplicationController
       puts "Message is: #{err[:message]}" if err[:message]
     rescue Stripe::InvalidRequestError => e
       p e.message
+      binding.pry
       flash[:error] = '無効なパラメータがStripeのAPIに供給されました'
     rescue Stripe::StripeError => e
       p e.message
