@@ -21,13 +21,11 @@
       %li.collapse-down
         = link_to root_path,{ class: "menu-trigger" } do
           %i.fas.fa-home
-          //%i.icono-home
           %span.main-tit TOP
 
       %li.collapse-down
         %a.menu-trigger
           %i.fas.fa-list-ul
-          //%i.icono-list
           %span.main-tit プレイリスト
         %ul.collapse-down-menu
           - if is_signin
@@ -40,24 +38,16 @@
                   アップロード
           %li
             = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
-          // %li
-          //   = link_to genre_path do
-          //     ジャンル
-
 
       %li.collapse-down
-        = link_to search_path,{ class: "menu-trigger" } do
+        = link_to searches_playlist_path,{ class: "menu-trigger" } do
           %i.fas.fa-search
-          //%i.icono-search
           %span.main-tit サーチ
       %li.collapse-down
         %a.menu-trigger
           %i.fas.fa-cog
-          //%i.icono-gear
           %span.main-tit セッティング
         %ul.collapse-down-menu
-
-
 
           - if user_signed_in?
             %li
@@ -77,16 +67,8 @@
           %li
             %a{:href => "#"} お問い合わせ
 
-
-      // = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
-      //   .input-group
-      //     = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
-      //     .input-group-btn
-      //       = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn btn-default search-btn'
-
-
 %header.sc.subheader
   .l-form
-    = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
+    = search_form_for  @q, html: {class: 'navbar-form' }, url: searches_playlist_path, enforce_utf8: false do |f|
       = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
       = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn', :name => nil

@@ -1,0 +1,11 @@
+= render :partial => "searches/search_header"
+.sc
+    .l-tabbox
+        #tab-list.tabbox
+            .list.area
+                - if @search_list != nil and not @search_list.empty?
+                    .list_area
+                        = render "lists/list", lists: @list_pages, customer: @customer
+            -if @list_pages != nil
+                #list_paginator
+                    = paginate @list_pages, param_name: 'list_page'

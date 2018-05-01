@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'searches/playlist'
+
+  get 'searches/user'
+
+  get 'searches/playlist_genre'
+
+  get 'searches/user_genre'
+
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks", :registrations => "users/registrations", :confirmations => "users/confirmations"}
 
   root 'home#index'
@@ -24,9 +32,14 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]#フォロー、アンフォロー
   resources :favorites, only: [:create, :destroy]#プレイリストお気に入り、解除
+  
+  resources :searches, only: [:playlist, :user, :playlistgenre, :usergenre]#プレイリストお気に入り、解除
 
   get 'chart' , to: 'home#chart' #チャート
-  get 'search' , to: 'home#search' #検索結果
+  # get 'search/playlist' , to: 'home#playlist' #検索　プレイリスト
+  # get 'search/user' , to: 'home#user' #検索　ユーザー
+  # get 'search/list_genre' , to: 'home#listgenre' #検索　プレイリストジャンル
+  # get 'search/user_genre' , to: 'home#usergenre' #検索　ユーザージャンル
   get 'about' , to: 'home#about' #プレイリストについて
   get 'privacy' , to: 'home#privacy' #個人情報保護
   get 'term' , to: 'home#term' #利用規約

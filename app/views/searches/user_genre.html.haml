@@ -1,0 +1,11 @@
+= render :partial => "searches/search_header"
+.sc
+    .l-tabbox
+        #tab-usergenre.tabbox
+            .usergenre.area
+                - if @search_usergenre != nil and not @search_usergenre.empty?
+                    .usergenre_area
+                        = render 'home/genre_partial/genrelist', tag: @genreuser_pages
+                -if @search_usergenre != nil
+                    #usergenre_paginator
+                        = paginate @genreuser_pages, param_name: 'genreuser_page'

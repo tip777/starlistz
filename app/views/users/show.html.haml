@@ -27,10 +27,42 @@
           %span フォロワー
 
         %h3
-          = "#{@list.count}"
+          = "#{@mylist.count}"
           %span プレイリスト
 
-.sc
-  %h2.ntm プレイリスト一覧
-  // = render :partial => "lists/list", locals: {lists: @list, customer: @customer}
-  = render "lists/list", lists: @list, customer: @customer
+// .sc
+//   %h2.ntm プレイリスト一覧
+//   = render "lists/list", lists: @list, customer: @customer
+
+- if is_signin && is_signed(current_user.id, @user.id)
+  .sc
+    %ul.tab
+      %li.active 
+        = link_to "プレイリスト一覧", "#tab-mylist"
+      %li 
+        = link_to "購入履歴", "#tab-purchase"
+        
+  .sc
+    .l-tabbox
+      #tab-mylist.tabbox
+        .mylist.area
+          - if @mylist != nil and not @mylist.empty?
+            .mylist_area
+              = render "lists/list", lists: @mylist_pages, customer: @customer
+          -if @mylist_pages != nil
+            #mylist_paginator
+              = paginate @mylist_pages, param_name: 'mylist_page', :remote => true
+      
+      #tab-purchase.tabbox
+        .purchase.area
+          - if @my_purchase != nil and not @my_purchase.empty?
+            .purchase_area
+              = render "users/purchase", purchases: @my_purchase
+          -if @my_purchase_pages != nil
+            #my_purchase_paginator
+              = paginate @my_purchase_pages, param_name: 'my_purchase_page', :remote => true
+-else
+  .sc
+    %h2.ntm プレイリスト一覧
+    = render "lists/list", lists: @mylist, customer: @customer
+
