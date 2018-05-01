@@ -43,8 +43,10 @@ class ApplicationController < ActionController::Base
 
   #ログイン後のリダイレクト先
   def after_sign_in_path_for(resource)
-    if (session[:previous_url] == root_path)
+    if (session[:previous_url] == root_path) 
       super
+    elsif session[:previous_url].include?("sign_out")
+      root_path
     else
       session[:previous_url] || root_path
     end

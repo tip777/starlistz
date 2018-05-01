@@ -46,7 +46,7 @@ gem 'ransack'
 gem 'kaminari'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
-gem "paranoia"
+# gem "paranoia"
 gem "gretel"
 gem "mysql2"
 gem 'select2-rails'

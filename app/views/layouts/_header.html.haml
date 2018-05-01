@@ -36,7 +36,7 @@
                 = link_to new_list_path do
                   アップロード
               -else
-                = link_to edit_user_registration_path do
+                = link_to current_user do
                   アップロード
           %li
             = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
