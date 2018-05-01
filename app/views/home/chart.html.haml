@@ -2,68 +2,16 @@
   %h2.h-tit プレイリストチャート
   .l-searchchart
     %span.searchchart-sub
-      // = select_tag :person, grouped_options_for_select(@tag), multiple: true, class: "js-multiple"
-      // = select_tag :person, grouped_options_for_select(@tag), class: "js-search"
       = select_tag :person, options_for_select(@tag, selected: params[:genre]), class: "js-search"
 
     %span.searchchart-main
-      // -binding.pry
-      // = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]]), class: "select-main js-hide-search"
       = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]], selected: params[:sort]), class: "select-main js-hide-search"
 
 .sc
-
   // - @pages.each do |list|
   //   = render list, list: list
-  = render "lists/list", lists: @pages
+  = render "lists/list", lists: @pages, customer: @customer
 
 = render :partial => "layouts/footer"
 
 = paginate @pages
-
-
-:javascript
-  $(document).on('turbolinks:load', function() {
-    $('.js-tags-input').each(function() {
-      $(this).select2({
-        tags: true,
-        tokenSeparators: [','],
-        theme: 'bootstrap',
-        width: '100%',
-        placeholder: 'Separated by comma'
-      });
-    });
-    
-    // $(".js-multiple").select2({
-    //     width:      200
-    // });
-  
-    //select2 setting
-    $(".js-search").select2({
-        width: 200
-    });
-    $(".js-hide-search").select2({
-        minimumResultsForSearch: Infinity,
-        width: 150
-    });
-  
-    $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
-  
-    $('.select-main').on('change', param_change);
-  
-    $('.js-search').on('change', param_change);
-    
-    //select tag parameter send
-    function param_change () {
-        var genre = ""
-        if (!$(".js-search").val()){
-          genre = "All"
-        }else{
-          genre = $(".js-search").val();
-        }
-        var url = 'sort=' + $('.select-main').val();
-        url = url + '&genre=' + genre
-        window.location.search = url
-    }
-      
-  });

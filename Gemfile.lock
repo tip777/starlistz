@@ -62,6 +62,9 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
+    bullet (5.7.5)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11.0)
     byebug (9.1.0)
     climate_control (0.2.0)
     cocaine (0.5.8)
@@ -287,6 +290,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.0.2)
       execjs (>= 0.3.0, < 3)
+    uniform_notifier (1.11.0)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.5.1)
@@ -305,6 +309,7 @@ DEPENDENCIES
   acts-as-taggable-on!
   aws-sdk (~> 2.3)
   bootstrap-sass
+  bullet
   byebug
   cocoon
   coffee-rails (~> 4.2)

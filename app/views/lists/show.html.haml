@@ -12,12 +12,10 @@
     .rr-playlist
       %h3 プレイリスト名
       .span.listtitle= @list.title
-      // Stripe決済部分
+      
       - if is_signin
-        - if @is_list == false #ログインユーザーのプレイリストじゃなかったら
-          = render "charges/stripe_checkout", customer: @customer, list: @list
-      - else
-        = render "charges/stripe_checkout", customer: @customer, list: @list
+        - if !is_signed(current_user.id, @list.user.id)
+          = render 'lists/fav_form', list: @list 
 
       %h3 詳細
       .span= @list.description

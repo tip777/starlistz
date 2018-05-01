@@ -38,7 +38,8 @@ $(function() {
   } else {
     $('main').css('margin-bottom',h);
   }
-  
+});
+
   // タブの切り替え処理
   $('.tabbox:first').show();
   $('.tab li').click(function() {
@@ -48,8 +49,8 @@ $(function() {
     $($(this).find('a').attr('href')).fadeIn();
     return false;
   });
-  
-  
+
+
   // グロバールナビゲーション選択ページの判定
   var url = window.location.pathname;
   $('.nav li a[href="'+url+'"]').parents('.collapse-down').addClass('active');
@@ -58,10 +59,7 @@ $(function() {
             $('.nav li a[ href *= "chart" ]').parents('.collapse-down').addClass('active');
   //strにhogeを含む場合の処理
   }
-  
 
-
-});
 
 // $(function() {
 
@@ -95,58 +93,49 @@ $(function() {
 
 //var result = test() //ちゃんと返り値が入ってる;
 
-// $(document).on('turbolinks:load', function() {
-//   $('.js-tags-input').each(function() {
-//     $(this).select2({
-//       tags: true,
-//       tokenSeparators: [','],
-//       theme: 'bootstrap',
-//       width: '100%',
-//       placeholder: 'Separated by comma'
-//     });
-//   });
-  
-//   // $(".js-multiple").select2({
-//   //     width:      200
-//   // });
+$(document).on('turbolinks:load', function() {
+  $('.js-tags-input').each(function() {
+    $(this).select2({
+      tags: true,
+      tokenSeparators: [','],
+      theme: 'bootstrap',
+      width: '100%',
+      placeholder: 'Separated by comma'
+    });
+  });
 
-//   //select2 setting
-//   $(".js-search").select2({
-//       width: 200
-//   });
-//   $(".js-hide-search").select2({
-//       minimumResultsForSearch: Infinity,
-//       width: 150
-//   });
+  // $(".js-multiple").select2({
+  //     width:      200
+  // });
 
-//   $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
+  //select2 setting
+  $(".js-search").select2({
+      width: 200
+  });
+  $(".js-hide-search").select2({
+      minimumResultsForSearch: Infinity,
+      width: 150
+  });
 
-//   $('.select-main').on('change', param_change);
+  $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
 
-//   $('.js-search').on('change', param_change);
-  
-//   //select tag parameter send
-//   function param_change () {
-//       var genre = ""
-//       if (!$(".js-search").val()){
-//         genre = "All"
-//       }else{
-//         genre = $(".js-search").val();
-//       }
-//       var url = 'sort=' + $('.select-main').val();
-//       url = url + '&genre=' + genre
-//       window.location.search = url
-//   }
-    
-// });
+  $('.select-main').on('change', param_change);
 
-$(window).on('scroll',function(){
-  s = $(window).scrollTop();
-  if(s < 10){
-    $('.navbar-fixed-top').removeClass('is-fixed');
-  } else {
-    $('.navbar-fixed-top').addClass('is-fixed');
+  $('.js-search').on('change', param_change);
+
+  //select tag parameter send
+  function param_change () {
+      var genre = ""
+      if (!$(".js-search").val()){
+        genre = "All"
+      }else{
+        genre = $(".js-search").val();
+      }
+      var url = 'sort=' + $('.select-main').val();
+      url = url + '&genre=' + genre
+      window.location.search = url
   }
+
 });
 
 
@@ -156,75 +145,93 @@ $(window).on('scroll',function(){
 
 
 
+$(document).on('turbolinks:load', function() {
+  // checkoutの本当のボタンは非表示
+  $('.hide_checkout').hide();
+
+  // 購入ボタンクリック時判定
+  $('.buy_btn').on('click', function(e){
+    if(gon.current_user == null){
+      console.log("してない");
+      window.location.href = "/users/sign_in"; // 通常の遷移
+    }else{
+      //$(this).attr("name")　これで番号がとれる
+      // $('.stripe-button-el').trigger('click');
+      $('#modal-content-' + $(this).attr("name") + ' .stripe-button-el').trigger('click');
+    }
+    console.log(gon.current_user);
+    e.preventDefault();
+  });
+});
 
 // モーダル表示　複数対応
-$(function(){
+$(document).on('turbolinks:load', function() {
 
-//グローバル変数
-var nowModalSyncer = null ;   //現在開かれているモーダルコンテンツ
-var modalClassSyncer = "modal-syncer" ;   //モーダルを開くリンクに付けるクラス名
+  //グローバル変数
+  var nowModalSyncer = null ;   //現在開かれているモーダルコンテンツ
+  var modalClassSyncer = "modal-syncer" ;   //モーダルを開くリンクに付けるクラス名
 
-//モーダルのリンクを取得する
-var modals = document.getElementsByClassName( modalClassSyncer ) ;
+  //モーダルのリンクを取得する
+  var modals = document.getElementsByClassName( modalClassSyncer ) ;
 
-//モーダルウィンドウを出現させるクリックイベント
-for(var i=0,l=modals.length; l>i; i++){
+  //モーダルウィンドウを出現させるクリックイベント
+  for(var i=0,l=modals.length; l>i; i++){
 
-  //全てのリンクにタッチイベントを設定する
-  modals[i].onclick = function(){
+    //全てのリンクにタッチイベントを設定する
+    modals[i].onclick = function(){
 
-    //ボタンからフォーカスを外す
-    this.blur() ;
+      //ボタンからフォーカスを外す
+      this.blur() ;
 
-    //ターゲットとなるコンテンツを確認
-    var target = this.getAttribute( "data-target" ) ;
+      //ターゲットとなるコンテンツを確認
+      var target = this.getAttribute( "data-target" ) ;
 
-    //ターゲットが存在しなければ終了
-    if( typeof( target )=="undefined" || !target || target==null ){
-      return false ;
-    }
+      //ターゲットが存在しなければ終了
+      if( typeof( target )=="undefined" || !target || target==null ){
+        return false ;
+      }
 
-    //コンテンツとなる要素を取得
-    nowModalSyncer = document.getElementById( target ) ;
+      //コンテンツとなる要素を取得
+      nowModalSyncer = document.getElementById( target ) ;
 
-    //ターゲットが存在しなければ終了
-    if( nowModalSyncer == null ){
-      return false ;
-    }
+      //ターゲットが存在しなければ終了
+      if( nowModalSyncer == null ){
+        return false ;
+      }
 
-    //キーボード操作などにより、オーバーレイが多重起動するのを防止する
-    if( $( "#modal-overlay" )[0] ) return false ;   //新しくモーダルウィンドウを起動しない
-    //if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;   //現在のモーダルウィンドウを削除して新しく起動する
+      //キーボード操作などにより、オーバーレイが多重起動するのを防止する
+      if( $( "#modal-overlay" )[0] ) return false ;   //新しくモーダルウィンドウを起動しない
+      //if($("#modal-overlay")[0]) $("#modal-overlay").remove() ;   //現在のモーダルウィンドウを削除して新しく起動する
 
-    //オーバーレイを出現させる
-    $( "body" ).append( '<div id="modal-overlay"></div>' ) ;
-    $( "#modal-overlay" ).fadeIn( "fast" ) ;
+      //オーバーレイを出現させる
+      $( "body" ).append( '<div id="modal-overlay"></div>' ) ;
+      $( "#modal-overlay" ).fadeIn( "fast" ) ;
 
-    //コンテンツをセンタリングする
-    centeringModalSyncer() ;
+      //コンテンツをセンタリングする
+      centeringModalSyncer() ;
 
-    //コンテンツをフェードインする
-    $( nowModalSyncer ).fadeIn( "slow" ) ;
+      //コンテンツをフェードインする
+      $( nowModalSyncer ).fadeIn( "slow" ) ;
 
-    //[#modal-overlay]、または[#modal-close]をクリックしたら…
-    $( "#modal-overlay,#modal-close" ).unbind().click( function() {
+      //[#modal-overlay]、または[#modal-close]をクリックしたら…
+      $( "#modal-overlay,#modal-close" ).unbind().click( function() {
 
-      //[#modal-content]と[#modal-overlay]をフェードアウトした後に…
-      $( "#" + target + ",#modal-overlay" ).fadeOut( "fast" , function() {
+        //[#modal-content]と[#modal-overlay]をフェードアウトした後に…
+        $( "#" + target + ",#modal-overlay" ).fadeOut( "fast" , function() {
 
-        //[#modal-overlay]を削除する
-        $( '#modal-overlay' ).remove() ;
+          //[#modal-overlay]を削除する
+          $( '#modal-overlay' ).remove() ;
+
+        } ) ;
+
+        //現在のコンテンツ情報を削除
+        nowModalSyncer = null ;
 
       } ) ;
 
-      //現在のコンテンツ情報を削除
-      nowModalSyncer = null ;
-
-    } ) ;
+    }
 
   }
-
-}
 
   //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
   $( window ).resize( centeringModalSyncer ) ;
@@ -252,8 +259,3 @@ for(var i=0,l=modals.length; l>i; i++){
   }
 
 } ) ;
-
-
-  
-
-

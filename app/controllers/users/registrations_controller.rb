@@ -21,11 +21,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    #パラメータでcodeがあればstripeのデータ取得
-    if params[:code] != nil
-       set_stripe_id(params[:code])
-    end
-    @list = current_user.lists
+    # #パラメータでcodeがあればstripeのデータ取得
+    # if params[:code] != nil
+    #   set_stripe_id(params[:code])
+    # end
+    
+    # @list = current_user.lists
     super
   end
 
@@ -38,12 +39,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #アカウント削除時
   def destroy
     customer = find_or_create_stripe_customer(current_user)
-    account = get_stripe_account_id(current_user)
-    if customer != nil #Customer削除
+    #Customer削除
+    if customer != nil 
       customer.delete
-    end
-    if account != nil #Account削除
-      account.delete
     end
 
     super

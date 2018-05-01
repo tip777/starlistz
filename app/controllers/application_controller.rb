@@ -2,7 +2,34 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :search_header
   before_action :configure_permitted_parameters, if: :devise_controller?
-  helper_method :is_purchase?
+  helper_method :is_purchase?, :is_stripe_account_id?
+  
+  def set_user_genre
+    #Userのタグだけ抽出
+    return ActsAsTaggableOn::Tagging.where(taggable_type: "User").group("tag_id").pluck(:tag_id)
+  end
+  
+  #プレイリストの購入履歴があるか
+  def is_purchase?(user, list)
+    if user.nil?
+      return false
+    else
+      !user.purchases.where(list_id: list.id).empty?
+    end
+  end
+  
+  #ログインしているか判定
+  def gon_current_user
+    gon.current_user = current_user
+  end
+  
+  def reject_page
+    begin
+      redirect_back(fallback_location: root_path)
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
+    end
+  end
 
   after_action  :store_location
   def store_location
@@ -16,8 +43,10 @@ class ApplicationController < ActionController::Base
 
   #ログイン後のリダイレクト先
   def after_sign_in_path_for(resource)
-    if (session[:previous_url] == root_path)
+    if (session[:previous_url] == root_path) 
       super
+    elsif session[:previous_url].include?("sign_out")
+      root_path
     else
       session[:previous_url] || root_path
     end
@@ -31,17 +60,17 @@ class ApplicationController < ActionController::Base
       session[:previous_url] || root_path
     end
   end
-  
+
 
   def search_header
       if params[:q] != nil and params[:q] != ""
         @search_word = search_params[:q]
         key_words = search_params[:q].split(/[\p{blank}\s]+/)#スペースがあったら区切る
-        @q = User.ransack(name_cont_any: key_words)
+        @q = User.includes(:user_profile, :taggings).ransack(name_cont_any: key_words)
 
         #ユーザー、プレイリスト検索結果
         @search_user = @q.result(distinct: true)
-        @search_list = List.ransack(title_cont_any: key_words).result(distinct: true)
+        @search_list = List.includes({user: [:user_profile]}, :taggings).ransack(title_cont_any: key_words).result(distinct: true)
 
         #ジャンル検索結果
         list_taggings = set_list_genre
@@ -71,43 +100,44 @@ class ApplicationController < ActionController::Base
     return ActsAsTaggableOn::Tagging.where(taggable_type: "List").group("tag_id").pluck(:tag_id)
   end
 
-  def set_user_genre
-    #Userのタグだけ抽出
-    return ActsAsTaggableOn::Tagging.where(taggable_type: "User").group("tag_id").pluck(:tag_id)
-  end
-
-  def gon_current_user
-    gon.current_user = current_user
-  end
-
-  #プレイリストの購入履歴があるか
-  def is_purchase?(user, list)
-    if user.nil?
-      return false
-    else
-      !user.purchases.where(list_id: list.id).empty?
-    end
-  end
-
   #アカウント情報取得
   def set_stripe_id(stripe_code)
       #Stripeからデータ取得
       stripe_data = get_stripe_data(stripe_code)
 
       #stripe_user_idを登録
-      current_user.update_attributes(stripe_acct_id: stripe_data["stripe_user_id"])
+      current_user.update_attributes!(stripe_acct_id: stripe_data["stripe_user_id"])
       #Cutomerデータ登録
       find_or_create_stripe_customer(current_user)
   end
 
-  #Account検索
+  #Account登録しているか判定
+  def is_stripe_account_id?(user)
+    begin
+      if user.stripe_acct_id.blank?
+        return false
+      else
+        Stripe::Account.retrieve(user.stripe_acct_id.to_s)
+        return true
+      end
+    rescue => e
+      return false
+    end
+  end
+
+  #Account保存
+  def save_stripe_account_id(user, stripe_customer)
+    User.where('id = ?', user.id).first.update_attributes!(stripe_cus_id: stripe_customer.id)
+  end
+
+  #Account取得
   def get_stripe_account_id(user)
     Stripe::Account.retrieve(user.stripe_acct_id.to_s)
   end
 
   #Customer保存
   def save_stripe_customer_id(user, stripe_customer)
-    User.where('id = ?', user.id).first.update_attributes(stripe_cus_id: stripe_customer.id)
+    User.where('id = ?', user.id).first.update_attributes!(stripe_cus_id: stripe_customer.id)
   end
 
   #Customer検索

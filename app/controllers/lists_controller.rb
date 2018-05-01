@@ -4,13 +4,25 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    if current_user != nil
+    #自分のプレイリスト、購入したプレイリスト以外は見れないように
+    if current_user.nil?
+      reject_page
+    else
       my_list = current_user.lists.pluck(:id)
-      @is_list = my_list.include?(params[:id].to_i)#ログインユーザーのプレイリストの購入ボタンを省くため
+      purchase_list = current_user.purchases.pluck(:list_id)
+      exclude_list = my_list.push(purchase_list)
+      exclude_list.flatten!
+      if !exclude_list.include?(params[:id].to_i)
+          reject_page
+      end
     end
+    # if current_user != nil
+    #   my_list = current_user.lists.pluck(:id)
+    #   @is_list = my_list.include?(params[:id].to_i)#ログインユーザーのプレイリストの購入ボタンを省くため
+    # end
     
-    #Customer取得
-    @customer = find_or_create_stripe_customer(current_user)
+    # #Customer取得
+    # @customer = find_or_create_stripe_customer(current_user)
   end
 
   def new

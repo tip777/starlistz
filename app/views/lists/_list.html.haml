@@ -29,20 +29,23 @@
               %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
               = list.list_favorites.count
             %span.label.label-warning 購入済み
-              
-            - if current_user != nil
-              -# プレイリストお気入り機能
-              %div{:id => "favorite_change-#{list.id}"}
-                - if current_user.favorite?(list)
-                  = render "lists/unfavorite",list: list
-                - else
-                  = render "lists/favorite",list: list
-      
+
+
+            // - if is_signin
+            //   -# プレイリストお気入り機能
+            //   %div{:id => "favorite_change-#{list.id}"}
+            //     - if current_user.favorite?(list)
+            //       = render "lists/unfavorite",list: list
+            //     - else
+            //       = render "lists/favorite",list: list
+            = render 'lists/fav_form', list: list if user_signed_in?
+            
             %p= list.description
             .tags
               - list.tag_list.each.with_index(0) do |listgenre, i|
                 %span.genretag
                   = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+              
               
         - else
           %a.modal-syncer.button-link{"data-target" => "modal-content-#{i}"} 
@@ -63,8 +66,6 @@
                   %span.genretag
                     // = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
                     = listgenre
-          
-
 
     // ここからモーダルウィンドウ
     .modal-content{:id => "modal-content-#{i}"}

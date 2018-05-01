@@ -1,13 +1,13 @@
 // Stripe決済部分
-= form_tag charges_path(list: list) do
+= form_tag charges_path do
   %article
-    - if flash[:error].present?
-      #error_explanation
-        %p= flash[:error]
     %label.amount
-      %span Amount: $5.00
+      // %span Amount: $5.00
     .datafield
-      = hidden_field :list, :id
+      = hidden_field_tag :list, list.id
+      
+    // 購入前のログイン判定用
+    %button.buy_btn.btn.btn-primary{type: "button", name: cont_no} 購入
 
   .hide_checkout
     - if customer.nil?
@@ -16,9 +16,9 @@
         "data-email" => "",
         "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
         "data-label" => "購入",
-         "data-locale" => "auto",
+        "data-locale" => "auto",
         "data-name" => "StarListz",
-         "data-panel-label" => "プレイリストを購入",
+        "data-panel-label" => "プレイリストを購入",
         :src => "https://checkout.stripe.com/checkout.js"}
     - else
       %script.stripe-button{"data-amount" => "#{list.price}",
@@ -26,28 +26,25 @@
         "data-email" => "#{customer.email}",
         "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
         "data-label" => "購入",
-         "data-locale" => "auto",
+        "data-locale" => "auto",
         "data-name" => "StarListz",
-         "data-panel-label" => "プレイリストを購入",
+        "data-panel-label" => "プレイリストを購入",
         :src => "https://checkout.stripe.com/checkout.js"}
 
-// 購入前のログイン判定用
-%button.buy_btn.btn.btn-primary{:type => "button"} 購入
+// :javascript
+//   $(document).on('turbolinks:load', function() {
+//     // checkoutの本当のボタンは非表示
+//     $('.hide_checkout').hide();
 
-:javascript
-  $(document).on('turbolinks:load', function() {
-    // checkoutの本当のボタンは非表示
-    $('.hide_checkout').hide();
-
-    // 購入ボタンクリック時判定
-    $('.buy_btn').on('click', function(e){
-      if(gon.current_user == null){
-        console.log("してない");
-        window.location.href = "/users/sign_in"; // 通常の遷移
-      }else{
-        $('.stripe-button-el').trigger('click');
-      }
-      console.log(gon.current_user);
-      e.preventDefault();
-    });
-  });
+//     // 購入ボタンクリック時判定
+//     $('.buy_btn').on('click', function(e){
+//       if(gon.current_user == null){
+//         console.log("してない");
+//         window.location.href = "/users/sign_in"; // 通常の遷移
+//       }else{
+//         $('.stripe-button-el').trigger('click');
+//       }
+//       console.log(gon.current_user);
+//       e.preventDefault();
+//     });
+//   });

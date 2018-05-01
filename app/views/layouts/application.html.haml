@@ -5,6 +5,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+
     /[if lte IE 8] <script src="assets/js/ie/html5shiv.js"></script>
     // %link{:href => "assets/css/main.css", :rel => "stylesheet"}/
     /[if lte IE 8] <link rel="stylesheet" href="assets/css/ie8.css" />
@@ -24,14 +25,16 @@
   %body{class:"#{controller.controller_name}"}
     = render :partial => "layouts/header"
 
-    
-
 
     %main.mdl-layout__content.l-wrapper
       - if notice
         %p.alert.alert-notice= notice
       - if alert
         %p.alert.alert-error= alert
+
+      - if flash[:error].present?
+        #error_explanation
+          %p.error.error-error= alert= flash[:error].html_safe
       .page-content
 
         = yield
