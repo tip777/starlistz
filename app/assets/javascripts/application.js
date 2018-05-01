@@ -13,7 +13,6 @@
 //= require jquery
 //= require bootstrap
 //= require jquery_ujs
-//= require turbolinks
 //= require select2
 //= require jquery-ui/widgets/sortable
 //= require jquery-ui/effects/effect-highlight
@@ -31,19 +30,15 @@ $(document).on('turbolinks:load', function() {
     console.log(h);
     $('body').css('padding-top',h);
 */
-$(document).on('turbolinks:load', function() {
+$(function() {
   var windowWidth = window.innerWidth;
+  var h = $('.mdl-layout__header').outerHeight();
   if (windowWidth > 768) {
-    var w = $('nav').outerWidth();
-    $('body').css('padding-left',w);
+    $('main').css('margin-top',h);
   } else {
-    var h = $('nav').outerHeight();
-    $('body').css('padding-bottom',h);
+    $('main').css('margin-bottom',h);
   }
-
-  $('.menu-button').on('click', function(){
-    $('body').toggleClass("sp-menu-open");
-  });
+});
 
   // タブの切り替え処理
   $('.tabbox:first').show();
@@ -65,13 +60,6 @@ $(document).on('turbolinks:load', function() {
   //strにhogeを含む場合の処理
   }
 
-
-
-
-  var windowWidth = window.innerWidth;
-
-
-});
 
 // $(function() {
 
@@ -150,39 +138,12 @@ $(document).on('turbolinks:load', function() {
 
 });
 
-$(window).on('scroll',function(){
-  s = $(window).scrollTop();
-  if(s < 10){
-    $('.navbar-fixed-top').removeClass('is-fixed');
-  } else {
-    $('.navbar-fixed-top').addClass('is-fixed');
-  }
-});
 
 
-$(document).on('turbolinks:load', function() {
-  var windowWidth = window.innerWidth;
-  if (windowWidth > 768) {
 
-  $('.menu-trigger').click(function(e){
-        $('+ .collapse-down-menu', this).slideToggle(300);
-      })
-   }else{
-  $('.menu-trigger').click(function(e){
 
-  var opened = $('+ .collapse-down-menu', this);
 
-    if(opened.hasClass("open")){
-  opened.removeClass("open");
-  } else{
-        $('.collapse-down-menu').removeClass("open");
-        opened.toggleClass("open");
-        return true;
-      }
-      })
-  }
 
-});
 
 $(document).on('turbolinks:load', function() {
   // checkoutの本当のボタンは非表示

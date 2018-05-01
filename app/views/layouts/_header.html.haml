@@ -1,74 +1,108 @@
-/ Header
-
-//      %button.menu-button{"data-target" => "#collapse-menu", "data-toggle" => "collapse", :type => "button"}
-//        .div
-//          %span.bun
-//          %span.burger
-//          %span.bun
-
-%header.navbar-fixed-left
-  %nav{:role => "navigation"}
-
-
-    .navbar-header
-      %img{:alt => "", :src => "../assets/Logo.png"}/
-      = link_to "Star Listz", root_path, { class: "navbar-brand" }
-    / Collect the nav links, forms, and other content for toggling
-    /#collapse-menu.collapse.in
+.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+  %header.mdl-layout__header
+    = link_to root_path, { class: "header__brandImg is__PC" } do
+      %img{:alt => "", :src => "../assets/Logo.png"}
+    .mdl-layout__header-row
+      
+      = link_to root_path, { class: "mdl-layout-title is__PC" } do
+        %span StarListz
+      / Add spacer, to align navigation to the right
+      .mdl-layout-spacer
+      / Navigation. We hide it in small screens.
+      %nav.mdl-navigation.mdl-layout--large-screen-only{:role => "navigation"}
 
 
-    %ul.nav
-      %li.collapse-down
-        = link_to root_path,{ class: "menu-trigger" } do
-          %i.fas.fa-home
-          %span.main-tit TOP
+        .header__form.is__PC
+          = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
+            = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
+            = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn', :name => nil
 
-      %li.collapse-down
-        %a.menu-trigger
-          %i.fas.fa-list-ul
-          %span.main-tit プレイリスト
-        %ul.collapse-down-menu
-          - if is_signin
-            %li
-              - if is_stripe_account_id?(current_user)
-                = link_to new_list_path do
-                  アップロード
-              -else
-                = link_to current_user do
-                  アップロード
-          %li
-            = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
 
-      %li.collapse-down
-        = link_to searches_playlist_path,{ class: "menu-trigger" } do
-          %i.fas.fa-search
-          %span.main-tit サーチ
-      %li.collapse-down
-        %a.menu-trigger
-          %i.fas.fa-cog
-          %span.main-tit セッティング
-        %ul.collapse-down-menu
 
-          - if user_signed_in?
-            %li
-              =link_to 'マイページ', current_user
-            %li
-              =link_to 'ログアウト', destroy_user_session_path, method: :delete
+        = link_to root_path,{ class: "mdl-navigation__link is__SP" } do
+          %i.material-icons home
+          %span.menu__name TOP
+
+        = link_to searches_playlist_path,{ class: "mdl-navigation__link is__SP" } do
+          %i.material-icons search
+          %span.menu__name サーチ
+
+
+
+        = link_to chart_path(genre: Constants::GENRE, sort: Constants::SORT),{ class: "mdl-navigation__link" } do
+          %i.material-icons queue_music
+          %span.menu__name プレイリスト
+        
+        - if is_signin
+          - if is_stripe_account_id?(current_user)
+            = link_to new_list_path,{ class: "mdl-navigation__link" } do
+              %i.material-icons add_circle_outline
+              %span.menu__name アップロード
           - else
+            = link_to current_user,{ class: "mdl-navigation__link" } do
+              %i.material-icons add_circle_outline
+              %span.menu__name アップロード
 
-            %li
-              =link_to 'サインアップ', new_user_registration_path
-            %li.login
-              =link_to 'ログイン', new_user_session_path
 
-          %li
-            %a{:href => "#"} Playlistzについて
+        = link_to current_user,{ class: "mdl-navigation__link" } do
+          %i.material-icons tag_faces
+          %span.menu__name アカウント
+          
+          
+          
+      //   %ul.nav
+      // %li.collapse-down
+      //   = link_to root_path,{ class: "menu-trigger" } do
+      //     %i.fas.fa-home
+      //     %span.main-tit TOP
 
-          %li
-            %a{:href => "#"} お問い合わせ
+      // %li.collapse-down
+      //   %a.menu-trigger
+      //     %i.fas.fa-list-ul
+      //     %span.main-tit プレイリスト
+      //   %ul.collapse-down-menu
+      //     - if is_signin
+      //       %li
+      //         - if is_stripe_account_id?(current_user)
+      //           = link_to new_list_path do
+      //             アップロード
+      //         -else
+      //           = link_to current_user do
+      //             アップロード
+      //     %li
+      //       = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
 
-%header.sc.subheader
-  .l-form
-    = search_form_for  @q, html: {class: 'navbar-form' }, url: searches_playlist_path, enforce_utf8: false do |f|
-      = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
-      = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn', :name => nil
+      // %li.collapse-down
+      //   = link_to searches_playlist_path,{ class: "menu-trigger" } do
+      //     %i.fas.fa-search
+      //     %span.main-tit サーチ
+      // %li.collapse-down
+      //   %a.menu-trigger
+      //     %i.fas.fa-cog
+      //     %span.main-tit セッティング
+      //   %ul.collapse-down-menu
+
+      //     - if user_signed_in?
+      //       %li
+      //         =link_to 'マイページ', current_user
+      //       %li
+      //         =link_to 'ログアウト', destroy_user_session_path, method: :delete
+      //     - else
+
+        / - if user_signed_in?
+        /   %li
+        /     =link_to 'マイページ', current_user
+        /   %li
+        /     =link_to 'ログアウト', destroy_user_session_path, method: :delete
+        / - else
+
+        /   %li
+        /     =link_to 'サインアップ', new_user_registration_path
+        /   %li.login
+        /     =link_to 'ログイン', new_user_session_path
+
+        / %li
+        /   %a{:href => "#"} Playlistzについて
+        
+        / %li
+        /   %a{:href => "#"} お問い合わせ
