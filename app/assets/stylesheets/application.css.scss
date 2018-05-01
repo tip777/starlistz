@@ -13,9 +13,11 @@
  *= require select2
  *= require select2-bootstrap
  *= require_self
+ *= require material.min.scss
+*= require font-awesome
  *= require_tree .
  
- *= require font-awesome
+
  */
   /* Bootstrap Sass*/
   @import "bootstrap-sprockets";
@@ -46,7 +48,7 @@
 	left: 0 ;
 	width: 100% ;
 	height: 120% ;
-	background-color: rgba( 0,0,0, 0.75 ) ;
+	background-color: rgba( 0,0,0, 0.5 ) ;
 }
 
 .button-link {

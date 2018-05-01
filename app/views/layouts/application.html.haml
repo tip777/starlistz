@@ -12,24 +12,29 @@
     = csrf_meta_tags
     = Gon::Base.render_data
     %link{:href => "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", :rel => "stylesheet"}/
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://icono-49d6.kxcdn.com/icono.min.css">
+    %link{:rel => "stylesheet", :href => "https://fonts.googleapis.com/icon?family=Material+Icons"}
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
+
+
+
+
   %body{class:"#{controller.controller_name}"}
     = render :partial => "layouts/header"
 
-    - if notice
-      %p.alert.alert-notice= notice
-    - if alert
-      %p.alert.alert-error= alert
+    
 
 
-    .l-wrapper
-      = yield
+    %main.mdl-layout__content.l-wrapper
+      - if notice
+        %p.alert.alert-notice= notice
+      - if alert
+        %p.alert.alert-error= alert
+      .page-content
+
+        = yield
 
     / Scripts
     // %script{:src => "assets/js/jquery.min.js"}
@@ -40,3 +45,4 @@
     // %script{:src => "assets/js/util.js"}
     /[if lte IE 8] <script src="assets/js/ie/respond.min.js"></script>
     // %script{:src => "assets/js/main.js"}
+

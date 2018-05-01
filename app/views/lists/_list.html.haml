@@ -1,81 +1,82 @@
-- lists.each_with_index do |list, i|
-  .l-cardlist
-    -if is_signin && is_signed(current_user.id, list.user.id)
-      =link_to edit_list_path(list, list: list) do
-        .cardlist-left
-          = render 'lists/is_image', list: list
-        .cardlist-right
-          %span.listtitle= list.title
-          %span.author= list.user.name
-          %span.favorite-star
-            %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
-            = list.list_favorites.count
-    
-          %p= list.description
-          .tags
-            - list.tag_list.each.with_index(0) do |listgenre, i|
-              %span.genretag
-                // = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
-                = listgenre
-    -else
-      - if is_purchase?(current_user, list)
-        .cardlist-left
-          = render 'lists/is_image', list: list
-        .cardlist-right
-          %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
-          %span.author= link_to list.user.name, user_path(list.user)
-          %span.favorite-star
-            %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
-            = list.list_favorites.count
-          %span.label.label-warning 購入済み
-            
-          - if current_user != nil
-            -# プレイリストお気入り機能
-            %div{:id => "favorite_change-#{list.id}"}
-              - if current_user.favorite?(list)
-                = render "lists/unfavorite",list: list
-              - else
-                = render "lists/favorite",list: list
-    
-          %p= list.description
-          .tags
-            - list.tag_list.each.with_index(0) do |listgenre, i|
-              %span.genretag
-                = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
-            
-      - else
-        %a.modal-syncer.button-link{"data-target" => "modal-content-#{i}"} 
-          .cardlist-left
+.outer__cardList
+  - lists.each_with_index do |list, i|
+    .l__cardList
+      -if is_signin && is_signed(current_user.id, list.user.id)
+        =link_to edit_list_path(list, list: list) do
+          .cardList__img
             = render 'lists/is_image', list: list
-          .cardlist-right
-            // %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
+          .cardList__text
             %span.listtitle= list.title
-            // %span.author= link_to list.user.name, user_path(list.user)
             %span.author= list.user.name
+            %p= list.description
+            .cardList__footer
+              %span.favoriteStar
+                %i.material-icons star_rate
+                = list.list_favorites.count
+
+              - list.tag_list.each.with_index(0) do |listgenre, i|
+                %span.genretag
+                  // = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+                  = listgenre
+      -else
+        - if is_purchase?(current_user, list)
+          .cardList__img
+            = render 'lists/is_image', list: list
+          .cardList__text
+            %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
+            %span.author= link_to list.user.name, user_path(list.user)
             %span.favorite-star
               %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
               = list.list_favorites.count
+            %span.label.label-warning 購入済み
+              
+            - if current_user != nil
+              -# プレイリストお気入り機能
+              %div{:id => "favorite_change-#{list.id}"}
+                - if current_user.favorite?(list)
+                  = render "lists/unfavorite",list: list
+                - else
+                  = render "lists/favorite",list: list
       
             %p= list.description
             .tags
               - list.tag_list.each.with_index(0) do |listgenre, i|
                 %span.genretag
-                  // = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
-                  = listgenre
+                  = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+              
+        - else
+          %a.modal-syncer.button-link{"data-target" => "modal-content-#{i}"} 
+            .cardlist-left
+              = render 'lists/is_image', list: list
+            .cardlist-right
+              // %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
+              %span.listtitle= list.title
+              // %span.author= link_to list.user.name, user_path(list.user)
+              %span.author= list.user.name
+              %span.favorite-star
+                %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+                = list.list_favorites.count
         
-    %hr/
+              %p= list.description
+              .tags
+                - list.tag_list.each.with_index(0) do |listgenre, i|
+                  %span.genretag
+                    // = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+                    = listgenre
+          
 
-  // ここからモーダルウィンドウ
-  .modal-content{:id => "modal-content-#{i}"}
-    // モーダルウィンドウのコンテンツ開始
-    %p= list.title
-    %p= link_to list.user.name, user_path(list.user)
-    %p= list.description
-    .tags
-      - list.tag_list.each.with_index(0) do |listgenre, i|
-        %span.genretag
-          = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
-    %p
-      %a#modal-close.button-link 閉じる
-    // モーダルウィンドウのコンテンツ終了
+
+    // ここからモーダルウィンドウ
+    .modal-content{:id => "modal-content-#{i}"}
+      // モーダルウィンドウのコンテンツ開始
+      %p= list.title
+      %p= link_to list.user.name, user_path(list.user)
+      %p= list.description
+      .tags
+        - list.tag_list.each.with_index(0) do |listgenre, i|
+          %span.genretag
+            = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+      %p
+        %a#modal-close.button-link 閉じる
+      // モーダルウィンドウのコンテンツ終了
 

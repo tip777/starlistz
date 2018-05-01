@@ -12,11 +12,10 @@
       = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]], selected: params[:sort]), class: "select-main js-hide-search"
 
 .sc
-  .outer-cardlist
-    
-    // - @pages.each do |list|
-    //   = render list, list: list
-    = render "lists/list", lists: @pages
+
+  // - @pages.each do |list|
+  //   = render list, list: list
+  = render "lists/list", lists: @pages
 
 = render :partial => "layouts/footer"
 

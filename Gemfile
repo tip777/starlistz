@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 #追加
-gem 'jquery-turbolinks'
+#gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'devise'
 gem 'omniauth-twitter'
