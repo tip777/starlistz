@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
       user_taggings = set_user_genre
       @search_usergenre = ActsAsTaggableOn::Tag.where(id: user_taggings).ransack(name_cont_any: key_words).result(distinct: true)
       @search_listgenre = ActsAsTaggableOn::Tag.where(id: list_taggings).ransack(name_cont_any: key_words).result(distinct: true)
-
+      
       # binding.pry
 
       @user_pages = @search_user.page(params[:user_page])

@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap
 //= require jquery_ujs
+//= require turbolinks
 //= require select2
 //= require jquery-ui/widgets/sortable
 //= require jquery-ui/effects/effect-highlight
@@ -39,17 +40,6 @@ $(function() {
     $('main').css('margin-bottom',h);
   }
 });
-
-  // タブの切り替え処理
-  $('.tabbox:first').show();
-  $('.tab li').click(function() {
-    $('.tab li').removeClass('active');
-    $(this).addClass('active');
-    $('.l-tabbox .tabbox').hide();
-    $($(this).find('a').attr('href')).fadeIn();
-    return false;
-  });
-
 
   // グロバールナビゲーション選択ページの判定
   var url = window.location.pathname;
@@ -137,13 +127,6 @@ $(document).on('turbolinks:load', function() {
   }
 
 });
-
-
-
-
-
-
-
 
 $(document).on('turbolinks:load', function() {
   // checkoutの本当のボタンは非表示

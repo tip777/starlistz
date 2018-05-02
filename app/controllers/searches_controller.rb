@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+  before_action :gon_current_user, only: [:playlist, :user, :playlist_genre, :user_genre]
   def playlist
   end
 

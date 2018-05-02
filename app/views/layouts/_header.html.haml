@@ -13,7 +13,7 @@
 
 
         .header__form.is__PC
-          = search_form_for  @q, html: {class: 'navbar-form' }, url: search_path, enforce_utf8: false do |f|
+          = search_form_for  @q, html: {class: 'navbar-form' }, url: searches_playlist_path, enforce_utf8: false do |f|
             = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
             = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn', :name => nil
 
@@ -89,20 +89,20 @@
       //         =link_to 'ログアウト', destroy_user_session_path, method: :delete
       //     - else
 
-        / - if user_signed_in?
-        /   %li
-        /     =link_to 'マイページ', current_user
-        /   %li
-        /     =link_to 'ログアウト', destroy_user_session_path, method: :delete
-        / - else
+      // - if user_signed_in?
+      //   %li
+      //     =link_to 'マイページ', current_user
+      //   %li
+      //     =link_to 'ログアウト', destroy_user_session_path, method: :delete
+      // - else
 
-        /   %li
-        /     =link_to 'サインアップ', new_user_registration_path
-        /   %li.login
-        /     =link_to 'ログイン', new_user_session_path
+      //   %li
+      //     =link_to 'サインアップ', new_user_registration_path
+      //   %li.login
+      //     =link_to 'ログイン', new_user_session_path
 
-        / %li
-        /   %a{:href => "#"} Playlistzについて
-        
-        / %li
-        /   %a{:href => "#"} お問い合わせ
+      // %li
+      //   %a{:href => "#"} Playlistzについて
+      
+      // %li
+      //   %a{:href => "#"} お問い合わせ

@@ -1,11 +1,9 @@
 = render :partial => "searches/search_header"
 .sc
     .l-tabbox
-        #tab-listgenre.tabbox
-            .listgenre.area
-                - if @search_listgenre != nil and not @search_listgenre.empty?
-                    .listgenre_area
-                        = render 'home/genre_partial/genrelist', tag: @genrelist_pages
-                -if @search_listgenre != nil
-                    #listgenre_paginator
-                        = paginate @genrelist_pages, param_name: 'genrelist_page'
+        .listgenre_area
+            - if @search_listgenre != nil and not @search_listgenre.empty?
+                = render 'home/genre_partial/genrelist', tag: @genrelist_pages
+            -if @search_listgenre != nil
+                #listgenre_paginator
+                    = paginate @genrelist_pages, param_name: 'genrelist_page'
