@@ -1,0 +1,16 @@
+= render :partial => "users/show/show_header"
+
+- if is_signin && is_signed(current_user.id, @user.id)
+  .sc
+    .l-tabbox
+      .purchase_area
+        - if @my_purchase != nil and not @my_purchase.empty?
+            = render "users/purchase", purchases: @my_purchase
+        -if @my_purchase_pages != nil
+          #my_purchase_paginator
+            = paginate @my_purchase_pages, param_name: 'my_purchase_page', :remote => true
+
+-else
+  .sc
+    %h2.ntm プレイリスト一覧
+    = render "lists/list", lists: @mylist, customer: @customer
