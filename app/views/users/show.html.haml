@@ -7,10 +7,14 @@
       //ログインしていたら編集できる
       - if is_signin
         - if is_signed(current_user.id, @user.id)
-          .l-go-edit
-            =link_to 'プロフィール編集', edit_user_registration_path, class: "go-edit"
-            = link_to "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write" do
-              = image_tag("stripe.png")
+          .l__edit
+            =link_to 'プロフィール編集', edit_user_registration_path, class: "edit__profileButton"
+            .edit__settingButton 設定
+
+
+          = link_to "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write" do
+            = image_tag("stripe.png")
+
 
       %h2.nm #{@user.name}
       = render 'follow_form', user: @user if user_signed_in?
@@ -65,4 +69,27 @@
   .sc
     %h2.ntm プレイリスト一覧
     = render "lists/list", lists: @mylist, customer: @customer
+
+
+
+
+
+.settingMenu_back
+  .l__settingMenu
+    .r__settingMenu
+      %ul.settingMenu
+        %li StarListzについて
+
+        %li プライバシー
+
+        %li 利用規約
+
+        %li よくある質問
+
+        %li サポート
+
+        %li
+          =link_to 'ログアウト', destroy_user_session_path, method: :delete
+
+        %button.edit__settingButton__close{:type => "button"} 閉じる
 

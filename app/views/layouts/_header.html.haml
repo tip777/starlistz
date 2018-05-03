@@ -1,108 +1,113 @@
-.mdl-layout.mdl-js-layout.mdl-layout--fixed-header
-  %header.mdl-layout__header
-    = link_to root_path, { class: "header__brandImg is__PC" } do
-      %img{:alt => "", :src => "../assets/Logo.png"}
-    .mdl-layout__header-row
-      
-      = link_to root_path, { class: "mdl-layout-title is__PC" } do
-        %span StarListz
-      / Add spacer, to align navigation to the right
-      .mdl-layout-spacer
-      / Navigation. We hide it in small screens.
-      %nav.mdl-navigation.mdl-layout--large-screen-only{:role => "navigation"}
 
+%header.l__header
+  = link_to root_path, { class: "header__brandImg is__PC" } do
+    %img{:alt => "", :src => "../assets/Logo.png"}
 
-        .header__form.is__PC
-          = search_form_for  @q, html: {class: 'navbar-form' }, url: searches_playlist_path, enforce_utf8: false do |f|
-            = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
-            = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn', :name => nil
+  .row__header
+    = link_to root_path, { class: "header__title is__PC" } do
+      %span StarListz
+
+    %nav.header__navigation{:role => "navigation"}
+      .l__header__form.navigation__link.is__PC
+        = search_form_for  @q, html: {class: 'header__form' }, url: searches_playlist_path, enforce_utf8: false do |f|
+          = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
+          = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn', :name => nil
 
 
 
-        = link_to root_path,{ class: "mdl-navigation__link is__SP" } do
-          %i.material-icons home
-          %span.menu__name TOP
+      = link_to root_path,{ class: "navigation__link is__SP" } do
+        %i.material-icons home
+        %span.link__title ホーム
 
-        = link_to searches_playlist_path,{ class: "mdl-navigation__link is__SP" } do
-          %i.material-icons search
-          %span.menu__name サーチ
+      = link_to searches_playlist_path,{ class: "navigation__link is__SP" } do
+        %i.material-icons search
+        %span.link__title 検索
 
+      - if is_stripe_account_id?(current_user)
+        = link_to new_list_path,{ class: "navigation__link" } do
+          %i.material-icons add_circle_outline
+          %span.link__title アップロード
+      - else
+        = link_to current_user,{ class: "navigation__link" } do
+          %i.material-icons add_circle_outline
+          %span.link__title アップロード
 
+      = link_to chart_path(genre: Constants::GENRE, sort: Constants::SORT),{ class: "navigation__link" } do
+        %i.material-icons queue_music
+        %span.link__title プレイリスト
 
-        = link_to chart_path(genre: Constants::GENRE, sort: Constants::SORT),{ class: "mdl-navigation__link" } do
-          %i.material-icons queue_music
-          %span.menu__name プレイリスト
+      / = link_to root_path,{ class: "navigation__link is__SP" } do
+      /   %i.material-icons star
+      /   %span.link__title お気に入り
+
+      - if user_signed_in?
+        = link_to current_user,{ class: "navigation__link" } do
+          %i.material-icons perm_identity
+          %span.link__title アカウント
+      - else
+        = link_to new_user_session_path,{ class: "navigation__link login" } do
+          %i.material-icons input
+          %span.link__title ログイン
+
+      = link_to root_path,{ class: "navigation__link beginner is__PC" } do
+        %span.link__title 初めての方
+
         
-        - if is_signin
-          - if is_stripe_account_id?(current_user)
-            = link_to new_list_path,{ class: "mdl-navigation__link" } do
-              %i.material-icons add_circle_outline
-              %span.menu__name アップロード
-          - else
-            = link_to current_user,{ class: "mdl-navigation__link" } do
-              %i.material-icons add_circle_outline
-              %span.menu__name アップロード
+        
+        
+    //   %ul.nav
+    // %li.collapse-down
+    //   = link_to root_path,{ class: "menu-trigger" } do
+    //     %i.fas.fa-home
+    //     %span.main-tit TOP
 
+    // %li.collapse-down
+    //   %a.menu-trigger
+    //     %i.fas.fa-list-ul
+    //     %span.main-tit プレイリスト
+    //   %ul.collapse-down-menu
+    //     - if is_signin
+    //       %li
+    //         - if is_stripe_account_id?(current_user)
+    //           = link_to new_list_path do
+    //             アップロード
+    //         -else
+    //           = link_to current_user do
+    //             アップロード
+    //     %li
+    //       = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
 
-        = link_to current_user,{ class: "mdl-navigation__link" } do
-          %i.material-icons tag_faces
-          %span.menu__name アカウント
-          
-          
-          
-      //   %ul.nav
-      // %li.collapse-down
-      //   = link_to root_path,{ class: "menu-trigger" } do
-      //     %i.fas.fa-home
-      //     %span.main-tit TOP
+    // %li.collapse-down
+    //   = link_to searches_playlist_path,{ class: "menu-trigger" } do
+    //     %i.fas.fa-search
+    //     %span.main-tit サーチ
+    // %li.collapse-down
+    //   %a.menu-trigger
+    //     %i.fas.fa-cog
+    //     %span.main-tit セッティング
+    //   %ul.collapse-down-menu
 
-      // %li.collapse-down
-      //   %a.menu-trigger
-      //     %i.fas.fa-list-ul
-      //     %span.main-tit プレイリスト
-      //   %ul.collapse-down-menu
-      //     - if is_signin
-      //       %li
-      //         - if is_stripe_account_id?(current_user)
-      //           = link_to new_list_path do
-      //             アップロード
-      //         -else
-      //           = link_to current_user do
-      //             アップロード
-      //     %li
-      //       = link_to 'チャート', chart_path(genre: Constants::GENRE, sort: Constants::SORT)
+    //     - if user_signed_in?
+    //       %li
+    //         =link_to 'マイページ', current_user
+    //       %li
+    //         =link_to 'ログアウト', destroy_user_session_path, method: :delete
+    //     - else
 
-      // %li.collapse-down
-      //   = link_to searches_playlist_path,{ class: "menu-trigger" } do
-      //     %i.fas.fa-search
-      //     %span.main-tit サーチ
-      // %li.collapse-down
-      //   %a.menu-trigger
-      //     %i.fas.fa-cog
-      //     %span.main-tit セッティング
-      //   %ul.collapse-down-menu
+    // - if user_signed_in?
+    //   %li
+    //     =link_to 'マイページ', current_user
+    //   %li
+    //     =link_to 'ログアウト', destroy_user_session_path, method: :delete
+    // - else
 
-      //     - if user_signed_in?
-      //       %li
-      //         =link_to 'マイページ', current_user
-      //       %li
-      //         =link_to 'ログアウト', destroy_user_session_path, method: :delete
-      //     - else
+    //   %li
+    //     =link_to 'サインアップ', new_user_registration_path
+    //   %li.login
+    //     =link_to 'ログイン', new_user_session_path
 
-      // - if user_signed_in?
-      //   %li
-      //     =link_to 'マイページ', current_user
-      //   %li
-      //     =link_to 'ログアウト', destroy_user_session_path, method: :delete
-      // - else
-
-      //   %li
-      //     =link_to 'サインアップ', new_user_registration_path
-      //   %li.login
-      //     =link_to 'ログイン', new_user_session_path
-
-      // %li
-      //   %a{:href => "#"} Playlistzについて
-      
-      // %li
-      //   %a{:href => "#"} お問い合わせ
+    // %li
+    //   %a{:href => "#"} Playlistzについて
+    
+    // %li
+    //   %a{:href => "#"} お問い合わせ
