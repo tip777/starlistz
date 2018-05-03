@@ -25,21 +25,10 @@
 //   ...your javascript goes here...
 // });
 
-/*
-$(document).on('turbolinks:load', function() {
-  var h = $('nav').outerHeight();
-    console.log(h);
-    $('body').css('padding-top',h);
-*/
-$(function() {
-  var windowWidth = window.innerWidth;
-  var h = $('.mdl-layout__header').outerHeight();
-  if (windowWidth > 768) {
-    $('main').css('margin-top',h);
-  } else {
-    $('main').css('margin-bottom',h);
-  }
-});
+
+
+
+
 
   // グロバールナビゲーション選択ページの判定
   var url = window.location.pathname;
