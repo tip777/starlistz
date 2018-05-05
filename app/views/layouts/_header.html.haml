@@ -22,15 +22,16 @@
       = link_to searches_playlist_path,{ class: "navigation__link is__SP" } do
         %i.material-icons search
         %span.link__title 検索
-
-      - if is_stripe_account_id?(current_user)
-        = link_to new_list_path,{ class: "navigation__link" } do
-          %i.material-icons add_circle_outline
-          %span.link__title アップロード
-      - else
-        = link_to users_playlist_path(current_user),{ class: "navigation__link" } do
-          %i.material-icons add_circle_outline
-          %span.link__title アップロード
+      
+      - if user_signed_in?
+        - if is_stripe_account_id?(current_user)
+          = link_to new_list_path,{ class: "navigation__link" } do
+            %i.material-icons add_circle_outline
+            %span.link__title アップロード
+        - else
+          = link_to users_playlist_path(current_user),{ class: "navigation__link" } do
+            %i.material-icons add_circle_outline
+            %span.link__title アップロード
 
       = link_to chart_path(genre: Constants::GENRE, sort: Constants::SORT),{ class: "navigation__link" } do
         %i.material-icons queue_music
