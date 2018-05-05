@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'searches/playlist'
-
-  get 'searches/user'
-
-  get 'searches/playlist_genre'
-
-  get 'searches/user_genre'
-
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks", :registrations => "users/registrations", :confirmations => "users/confirmations"}
 
   root 'home#index'
@@ -23,7 +15,7 @@ Rails.application.routes.draw do
   #   end
   #  end
 
-  resources :users, :only => [:show]
+  # resources :users, :only => [:show]
 
   resources :lists do #プレイリスト用
     put :sort
@@ -33,7 +25,20 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]#フォロー、アンフォロー
   resources :favorites, only: [:create, :destroy]#プレイリストお気に入り、解除
   
-  resources :searches, only: [:playlist, :user, :playlistgenre, :usergenre]#プレイリストお気に入り、解除
+  #ユーザー確認画面
+  # get '/users/playlist/:id', param: :id , to: 'users#playlist' #プレイリストの一覧
+  # get '/users/purchasehistory/:id', param: :id , to: 'users#purchasehistory' #購入履歴
+  
+  get "users/:id/playlist" => "users#playlist", as: 'users_playlist'
+  get "users/:id/purchasehistory" => "users#purchasehistory", as: 'users_purchasehistory'
+  
+  #検索
+  get 'searches/playlist'
+  get 'searches/user'
+  get 'searches/playlist_genre'
+  get 'searches/user_genre'
+  
+  
 
   get 'chart' , to: 'home#chart' #チャート
   # get 'search/playlist' , to: 'home#playlist' #検索　プレイリスト

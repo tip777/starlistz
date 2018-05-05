@@ -1,0 +1,10 @@
+= render "users/show_header"
+
+.sc
+  .l-tabbox
+    .purchase_area
+      - if @my_purchase != nil and not @my_purchase.empty?
+        = render "users/purchase", purchases: @my_purchase
+      -if @my_purchase_pages != nil
+        #my_purchase_paginator
+          = paginate @my_purchase_pages, param_name: 'my_purchase_page'

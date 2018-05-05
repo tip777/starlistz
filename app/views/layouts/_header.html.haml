@@ -28,7 +28,7 @@
           %i.material-icons add_circle_outline
           %span.link__title アップロード
       - else
-        = link_to current_user,{ class: "navigation__link" } do
+        = link_to users_playlist_path(current_user),{ class: "navigation__link" } do
           %i.material-icons add_circle_outline
           %span.link__title アップロード
 
@@ -41,7 +41,7 @@
       /   %span.link__title お気に入り
 
       - if user_signed_in?
-        = link_to current_user,{ class: "navigation__link" } do
+        = link_to users_playlist_path(current_user),{ class: "navigation__link" } do
           %i.material-icons perm_identity
           %span.link__title アカウント
       - else

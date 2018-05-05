@@ -30,13 +30,13 @@
           = "#{@mylist.count}"
           %span プレイリスト
 
-- if is_signin && is_signed(current_user.id, @user.id)
   .sc
     %ul.tab
-      %li.active 
-        = link_to "プレイリスト一覧", "#tab-mylist"
-      %li 
-        = link_to "購入履歴", "#tab-purchase"
+      %li{ class: controller.action_name == 'playlist' ? 'active' : '' }
+        = link_to "プレイリスト一覧", users_playlist_path(@user)
+      - if is_signin && is_signed(current_user.id, @user.id)
+        %li{ class: controller.action_name == 'purchasehistory' ? 'active' : '' }
+          = link_to "購入履歴", users_purchasehistory_path(current_user)
         
         
         

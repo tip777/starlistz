@@ -4,7 +4,7 @@
       %span.label.label-default= purchase.created_at.strftime('%Y/%m/%d')
     .cardlist-right
       %span.listtitle= link_to purchase.list.title, list_path(purchase.list) , class: "testclass"
-      %span.author= link_to purchase.list.user.name, user_path(purchase.list.user)
+      %span.author= link_to purchase.list.user.name, users_playlist_path(purchase.list.user)
       %span.favorite-star
         %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
         = purchase.list.list_favorites.count

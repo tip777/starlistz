@@ -1,9 +1,0 @@
-- if @mylist != nil and not @mylist.empty?
-    $(".mylist_area").html("#{j(render 'lists/list', lists: @mylist_pages, customer: @customer)}");
-    $("#mylist_paginator").html("#{escape_javascript(paginate @list_pages, param_name: 'mylist_page', :remote => true)}");
-- if @my_purchase != nil and not @my_purchase.empty?
-    $(".purchase_area").html("#{j(render "home/purchase", purchases: @my_purchase)}");
-    $("#my_purchase_paginator").html("#{escape_javascript(paginate @my_purchase_pages, param_name: 'my_purchase_page', :remote => true)}");
-
-// ページトップに戻る
-window.scrollTo(0,50)
