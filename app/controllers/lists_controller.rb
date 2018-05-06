@@ -60,6 +60,15 @@ class ListsController < ApplicationController
     @list.destroy
     redirect_to current_user
   end
+  
+  def saleslist
+    if current_user != nil && current_user.id == @user.id
+      @list = List.find(params[:list_id])
+      @sales_amount = Purchase.where(list_id: @list.id).count * @list.price
+    else
+      reject_page
+    end
+  end
 
   private
   def set_lists

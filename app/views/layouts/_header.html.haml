@@ -49,9 +49,10 @@
         = link_to new_user_session_path,{ class: "navigation__link login" } do
           %i.material-icons input
           %span.link__title ログイン
-
-      = link_to root_path,{ class: "navigation__link beginner is__PC" } do
-        %span.link__title 初めての方
+      // ログインしてなかったら
+      - if !user_signed_in?
+        = link_to root_path,{ class: "navigation__link beginner is__PC" } do
+          %span.link__title 初めての方
 
         
         

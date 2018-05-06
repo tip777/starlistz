@@ -36,6 +36,16 @@ class UsersController < ApplicationController
       reject_page
     end
   end
+  
+  def salesmanage
+    @user = User.find(params[:id])
+    @saleslist = @user.lists
+    if current_user != nil && current_user.id == @user.id
+      @saleslist_pages = @saleslist.page(params[:saleslist_page])
+    else
+      reject_page
+    end
+  end
 
   def following
     @user = User.find(params[:id])

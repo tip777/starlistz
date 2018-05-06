@@ -4,21 +4,18 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'home/show'
   # get 'name_check', to: 'home#name_check'#ユーザー名重複チェック用
-
-
-#フォロー、フォロワー　ページ用
-  # resources :users, :only => [:show] do
-  #   member do
-  #      get 'following'
-  #      get 'follower'
-  #     # get 'favoriting'
-  #   end
-  #  end
-
-  # resources :users, :only => [:show]
+  get 'chart' , to: 'home#chart' #チャート
+  get 'about' , to: 'home#about' #プレイリストについて
+  get 'privacy' , to: 'home#privacy' #個人情報保護
+  get 'term' , to: 'home#term' #利用規約
+  #著作権どうするか
+  # get 'copyright' , to: 'home#copyright'
+  get 'faq' , to: 'home#faq' #よくある質問
+  get 'support' , to: 'home#support' #お問い合わせ
 
   resources :lists do #プレイリスト用
     put :sort
+    get :saleslist#売り上げ管理用
   end
   resources :charges #決済用
 
@@ -26,11 +23,9 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy]#プレイリストお気に入り、解除
   
   #ユーザー確認画面
-  # get '/users/playlist/:id', param: :id , to: 'users#playlist' #プレイリストの一覧
-  # get '/users/purchasehistory/:id', param: :id , to: 'users#purchasehistory' #購入履歴
-  
   get "users/:id/playlist" => "users#playlist", as: 'users_playlist'
-  get "users/:id/purchasehistory" => "users#purchasehistory", as: 'users_purchasehistory'
+  get "users/:id/purchasehistory" => "users#purchasehistory", as: 'users_purchasehistory' #購入履歴ページ
+  get "users/:id/salesmanage" => "users#salesmanage", as: 'users_salesmanage' #売り上げ管理ページ
   
   #検索
   get 'searches/playlist'
@@ -40,17 +35,6 @@ Rails.application.routes.draw do
   
   
 
-  get 'chart' , to: 'home#chart' #チャート
-  # get 'search/playlist' , to: 'home#playlist' #検索　プレイリスト
-  # get 'search/user' , to: 'home#user' #検索　ユーザー
-  # get 'search/list_genre' , to: 'home#listgenre' #検索　プレイリストジャンル
-  # get 'search/user_genre' , to: 'home#usergenre' #検索　ユーザージャンル
-  get 'about' , to: 'home#about' #プレイリストについて
-  get 'privacy' , to: 'home#privacy' #個人情報保護
-  get 'term' , to: 'home#term' #利用規約
-  #著作権どうするか
-  # get 'copyright' , to: 'home#copyright'
-  get 'faq' , to: 'home#faq' #よくある質問
-  get 'support' , to: 'home#support' #お問い合わせ
+  
 
 end

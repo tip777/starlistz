@@ -1,0 +1,24 @@
+.sc
+  .l-profile
+    .ll-profile
+      %h2 売り上げ管理
+
+      %h3 プレイリスト一覧
+      - if @saleslist != nil and not @saleslist.empty?
+        .outer__cardList
+          - @saleslist.each_with_index do |list, i|
+            =link_to list_saleslist_path(list) do 
+              .cardlist-left
+                = render 'lists/is_image', list: list
+              .cardlist-right
+                %span.listtitle= list.title
+                %span.author= list.user.name
+                %span.favorite-star
+                  %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+                  = list.list_favorites.count
+
+      -if @saleslist_pages != nil
+        #saleslist_paginator
+          = paginate @saleslist_pages, param_name: 'saleslist_pages'
+        
+
