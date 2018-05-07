@@ -83,10 +83,6 @@ $(document).on('turbolinks:load', function() {
     });
   });
 
-  // $(".js-multiple").select2({
-  //     width:      200
-  // });
-
   //select2 setting
   $(".js-search").select2({
       width: 200
@@ -114,7 +110,15 @@ $(document).on('turbolinks:load', function() {
       url = url + '&genre=' + genre
       window.location.search = url
   }
-
+  
+  // プレイリスト売上画面の年月設定
+  $('.select-date').on('change', param_date_change);
+  //パラメーターに年月を渡す
+  function param_date_change () {
+      var url = 'date=' + $('.select-date').val();
+      window.location.search = url
+  }
+  
 });
 
 $(document).on('turbolinks:load', function() {

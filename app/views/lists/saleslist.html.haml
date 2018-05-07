@@ -1,6 +1,11 @@
-.sc
-  .l-profile
-    .ll-profile
-      %h2 売り上げ金額 #{@sales_amount}
+// .sc
+//   .l-profile
+//     .ll-profile
+//       %h2 売り上げ金額 #{@sales_amount}
+.sc.bg-whi
+  %h2.h-tit 売上金額
+  .l-searchchart
+    %span.searchchart-main
+      = select_tag 'page[name]', options_for_select(options_for_select(@date_list, selected: params[:date])), class: "select-main js-hide-search"
         
 

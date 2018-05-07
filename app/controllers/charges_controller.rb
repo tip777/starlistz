@@ -38,6 +38,7 @@ class ChargesController < ApplicationController
       #購入履歴
       purchase = current_user.purchases.create
       purchase.list_id = list.id
+      purchase.order_date = Time.now
       purchase.save!
         
       # TODO add more detailed error messages

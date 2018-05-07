@@ -62,9 +62,18 @@ class ListsController < ApplicationController
   end
   
   def saleslist
+    @list = List.find(params[:list_id])
+    @user = User.find(@list.user.id)
     if current_user != nil && current_user.id == @user.id
-      @list = List.find(params[:list_id])
       @sales_amount = Purchase.where(list_id: @list.id).count * @list.price
+      @date_list = Purchase.where(list_id: @list.id).group("MONTH(order_date)").pluck(:order_date) #購入履歴を月でまとめる
+      @date_list.each_with_index do |item, i|
+        @date_list[i] = @date_list[i].strftime("%Y/%m")
+      end
+      if @date_list.empty?
+        now_date = Time.now
+        @date_list.push(now_date.strftime("%Y/%m"))
+      end
     else
       reject_page
     end
