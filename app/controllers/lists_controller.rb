@@ -66,7 +66,7 @@ class ListsController < ApplicationController
     @user = User.find(@list.user.id)
     if current_user != nil && current_user.id == @user.id
       @sales_amount = Purchase.where(list_id: @list.id).count * @list.price
-      @date_list = Purchase.where(list_id: @list.id).group("MONTH(order_date)").pluck(:order_date) #購入履歴を月でまとめる
+      @date_list = Purchase.where(list_id: @list.id).group("MONTH(order_date)").order(order_date: :desc).pluck(:order_date) #購入履歴を月でまとめる
       @date_list.each_with_index do |item, i|
         @date_list[i] = @date_list[i].strftime("%Y/%m")
       end

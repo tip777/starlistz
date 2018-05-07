@@ -6,6 +6,6 @@
   %h2.h-tit 売上金額
   .l-searchchart
     %span.searchchart-main
-      = select_tag 'page[name]', options_for_select(options_for_select(@date_list, selected: params[:date])), class: "select-main js-hide-search"
+      = select_tag 'page[name]', options_for_select(options_for_select(@date_list, selected: params[:date])), class: "select-date js-hide-search"
         
 
