@@ -8,4 +8,6 @@
     %span.searchchart-main
       = select_tag 'page[name]', options_for_select(options_for_select(@date_list, selected: params[:date])), class: "select-date js-hide-search"
         
-
+  
+  
+  %h3 売り上げ金額 #{@sales_amount} 円
