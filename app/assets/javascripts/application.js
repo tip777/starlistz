@@ -111,11 +111,11 @@ $(document).on('turbolinks:load', function() {
       window.location.search = url
   }
   
-  // プレイリスト売上画面の年月設定
-  $('.select-date').on('change', param_date_change);
+  // プレイリスト売上画面の年を設定
+  $('.select-year').on('change', param_year_change);
   //パラメーターに年月を渡す
-  function param_date_change () {
-      var url = 'date=' + $('.select-date').val();
+  function param_year_change () {
+      var url = 'year=' + $('.select-year').val();
       window.location.search = url
   }
   

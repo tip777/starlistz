@@ -39,9 +39,46 @@ class UsersController < ApplicationController
   
   def salesmanage
     @user = User.find(params[:id])
-    @saleslist = @user.lists
     if current_user != nil && current_user.id == @user.id
-      @saleslist_pages = @saleslist.page(params[:saleslist_page])
+      @saleslist = @user.lists
+      # @all_amount = Purchase.where(list_id: @saleslist.pluck(:id))
+      calc_count = Purchase.where(list_id: @saleslist.pluck(:id)).group(:list_id).count 
+      @all_amount = 0
+      # 全期間の合計売上額　
+      calc_count.each_pair { |key, value| @all_amount = List.find(key).price * value + @all_amount }
+      
+      # 対象年度の毎月の売上額を計算
+      if params[:year] = Time.zone.now.strftime("%-Y") && params[:year].nil? #今年かparams[:year]が空だったら
+        date = Time.zone.now
+        year = date.strftime("%-Y")
+        month = date.strftime("%-m")
+        @all_month_amount = {}
+        for i in 1..month do
+          month_amount = 0
+          calc_count = Purchase.where(list_id: @saleslist.pluck(:id), order_date: Time.zone.local(year, i, 1).in_time_zone.all_month ).group(:list_id).count
+          # 一月の合計売上額　
+          calc_count.each_pair { |key, value| month_amount = List.find(key).price * value + month_amount }
+          if month_amount > 0 # 売り上げがあったら
+            @all_month_amount.store(i, month_amount)
+          end
+        end
+        
+      else
+        year = params[:year]
+        month = 12
+        @all_month_amount = {}
+        for i in 1..month do
+          month_amount = 0
+          calc_count = Purchase.where(list_id: @saleslist.pluck(:id), order_date: Time.zone.local(year, i, 1).in_time_zone.all_month ).group(:list_id).count
+          # 一月の合計売上額　
+          calc_count.each_pair { |key, value| month_amount = List.find(key).price * value + month_amount }
+          if month_amount > 0 # 売り上げがあったら
+            @all_month_amount.store(i, month_amount)
+          end
+        end
+        
+      end
+      
     else
       reject_page
     end

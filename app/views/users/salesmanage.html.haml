@@ -1,24 +1,24 @@
 .sc
   .l-profile
     .ll-profile
-      %h2 売り上げ管理
+      %h2 売上管理
 
-      %h3 プレイリスト一覧
-      - if @saleslist != nil and not @saleslist.empty?
-        .outer__cardList
-          - @saleslist.each_with_index do |list, i|
-            =link_to list_saleslist_path(list) do 
-              .cardlist-left
-                = render 'lists/is_image', list: list
-              .cardlist-right
-                %span.listtitle= list.title
-                %span.author= list.user.name
-                %span.favorite-star
-                  %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
-                  = list.list_favorites.count
-
-      -if @saleslist_pages != nil
-        #saleslist_paginator
-          = paginate @saleslist_pages, param_name: 'saleslist_pages'
+      %h3 総額 #{@all_amount} 円
+      
+      // %h3 今月の売り上げ #{@all_amount} 円
+      
+      // 年 選択のセレクトボックス
+      = select_tag 'page[name]', options_for_select(options_for_select(@date_list, selected: params[:year])), class: "select-year js-hide-search"
+      
+      %table.table.table-bordered.table-sortable
+        %tbody#lines
+          %tr
+            %th 期間
+            %th 売上額
+        %tbody#item_area
+          - @all_month_amount.each do |key, value|
+            %tr.track_item
+              %td "#{params[:year]}/#{key}"
+              %td #{value}
         
 
