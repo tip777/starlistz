@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @following = @user.following_relationships.count
     @follower = @user.follower_relationships.count
-    @mylist = @user.lists
+    @mylist = @user.lists.includes(:taggings)
     
     if current_user != nil
       #Customer取得
@@ -41,19 +41,23 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if current_user != nil && current_user.id == @user.id
       @saleslist = @user.lists
-      # @all_amount = Purchase.where(list_id: @saleslist.pluck(:id))
+      # 売上がある年
+      @year_list = Purchase.where(list_id: @saleslist.pluck(:id)).group("Year(order_date)").order('order_date DESC').pluck(:order_date)
+      @year_list.each_with_index {|val, i| @year_list[i] =  val.strftime("%-Y")} #日付の形式変更
+      
+      # 全期間の合計売上額
       calc_count = Purchase.where(list_id: @saleslist.pluck(:id)).group(:list_id).count 
       @all_amount = 0
-      # 全期間の合計売上額　
       calc_count.each_pair { |key, value| @all_amount = List.find(key).price * value + @all_amount }
       
       # 対象年度の毎月の売上額を計算
-      if params[:year] = Time.zone.now.strftime("%-Y") && params[:year].nil? #今年かparams[:year]が空だったら
+      if params[:ydate] == Time.zone.now.strftime("%-Y") || params[:ydate].nil? #今年かparams[:year]が空だったら
         date = Time.zone.now
         year = date.strftime("%-Y")
         month = date.strftime("%-m")
         @all_month_amount = {}
-        for i in 1..month do
+        for i in 1..month.to_i do
+          i = month.to_i - (i - 1) #for 逆から回す
           month_amount = 0
           calc_count = Purchase.where(list_id: @saleslist.pluck(:id), order_date: Time.zone.local(year, i, 1).in_time_zone.all_month ).group(:list_id).count
           # 一月の合計売上額　
@@ -64,10 +68,12 @@ class UsersController < ApplicationController
         end
         
       else
-        year = params[:year]
+        year = params[:ydate]
         month = 12
         @all_month_amount = {}
-        for i in 1..month do
+        
+        for i in 1..month.to_i do
+          i = month.to_i - (i - 1) #for 逆から回す
           month_amount = 0
           calc_count = Purchase.where(list_id: @saleslist.pluck(:id), order_date: Time.zone.local(year, i, 1).in_time_zone.all_month ).group(:list_id).count
           # 一月の合計売上額　
