@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   resources :lists do #プレイリスト用
     put :sort
-    get :saleslist#売り上げ管理用
   end
   resources :charges #決済用
 
@@ -26,6 +25,7 @@ Rails.application.routes.draw do
   get "users/:id/playlist" => "users#playlist", as: 'users_playlist'
   get "users/:id/purchasehistory" => "users#purchasehistory", as: 'users_purchasehistory' #購入履歴ページ
   get "users/:id/salesmanage" => "users#salesmanage", as: 'users_salesmanage' #売り上げ管理ページ
+  get "users/:id/salesmonth" => "users#salesmonth", as: 'users_salesmonth' #月間売り上げ管理ページ
   
   #検索
   get 'searches/playlist'

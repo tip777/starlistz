@@ -8,7 +8,7 @@
       // %h3 今月の売り上げ #{@all_amount} 円
       
       // 年 選択のセレクトボックス
-      = select_tag 'page[name]', options_for_select(options_for_select(@year_list, selected: params[:ydate])), class: "select-year js-hide-search"
+      = select_tag 'page[name]', options_for_select(options_for_select(@year_list, selected: params[:year])), class: "select-year js-hide-search"
       
       %table.table.table-bordered.table-sortable
         %tbody#lines
@@ -18,7 +18,8 @@
         %tbody#item_area
           - @all_month_amount.each do |key, value|
             %tr.track_item
-              %td #{params[:ydate]}/#{key}
+              %td
+                = link_to "#{@year}/#{key}", users_salesmonth_path(@user, year: "#{@year}", month: "#{key}")
               %td #{value}
         
 

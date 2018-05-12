@@ -1,0 +1,22 @@
+// .sc
+//   .l-profile
+//     .ll-profile
+//       %h2 売り上げ金額 #{@sales_amount}
+.sc
+  .l-profile
+    .ll-profile
+      %h2.h-tit #{month}の売り上げ
+      
+      %h3 #{@all_month_amount} 円
+      
+      
+      %table.table.table-bordered.table-sortable
+        %tbody#lines
+          %tr
+            %th プレイリスト
+            %th 売上額
+        %tbody#item_area
+          - @sales_list.each do |key, value|
+            %tr.track_item
+              %td #{key}
+              %td #{value}円

@@ -115,7 +115,7 @@ $(document).on('turbolinks:load', function() {
   $('.select-year').on('change', param_year_change);
   //パラメーターに年月を渡す
   function param_year_change () {
-      var url = 'ydate=' + $('.select-year').val();
+      var url = 'year=' + $('.select-year').val();
       window.location.search = url
   }
   
