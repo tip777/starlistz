@@ -8,8 +8,6 @@
       = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]], selected: params[:sort]), class: "select-main js-hide-search"
 
 .sc
-  // - @pages.each do |list|
-  //   = render list, list: list
   = render "lists/list", lists: @pages, customer: @customer
 
 = render :partial => "layouts/footer"

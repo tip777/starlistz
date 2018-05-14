@@ -40,25 +40,25 @@ class ListsController < ApplicationController
   def create
     @list = current_user.lists.new(list_params)
     if @list.save
-      redirect_to current_user
+      redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を作成しました"
     else
-      render 'edit'
+      render 'edit', notice: "「#{@list.title}」の作成に失敗しました"
     end
   end
 
   def update
     @list = List.find(params[:id])
     if @list.update(list_params)
-      redirect_to current_user
+     redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を更新しました"
     else
-      render 'edit'
+      render 'edit', notice: "「#{@list.title}」の更新に失敗しました"
     end
   end
 
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-    redirect_to current_user
+    redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を削除しました"
   end
 
   private
