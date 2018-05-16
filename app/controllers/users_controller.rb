@@ -98,16 +98,18 @@ class UsersController < ApplicationController
     if current_user != nil && current_user.id == @user.id
       @sales_list = {}
       list = @user.lists
-      date = Time.zone.local(params[:year], params[:month], 1)
-      @year = date.strftime("%-Y")
-      month = date.strftime("%-m")
+      @date = Time.zone.local(params[:year], params[:month], 1)
+      year = @date.strftime("%-Y")
+      month = @date.strftime("%-m")
         
-      sales_list = Purchase.where(list_id: list.pluck(:id), order_date: Time.zone.local(@year, month, 1).in_time_zone.all_month ).group(:list_id).count
+      sales_list = Purchase.where(list_id: list.pluck(:id), order_date: Time.zone.local(year, month, 1).in_time_zone.all_month ).group(:list_id).count
       # 対象月のプレイリスト毎の売上額
+      @month_amount = 0
       sales_list.each_with_index do |(key,value),i|
         target_list = List.find(key)
-        @sales_list.store(target_list.title, target_list.price * value)
-        @all_month_amount = @all_month_amount + @sales_list[i]
+        amount = target_list.price * value
+        @sales_list.store(target_list.title, amount)
+        @month_amount = @month_amount + amount
       end
       
     else

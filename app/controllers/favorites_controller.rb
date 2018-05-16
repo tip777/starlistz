@@ -9,4 +9,5 @@ class FavoritesController < ApplicationController
         @list = List.find(params[:list_id])
         current_user.unfavorite(@list)
     end
+    
 end
