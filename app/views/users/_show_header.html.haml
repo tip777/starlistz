@@ -41,23 +41,3 @@
       - if is_signin && is_signed(current_user.id, @user.id)
         %li{ class: controller.action_name == 'purchasehistory' ? 'active' : '' }
           = link_to "購入履歴", users_purchasehistory_path(current_user)
-
-
-.settingMenu_back
-  .l__settingMenu
-    .r__settingMenu
-      %ul.settingMenu
-        %li
-          %a お問い合わせ
-        %li
-          %a お問い合わせ
-        %li
-          %a お問い合わせ
-        %li
-          %a お問い合わせ
-        %li
-          %a お問い合わせ
-
-        - if user_signed_in?
-          %li
-            =link_to 'ログアウト', destroy_user_session_path, method: :delete

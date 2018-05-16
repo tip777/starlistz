@@ -1850,15 +1850,15 @@ form.edit_user{
 
 
 
-.l__edit{
-  .edit__profileButton,.edit__settingButton{
-    display: inline-block;
-    border: 1px solid #cdcdcd;
-    padding: 5px 15px;
-    border-radius: 2px;
-    cursor: pointer;
-  }
+
+.edit__profileButton,.edit__settingButton{
+  display: inline-block;
+  border: 1px solid #cdcdcd;
+  padding: 5px 15px;
+  border-radius: 2px;
+  cursor: pointer;
 }
+
 
 .settingMenu_back {
   display: none;
