@@ -47,7 +47,6 @@ class ListsController < ApplicationController
   end
 
   def update
-    binding.pry
     @list = List.find(params[:id])
     if @list.update(list_params)
      redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を更新しました"

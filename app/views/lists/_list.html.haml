@@ -2,7 +2,7 @@
   - lists.each_with_index do |list, i|
     .l__cardList
       -if is_signin && is_signed(current_user.id, list.user.id)
-        =link_to edit_list_path(list, list: list) do
+        = link_to edit_list_path(list) do
           .cardList__img
             = render 'lists/is_image', list: list
           .cardList__text
