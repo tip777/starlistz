@@ -105,7 +105,10 @@ class User < ApplicationRecord
   acts_as_taggable
 
   #ユーザー名　validate
-  #これから
+  
+  
+  # #ジャンルvalidate (日本語、英語、英数字、アンダーバーのみ)
+  validates :tag_list, tag: true
 
 
 end

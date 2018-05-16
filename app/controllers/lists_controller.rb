@@ -40,50 +40,25 @@ class ListsController < ApplicationController
   def create
     @list = current_user.lists.new(list_params)
     if @list.save
-      redirect_to current_user
+      redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を作成しました"
     else
-      render 'edit'
+      render 'edit', notice: "「#{@list.title}」の作成に失敗しました"
     end
   end
 
   def update
     @list = List.find(params[:id])
     if @list.update(list_params)
-      redirect_to current_user
+     redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を更新しました"
     else
-      render 'edit'
+      render 'edit', notice: "「#{@list.title}」の更新に失敗しました"
     end
   end
 
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-    redirect_to current_user
-  end
-  
-  def saleslist
-    @list = List.find(params[:list_id])
-    @user = User.find(@list.user.id)
-    if current_user != nil && current_user.id == @user.id
-      if params[:date] != nil
-        # 対象月の合計額
-        @sales_amount = Purchase.where(list_id: @list.id, order_date: params[:date].in_time_zone.all_month ).count * @list.price
-      else
-        # 全期間の合計額
-        @sales_amount = Purchase.where(list_id: @list.id).count * @list.price
-      end
-      @date_list = Purchase.where(list_id: @list.id).group("MONTH(order_date)").order(order_date: :desc).pluck(:order_date) #購入履歴を月でまとめる
-      if @date_list[1].nil?
-        now_date = Time.now
-        @date_list.push(now_date.strftime("%Y/%m"))
-      else
-        @date_list.each_with_index do |item, i|
-          @date_list[i] = @date_list[i].strftime("%Y/%m")
-        end
-      end
-    else
-      reject_page
-    end
+    redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を削除しました"
   end
 
   private

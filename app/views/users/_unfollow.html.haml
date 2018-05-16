@@ -1,3 +1,7 @@
+// ajaxでボタン押した際にローカル変数が取れない場合の対処
+- if defined?(user) == nil
+  - user = @user
+
 = form_for(current_user.following_relationships.find_by(followed_id: user.id), |
   html: { method: :delete },                                                    |
   remote: true) do |f|                                                          |
