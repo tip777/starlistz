@@ -19,7 +19,7 @@
   if i == 0
     $user_list = ['user_genre1','user_genre2','user_genre3','user_genre4','user_genre5']
   else
-    $user_list.push("user_genre1-#{i+2}","user_genre2-#{i+2}","user_genre3-#{i+2}","user_genre4-#{i+2}","user_genre5-#{i+2}")
+    $user_list.push("user_genre1_#{i+2}","user_genre2_#{i+2}","user_genre3_#{i+2}","user_genre4_#{i+2}","user_genre5_#{i+2}")
   end
 end
 $user_list.each_with_index do |tag, i|

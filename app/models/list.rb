@@ -30,8 +30,10 @@ class List < ApplicationRecord
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   do_not_validate_attachment_file_type :image
 
-  #validation
-  #これから
+  ## validation
+  
+  #ジャンルvalidate (日本語、英語、英数字、アンダーバーのみ)
+  validates :tag_list, tag: true
 
   #５曲以上入っているか確認　validation作業に入ったらコメント外す
   # after_save do

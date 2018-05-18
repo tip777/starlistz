@@ -4,7 +4,7 @@ $list = ""
   if i == 0
     $list = ['playlist_genre1','playlist_genre2','playlist_genre3','playlist_genre4','playlist_genre5']
   else
-    $list.push("playlist_genre1-#{i+2}","playlist_genre2-#{i+2}","playlist_genre3-#{i+2}","playlist_genre4-#{i+2}","playlist_genre5-#{i+2}")
+    $list.push("playlist_genre1_#{i+2}","playlist_genre2_#{i+2}","playlist_genre3_#{i+2}","playlist_genre4_#{i+2}","playlist_genre5_#{i+2}")
   end
 end
 $list.push('all', 'jpop', 'hiphop', 'randb', 'dj', 'edm', 'ロックバンド', 'レゲエ', 'ジャズ', 'クラシック', 'ブルース', 'メタル', 'ボーカロイド')

@@ -107,7 +107,7 @@ class User < ApplicationRecord
   #ユーザー名　validate
   
   
-  # #ジャンルvalidate (日本語、英語、英数字、アンダーバーのみ)
+  #ジャンルvalidate (日本語、英語、英数字、アンダーバーのみ)
   validates :tag_list, tag: true
 
 
