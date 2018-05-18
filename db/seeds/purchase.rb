@@ -6,6 +6,7 @@
 #     end
 # end
 
+
 #売上管理画面用　テストデータ
 Purchase.create(user_id: "2", list_id: 2, order_date: Time.zone.local(2014, 3, 3))
 Purchase.create(user_id: "4", list_id: 2, order_date: Time.zone.local(2014, 3, 20))
