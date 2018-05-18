@@ -105,7 +105,8 @@ class User < ApplicationRecord
   acts_as_taggable
 
   #ユーザー名　validate
-  
+  validates :name, presence: true, uniqueness: true, length: { maximum: 30 } #空はダメ、一意性をもつ、30文字以内
+  # validates :name, user_name: true
   
   #ジャンルvalidate (日本語、英語、英数字、アンダーバーのみ)
   validates :tag_list, tag: true

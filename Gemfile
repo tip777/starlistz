@@ -59,6 +59,7 @@ gem 'simple_form'
 gem 'ranked-model'
 gem 'stripe'
 gem 'gon'
+gem 'rails-i18n'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

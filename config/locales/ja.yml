@@ -9,6 +9,11 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      user_profile: ユーザープロフィール
+      list: プレイリスト
+      purchase: 購入履歴
+      tag: ジャンル
+      track: トラック
     attributes:
       user:
         name: ユーザーネーム
@@ -17,6 +22,29 @@ ja:
         password_confirmation: パスワード(確認用)
         current_password: 現在のパスワード
         remember_me: 保存する
+      user_profile:
+        description: プロフィール
+        insta_url: インスタグラムURL
+        tw_url: ツイッターURL
+        avatar: プロフィール画像
+        avatar_file_name: プロフィール画像名
+        avatar_content_type: プロフィール画像形式
+        avatar_file_size: プロフィール画像サイズ
+      track:
+        artist: アーティスト
+        song: 曲
+        description: 説明
+        recommend: おすすめ
+      tag:
+        name: ジャンル名
+      list:
+        title: プレイリスト名
+        description: 説明
+        price: 金額
+        image: プレイリスト画像
+        image_file_name: プレイリスト画像名
+        image_content_type: プレイリスト画像形式
+        image_file_size: プレイリスト画像サイズ
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

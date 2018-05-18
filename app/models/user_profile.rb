@@ -18,4 +18,12 @@ class UserProfile < ApplicationRecord
   def authenticated_image_url(style)
       avatar.s3_object(style).url_for(:read, :secure => true)
   end
+  
+  #validate
+  validates :description, length: { maximum: 400 } #400文字以内
+  # validates :insta_url, format: /\A#{URI::regexp(%w(http https))}\z/
+  # validates :tw_url, format: /\A#{URI::regexp(%w(http https))}\z/
+
+
+  
 end
