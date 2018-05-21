@@ -27,13 +27,19 @@ class List < ApplicationRecord
   def s3_credentials
       {:bucket => 'starlistz-bucket', :aws_access_key_id => ENV["AWS_ACCESS_KEY_ID"], :aws_secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]}
   end
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  do_not_validate_attachment_file_type :image
+  
 
   ## validation
-  
   #ジャンルvalidate (日本語、英語、英数字、アンダーバーのみ)
   validates :tag_list, tag: true
+  
+  # validates :title, presence: true, length: { maximum: 50 } 
+  validates :description, length: { maximum: 400 } 
+  validates :price, presence: true, numericality: true, :numericality => { :greater_than_or_equal_to => 100, :less_than_or_equal_to => 5000 }
+  
+  #プレイリスト画像 validate
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  do_not_validate_attachment_file_type :image
 
   #５曲以上入っているか確認　validation作業に入ったらコメント外す
   # after_save do

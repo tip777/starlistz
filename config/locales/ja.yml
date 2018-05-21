@@ -30,7 +30,7 @@ ja:
         avatar_file_name: プロフィール画像名
         avatar_content_type: プロフィール画像形式
         avatar_file_size: プロフィール画像サイズ
-      track:
+      list/tracks:
         artist: アーティスト
         song: 曲
         description: 説明

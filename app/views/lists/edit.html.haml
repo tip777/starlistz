@@ -19,7 +19,7 @@
       = f.input :description, label: "詳細"
     .list_price{:style => "margin-bottom: 50px;"}
       // = f.input :price, label: "金額"
-      = f.input :price, label: "金額", :collection => %w[100 150 200 250]
+      = f.input :price, label: "金額", :collection => Constants::AMOUNT
   %table.table.table-bordered.table-sortable
     %tbody#lines
       %tr

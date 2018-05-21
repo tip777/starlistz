@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20171220095540) do
   create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.string   "title"
-    t.string   "description"
+    t.text     "description",        limit: 65535
     t.integer  "price"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -101,11 +101,11 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.integer  "list_id"
     t.string   "artist"
     t.string   "song"
-    t.string   "description"
-    t.boolean  "recommend",   default: false, null: false
+    t.text     "description", limit: 65535
+    t.boolean  "recommend",                 default: false, null: false
     t.integer  "row_order"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.index ["list_id"], name: "index_tracks_on_list_id", using: :btree
   end
 

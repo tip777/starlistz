@@ -24,7 +24,7 @@
           %label ジャンル
           = f.text_field :tag_list, value: f.object.tag_list.to_s
         .list_price.list
-          = f.input :price, label: "金額", :collection => %w[100 150 200 250]
+          = f.input :price, label: "金額", :collection => Constants::AMOUNT
     %table.new-playlist-table.table-sortable
       %tbody#lines
         %tr
