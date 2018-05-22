@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_validation :downcase_username
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -105,11 +107,17 @@ class User < ApplicationRecord
   acts_as_taggable
 
   #ユーザー名　validate
-  validates :name, presence: true, uniqueness: true, length: { maximum: 30 } #空はダメ、一意性をもつ、30文字以内
-  # validates :name, user_name: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 30 }, user_name: true #空はダメ、一意性をもつ、30文字以内
   
   #ジャンルvalidate (日本語、英語、英数字、アンダーバーのみ)
   validates :tag_list, tag: true
+  
+  private
+  
+  #ユーザー名を小文字にする
+  def downcase_username
+    self.name = self.name.downcase
+  end
 
 
 end

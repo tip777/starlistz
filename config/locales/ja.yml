@@ -16,7 +16,7 @@ ja:
       track: トラック
     attributes:
       user:
-        name: ユーザーネーム
+        name: ユーザー名
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認用)

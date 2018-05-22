@@ -33,9 +33,12 @@ class List < ApplicationRecord
   #ジャンルvalidate (日本語、英語、英数字、アンダーバーのみ)
   validates :tag_list, tag: true
   
-  validates :title, presence: true, length: { maximum: 50 }, list: true
+  validates :title, presence: true, length: { maximum: 50 }, list_title: true
   validates :description, length: { maximum: 400 } 
-  validates :price, presence: true, numericality: true, :numericality => { :greater_than_or_equal_to => 100, :less_than_or_equal_to => 5000 }
+  # validates :price, presence: true, numericality: true, :numericality => { :greater_than_or_equal_to => 100, :less_than_or_equal_to => 5000 }
+  validates :price, presence: true, numericality: true
+  validates_numericality_of :price,  greater_than_or_equal_to: 100
+  validates_numericality_of :price,  less_than_or_equal_to: 5000
   
   #プレイリスト画像 validate
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/

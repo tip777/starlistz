@@ -1,17 +1,24 @@
 class UserNameValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    半角英数字、アンダーバー、コンマのみ
-    unless record[options[:column_name]] =~ /\A^[!a-zA-Z0-9_.]+$\Z/
-      record.errors.add(:base, "半角英数字、アンダーバー（_）、コンマ（.）以外は使用できません")
+    #半角英数字、アンダーバー、コンマのみ
+    if value !~ /\A^[!a-zA-Z0-9_]+$\Z/
+      err_msg(record)
+    elsif isonly_under_spage(value)
+      err_msg(record)
     end
-    #動かない
-    if record[options[:column_name]] =~ /\A^[.]+$|^\Z^[.]+$/
-      record.errors.add(:base, "最初と最後の文字にコンマ（.）は使用できません")
+    
+    if value !~ /^(?=.*?[a-zA-Z])/
+      record.errors.add(:base, "ユーザー名は半角英字を必ず1文字以上入力してください")
     end
+    
+    if Constants::ERR_WORD.include?(value)
+      record.errors.add(:base, "このユーザー名は使用できません")
+    end
+    
   end
   
   def err_msg(record)
-    record.errors.add(:base, 'このユーザー名は使用できません')
+    record.errors.add(:base, "ユーザー名に半角英数字、アンダーバー（ _ ）以外は使用できません")
   end
   
   # アンダーバー、全角&半角スペースだけか判定

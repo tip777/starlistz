@@ -13,7 +13,7 @@
 //= require jquery
 //= require bootstrap
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks
 //= require select2
 //= require jquery-ui/widgets/sortable
 //= require jquery-ui/effects/effect-highlight
@@ -72,7 +72,8 @@
 
 //var result = test() //ちゃんと返り値が入ってる;
 
-$(document).on('turbolinks:load', function() {
+// $(document).on('turbolinks:load', function() {
+$(document).ready(function(){
   $('.js-tags-input').each(function() {
     $(this).select2({
       tags: true,
@@ -121,7 +122,8 @@ $(document).on('turbolinks:load', function() {
   
 });
 
-$(document).on('turbolinks:load', function() {
+// $(document).on('turbolinks:load', function() {
+$(document).ready(function(){
   // checkoutの本当のボタンは非表示
   $('.hide_checkout').hide();
 
@@ -141,7 +143,8 @@ $(document).on('turbolinks:load', function() {
 });
 
 // モーダル表示　複数対応
-$(document).on('turbolinks:load', function() {
+// $(document).on('turbolinks:load', function() {
+$(document).ready(function(){
 
   //グローバル変数
   var nowModalSyncer = null ;   //現在開かれているモーダルコンテンツ
