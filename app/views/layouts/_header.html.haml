@@ -157,4 +157,6 @@
 
         - if user_signed_in?
           %li
+            =link_to "退会テスト", registration_path(current_user), data: { confirm: "退会してもよろしいですか?" }, method: :delete
+          %li
             =link_to 'ログアウト', destroy_user_session_path, method: :delete

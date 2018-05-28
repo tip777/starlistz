@@ -23,6 +23,7 @@
           //   = f.select :tag_list, options_for_select(@tag,{ :selected => @list.tag_list }), {}, {class: 'js-tags-input tags-input', multiple: true}
           %label ジャンル
           = f.text_field :tag_list, value: f.object.tag_list.to_s
+          = f.hint '例　#Genre1 #Genre2'
         .list_price.list
           = f.input :price, label: "金額", :collection => Constants::AMOUNT
     %table.new-playlist-table.table-sortable

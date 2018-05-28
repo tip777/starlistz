@@ -5,8 +5,8 @@ module Constants
     GENRE = "All genre"
     
     arr = []
-    arr.push(50)
-    arr.push(5500)
+    # arr.push(50)
+    # arr.push(5500)
     for i in 1..50 do
         if i <= 5
             arr.push(i * 100)
