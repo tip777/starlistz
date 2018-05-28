@@ -26,7 +26,8 @@
             %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
             %span.author= link_to list.user.name, users_playlist_path(list.user)
             %span.favorite-star
-              %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+              // %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+              %i.material-icons star_rate
               = list.list_favorites.count
             %span.label.label-warning 購入済み
             // プレイリストお気に入り機能
@@ -49,7 +50,8 @@
               // %span.author= link_to list.user.name, user_path(list.user)
               %span.author= list.user.name
               %span.favorite-star
-                %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+                // %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+                %i.material-icons star_rate
                 = list.list_favorites.count
         
               %p= list.description

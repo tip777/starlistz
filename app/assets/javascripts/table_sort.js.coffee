@@ -1,4 +1,5 @@
-$(document).on 'turbolinks:load', ->
+# $(document).on 'turbolinks:load', ->
+$(document).ready ->
   fixHelper = (e, ui) ->
     ui.children().each ->
       $(this).width $(this).width()

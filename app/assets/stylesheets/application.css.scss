@@ -14,7 +14,6 @@
  *= require select2-bootstrap
  *= require_self
  *= require material.min.scss
-*= require font-awesome
  *= require_tree .
  
 
@@ -25,7 +24,8 @@
   @import "bootstrap";
   @import "select2";
   @import "select2-bootstrap";
-  
+
+
   
   
 // モーダル用

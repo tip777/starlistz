@@ -38,8 +38,6 @@ gem 'jquery-ui-rails'
 gem 'devise'
 gem 'omniauth-twitter'
 gem 'bootstrap-sass'
-gem 'font-awesome-sass'
-gem "font-awesome-rails"
 gem 'haml-rails'
 gem 'erb2haml'
 gem 'ransack'
