@@ -42,7 +42,7 @@ class ListsController < ApplicationController
     if @list.save
       redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を作成しました"
     else
-      render 'edit', notice: "「#{@list.title}」の作成に失敗しました"
+      render 'edit', alert: "「#{@list.title}」の作成に失敗しました"
     end
   end
 
@@ -51,7 +51,7 @@ class ListsController < ApplicationController
     if @list.update(list_params)
      redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を更新しました"
     else
-      render 'edit', notice: "「#{@list.title}」の更新に失敗しました"
+      render 'edit', alert: "「#{@list.title}」の更新に失敗しました"
     end
   end
 

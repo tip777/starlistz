@@ -13,6 +13,8 @@ default: &default
   username: local_user
   password: ""
   host: localhost
+  variables:
+    sql_mode: TRADITIONAL
 
 development:
   <<: *default
@@ -33,3 +35,5 @@ production:
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
   host:     <%= ENV['DB_HOSTNAME'] %>
+  variables:
+    sql_mode: TRADITIONAL
