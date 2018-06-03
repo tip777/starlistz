@@ -52,11 +52,7 @@ class ApplicationController < ActionController::Base
 
   #ログアウト後のリダイレクト先
   def after_sign_out_path_for(resource)
-    if (session[:previous_url] == root_path)
-      super
-    else
-      session[:previous_url] || root_path
-    end
+    root_path
   end
 
   def search_header

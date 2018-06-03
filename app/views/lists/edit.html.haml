@@ -31,7 +31,7 @@
     = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
       = render 'track_fields', f: track
   .field_track_add
-    = link_to_add_association '曲 追加', f, :tracks,:"data-association-insertion-node" => "tbody#item_area",:"data-association-insertion-method" => "append"
+    = link_to_add_association '曲を追加する', f, :tracks,:"data-association-insertion-node" => "tbody#item_area",:"data-association-insertion-method" => "append"
   .actions
     = f.submit
-    = link_to "delete", @list, method: :delete, data: { confirm: "#{@list.title}を削除してもよろしいですか?" }
+    = link_to "削除する", @list, method: :delete, data: { confirm: "#{@list.title}を削除してもよろしいですか?" }

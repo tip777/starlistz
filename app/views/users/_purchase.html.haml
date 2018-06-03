@@ -1,12 +1,11 @@
 - purchases.each_with_index do |purchase, i|
-  .l-cardlist
-    .cardlist-left
-      %span.label.label-default= purchase.created_at.strftime('%Y/%m/%d')
-    .cardlist-right
-      %span.listtitle= link_to purchase.list.title, list_path(purchase.list) , class: "testclass"
-      %span.author= link_to purchase.list.user.name, users_playlist_path(purchase.list.user)
-      %span.favorite-star
-        %i.fa.fa-star.fa-favorite{"aria-hidden" => "true"}
+  .list__purchase
+    .purchase__time
+      %span= purchase.created_at.strftime('%Y/%m/%d')
+    .purchase__content
+      %span.list__title= link_to purchase.list.title, list_path(purchase.list) , class: "testclass"
+      %span.list__star
+        %i.material-icons star
         = purchase.list.list_favorites.count
-            
+      %span.list__author= link_to purchase.list.user.name, users_playlist_path(purchase.list.user)
 

@@ -71,8 +71,7 @@ $pattern-background-size: 25em;
 
 
 body {
-  background: _palette(bg);
-  background-color: #fafafa;
+  background-color: #f7f9f9;
   color: #555;
   font-family: -apple-system, BlinkMacSystemFont,'Lato', 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif, "Noto Sans JP";
   font-size: 14px;
@@ -86,7 +85,9 @@ body {
     }
   }
 }
-
+.small{
+  font-size: 12px;
+}
 
 a {
   @include vendor('transition', ('color 0.2s ease-in-out', 'border-color 0.2s ease-in-out', 'background-color 0.2s ease-in-out'));
@@ -912,8 +913,9 @@ input[type="reset"],
     color: #666;
     .input {
       label{
-        font-weight: 700;
+        font-weight: 400;
         color: #ccc;
+            font-size: 12px;
       }
       input{
         margin: auto;
@@ -929,15 +931,14 @@ input[type="reset"],
       }
     }
     .form-actions .btn{
-      background-color: #7ac943;
-      border: 1px solid #7ac943;
-      color:#fff;
-      padding:10px;
-      width: 70%;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-      font-size:16px;
-      font-weight: 700;
-      border-radius: 2em;
+      background-color: #000;
+    border: 1px solid #000;
+    color: rgba(255, 255, 255, .8);
+    padding: 10px 50px;
+    min-width: auto;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 12px;
       &:hover{
         background-color: #7ac943;
         border: 1px solid #7ac943;
@@ -953,7 +954,7 @@ p.or{
   padding: 10px 0;
   position: relative;
   text-align: center;
-  margin: 60px 0 0;
+  margin: 30px 0 0;
   &:before,
   &:after{
     content: '';
@@ -1387,11 +1388,12 @@ p.or{
 
 
 
-.tab{
+.l__profile__tab{
   height: 43px;
   position: relative;
   font-size:0;
-  margin:60px 0 60px;
+  margin:15px auto;
+  max-width: 580px;
   &:before{
     position: absolute;
     height: 3px;
@@ -1453,6 +1455,8 @@ p.or{
   border-left: 5px solid #b6eb34;
   padding: 15px 5px 15px 15px;
 }
+
+//alert
 p.alert{
   padding: 30px 5px;
   text-align: center;
@@ -1460,8 +1464,9 @@ p.alert{
   border: none;
   border-radius: 0;
   font-weight: 700;
-  background-color: #666;
+  background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
+  font-size: 12px;
 }
 
 
@@ -1546,18 +1551,22 @@ p.alert{
   font-size: 12px;
 }
 .field_track_add{
-  padding: 8px;
-  background-color: #b6eb34;
-  font-weight: 700;
-  color: #fff;
   a{
-    display: block;
-    width:100%;
-    height:100%;
+    display: inline-block;
+    border: 1px solid #808080;
+    padding: 5px 15px;
+    margin: 0 0 0 15px;
   }
 }
 .actions{
   margin-top:60px;
+  text-align: center;
+  a{
+    padding: 5px;
+    border: 1px solid #444;
+    display: inline-block;
+    margin: auto;
+  }
 }
 
 
@@ -1920,3 +1929,68 @@ form.edit_user{
 .edit__settingButton__close:hover {
   background-color: #dd7979;
 }
+
+
+
+.pagination{
+display: block;
+    text-align: center;
+    color: #666;
+    .page{
+      display: inline-block;
+    padding: 0 5px;
+    }
+}
+
+
+
+
+
+
+
+
+.l__new__registrations,
+.l__new__sessions{
+  max-width: 360px;
+    background: #fff;
+    margin: 60px auto;
+    padding: 20px;
+        border: 1px solid rgba(0,0,0,0.1);
+}
+
+.l__purchase{
+  max-width: 580px;
+    margin: auto;
+      background: #fff;
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.list__purchase{
+  margin: 0 0 30px 0;
+}
+.purchase__time{
+      color: #ccc;
+}
+.purchase__content{
+    margin: 10px 0 0 30px;
+      .list__title{
+        font-size: 1.2em;
+        vertical-align: middle;
+      }
+      .list__star{
+        display: inline-block;
+        padding: 0 0 0 10px;
+        i{
+          vertical-align: middle;
+          font-size: 16px;
+              color: #e8e54c;
+        }
+      }
+
+      .list__author{
+        display: block;
+      }
+}
+
+
+

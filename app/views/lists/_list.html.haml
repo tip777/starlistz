@@ -2,6 +2,7 @@
   - lists.each_with_index do |list, i|
     .l__cardList
       -if is_signin && is_signed(current_user.id, list.user.id)
+        //自分のプレイリスト
         = link_to edit_list_path(list) do
           .cardList__img
             = render 'lists/is_image', list: list
@@ -19,7 +20,8 @@
                   // = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
                   = listgenre
       -else
-        - if is_purchase?(current_user, list)
+        - if is_purchase?(current_user, list) 
+          //購入済みリスト
           .cardList__img
             = render 'lists/is_image', list: list
           .cardList__text
@@ -30,7 +32,7 @@
               %i.material-icons star_rate
               = list.list_favorites.count
             %span.label.label-warning 購入済み
-            // プレイリストお気に入り機能
+            //プレイリストお気に入り機能
             = render 'lists/fav_form', list: list if user_signed_in?
             
             %p= list.description
@@ -38,9 +40,9 @@
               - list.tag_list.each.with_index(0) do |listgenre, i|
                 %span.genretag
                   = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
-              
-        - else
         
+        - else
+          //まだ購入していないプレイリスト
           %a.modal-syncer.button-link{"data-target" => "modal-content-#{i}"} 
             .cardlist-left
               = render 'lists/is_image', list: list

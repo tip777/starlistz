@@ -1,21 +1,22 @@
-.container-fluid.sc.bg-whi
-  - if resource.errors.any?
-    #error_explanation.alert.alert-danger
-      %ul
-        - resource.errors.full_messages.each do |message|
-          %li= message
-  .imws.am.first
-    %h2.text-center.ntm 新規登録
-    .inform
-      = simple_form_for(resource, as: resource_name, url: user_registration_path) do |f|
-        .form-group
-          = f.input :name, required: true, autofocus: true
-        .form-group
-          = f.input :email, required: true
-        .form-group
-          = f.input :password, required: true, hint: ("#{@minimum_password_length} 文字以上" if @minimum_password_length)
-        .form-group
-          = f.input :password_confirmation, required: true
-        .form-actions
-          = f.button :submit, "登録する"
-      = render "devise/shared/links"
+
+- if resource.errors.any?
+  #error_explanation.alert.alert-danger
+    %ul
+      - resource.errors.full_messages.each do |message|
+        %li= message
+
+.l__new__registrations
+  %h2.text-center 新規登録 
+  .inform
+    = simple_form_for(resource, as: resource_name, url: user_registration_path) do |f|
+      .form-group
+        = f.input :name, required: true, autofocus: true
+      .form-group
+        = f.input :email, required: true
+      .form-group
+        = f.input :password, required: true, hint: ("#{@minimum_password_length} 文字以上" if @minimum_password_length)
+      .form-group
+        = f.input :password_confirmation, required: true
+      .form-actions
+        = f.button :submit, "登録する"
+    = render "devise/shared/links"
