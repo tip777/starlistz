@@ -15,9 +15,10 @@
       上司のゴマすり、二次会カラオケ、ナンパにお仕事中。
       %br/
       みんなの好きな音楽で、ちょっとおいしい明日に。
-
-    %footer
-      %a.button{:href => "#main"} 無料登録する
+    
+    - if !user_signed_in?
+      %footer
+        = link_to "無料登録する", new_user_registration_path,{ class: "button" }
 
 
 %section.genre
