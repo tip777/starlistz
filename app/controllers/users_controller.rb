@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         is_account = is_stripe_account_id?(current_user)
         if is_account != true
           flash.now[:alert] = "Stripe連携が完了していません。<br>
-                            「Stripe接続」からStripe連携を完了しなければプレイリストを作成できません。".html_safe
+                            「設定 / Stripe接続」からStripe連携を完了しなければプレイリストを作成できません。".html_safe
         end
       end
     end

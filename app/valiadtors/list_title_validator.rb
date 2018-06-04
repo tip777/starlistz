@@ -5,8 +5,11 @@ class ListTitleValidator < ActiveModel::EachValidator
       record.errors.add(:base, "半角英字等を必ず1文字以上入力してください")
     end
     
-    if value.gsub(/[\s|　]+/, '').start_with?(".") || value.gsub(/[\s|　]+/, '').end_with?(".")
-      record.errors.add(:base, "最初と最後にピリオド（.）は使用できません")
+    if value != nil
+      # binding.pry
+      if value.gsub(/[\s|　]+/, '').start_with?(".") || value.gsub(/[\s|　]+/, '').end_with?(".")
+        record.errors.add(:base, "最初と最後にピリオド（.）は使用できません")
+      end
     end
     
     if Constants::ERR_WORD.include?(value)
