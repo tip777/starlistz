@@ -9,7 +9,7 @@
           .cardList__text
             %span.listtitle= list.title
             %span.author= list.user.name
-            %p= list.description
+            %p= trun_str(list.description)
             .cardList__footer
               %span.favoriteStar
                 %i.material-icons star_rate
@@ -35,7 +35,7 @@
             //プレイリストお気に入り機能
             = render 'lists/fav_form', list: list if user_signed_in?
             
-            %p= list.description
+            %p= trun_str(list.description)
             .tags
               - list.tag_list.each.with_index(0) do |listgenre, i|
                 %span.genretag
@@ -56,7 +56,7 @@
                 %i.material-icons star_rate
                 = list.list_favorites.count
         
-              %p= list.description
+              %p= trun_str(list.description)
               .tags
                 - list.tag_list.each.with_index(0) do |listgenre, i|
                   %span.genretag

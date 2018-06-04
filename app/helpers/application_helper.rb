@@ -10,4 +10,9 @@ module ApplicationHelper
             return  true 
         end
     end
+    
+    # 40文字以上は表示しない
+    def trun_str(str)
+        return str.truncate(40)
+    end
 end
