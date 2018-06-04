@@ -33,7 +33,7 @@ h = 0
 4.times do |i|
   5.times do |n|
     h = h + 1
-    List.create(id: h,user_id: i+1, title: "プレイリスト #{h}", description: "プレイリストの説明 #{h}", price: "#{n}00")
+    List.create(id: h,user_id: i+1, title: "プレイリスト #{h}", description: "プレイリストの説明 #{h}プレイリストの説明プレイリストの説明プレイリストの説明プレイリストの説明プレイリストの説明プレイリストの説明プレイリストの説明プレイリストの説明プレイリストの説明プレイリストの説明プレイリストの説明プレイリストの説明", price: (n+1) * 100)
   end
 end
 
