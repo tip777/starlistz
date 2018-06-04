@@ -12,6 +12,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation?confirmation_token=abcdef
   #メール認証したらそのままログイン
   def show
+    binding.pry
     super do |resource|
       sign_in(resource)
     end

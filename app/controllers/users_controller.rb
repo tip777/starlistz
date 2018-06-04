@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @following = @user.following_relationships.count
     @follower = @user.follower_relationships.count
-    @mylist = @user.lists.includes(:taggings)
+    @mylist = @user.lists
     
     if current_user != nil
       #Customer取得
