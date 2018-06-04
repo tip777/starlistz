@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contact/index'
+
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks", :registrations => "users/registrations", :confirmations => "users/confirmations"}
 
   root 'home#index'
@@ -11,7 +13,11 @@ Rails.application.routes.draw do
   #著作権どうするか
   # get 'copyright' , to: 'home#copyright'
   get 'faq' , to: 'home#faq' #よくある質問
-  get 'support' , to: 'home#support' #お問い合わせ
+  
+  #お問い合わせ
+  get 'contact' => 'contact#index'
+  post 'contact/confirm' => 'contact#confirm'
+  post 'contact/thanks' => 'contact#thanks'
 
   resources :lists do #プレイリスト用
     put :sort

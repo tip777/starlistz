@@ -1,0 +1,17 @@
+= form_for @contact, :url => contact_thanks_path  do |f|
+  - if @contact.errors.any?
+    %strong 入力内容にエラーがあります
+    %ul
+      - @contact.errors.each do |attr, msg|
+        %li= msg
+  %table
+    %tr
+      %th 名前（必須）
+      %td= f.text_field :name
+    %tr
+      %th メールアドレス（必須）
+      %td= f.text_field :email
+    %tr
+      %th お問い合わせ内容
+      %td= f.text_area :message
+  = f.submit '確認'
