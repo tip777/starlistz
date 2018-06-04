@@ -20,7 +20,7 @@ $(document).ready(function(){
     touch_start_y = event.originalEvent.changedTouches[0].screenY;
   });
 
-  $('.edit__settingButton').on('click', function() {
+  $('.js__subMemu').on('click', function() {
     $window.on('touchmove.noscroll', function(event) {
       var overlay = $overlay[0],
           current_y = event.originalEvent.changedTouches[0].screenY,

@@ -1,13 +1,13 @@
 // Stripe決済部分
 = form_tag charges_path do
-  %article
+  .l__btn__purchase
     %label.amount
       // %span Amount: $5.00
     .datafield
       = hidden_field_tag :list, list.id
       
     // 購入前のログイン判定用
-    %button.buy_btn.btn.btn-primary{type: "button", name: cont_no} 購入
+    %button.btn__purchase{type: "button", name: cont_no} 購入する
 
   .hide_checkout
     - if customer.nil?

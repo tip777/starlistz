@@ -9,7 +9,7 @@
         - if is_signed(current_user.id, @user.id)
           .l__edit
             =link_to 'プロフィール編集', edit_user_registration_path, class: "edit__profileButton"
-            %span.edit__settingButton 設定
+            %span.edit__settingButton.js__subMemu 設定
 
 
       %h2.nm #{@user.name}
