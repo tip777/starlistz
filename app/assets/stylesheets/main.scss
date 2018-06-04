@@ -1952,45 +1952,49 @@ display: block;
 .l__new__registrations,
 .l__new__sessions{
   max-width: 360px;
-    background: #fff;
-    margin: 60px auto;
-    padding: 20px;
-        border: 1px solid rgba(0,0,0,0.1);
+  background: #fff;
+  margin: 60px auto;
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 .l__purchase{
   max-width: 580px;
-    margin: auto;
-      background: #fff;
-    padding: 20px;
-    border: 1px solid rgba(0,0,0,0.1);
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.1);
 }
 .list__purchase{
   margin: 0 0 30px 0;
 }
 .purchase__time{
-      color: #ccc;
+  color: #ccc;
 }
 .purchase__content{
-    margin: 10px 0 0 30px;
-      .list__title{
-        font-size: 1.2em;
-        vertical-align: middle;
-      }
-      .list__star{
-        display: inline-block;
-        padding: 0 0 0 10px;
-        i{
-          vertical-align: middle;
-          font-size: 16px;
-              color: #e8e54c;
-        }
-      }
+  margin: 10px 0 0 30px;
+  .list__title{
+    font-size: 1.2em;
+    vertical-align: middle;
+  }
+  .list__star{
+    display: inline-block;
+    padding: 0 0 0 10px;
+    i{
+      vertical-align: middle;
+      font-size: 16px;
+      color: #e8e54c;
+    }
+  }
 
-      .list__author{
-        display: block;
-      }
+  .list__author{
+    display: block;
+  }
 }
 
+.l__salesmanage{
+  max-width: 580px;
+    margin: auto;
+}
 
 
