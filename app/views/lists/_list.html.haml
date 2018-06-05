@@ -7,12 +7,12 @@
           .cardList__img
             = render 'lists/is_image', list: list
           .cardList__text
-            %span.listtitle= list.title
-            %span.author= list.user.name
+            %span.listtitle= trun_str(list.title, 18)
+            %span.author= trun_str(list.user.name, 20)
             %span.favoriteStar
               %i.material-icons star_rate
               = list.list_favorites.count
-            %p= trun_str(list.description)
+            %p= trun_str(list.description, 40)
             .cardList__footer
               - list.tag_list.each.with_index(0) do |listgenre, i|
                 %span.genretag
@@ -25,8 +25,8 @@
           .cardList__img
             = render 'lists/is_image', list: list
           .cardList__text
-            %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
-            %span.author= link_to list.user.name, users_playlist_path(list.user)
+            %span.listtitle= link_to trun_str(list.title, 18), list_path(list) , class: "testclass"
+            %span.author= link_to trun_str(list.user.name, 20), users_playlist_path(list.user)
             //プレイリストお気に入り機能
             = render 'lists/fav_form', list: list if user_signed_in?
             // %span.favoriteStar
@@ -34,7 +34,7 @@
             //   = list.list_favorites.count
             %span.label.label-warning 購入済み
             
-            %p= trun_str(list.description)
+            %p= trun_str(list.description, 40)
             .tags
               - list.tag_list.each.with_index(0) do |listgenre, i|
                 %span.genretag
@@ -47,14 +47,12 @@
             .cardList__img
               = render 'lists/is_image', list: list
             .cardList__text
-              // %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
-              %span.listtitle= list.title
-              // %span.author= link_to list.user.name, user_path(list.user)
-              %span.author= list.user.name
+              %span.listtitle= trun_str(list.title, 18)
+              %span.author= trun_str(list.user.name, 20)
               %span.favoriteStar
                 %i.material-icons star_rate
                 = list.list_favorites.count
-              %p= trun_str(list.description)
+              %p= trun_str(list.description, 40)
               .tags
                 - list.tag_list.each.with_index(0) do |listgenre, i|
                   %span.genretag
@@ -71,8 +69,8 @@
       .cardList__img
         = render 'lists/is_image', list: list
       .cardList__text
-        %span.listtitle= list.title
-        %span.author= link_to list.user.name, users_playlist_path(list.user)
+        %span.listtitle= trun_str(list.title, 18)
+        %span.author= link_to trun_str(list.user.name, 20), users_playlist_path(list.user)
         %p= list.description
         .tags
           - list.tag_list.each.with_index(0) do |listgenre, i|

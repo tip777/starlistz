@@ -6,6 +6,11 @@ class TagValidator < ActiveModel::EachValidator
         elsif isonly_under_spage(val)
           err_msg(record)
         end
+        
+        #99文字以上だったら
+        if val.length > 99
+          record.errors.add(:base, 'ジャンルは99文字以内です')
+        end
     end
   end
   

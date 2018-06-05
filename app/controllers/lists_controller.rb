@@ -40,7 +40,7 @@ class ListsController < ApplicationController
   def create
     @list = current_user.lists.new(list_params)
     if @list.save
-      redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を作成しました"
+      redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を作成しました"
     else
       render 'edit', alert: "「#{@list.title}」の作成に失敗しました"
     end
@@ -49,7 +49,7 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     if @list.update(list_params)
-     redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を更新しました"
+     redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を更新しました"
     else
       render 'edit', alert: "「#{@list.title}」の更新に失敗しました"
     end
@@ -58,7 +58,7 @@ class ListsController < ApplicationController
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-    redirect_to users_playlist_path(current_user), notice: "「#{@list.title}」を削除しました"
+    redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を削除しました"
   end
 
   private

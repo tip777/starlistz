@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     return ActsAsTaggableOn::Tagging.where(taggable_type: "User").group("tag_id").pluck(:tag_id)
   end
   
+  # 〇文字以上は...で表示する
+  def trun_str(str, strLen)
+      return str.truncate(strLen)
+  end
+  
   #プレイリストの購入履歴があるか
   def is_purchase?(user, list)
     if user.nil?
