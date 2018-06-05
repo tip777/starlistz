@@ -27,12 +27,12 @@
           .cardList__text
             %span.listtitle= link_to list.title, list_path(list) , class: "testclass"
             %span.author= link_to list.user.name, users_playlist_path(list.user)
-            %span.favoriteStar
-              %i.material-icons star_rate
-              = list.list_favorites.count
-            %span.label.label-warning 購入済み
             //プレイリストお気に入り機能
             = render 'lists/fav_form', list: list if user_signed_in?
+            // %span.favoriteStar
+            //   %i.material-icons star_rate
+            //   = list.list_favorites.count
+            %span.label.label-warning 購入済み
             
             %p= trun_str(list.description)
             .tags

@@ -1,5 +1,5 @@
 -# プレイリストお気入り機能
-%div{:id => "favorite_change-#{list.id}"}
+%div{id: "favorite_change-#{list.id}", class: "favchange"}
   - if current_user.favorite?(list)
     = render "lists/unfavorite",list: list
   - else

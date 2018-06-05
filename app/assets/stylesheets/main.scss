@@ -1038,6 +1038,10 @@ p.or{
 .cardList__footer{
   padding:20px 0 0 0 ;
 }
+.favchange{
+  display: inline-block;
+  padding: 0 10px 0 0;
+}
 .favoriteStar{
     display: inline-block;
     padding: 0 10px 0 0 ;
@@ -1046,6 +1050,17 @@ p.or{
     vertical-align: middle;
     font-size: 20px;
     color: #e8e54c;
+    vertical-align: bottom;
+  }
+}
+.UnFavoriteStar{
+    display: inline-block;
+    padding: 0 10px 0 0 ;
+  i{
+    width: 20px;
+    vertical-align: middle;
+    font-size: 20px;
+    color: #8e8e86;
     vertical-align: bottom;
   }
 }

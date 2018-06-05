@@ -7,7 +7,7 @@
       = hidden_field_tag :list, list.id
       
     // 購入前のログイン判定用
-    %button.btn__purchase{type: "button", name: cont_no} 購入する
+    %button.btn__purchase.buy_btn{type: "button", name: cont_no} 購入する
 
   .hide_checkout
     - if customer.nil?
