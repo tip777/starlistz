@@ -16,8 +16,14 @@
             .cardList__footer
               - list.tag_list.each.with_index(0) do |listgenre, i|
                 %span.genretag
-                  // = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
                   = listgenre
+                // - if i > 4
+                //   %span.genretag　...
+                //   - break
+                // - else
+                //   %span.genretag
+                //     = listgenre
+                
             %span.listprice ¥#{list.price}
       -else
         - if is_purchase?(current_user, list) 
@@ -56,7 +62,6 @@
               .tags
                 - list.tag_list.each.with_index(0) do |listgenre, i|
                   %span.genretag
-                    // = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
                     = listgenre
               %span.listprice ¥#{list.price}
 

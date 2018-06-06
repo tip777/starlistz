@@ -51,4 +51,18 @@ class List < ApplicationRecord
   #     raise ActiveRecord::Rollback
   #   end
   # end
+  
+  #ジャンルは30個まで
+  before_save do
+    if self.tag_list.count > 30
+      # self.errors.add(:base, "ジャンルは30個までしか登録できません")
+      # raise ActiveRecord::Rollback
+      extra_tags = self.tag_list.count - 30
+      self.tag_list.slice!(30, self.tag_list.count - 1) 
+      # for num in 1..extra_tags do
+      #   binding.pry
+      #   self.tag_list.delete_at(num + 29)  
+      # end
+    end
+  end
 end
