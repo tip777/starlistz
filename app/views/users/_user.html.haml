@@ -1,12 +1,20 @@
 .container-fluid.l-container
     - users.each do |user|
-        =link_to user_path(user), {class: "l-userprofile" } do
+        =link_to users_playlist_path(user), {class: "l-userprofile" } do
             .img= image_tag user.user_profile.avatar.url(:thumb)
 
             .l-text
-                %h2.name #{user.name}
+                %h2.name #{trun_str(user.name, 23)}
                 = render 'users/follow_form', user: user if user_signed_in?
 
-                .discrition= user.user_profile.description
+                .discrition= trun_str(user.user_profile.description, 40)
 
-                = render 'layouts/tag_list', tag_list: user.tag_list
+                // = render 'layouts/tag_list', tag_list: user.tag_list
+                - user.tag_list.each.with_index(0) do |usergenre, i|
+                    - if i > 4
+                        %span.genretag
+                            ･･･
+                        - break
+                    - else
+                        %span.genretag
+                            = usergenre

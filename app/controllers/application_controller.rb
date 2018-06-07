@@ -73,8 +73,10 @@ class ApplicationController < ActionController::Base
       #ジャンル検索結果
       list_taggings = set_list_genre
       user_taggings = set_user_genre
-      @search_usergenre = ActsAsTaggableOn::Tag.where(id: user_taggings).ransack(name_cont_any: key_words).result(distinct: true)
-      @search_listgenre = ActsAsTaggableOn::Tag.where(id: list_taggings).ransack(name_cont_any: key_words).result(distinct: true)
+      @search_usergenre = ActsAsTaggableOn::Tag.where(id: user_taggings).ransack(name_cont_any: key_words).result(distinct: true).order("taggings_count DESC")
+      @search_listgenre = ActsAsTaggableOn::Tag.where(id: list_taggings).ransack(name_cont_any: key_words).result(distinct: true).order("taggings_count DESC")
+
+      # binding.pry
 
       @user_pages = @search_user.page(params[:user_page])
       @list_pages = @search_list.page(params[:list_page])
