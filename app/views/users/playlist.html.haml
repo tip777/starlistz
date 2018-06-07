@@ -6,6 +6,9 @@
       .mylist_area
         - if @mylist != nil and not @mylist.empty?
           = render "lists/list", lists: @mylist_pages, customer: @customer
+        -else
+          .no_playlist
+            プレイリストはありません
         -if @mylist_pages != nil
           #mylist_paginator
             = paginate @mylist_pages, param_name: 'mylist_page'

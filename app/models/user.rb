@@ -118,6 +118,23 @@ class User < ApplicationRecord
   def downcase_username
     self.name = self.name.downcase
   end
+  
+  #ジャンルは30個まで
+  before_save do
+    if self.tag_list.count > 30
+      extra_tags = self.tag_list.count - 30
+      self.tag_list.slice!(30, self.tag_list.count - 1) 
+    end
+  end
+  
+  #ジャンルは99文字まで
+  before_save do
+    self.tag_list.each_with_index do |val, i|
+      if  self.tag_list[i].length > 99
+        self.tag_list[i] = self.tag_list[i].slice(0, 98)
+      end
+    end
+  end
 
 
 end

@@ -4,6 +4,9 @@
 .l__purchase
   - if @my_purchase != nil and not @my_purchase.empty?
     = render "users/purchase", purchases: @my_purchase_pages
+  -else
+    .no_purchase
+      購入履歴はありません
 -if @my_purchase_pages != nil
   #my_purchase_paginator
     = paginate @my_purchase_pages, param_name: 'my_purchase_page'
