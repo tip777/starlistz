@@ -29,7 +29,12 @@ end
 
 user_itiran = User.all
 user_itiran.each_with_index do |tag, i|
-  target = ActsAsTaggableOn::Tagging.new(tag_id: i+1, taggable_type: "User", taggable_id: i+1, context: "tags")
+  # target = ActsAsTaggableOn::Tagging.new(tag_id: i+1, taggable_type: "User", taggable_id: i+1, context: "tags")
+  # target.save
+
+  random = Random.new
+  n = random.rand(1..50)
+  n2 = random.rand(1..50)
+  target = ActsAsTaggableOn::Tagging.new(tag_id: n2, taggable_type: "User", taggable_id: n, context: "tags")
   target.save
 end
-
