@@ -3,7 +3,10 @@
     .l-tabbox
         .usergenre_area
             - if @search_usergenre != nil and not @search_usergenre.empty?
-                = render 'home/genre_partial/genrelist', tag: @genreuser_pages
+                // = render 'home/genre_partial/genrelist', tag: @genreuser_pages
+                - @genreuser_pages.each.with_index(0) do |listgenre, i|
+                    %span.genretag
+                        = listgenre
             -if @search_usergenre != nil
                 #usergenre_paginator
                     = paginate @genreuser_pages, param_name: 'genreuser_page'
