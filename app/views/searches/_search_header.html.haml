@@ -11,7 +11,7 @@
             // %i.glyphicon.glyphicon-search
   
     .sc
-        %ul.tab
+        %ul.l__search__tab
             %li{ class: controller.action_name == 'playlist' ? 'active' : '' }
                 = link_to "プレイリスト", :controller => "searches", :action => "playlist", q: params[:q]
             %li{ class: controller.action_name == 'user' ? 'active' : '' }

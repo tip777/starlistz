@@ -26,18 +26,25 @@
   @import "select2-bootstrap";
 
 
-  
-  
+
+
+.r__modalContent{
+  display: block;
+  overflow: scroll;
+
+}
+
 // モーダル用
 .modal-content {
-  width: 70% ;
-  margin: 0 ;
-  padding: 10px 20px ;
-  border: 2px solid #aaa ;
-  background: #fff ;
-  position: fixed ;
-  display: none ;
-  z-index: 2 ;
+width: 70%;
+    padding: 10px 20px;
+    background: #fff;
+    position: fixed;
+    display: none;
+    z-index: 2000;
+    max-height: 80%;
+    overflow: scroll;
+
 }
 @media only screen and (max-width: 767px) {
 .modal-content{
@@ -57,10 +64,10 @@
 }
 
 .button-link {
-    border: 1px solid #808080;
-    display: inline-block;
+display: inline-block;
     padding: 3px 15px;
     font-size: 12px;
+    color: #5ba9ff;
 }
  
 .button-link:hover {

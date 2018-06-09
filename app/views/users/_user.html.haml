@@ -9,12 +9,4 @@
 
                 .discrition= trun_str(user.user_profile.description, 40)
 
-                // = render 'layouts/tag_list', tag_list: user.tag_list
-                - user.tag_list.each.with_index(0) do |usergenre, i|
-                    - if i > 4
-                        %span.genretag
-                            ･･･
-                        - break
-                    - else
-                        %span.genretag
-                            = usergenre
+               

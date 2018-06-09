@@ -1,4 +1,4 @@
 = link_to favorites_path(list_id: list.id), method: :post, remote: true do
-    %span.UnFavoriteStar
+    %span.favoriteStar.UnFavoriteStar
         %i.material-icons.fav star_border
         = list.list_favorites.count

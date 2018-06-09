@@ -212,6 +212,8 @@ $(document).ready(function(){
 
   }
 
+
+  
   //リサイズされたら、センタリングをする関数[centeringModalSyncer()]を実行する
   $( window ).resize( centeringModalSyncer ) ;
 
