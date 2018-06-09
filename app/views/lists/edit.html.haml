@@ -21,15 +21,16 @@
       // = f.input :price, label: "金額"
       = f.input :price, label: "金額", :collection => Constants::AMOUNT
   %table.table.table-bordered.table-sortable
-    %tbody#lines
+    %thead{:id => "lines"}
       %tr
         %th アーティスト
         %th 曲名
         %th 説明
         %th スター
-    = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
-      = render 'track_fields', f: track
-    %tbody#item_area
+    %tbody{:id => "item_area"}
+      = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
+        = render 'track_fields', f: track
+    // %tbody#item_area
   .field_track_add
     = link_to_add_association '曲を追加する', f, :tracks,:"data-association-insertion-node" => "tbody#item_area",:"data-association-insertion-method" => "append"
   .actions
