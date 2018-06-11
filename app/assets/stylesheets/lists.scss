@@ -8,29 +8,26 @@
     display: none;
     vertical-align: middle;
     
-    & + label:after {
-    content: "\f005";
-    padding: 0 10px;
-    display: inline-block;
-    vertical-align: middle ;
-    cursor: pointer;
-    display: inline-block;
-    font-family:FontAwesome;
-    font-size:22px;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #ddd;
+    & + label:before{
+        font-family:Material Icons;
+        content:"\e83a";
+        padding: 0 10px;
+        vertical-align: middle ;
+        cursor: pointer;
+        font-size:22px;
+        color: #666666;
     }
      
-    &:checked + label:after {
-    color:#b6eb34;
+    &:checked + label:before {
+        color:#e3e176;
+        font-family:Material Icons;
+        content:"\e838";
     }
 }
 .list_tracks_recommend {
-color:#ccc;
-font-weight:700;
-label{
-font-size: 12px;
-}
+    color: #666666;
+    font-weight:700;
+    label{
+        font-size: 12px;
+    }
 }
