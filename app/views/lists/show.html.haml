@@ -30,15 +30,15 @@
     %tbody#lines
       %tr
         %th
+        %th
         %th アーティスト
         %th 曲名
         %th 説明
         // %th 一押し
     - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
       %tr.track
+        %td.track_no
         %td
-          // = check_box 'track', 'recommend', {:checked => track.recommend, :disabled  => true, id: "custom-checkbox#{i}", class: "custom-check-box"}
-          // %label{for: "custom-checkbox#{i}"}
           - if track.recommend == true
             %span.favoriteStar
               %i.material-icons star_rate

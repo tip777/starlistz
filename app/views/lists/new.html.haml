@@ -26,13 +26,13 @@
           = f.hint '例　#Genre1 #Genre2'
         .list_price.list
           = f.input :price, label: "金額", :collection => Constants::AMOUNT
-    %table.new-playlist-table.table-sortable
+    %table.table.table-bordered.table-sortable
       %tbody#lines
         %tr
+          %th
           %th アーティスト
           %th 曲名
           %th 説明
-          %th お気に入り
         = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
           = render 'track_fields', f: track
     .field_track_add
