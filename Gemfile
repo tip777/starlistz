@@ -51,7 +51,6 @@ gem 'select2-rails'
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'nokogiri', '~> 1.6'
 # gem 'rename'
-gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem "cocoon"
 gem 'simple_form'
 gem 'ranked-model'
@@ -67,6 +66,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
   gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
 end
 
 group :development do

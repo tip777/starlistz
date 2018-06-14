@@ -8,14 +8,17 @@
   .l-playlist
     .ll-playlist
       = image_tag @list.image.url(:thumb)
-
+    
     .rr-playlist
-      %h3 プレイリスト名
-      .span.listtitle= @list.title
-      
       - if is_signin
         - if !is_signed(current_user.id, @list.user.id)
           = render 'lists/fav_form', list: @list 
+          
+      %h3 ユーザー
+      %span.author= link_to @list.user.name, users_playlist_path(@list.user)
+      
+      %h3 プレイリスト名
+      .span.listtitle= @list.title
 
       %h3 詳細
       .span= @list.description

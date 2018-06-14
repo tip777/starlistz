@@ -76,6 +76,8 @@
 $(document).ready(function(){
   $('.js-tags-input').each(function() {
     $(this).select2({
+      language: {"noResults": function(){ return "";}},
+      escapeMarkup: function (markup) { return markup; },
       tags: true,
       tokenSeparators: [','],
       theme: 'bootstrap',
@@ -86,9 +88,13 @@ $(document).ready(function(){
 
   //select2 setting
   $(".js-search").select2({
+      language: {"noResults": function(){ return "";}},
+      escapeMarkup: function (markup) { return markup; },
       width: 200
   });
   $(".js-hide-search").select2({
+      language: {"noResults": function(){ return "";}},
+      escapeMarkup: function (markup) { return markup; },
       minimumResultsForSearch: Infinity,
       width: 150
   });

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @following = @user.following_relationships.count
     @follower = @user.follower_relationships.count
-    @mylist = @user.lists
+    @mylist = @user.lists.includes(:taggings)
     
     if current_user != nil
       #Customer取得
@@ -51,8 +51,14 @@ class UsersController < ApplicationController
       @all_amount = 0
       calc_count.each_pair { |key, value| @all_amount = List.find(key).price * value + @all_amount }
       
+      if params[:year].nil? and !@year_list.empty? #params[:year]が空だったら
+        params[:year] = @year_list.first
+      elsif @year_list.empty?
+        return
+      end
+      
       # 対象年度の毎月の売上額を計算
-      if params[:year] == Time.zone.now.strftime("%-Y") || params[:year].nil? #今年かparams[:year]が空だったら
+      if params[:year] == Time.zone.now.strftime("%-Y") #今年だったら
         date = Time.zone.now
         @year = date.strftime("%-Y")
         month = date.strftime("%-m")

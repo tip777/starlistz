@@ -18,7 +18,6 @@
       .description
         = @user.user_profile.description
 
-      %h3 ユーザージャンル
       = render 'layouts/tag_list', tag_list: @user.tag_list
 
       .numbers
