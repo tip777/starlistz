@@ -9,3 +9,4 @@
         = purchase.list.list_favorites.count
       %span.list__author= link_to trun_str(purchase.list.user.name, 23), users_playlist_path(purchase.list.user)
 
+      %span.price ¥#{purchase.list.price}
