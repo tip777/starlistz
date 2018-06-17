@@ -12,7 +12,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation?confirmation_token=abcdef
   #メール認証したらそのままログイン
   def show
-    binding.pry
+
     super do |resource|
       sign_in(resource)
     end
@@ -35,7 +35,6 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   # The path used after resending confirmation instructions.
   def after_resending_confirmation_instructions_path_for(resource_name)
-    binding.pry
     super(resource_name)
   end
 

@@ -1,7 +1,21 @@
-Webサイトからお問い合わせがありました。
-
+StarListzからの問い合わせ
+\
 \--------------------------
-名前: #{@contact.name}
-メールアドレス: #{@contact.email}
-お問い合わせ内容:#{@contact.message}
+<名前＞
+= @contact.name
+\
+＜メールアドレス＞
+= @contact.email
+\
+＜お問い合わせ内容＞
+= @contact.message
+\
+- if @current_user != nil
+  ログインユーザー
+  ＜ユーザー名＞
+  = @current_user.name
+  \
+  ＜ユーザー メールアドレス＞
+  = @current_user.email
+
 \--------------------------

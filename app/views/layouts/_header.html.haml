@@ -72,9 +72,9 @@
           %i.material-icons more_vert
 
 
-        
-        
-        
+
+
+
     //   %ul.nav
     // %li.collapse-down
     //   = link_to root_path,{ class: "menu-trigger" } do
@@ -128,7 +128,7 @@
 
     // %li
     //   %a{:href => "#"} Playlistzについて
-    
+
     // %li
     //   %a{:href => "#"} お問い合わせ
 
@@ -145,13 +145,14 @@
       %ul.settingMenu
         - if user_signed_in?
           %li
-            = link_to "Stripe接続","https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write" 
+            = link_to "Stripe接続","https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write"
           %li
             = link_to "売上管理", users_salesmanage_path(current_user)
         %li
           = link_to "お問い合わせ", contact_path
         %li
           = link_to "PlayListzについて", about_path
+
         - if user_signed_in?
           %li
             =link_to "退会テスト", registration_path(current_user), data: { confirm: "退会してもよろしいですか?" }, method: :delete

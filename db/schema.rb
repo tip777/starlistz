@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20180604080542) do
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "name",       limit: 65535
     t.text     "email",      limit: 65535
+    t.text     "title",      limit: 65535
     t.text     "message",    limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false

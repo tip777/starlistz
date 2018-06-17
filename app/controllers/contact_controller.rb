@@ -7,7 +7,7 @@ class ContactController < ApplicationController
   def thanks
     @contact = Contact.new(contact_params)
     if @contact.valid?
-      ContactMailer.received_email(@contact).deliver
+      ContactMailer.received_email(@contact, current_user).deliver
       redirect_to root_path, notice: "お問い合わせを送信しました"
     else
       render :action => 'index'
@@ -19,7 +19,7 @@ class ContactController < ApplicationController
   def contact_params
     # submitしたデータのうち、Model作成に必要なものを
     # permitの引数に指定する
-    params.require(:contact).permit(:name, :email, :message)
+    params.require(:contact).permit(:name, :email, :title, :message)
   end
 
 
