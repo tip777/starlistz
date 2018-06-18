@@ -3,6 +3,8 @@ module Constants
     ## Constants::SORTでアクセスできる
     SORT = "new"
     GENRE = "All genre"
+    SUPPORT_MAIL = "info@starlistz.com" 
+    HP_URL = ""
     
     arr = []
     # arr.push(50)

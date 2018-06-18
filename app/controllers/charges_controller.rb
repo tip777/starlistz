@@ -39,7 +39,16 @@ class ChargesController < ApplicationController
       purchase = current_user.purchases.create
       purchase.list_id = list.id
       purchase.order_date = Time.now
-      purchase.save!
+      purchase.uid = SecureRandom.uuid
+      # purchase.save!
+      if purchase.save
+        #購入者、販売者にメールを送る
+        # PurcahseMailer.buyer(purchase, current_user).deliver
+        # PurcahseMailer.seller(purchase, list.user).deliver
+      else
+        #あえてエラーを起こす
+        raise Exception.new("")
+      end
         
       # TODO add more detailed error messages
     rescue Stripe::APIConnectionError => e

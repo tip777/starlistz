@@ -64,8 +64,9 @@ ActiveRecord::Schema.define(version: 20180604080542) do
     t.date     "order_date"
     t.integer  "user_id"
     t.integer  "list_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "uid",        limit: 65535, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.index ["list_id"], name: "index_purchases_on_list_id", using: :btree
     t.index ["user_id", "list_id"], name: "index_purchases_on_user_id_and_list_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_purchases_on_user_id", using: :btree

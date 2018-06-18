@@ -1,21 +1,12 @@
 %h2 お問い合わせ
-= form_for @contact, :url => contact_thanks_path  do |f|
+= simple_form_for @contact, :url => contact_thanks_path  do |f|
   - if @contact.errors.any?
     %strong 入力内容にエラーがあります
     %ul
       - @contact.errors.each do |attr, msg|
         %li= msg
-  %table
-    %tr
-      %th 名前（任意）
-      %td= f.text_field :name
-    %tr
-      %th メールアドレス（必須）
-      %td= f.text_field :email
-    %tr
-      %th 件名
-      %td= f.text_area :title
-    %tr
-      %th 詳細
-      %td= f.text_area :message
+  = f.input :name, label: "名前", error: false
+  = f.input :email, label: "メールアドレス　(必須)", error: false
+  = f.input :title, label: "件名　(必須)", error: false
+  = f.input :message, label: "詳細　(必須)", error: false
   = f.submit '送信'
