@@ -1,22 +1,22 @@
-// .sc
-//   .l-profile
-//     .ll-profile
-//       %h2 売り上げ金額 #{@sales_amount}
-.sc
-  .l-profile
-    .ll-profile
-      %h2.h-tit #{@date.strftime("%-Y/%-m")}の売り上げ
-      
-      %h3 総額　#{@month_amount} 円
-      
-      
-      %table.table.table-bordered.table-sortable
-        %tbody#lines
-          %tr
-            %th プレイリスト
-            %th 売上額
-        %tbody#item_area
-          - @list_amount.each_with_index  do |(key,value),i|
-            %tr.track_item
-              %td= link_to "#{key}", edit_list_path(@sales_list[i])
-              %td #{value}円
+
+.l__salesmanage
+  
+  %h2 #{@date.strftime("%-Y/%-m")}の売り上げ
+
+  %h3
+    総額 
+    %span ¥#{@month_amount}
+
+
+  .l__salesmanage__inner
+  
+    %table.minimum
+      %tbody
+        %tr
+          %th プレイリスト名
+          %th 売上額
+      %tbody#item_area
+        - @list_amount.each_with_index  do |(key,value),i|
+          %tr.track_item
+            %td= link_to "#{key}", edit_list_path(@sales_list[i])
+            %td #{value}円

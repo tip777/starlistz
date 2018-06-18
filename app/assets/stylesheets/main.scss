@@ -72,7 +72,7 @@ $pattern-background-size: 25em;
 
 body {
   background-color: #f7f9f9;
-  color: #555;
+  color: #111;
   font-family: -apple-system, BlinkMacSystemFont,'Lato', 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif, "Noto Sans JP";
   font-size: 14px;
   font-weight: 400;
@@ -2095,15 +2095,72 @@ display: block;
 
 .l__salesmanage{
   max-width: 580px;
-    margin: auto;
+  margin: auto;
+  h2{
+    text-align: center;
+  }
+  h3{
+    font-size: 1.2em;
+    margin: 15px 0;
+    text-align: center;
+    font-weight: 400;
+    background-color: #fff;
+    padding: 30px;
+    span{
+    font-size: 1.6em;
+    padding: 0 15px;
+  }
+
+  }
+}
+
+.l__salesmanage__inner{
+  background-color: #fff;
+  padding: 30px;
 }
 
 
+table.minimum{
+  background-color: #fff;
+  letter-spacing: 1px;
+  margin: 30px 0 0;
+  th{
+    padding: 10px ;
+    background-color: #f2f2f2;
+    font-weight: 700;
+  }
+  td{
+    padding: 10px;
+  }
+
+}
 
 
+.l__contact{
+  max-width: 580px;
+  margin: auto;
+  h2{
+    text-align: center;
+  }
+}
 
-
-
+.form__contact{
+  padding: 30px ;
+  background-color: #fff;
+  .input{
+    margin: 0 0 20px 0;
+  }
+  input{
+    margin: 30px 0;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .form__contact{
+    input{
+      width: 100%;
+    }
+  }
+}
 
 
 
