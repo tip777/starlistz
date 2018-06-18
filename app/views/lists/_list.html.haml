@@ -62,9 +62,9 @@
             .cardList__text
               %span.listtitle= trun_str(list.title, 21)
               %span.author= trun_str(list.user.name, 23)
-              %span.favoriteStar
-                %i.material-icons star_rate
-                = list.list_favorites.count
+              // %span.favoriteStar
+              //   %i.material-icons star_rate
+              //   = list.list_favorites.count
               %p= trun_str(list.description, 40)
               .tags
                 - list.tag_list.each.with_index(0) do |listgenre, i|
