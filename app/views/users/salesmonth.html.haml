@@ -1,15 +1,15 @@
 
 .l__salesmanage
-  
+
   %h2 #{@date.strftime("%-Y/%-m")}の売り上げ
 
   %h3
-    総額 
+    総額
     %span ¥#{@month_amount}
 
 
   .l__salesmanage__inner
-  
+
     %table.minimum
       %tbody
         %tr
@@ -18,5 +18,5 @@
       %tbody#item_area
         - @list_amount.each_with_index  do |(key,value),i|
           %tr.track_item
-            %td= link_to "#{key}", edit_list_path(@sales_list[i])
+            %td= link_to trun_str(key, 10), edit_list_path(@sales_list[i])
             %td #{value}円
