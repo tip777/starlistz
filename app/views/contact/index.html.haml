@@ -9,8 +9,8 @@
         %ul
           - @contact.errors.each do |attr, msg|
             %li= msg
-      = f.input :name, label: "名前", error: false
-      = f.input :email, label: "メールアドレス　(必須)", error: false
-      = f.input :title, label: "件名　(必須)", error: false
-      = f.input :message, label: "詳細　(必須)", error: false
+      = f.input :name, label: "名前", error: false, as: :string
+      = f.input :email, label: "メールアドレス　(必須)", error: false, as: :string
+      = f.input :title, label: "件名　(必須)", error: false, as: :string
+      = f.input :message, label: "詳細　(必須)", error: false, input_html: {rows: 6}
       = f.submit '送信'
