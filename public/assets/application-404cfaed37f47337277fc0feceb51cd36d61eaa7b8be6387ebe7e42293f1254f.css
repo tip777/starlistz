@@ -22293,7 +22293,7 @@ body {
 /* line 73, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 body {
   background-color: #f7f9f9;
-  color: #555;
+  color: #111;
   font-family: -apple-system, BlinkMacSystemFont,'Lato', 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif, "Noto Sans JP";
   font-size: 14px;
   font-weight: 400;
@@ -24363,4 +24363,76 @@ form.edit_user label {
 .l__salesmanage {
   max-width: 580px;
   margin: auto;
+}
+/* line 2099, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__salesmanage h2 {
+  text-align: center;
+}
+/* line 2102, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__salesmanage h3 {
+  font-size: 1.2em;
+  margin: 15px 0;
+  text-align: center;
+  font-weight: 400;
+  background-color: #fff;
+  padding: 30px;
+}
+/* line 2109, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__salesmanage h3 span {
+  font-size: 1.6em;
+  padding: 0 15px;
+}
+
+/* line 2117, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__salesmanage__inner {
+  background-color: #fff;
+  padding: 30px;
+}
+
+/* line 2123, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+table.minimum {
+  background-color: #fff;
+  letter-spacing: 1px;
+  margin: 30px 0 0;
+}
+/* line 2127, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+table.minimum th {
+  padding: 10px;
+  background-color: #f2f2f2;
+  font-weight: 700;
+}
+/* line 2132, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+table.minimum td {
+  padding: 10px;
+}
+
+/* line 2139, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__contact {
+  max-width: 580px;
+  margin: auto;
+}
+/* line 2142, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__contact h2 {
+  text-align: center;
+}
+
+/* line 2147, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.form__contact {
+  padding: 30px;
+  background-color: #fff;
+}
+/* line 2150, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.form__contact .input {
+  margin: 0 0 20px 0;
+}
+/* line 2153, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.form__contact input {
+  margin: 30px 0;
+}
+
+@media only screen and (max-width: 767px) {
+  /* line 2159, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  .form__contact input {
+    width: 100%;
+  }
 }
