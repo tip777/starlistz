@@ -62,7 +62,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   #devise setting
-  config.action_mailer.default_url_options = { host: 'star-stg.herokuapp.com'}
+  config.action_mailer.default_url_options = { host: host}
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -71,7 +71,8 @@ Rails.application.configure do
     :user_name => "info@starlistz.com",
     :password => "$MA8J938",
     :authentication => :plain,
-    :enable_starttls_auto => true
+    :enable_starttls_auto => true,
+    :tls => true 
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
