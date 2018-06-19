@@ -74,17 +74,15 @@ end
 # binding.pry
 
 #プレイリストお気に入り設定
-20.times do |i|
-  random = Random.new
-  n = random.rand(1..10)
-  n2 = random.rand(1..20)
-  ListFavorite.create(user_id: n, list_id: n2)
-end
+# 20.times do |i|
+#   random = Random.new
+#   n = random.rand(1..10)
+#   n2 = random.rand(1..20)
+#   ListFavorite.create(user_id: n, list_id: n2)
+# end
 
 #曲設定n
-
 2.times do |i|
-  # binding.pry
   15.times do |n|
     random = Random.new
     if i == random.rand(1..15)

@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   #ユーザー確認画面
   get "users/:id/playlist" => "users#playlist", as: 'users_playlist'
   get "users/:id/purchasehistory" => "users#purchasehistory", as: 'users_purchasehistory' #購入履歴ページ
+  get "users/:id/favuser" => "users#favuser", as: 'users_favuser' #お気に入りユーザー
+  get "users/:id/favplaylist" => "users#favplaylist", as: 'users_favplaylist' #お気に入りプレイリスト
   get "users/:id/salesmanage" => "users#salesmanage", as: 'users_salesmanage' #売り上げ管理ページ
   get "users/:id/salesmonth" => "users#salesmonth", as: 'users_salesmonth' #月間売り上げ管理ページ
 

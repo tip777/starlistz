@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:following, :follower]
-  before_action :gon_current_user, only: [:playlist, :purchasehistory]
-  before_action :show_head, only: [:playlist, :purchasehistory]
+  before_action :gon_current_user, only: [:playlist, :purchasehistory, :favplaylist]
+  before_action :show_head, only: [:playlist, :purchasehistory, :favuser, :favplaylist]
 
   def show_head
     @user = User.find(params[:id])
@@ -20,6 +20,26 @@ class UsersController < ApplicationController
                             「設定 / Stripe接続」からStripe連携を完了しなければプレイリストを作成できません。".html_safe
         end
       end
+    end
+  end
+  
+  def favuser
+    if current_user != nil && current_user.id == @user.id
+      following_ids = @user.following_relationships.pluck(:followed_id)
+      @favuser = User.includes(:user_profile).where(id: following_ids).order("name DESC")
+      @favuser_pages = @favuser.page(params[:favuser_page])
+    else
+      reject_page
+    end
+  end
+  
+  def favplaylist
+    if current_user != nil && current_user.id == @user.id
+      favlist_ids = ListFavorite.where(user_id: @user.id).pluck(:list_id)
+      @favlist = List.where(id: favlist_ids).order("title DESC")
+      @favlist_pages = @favlist.page(params[:favlist_page])
+    else
+      reject_page
     end
   end
   
