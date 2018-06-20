@@ -8,11 +8,11 @@
           = render "users/user", users: @favuser_pages
         -else
           .no_playlist
-            お気に入りのユーザーはいません
+            フォロー中ユーザーはいません
         -if @favuser_pages != nil
           #favuser_paginator
             = paginate @favuser_pages, param_name: 'favuser_page'
 -else
   .sc
     .no_playlist
-      お気に入りのユーザーはいません
+      フォロー中ユーザーはいません

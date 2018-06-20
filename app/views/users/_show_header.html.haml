@@ -36,6 +36,6 @@
     %li{ class: controller.action_name == 'purchasehistory' ? 'active' : '' }
       = link_to "購入履歴", users_purchasehistory_path(current_user)
     %li{ class: controller.action_name == 'favuser' ? 'active' : '' }
-      = link_to "お気に入りユーザー", users_favuser_path(@user)
+      = link_to "フォロー中ユーザー", users_favuser_path(@user)
     %li{ class: controller.action_name == 'favplaylist' ? 'active' : '' }
       = link_to "お気に入りプレイリスト", users_favplaylist_path(current_user)

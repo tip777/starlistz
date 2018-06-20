@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def favuser
     if current_user != nil && current_user.id == @user.id
       following_ids = @user.following_relationships.pluck(:followed_id)
-      @favuser = User.includes(:user_profile).where(id: following_ids).order("name DESC")
+      @favuser = User.includes(:user_profile).where(id: following_ids).order("name")
       @favuser_pages = @favuser.page(params[:favuser_page])
     else
       reject_page
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def favplaylist
     if current_user != nil && current_user.id == @user.id
       favlist_ids = ListFavorite.where(user_id: @user.id).pluck(:list_id)
-      @favlist = List.where(id: favlist_ids).order("title DESC")
+      @favlist = List.includes({user: [:user_profile]}, :taggings).where(id: favlist_ids).order("title")
       @favlist_pages = @favlist.page(params[:favlist_page])
     else
       reject_page

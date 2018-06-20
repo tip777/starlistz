@@ -5,7 +5,6 @@
 
             .l-text
                 %h2.name #{trun_str(user.name, 23)}
-                = render 'users/follow_form', user: user if user_signed_in?
 
                 .discrition= trun_str(user.user_profile.description, 40)
 

@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
     if params[:q] != nil and params[:q] != ""
       @search_word = search_params[:q]
       key_words = search_params[:q].split(/[\p{blank}\s]+/)#スペースがあったら区切る
-      @q = User.includes(:user_profile, :taggings).ransack(name_cont_any: key_words)
+      @q = User.includes(:user_profile).ransack(name_cont_any: key_words)
 
       #ユーザー、プレイリスト検索結果
       @search_user = @q.result(distinct: true)
