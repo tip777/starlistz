@@ -1,21 +1,35 @@
 StarListzからの問い合わせ
-\
-\--------------------------
+%br/
+%br/
+--------------------------
 <名前＞
+%br/
 = @contact.name
-\
+%br/
+%br/
 ＜メールアドレス＞
+%br/
 = @contact.email
-\
+%br/
+%br/
 ＜お問い合わせ内容＞
+%br/
 = @contact.message
-\
+%br/
+%br/
+%br/
 - if @current_user != nil
-  ログインユーザー
+  %h1 ログインユーザー
+  %br/
   ＜ユーザー名＞
+  %br/
   = @current_user.name
-  \
+   %br/
+    %br/
   ＜ユーザー メールアドレス＞
+   %br/
   = @current_user.email
+   %br/
+  %br/
 
-\--------------------------
+--------------------------
