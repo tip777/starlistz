@@ -1,35 +1,35 @@
-StarListzからの問い合わせ
+%p StarListzからの問い合わせ
 %br/
 %br/
---------------------------
-<名前＞
+%p --------------------------
+%p <名前＞
 %br/
-= @contact.name
-%br/
-%br/
-＜メールアドレス＞
-%br/
-= @contact.email
+%p= @contact.name
 %br/
 %br/
-＜お問い合わせ内容＞
+%p ＜メールアドレス＞
 %br/
-= @contact.message
+%p= @contact.email
+%br/
+%br/
+%p ＜お問い合わせ内容＞
+%br/
+%p= @contact.message
 %br/
 %br/
 %br/
 - if @current_user != nil
   %h1 ログインユーザー
   %br/
-  ＜ユーザー名＞
+  %p ＜ユーザー名＞
   %br/
-  = @current_user.name
+  %p= @current_user.name
   %br/
   %br/
-  ＜ユーザー メールアドレス＞
+  %p ＜ユーザー メールアドレス＞
   %br/
-  = @current_user.email
+  %p= @current_user.email
   %br/
   %br/
 
---------------------------
+%p --------------------------
