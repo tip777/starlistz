@@ -1,10 +1,10 @@
 class ContactMailer < ApplicationMailer
-    # default from: "ttttt.iiiii.bbbbb@gmail.com" #送信元アドレス
-    default to: "info@starlistz.com" #送信先アドレス
+    default from: "info@starlistz.com" #送信元アドレス
+    default to: "support@starlistz.com" #送信先アドレス
 
     def received_email(contact, current_user)
         @contact = contact
         @current_user = current_user
-        mail(from: @contact.email, subject: @contact.title)
+        mail(subject: @contact.title)
     end
 end
