@@ -22,7 +22,7 @@ class List < ApplicationRecord
                     :styles => {
                       :thumb => "100x100#",
                       :medium => '300x240#'
-                    }, default_url: "/images/default/thumb_noimage.png"
+                    }, default_url: "/default/thumb_noimage.png"
 
   def s3_credentials
       {:bucket => ENV["S3_BUCKET_NAME"], :aws_access_key_id => ENV["AWS_ACCESS_KEY_ID"], :aws_secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]}
