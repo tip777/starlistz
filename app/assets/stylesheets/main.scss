@@ -79,6 +79,7 @@ body {
   letter-spacing: 0;
   line-height: 1.6;
   word-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
   &.is-loading {
     *, *:before, *:after {
       @include vendor('animation', 'none !important');
@@ -986,7 +987,6 @@ p.or{
   margin:auto;
 }
 .l__cardList{
-  display: table;
   width: 100%;
   padding: 0;
   margin-bottom: 15px;
@@ -1078,8 +1078,13 @@ background-color: #ddd;
   border-color: #b6eb34;
   border-radius: 2em;
   padding: 0 10px;
-  display: inline-block;
+  display: inline;
   margin: 3px;
+      overflow: scroll;
+      a{
+        border-radius: 2em;
+
+      }
 }
 
 .l__cardlist__short{
@@ -1112,6 +1117,9 @@ background-color: #ddd;
   }
 }
 @media only screen and (max-width: 767px) {
+  .l__cardList{
+  display: block;
+}
 .cardList__img{
   float:none;
 }
@@ -1486,34 +1494,24 @@ margin:0;
 
 
 .l__profile__tab{
-  height: 43px;
-  position: relative;
-  font-size:0;
-  margin:15px auto;
-  max-width: 580px;
-  &:before{
-    position: absolute;
-    height: 3px;
-    left: 0;
-    width: 100%;
-    content: "";
-    bottom: 0;
-    display: inline-block;
-    background-color: #f0f0f0;
-  }
-
+  height: 50px;
+    position: relative;
+    font-size: 0;
+    margin: 30px auto;
+    max-width: 580px;
+    background-color: #fff;
+    line-height: 50px;
   li{
     height: 100%;
     text-align: center;
-    width: 50%;
+    width: 25%;
     display: inline-block ;
-    font-size:14px;
-    font-weight: 700;
+    font-size:12px;
     color: #ccc;
+    vertical-align: top;
 
     a{
       position: relative;
-      padding-top: 6px;
       vertical-align: top;
       display: block;
       height:100%;
@@ -1534,6 +1532,7 @@ margin:0;
     &.active{
       color:#333;
       transition:0;
+      font-weight: 700;
       a:after{
         display: inline-block;
         transition:0;
@@ -2151,7 +2150,7 @@ table.minimum{
     margin: 0 0 20px 0;
   }
   input{
-    margin: 30px 0;
+    margin: 0;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -2162,8 +2161,37 @@ table.minimum{
   }
 }
 
+#follow_form{
+  margin: 15px 0;
+}
+
+#follow_form button{
+  background-color:transparent;
+  border:1px solid #666;
+  color:#666;
+  vertical-align: middle;
+  font-weight: 700;
+  i{
+    vertical-align: middle;
+  }
+  &.unfollow{
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+    color: #fff;
+      }
+
+}
 
 
+
+
+
+
+
+.l__m{
+  max-width: 580px;
+  margin: auto;
+}
 
 
 

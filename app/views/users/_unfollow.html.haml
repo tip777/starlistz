@@ -5,4 +5,6 @@
 = form_for(current_user.following_relationships.find_by(followed_id: user.id), |
   html: { method: :delete },                                                    |
   remote: true) do |f|                                                          |
-  = f.submit "フォロー中", class: "btn"
+  // = f.submit "フォロー中", class: "btn"
+  = button_tag :type => "submit", :class =>"btn unfollow" do
+    フォロー中
