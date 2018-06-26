@@ -17,7 +17,16 @@ $('.field_track_add')
 # プレイリスト　編集、新規作成時の「曲の説明」表示、非表示
 $(document).on 'click', '.comment', (e) ->
   elem = e.target
-  # console.log '押した'
+  
+  #コメントアイコンを切り替える
+  if $(elem).parent().siblings(".description").children("input").val().length > 0
+    $(elem).text("comment")
+    $(elem).removeClass().addClass("material-icons already");
+  else
+    $(elem).text("add_comment")
+    $(elem).removeClass().addClass("material-icons still");
+    
+  #曲の説明欄の表示、非表示
   if $(elem).parent().siblings(".description").is(':hidden')
     $(elem).parent().siblings(".description").show()
   else if $(elem).parent().siblings(".description").is(':visible')

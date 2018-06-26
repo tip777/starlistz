@@ -15,27 +15,21 @@
           = f.input :image, as: :file, label: false
       .rr-new-playlist
         .list_title.list
-          = f.input :title, label: "プレイリスト名"
-        .list_description.list
-          = f.input :description, label: "詳細"
+          = f.input :title, label: false, placeholder: 'プレイリスト名'
         .list_genre.list
-          // = f.association :tag_list do
-          //   = f.select :tag_list, options_for_select(@tag,{ :selected => @list.tag_list }), {}, {class: 'js-tags-input tags-input', multiple: true}
-          %label ジャンル
-          = f.text_field :tag_list, value: f.object.tag_list.to_s
+          = f.text_field :tag_list, value: f.object.tag_list.to_s, placeholder: 'ジャンル'
           = f.hint '例　#Genre1 #Genre2'
+        .list_description.list
+          = f.input :description, label: false, placeholder: 'プレイリストの説明'
         .list_price.list
-          = f.input :price, label: "金額", :collection => Constants::AMOUNT
-    %table.table.table-bordered.table-sortable
-      %tbody#lines
-        %tr
-          %th
-          %th アーティスト
-          %th 曲名
-          %th 説明
-        = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
-          = render 'track_fields', f: track
+          ￥
+          = f.select :price, options_for_select(Constants::AMOUNT ), {}, { class: 'js-hide-search', data: { placeholder: '金額を選択してください' } }
+          
+    #track_section.table-sortable
+      = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
+        = render 'track_fields', f: track
     .field_track_add
-      = link_to_add_association '曲を追加する »', f, :tracks,:"data-association-insertion-node" => "tbody#lines",:"data-association-insertion-method" => "append"
+      = link_to_add_association '曲を追加する »', f, :tracks,:"data-association-insertion-node" => "#track_section",:"data-association-insertion-method" => "append"
     .actions.text-center
-      = f.submit
+      = f.submit "作成する"
+      

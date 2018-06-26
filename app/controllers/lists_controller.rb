@@ -62,6 +62,7 @@ class ListsController < ApplicationController
   end
 
   private
+  
   def set_lists
     @list.tap { @list = nil }
     @list = List.find(params[:id])
