@@ -11,6 +11,8 @@
         %i.material-icons.already comment
       - else
         %i.material-icons.still add_comment
+    - else
+      %i.material-icons.still add_comment
   %span.sort_no= f.hidden_field :row_order, class: 'sort_order'
   %span.track_delete
     = link_to_remove_association f, { wrapper_class: 'track_item' } do
