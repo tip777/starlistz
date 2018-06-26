@@ -14,3 +14,15 @@ $('.field_track_add')
     .on 'cocoon:after-remove', (e, removed_track) ->
       console.log('after remove')
     
+# プレイリスト　編集、新規作成時の「曲の説明」表示、非表示
+$(document).on 'click', '.comment', (e) ->
+  elem = e.target
+  # console.log '押した'
+  if $(elem).parent().siblings(".description").is(':hidden')
+    $(elem).parent().siblings(".description").show()
+  else if $(elem).parent().siblings(".description").is(':visible')
+    $(elem).parent().siblings(".description").hide()
+  else
+    alert 'not find'
+  return
+    

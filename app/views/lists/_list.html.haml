@@ -9,7 +9,6 @@
           .cardList__text
             %span.listtitle= trun_str(list.title, 21)
             %span.author= trun_str(list.user.name, 23)
-            
 
             %p= trun_str(list.description, 40)
             .cardList__footer
@@ -50,7 +49,9 @@
                     = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
             .l__footerPrice
               //プレイリストお気に入り機能
-              = render 'lists/fav_form', list: list if user_signed_in?
+              %span.favoriteStar
+                %i.material-icons star_rate
+                = list.list_favorites.count
               %span.label.label-warning 購入済み
               %span.listprice ¥#{list.price}
         

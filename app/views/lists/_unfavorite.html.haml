@@ -1,4 +1,2 @@
 = link_to favorite_path(current_user, list_id: list.id), method: :delete, remote: true do
-    %span.favoriteStar
-        %i.material-icons.unfav star
-        = list.list_favorites.count
+    %button.btn.btn-secondary.list_unfavorite{type: "button"} お気に入り

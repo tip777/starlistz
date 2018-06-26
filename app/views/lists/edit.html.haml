@@ -9,29 +9,24 @@
       = image_tag @list.image.url(:thumb)
       = f.input :image, as: :file, label: false
     .list_title
-      = f.input :title, label: "プレイリスト名"
+      = f.input :title, label: false, placeholder: 'プレイリスト名'
     .list_genre
-      %label ジャンル
-      = f.text_field :tag_list, value: "# " + f.object.tag_list.to_s
+      = f.text_field :tag_list, value: "# " + f.object.tag_list.to_s, placeholder: 'ジャンル'
       = f.hint '例　# Genre1 # Genre2'
 
     .list_description
-      = f.input :description, label: "詳細"
+      = f.input :description, label: false, placeholder: 'プレイリストの説明'
     .list_price{:style => "margin-bottom: 50px;"}
-      // = f.input :price, label: "金額"
-      = f.input :price, label: "金額", :collection => Constants::AMOUNT
-  %table.table.table-bordered.table-sortable
-    %thead{:id => "lines"}
-      %tr
-        %th
-        %th アーティスト
-        %th 曲名
-        %th 説明
-    %tbody{:id => "item_area"}
-      = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
-        = render 'track_fields', f: track
+      = f.select :price, options_for_select(Constants::AMOUNT, selected: f.object.price), {}, { class: 'js-hide-search' }
+  
+  #track_section.table-sortable
+    = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
+      = render 'track_fields', f: track
   .field_track_add
-    = link_to_add_association '曲を追加する', f, :tracks,:"data-association-insertion-node" => "tbody#item_area",:"data-association-insertion-method" => "append"
+    = link_to_add_association '曲を追加する', f, :tracks,:"data-association-insertion-node" => "#track_section",:"data-association-insertion-method" => "append"
   .actions
     = f.submit
     = link_to "削除する", @list, method: :delete, data: { confirm: "#{@list.title}を削除してもよろしいですか?" }
+  
+  
+  
