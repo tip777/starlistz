@@ -19,7 +19,9 @@
     // = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-
+    
+    // faviconの設定
+    = favicon_link_tag('/favicon_logo/logo32.ico')
 
 
   %body{class:"#{controller.controller_name}"}
