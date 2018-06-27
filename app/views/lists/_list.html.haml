@@ -18,7 +18,7 @@
                   - break
                 - else
                   %span.genretag
-                    = listgenre
+                    = trun_str(listgenre, 30)
             .l__footerPrice
               %span.favoriteStar
                 %i.material-icons star_rate
@@ -46,7 +46,7 @@
                   - break
                 - else
                   %span.genretag
-                    = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+                    = link_to trun_str(listgenre, 30), chart_path(genre: listgenre, sort: Constants::SORT)
             .l__footerPrice
               //プレイリストお気に入り機能
               %span.favoriteStar
@@ -74,7 +74,7 @@
                     - break
                   - else
                     %span.genretag
-                      = listgenre
+                      = trun_str(listgenre, 30)
               .l__footerPrice
                 %span.favoriteStar
                   %i.material-icons star_rate

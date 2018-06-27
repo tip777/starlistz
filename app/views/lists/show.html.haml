@@ -17,12 +17,14 @@
       - if is_signin
         - if !is_signed(current_user.id, @list.user.id)
           = render 'lists/fav_form', list: @list 
-
+      
+      .span #{@list.tracks.count}曲
+      
+      .span ￥#{@list.price}
+      
       .span= @list.description
 
       .span= render 'layouts/tag_list', tag_list: @list.tag_list
-
-      .span ￥#{@list.price}
 
   .track_section
     - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
