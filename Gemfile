@@ -66,7 +66,6 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
   gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
-  gem 'dotenv-rails', require: 'dotenv/rails-now'
 end
 
 group :development do
@@ -77,6 +76,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'bullet' #N+1問題検出
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
