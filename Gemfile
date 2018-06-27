@@ -61,13 +61,6 @@ gem 'rails-i18n'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
-  gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
-end
-
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -77,6 +70,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'bullet' #N+1問題検出
   gem 'dotenv-rails', require: 'dotenv/rails-now'
+  gem 'byebug', platform: :mri
+  gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
+  gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
