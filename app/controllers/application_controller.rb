@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   after_action  :store_location
   helper_method :is_purchase?, :is_stripe_account_id?
   
+  http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.test? #heroku development Basic認証
+  http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.staging? #heroku staging Basic認証
+  
   def set_user_genre
     #Userのタグだけ抽出
     return ActsAsTaggableOn::Tagging.where(taggable_type: "User").group("tag_id").pluck(:tag_id)
