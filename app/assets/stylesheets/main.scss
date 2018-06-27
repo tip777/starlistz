@@ -2178,7 +2178,11 @@ table.minimum{
 
 
 
-
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
 
 
 
@@ -2187,5 +2191,119 @@ table.minimum{
   margin: auto;
 }
 
+.l__playlist{
+      margin: 0 0 60px 0;
+  hr{
+    border-top:1px solid #eee;
+    margin: 10px 0 30px 0;
+  }
+  .genretag{
+    border-color: #ddd;
+    background-color:#ddd;
+    padding: 1px 10px;
+    color:#000;
+  }
+}
+
+.l__listShow{
+  background-color: #fff;
+    padding: 30px;
+}
 
 
+.playlist__img{
+  float: left;
+    width: 120px;
+    img{
+      width:100%;
+          border-radius: 7px;
+    }
+}
+.trackCount{
+  color: #999;
+}
+.playlist__text{
+  margin: 0 0 0 120px;
+  padding: 15px;
+}
+.playlist__title{
+  font-weight: 700;
+    font-size: 1.2em;
+}
+.playlist__author{
+  color:#999;
+}
+.playlist__price{
+  float: right;
+  color: #999;
+    font-size: 1.2em;
+}
+.playlist__discription{
+  margin:0 0 30px 0 ;
+}
+.favchange{
+  margin: 10px 0 0 0;
+}
+.btn__favorite__square{
+  border:2px solid #ccc;
+      line-height: 2;
+      padding: 1px 20px;
+      color:#666;
+      i{
+        vertical-align: middle;
+    font-size: 16px;
+      }
+}
+.unfavorite.btn__favorite__square{
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+    color: #fff;
+}
+.l__tracks{
+  table{
+    margin: 0;
+  }
+  td{
+    vertical-align: middle;
+        padding: 10px 0;
+  }
+  td:nth-of-type(1){
+    width: 40px;
+
+  }
+  td:nth-of-type(2){
+    width: 30px;
+  }
+  td:nth-of-type(3){
+    border-top: 1px solid #eee;
+
+  }
+  td:nth-of-type(4){
+    width: 50px;
+    border-top: 1px solid #eee;
+  }
+  td .comment i{
+    color: #e8e54c;
+  }
+}
+
+
+
+
+
+.trackSong,
+.trackArtist{
+  display: block;
+}
+
+
+
+.modal__comment{
+  padding: 30px 45px;
+  .modal_song,.modal_artist{
+    display: block;
+  }
+  .playlist__text{
+    padding: 40px 15px 10px;
+  }
+}

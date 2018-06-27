@@ -1,63 +1,73 @@
-.container-fluid.l-container
+.l__m.l__listShow
   //ログインしていたら編集できる
   - if is_signin
     - if is_signed(current_user.id, @list.user.id)
       =link_to 'プレイリスト編集', edit_list_path(@list, list: @list)
 
 
-  .l-playlist
-    .ll-playlist
-      = image_tag @list.image.url(:thumb)
-    
-    .rr-playlist
-      %span.listtitle= @list.title
+  .l__playlist
+    .l__playlistCore.clearfix
+      .playlist__img
+        .l__img
+          = image_tag @list.image.url(:thumb)
+        .span.trackCount #{@list.tracks.count}曲
       
-      %span.author= link_to @list.user.name, users_playlist_path(@list.user)
-      
-      - if is_signin
-        - if !is_signed(current_user.id, @list.user.id)
-          = render 'lists/fav_form', list: @list 
-      
-      .span #{@list.tracks.count}曲
-      
-      .span ￥#{@list.price}
-      
-      .span= @list.description
+      .playlist__text
+        .playlist__title= @list.title
+        
+        .playlist__author= link_to @list.user.name, users_playlist_path(@list.user)
+        
+        - if is_signin
+          - if !is_signed(current_user.id, @list.user.id)
+            = render 'lists/fav_form', list: @list 
 
-      .span= render 'layouts/tag_list', tag_list: @list.tag_list
+            .span.playlist__price ￥#{@list.price}
+    %hr
+
+    .span.playlist__discription= @list.description
+    .span= render 'layouts/tag_list', tag_list: @list.tag_list
+
+
+
 
   .track_section
     - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
-      .track
-        
-        %span
-          - if track.recommend == true
-            %span.favoriteStar
-              %i.material-icons star_rate
-        %span.track_no
-        %span= track.song
-        %span= track.artist
-        %span
-          - if track.description != nil && track.description.length > 0
-            %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"} 
-              %span.comment
-                %i.material-icons.already comment
-  
-  
+      .l__tracks
+        %table
+          %tbody
+            %tr
+              %td
+                - if track.recommend == true
+                  %span.favoriteStar
+                    %i.material-icons star_rate
+              %td.track_no
+              %td
+                %span.trackSong= track.song
+                %span.trackArtist= track.artist
+              %td
+                - if track.description != nil && track.description.length > 0
+                  %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"} 
+                    %span.comment
+                      %i.material-icons.already comment
+
+
+
   
       // ここからモーダルウィンドウ
-      .modal-content{:id => "modal-content-#{i}"}
+      .modal-content.modal__comment{:id => "modal-content-#{i}"}
         // モーダルウィンドウのコンテンツ開始
         .r__modalContent
-          .cardList__img
-            = render 'lists/is_image', list: @list
-          .cardList__text
+        .l__playlistCore.clearfix
+          .playlist__img
+            .l__img
+              = render 'lists/is_image', list: @list
+          .playlist__text
             %span.modal_song= track.song
             %span.modal_artist= track.artist
-            %p= track.description
-            // モーダルウィンドウのコンテンツ終了
-            %p
-              %a#modal-close.button-link 閉じる
+        %p= track.description
+        // モーダルウィンドウのコンテンツ終了
+        %p.text-center
+          %a#modal-close.button-link 閉じる
         
 
   
