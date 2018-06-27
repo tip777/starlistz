@@ -37,9 +37,8 @@
         %span.track_no
         %span= track.song
         %span= track.artist
-        // %span= track.description
         %span
-          - if track.description.length > 0
+          - if track.description != nil && track.description.length > 0
             %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"} 
               %span.comment
                 %i.material-icons.already comment
