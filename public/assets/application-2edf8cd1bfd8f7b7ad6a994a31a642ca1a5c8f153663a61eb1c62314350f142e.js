@@ -24854,6 +24854,25 @@ $(document).ready(function(){
     return console.log('after remove');
   });
 
+  $(document).on('click', '.comment', function(e) {
+    var elem;
+    elem = e.target;
+    if ($(elem).parent().siblings(".description").children("input").val().length > 0) {
+      $(elem).text("comment");
+      $(elem).removeClass().addClass("material-icons already");
+    } else {
+      $(elem).text("add_comment");
+      $(elem).removeClass().addClass("material-icons still");
+    }
+    if ($(elem).parent().siblings(".description").is(':hidden')) {
+      $(elem).parent().siblings(".description").show();
+    } else if ($(elem).parent().siblings(".description").is(':visible')) {
+      $(elem).parent().siblings(".description").hide();
+    } else {
+      alert('not find');
+    }
+  });
+
 }).call(this);
 (function() {
 
@@ -24868,20 +24887,25 @@ $(document).ready(function(){
 
 }).call(this);
 (function() {
-  var trNumber;
+  var rerollNumber;
 
-  trNumber = function() {
-    var n;
+  rerollNumber = function() {
+    var h, n;
     n = 0;
-    return $('.track_no').each(function(i, elem) {
+    h = 0;
+    $('.track_no').each(function(i, elem) {
       n = n + 1;
-      elem.innerHTML = n;
+      return elem.innerHTML = n;
+    });
+    return $('.sort_order').each(function(i, elem) {
+      $(elem).val(h);
+      h = h + 1;
     });
   };
 
   $(document).ready(function() {
     var fixHelper;
-    trNumber();
+    rerollNumber();
     fixHelper = function(e, ui) {
       ui.children().each(function() {
         $(this).width($(this).width());
@@ -24894,22 +24918,22 @@ $(document).ready(function(){
       items: '.track_item',
       update: function(e, ui) {
         var item;
-        trNumber();
+        rerollNumber();
         item = void 0;
         item = ui.item;
-        return $('.sort_order').each(function(i, elem) {
-          return $(elem).val($(elem).closest('tr').index());
-        });
+        return rerollNumber();
       },
       stop: function(e, ui) {
         return ui.item.children('td').effect('highlight');
       }
     });
-    return $('.table-sortable').on('cocoon:after-insert', function(e, insertedItem) {
-      trNumber();
-      $(insertedItem).find('.sort_order').val($(insertedItem).index());
+    $('.table-sortable').on('cocoon:after-insert', function(e, insertedItem) {
+      rerollNumber();
       $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index());
       $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
+    });
+    return $('.table-sortable').on('cocoon:after-remove', function(e, insertedItem) {
+      rerollNumber();
     });
   });
 
@@ -25016,7 +25040,7 @@ $(document).ready(function(){
       language: {"noResults": function(){ return "";}},
       escapeMarkup: function (markup) { return markup; },
       minimumResultsForSearch: Infinity,
-      width: 150
+      width: 200
   });
 
   $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
