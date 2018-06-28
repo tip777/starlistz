@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
   def store_location
       if (request.fullpath != "/users/sign_in" &&
           request.fullpath != "/users/sign_up" &&
+          request.fullpath != "//users" &&
           request.fullpath !~ Regexp.new("\\A/users/password.*\\z") &&
           !request.xhr?) # don't store ajax calls
         session[:previous_url] = request.fullpath
