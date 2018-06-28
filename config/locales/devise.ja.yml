@@ -15,7 +15,7 @@ ja:
       not_found_in_database: "メールアドレスまたはパスワードが無効です。"
       timeout: "一定時間が経過したため、再度ログインが必要です"
       unauthenticated: "ログインまたは登録が必要です。"
-      unconfirmed: "本登録を行ってください。"
+      unconfirmed: "本登録を行ってください。<a href='/users/confirmation/new'>再送信画面</a>"
     mailer:
       # confirmation_instructions:
       confirmation_on_create_instructions:
