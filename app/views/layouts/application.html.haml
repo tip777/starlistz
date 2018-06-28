@@ -31,7 +31,7 @@
       - if notice
         %p.alert.alert-notice= notice
       - if alert
-        %p.alert.alert-error= alert
+        %p.alert.alert-error= flash[:alert].html_safe
 
       - if flash[:error].present?
         #error_explanation
