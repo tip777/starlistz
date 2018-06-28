@@ -24453,8 +24453,158 @@ table.minimum td {
   color: #fff;
 }
 
-/* line 2185, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2181, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+/* line 2189, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__m {
   max-width: 580px;
   margin: auto;
+}
+
+/* line 2194, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__playlist {
+  margin: 0 0 60px 0;
+}
+/* line 2196, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__playlist hr {
+  border-top: 1px solid #eee;
+  margin: 10px 0 30px 0;
+}
+/* line 2200, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__playlist .genretag {
+  border-color: #ddd;
+  background-color: #ddd;
+  padding: 1px 10px;
+  color: #000;
+}
+
+/* line 2208, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__listShow {
+  background-color: #fff;
+  padding: 30px;
+}
+
+/* line 2214, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.playlist__img {
+  float: left;
+  width: 120px;
+}
+/* line 2217, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.playlist__img img {
+  width: 100%;
+  border-radius: 7px;
+}
+
+/* line 2222, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.trackCount {
+  color: #999;
+}
+
+/* line 2225, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.playlist__text {
+  margin: 0 0 0 120px;
+  padding: 15px;
+}
+
+/* line 2229, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.playlist__title {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+/* line 2233, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.playlist__author {
+  color: #999;
+}
+
+/* line 2236, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.playlist__price {
+  float: right;
+  color: #999;
+  font-size: 1.2em;
+}
+
+/* line 2241, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.playlist__discription {
+  margin: 0 0 30px 0;
+}
+
+/* line 2244, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.favchange {
+  margin: 10px 0 0 0;
+}
+
+/* line 2247, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.btn__favorite__square {
+  border: 2px solid #ccc;
+  line-height: 2;
+  padding: 1px 20px;
+  color: #666;
+}
+/* line 2252, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.btn__favorite__square i {
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+/* line 2257, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.unfavorite.btn__favorite__square {
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
+  color: #fff;
+}
+
+/* line 2263, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__tracks table {
+  margin: 0;
+}
+/* line 2266, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__tracks td {
+  vertical-align: middle;
+  padding: 10px 0;
+}
+/* line 2270, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__tracks td:nth-of-type(1) {
+  width: 40px;
+}
+/* line 2274, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__tracks td:nth-of-type(2) {
+  width: 30px;
+}
+/* line 2277, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__tracks td:nth-of-type(3) {
+  border-top: 1px solid #eee;
+}
+/* line 2281, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__tracks td:nth-of-type(4) {
+  width: 50px;
+  border-top: 1px solid #eee;
+}
+/* line 2285, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__tracks td .comment i {
+  color: #e8e54c;
+}
+
+/* line 2294, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.trackSong,
+.trackArtist {
+  display: block;
+}
+
+/* line 2301, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.modal__comment {
+  padding: 30px 45px;
+}
+/* line 2303, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.modal__comment .modal_song, .modal__comment .modal_artist {
+  display: block;
+}
+/* line 2306, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.modal__comment .playlist__text {
+  padding: 40px 15px 10px;
 }
