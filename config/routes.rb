@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   #お問い合わせ
   get 'contact' => 'contact#index'
   post 'contact/thanks' => 'contact#thanks'
+  get 'contact/unsubscribe' => 'contact#unsubscribe'
 
   resources :lists do #プレイリスト用
     put :sort

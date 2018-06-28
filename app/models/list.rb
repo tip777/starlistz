@@ -5,7 +5,7 @@ class List < ApplicationRecord
   has_many :tracks, dependent: :destroy
   accepts_nested_attributes_for :tracks, reject_if: :all_blank, allow_destroy: true
 
-  has_many :purchases
+  has_many :purchases, dependent: :destroy
   # has_many :users, through: :users
 
   #プレイリストお気に入り機構

@@ -14,3 +14,6 @@
       = f.input :title, label: "件名　(必須)", error: false, as: :string
       = f.input :message, label: "詳細　(必須)", error: false, input_html: {rows: 6}
       = f.submit '送信'
+      
+  %p
+    = link_to "退会はこちら", contact_unsubscribe_path

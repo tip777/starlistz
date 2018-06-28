@@ -13,6 +13,10 @@ class ContactController < ApplicationController
       render :action => 'index'
     end
   end
+  
+  def unsubscribe
+    
+  end
 
   private
 

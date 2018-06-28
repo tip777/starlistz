@@ -36,12 +36,12 @@
         = f.input :email, label: "メールアドレス", required: true
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
           %p
-            Currently waiting confirmation for: #{resource.unconfirmed_email}
+            メールアドレスの変更待ち: #{resource.unconfirmed_email}
       .field_password
         = f.input :password, label: "パスワード変更", autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
       .field_password_confirmation
         = f.input :password_confirmation, label: "パスワード確認", required: false
-
+    
     .form-actions
       = f.button :submit, "Update"
 
