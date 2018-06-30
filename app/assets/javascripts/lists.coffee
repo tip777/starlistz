@@ -19,7 +19,8 @@ $(document).on 'click', '.comment', (e) ->
   elem = e.target
   
   #コメントアイコンを切り替える
-  if $(elem).parent().siblings(".description").children("input").val().length > 0
+  des_elem = $(elem).parents("tr").find("#description")
+  if des_elem.children("input").val().length > 0
     $(elem).text("comment")
     $(elem).removeClass().addClass("material-icons already");
   else
@@ -27,10 +28,10 @@ $(document).on 'click', '.comment', (e) ->
     $(elem).removeClass().addClass("material-icons still");
     
   #曲の説明欄の表示、非表示
-  if $(elem).parent().siblings(".description").is(':hidden')
-    $(elem).parent().siblings(".description").show()
-  else if $(elem).parent().siblings(".description").is(':visible')
-    $(elem).parent().siblings(".description").hide()
+  if des_elem.is(':hidden')
+    des_elem.show()
+  else if des_elem.is(':visible')
+   des_elem.hide()
   else
     alert 'not find'
   return

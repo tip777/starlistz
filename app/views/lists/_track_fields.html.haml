@@ -1,19 +1,28 @@
-.track_item
-  %span.recommend
-    = f.input :recommend, label: ".", as: :boolean, boolean_style: :inline, label_html: { id: "custom-checkbox#{f.index}", class: 'track_recommend' }, input_html: { id: "custom-checkbox#{f.index}", class: "custom-check-box" }
-  %span.track_no
-  %span.artist= f.text_field :artist, placeholder: "アーティスト名"
-  %span.song= f.text_field :song, placeholder: "曲名"
-  %span.description{:style => "display: none;"}= f.text_field :description, placeholder: "曲の説明"
-  %span.comment
-    - if f.object.description != nil
-      - if f.object.description.length > 0
-        %i.material-icons.already comment
-      - else
-        %i.material-icons.still add_comment
-    - else
-      %i.material-icons.still add_comment
+.track_item.l__tracks
+  %table
+    %tbody
+      %tr
+        %td
+          = f.input :recommend, label: ".", as: :boolean, boolean_style: :inline, label_html: { id: "custom-checkbox#{f.index}", class: 'track_recommend' }, input_html: { id: "custom-checkbox#{f.index}", class: "custom-check-box" }
+        %td.track_no
+        %td.other
+          %span.trackSong= f.text_field :song, placeholder: "曲名"
+          %span.trackArtist= f.text_field :artist, placeholder: "アーティスト名"
+          %span#description{:style => "display: none;"}= f.text_field :description, placeholder: "曲の説明"
+        %td
+          %span.comment
+            - if f.object.description != nil
+              - if f.object.description.length > 0
+                %i.material-icons.already comment
+              - else
+                %i.material-icons.still add_comment
+            - else
+              %i.material-icons.still add_comment
+        %td
+          %span.track_delete
+            = link_to_remove_association f, { wrapper_class: 'track_item' } do
+              %i.material-icons.still delete_forever
+
+
+
   %span.sort_no= f.hidden_field :row_order, class: 'sort_order'
-  %span.track_delete
-    = link_to_remove_association f, { wrapper_class: 'track_item' } do
-      %i.material-icons.still delete_forever

@@ -2178,6 +2178,22 @@ table.minimum{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .clearfix:after {
   content: "";
   clear: both;
@@ -2190,6 +2206,7 @@ table.minimum{
   max-width: 580px;
   margin: auto;
 }
+
 
 .l__playlist{
       margin: 0 0 60px 0;
@@ -2207,9 +2224,13 @@ table.minimum{
 
 .l__listShow{
   background-color: #fff;
-    padding: 30px;
+    padding: 15px;
 }
-
+@media only screen and (min-width: 767px) {
+.l__listShow{
+  padding: 30px;
+}
+}
 
 .playlist__img{
   float: left;
@@ -2224,7 +2245,8 @@ table.minimum{
 }
 .playlist__text{
   margin: 0 0 0 120px;
-  padding: 15px;
+  padding:0 0 0 15px;
+  overflow: hidden;
 }
 .playlist__title{
   font-weight: 700;
@@ -2234,9 +2256,9 @@ table.minimum{
   color:#999;
 }
 .playlist__price{
-  float: right;
   color: #999;
     font-size: 1.2em;
+    margin: 10px 0 0 0;
 }
 .playlist__discription{
   margin:0 0 30px 0 ;
@@ -2249,6 +2271,7 @@ table.minimum{
       line-height: 2;
       padding: 1px 20px;
       color:#666;
+      background-color: transparent;
       i{
         vertical-align: middle;
     font-size: 16px;
@@ -2268,11 +2291,11 @@ table.minimum{
         padding: 10px 0;
   }
   td:nth-of-type(1){
-    width: 40px;
+    width: 30px;
 
   }
   td:nth-of-type(2){
-    width: 30px;
+    width: 25px;
   }
   td:nth-of-type(3){
     border-top: 1px solid #eee;
@@ -2282,8 +2305,35 @@ table.minimum{
     width: 50px;
     border-top: 1px solid #eee;
   }
+  td:nth-of-type(5){
+    width: 50px;
+    border-top: 1px solid #eee;
+  }
   td .comment i{
     color: #e8e54c;
+  }
+  td .comment i.still{
+    color: #000;
+  }
+}
+@media only screen and (min-width: 767px) {
+.l__listShow{
+  padding: 30px;
+}
+.playlist__text{
+  padding: 15px;
+}
+.playlist__price{
+  float: right;
+  margin:0;
+}
+.l__tracks{
+  td:nth-of-type(1){
+    width: 40px;
+
+  }
+  td:nth-of-type(2){
+    width: 30px;
   }
 }
 
@@ -2291,10 +2341,50 @@ table.minimum{
 
 
 
+
+
+
+}
 .trackSong,
 .trackArtist{
   display: block;
 }
+
+
+
+
+
+
+
+.l__listEdit{
+  .playlist__title,
+  .list_genre,
+  .playlist__price{
+    margin:15px 0;
+  }
+  .l__tracks{
+  td:nth-of-type(3) span{
+    margin:5px 0;
+  }
+  td:nth-of-type(4){
+        width: 30px;
+    padding: 0 5px;
+  }
+  td:nth-of-type(5){
+        width: 30px;
+    padding: 0 5px;
+  }
+  input[type="text"],
+  textarea{
+        border-radius: 5px;
+    border-width: 2px;
+  }
+}
+}
+
+
+
+
 
 
 

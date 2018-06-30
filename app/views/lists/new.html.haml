@@ -23,7 +23,7 @@
           = f.input :description, label: false, placeholder: 'プレイリストの説明'
         .list_price.list
           ￥
-          = f.select :price, options_for_select(Constants::AMOUNT ), {}, { class: 'js-hide-search', data: { placeholder: '金額を選択してください' } }
+          = f.select :price, options_for_select(Constants::AMOUNT ), {}, { class: 'js-hide-search'}
           
     #track_section.table-sortable
       = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|

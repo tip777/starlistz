@@ -96,7 +96,7 @@ $(document).ready(function(){
       language: {"noResults": function(){ return "";}},
       escapeMarkup: function (markup) { return markup; },
       minimumResultsForSearch: Infinity,
-      width: 200
+      width: 100
   });
 
   $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
