@@ -1,4 +1,8 @@
 class List < ApplicationRecord
+  #paranoia 論理削除
+  acts_as_paranoid
+  
+  
   belongs_to :user
   has_many :list_favorites, dependent: :destroy
 

@@ -15,7 +15,9 @@ class ContactController < ApplicationController
   end
   
   def unsubscribe
-    
+    if current_user.nil?
+      reject_page
+    end
   end
 
   private

@@ -1,4 +1,7 @@
 class UserProfile < ApplicationRecord
+  #paranoia 論理削除
+  acts_as_paranoid
+  
   has_one :user, inverse_of: :user_profile
     
   has_attached_file :avatar,

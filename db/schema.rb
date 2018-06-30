@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180604080542) do
+ActiveRecord::Schema.define(version: 20180629020200) do
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "name",       limit: 65535
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20180604080542) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lists_on_deleted_at", using: :btree
     t.index ["user_id"], name: "index_lists_on_user_id", using: :btree
   end
 
@@ -67,6 +69,8 @@ ActiveRecord::Schema.define(version: 20180604080542) do
     t.text     "uid",        limit: 65535, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_purchases_on_deleted_at", using: :btree
     t.index ["list_id"], name: "index_purchases_on_list_id", using: :btree
     t.index ["user_id", "list_id"], name: "index_purchases_on_user_id_and_list_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_purchases_on_user_id", using: :btree
@@ -116,6 +120,8 @@ ActiveRecord::Schema.define(version: 20180604080542) do
     t.integer  "row_order"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_tracks_on_deleted_at", using: :btree
     t.index ["list_id"], name: "index_tracks_on_list_id", using: :btree
   end
 
@@ -129,6 +135,8 @@ ActiveRecord::Schema.define(version: 20180604080542) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_user_profiles_on_deleted_at", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -154,7 +162,9 @@ ActiveRecord::Schema.define(version: 20180604080542) do
     t.string   "name",                                null: false
     t.string   "stripe_acct_id"
     t.string   "stripe_cus_id"
+    t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["user_profile_id"], name: "index_users_on_user_profile_id", using: :btree

@@ -1,6 +1,9 @@
 class Track < ApplicationRecord
+  #paranoia 論理削除
+  acts_as_paranoid
+  
   belongs_to :list, inverse_of: :tracks
-#   has_many :lists
+
   has_many :item_services, dependent: :destroy
   has_many :music_servises, through: :item_services
 

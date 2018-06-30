@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   before_validation :downcase_username
+  
+  #paranoia 論理削除
+  acts_as_paranoid
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -96,10 +99,10 @@ class User < ApplicationRecord
 
   belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
   accepts_nested_attributes_for :user_profile, allow_destroy: true
+  # belongs_to :user_profile, inverse_of: :user, optional: true
+  # accepts_nested_attributes_for :user_profile
 
-  has_many :purchases, :dependent => :nullify
-  
-  # has_many :lists, through: :purchases
+  has_many :purchases, dependent: :destroy
 
 
   #gem acts-as-taggable-on タグ機能

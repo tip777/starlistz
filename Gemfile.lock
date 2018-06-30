@@ -5,6 +5,14 @@ GIT
     acts-as-taggable-on (5.0.0)
       activerecord (>= 4.2.8)
 
+GIT
+  remote: https://github.com/rubysherpas/paranoia.git
+  revision: d70c4c5a7098d4c8416332489e3f63b0a959ab97
+  branch: rails5
+  specs:
+    paranoia (2.2.0.pre)
+      activerecord (>= 4.0, < 5.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -319,6 +327,7 @@ DEPENDENCIES
   nokogiri (~> 1.6)
   omniauth-twitter
   paperclip
+  paranoia!
   pry-byebug
   pry-rails
   puma (~> 3.0)

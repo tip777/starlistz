@@ -4,6 +4,8 @@ module Constants
     SORT = "new"
     GENRE = "All genre"
     SUPPORT_MAIL = "info@starlistz.com" 
+    DLETE_MARK_LIST = "(削除済)"
+    DLETE_MARK_USER = "(退会済)"
     HP_URL = ""
     
     arr = []

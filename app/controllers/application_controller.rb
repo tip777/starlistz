@@ -27,6 +27,15 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  #targetが削除済みか判定
+  def is_delete_contr(target)
+      if target.deleted_at.nil?
+          return false
+      else
+          return true
+      end
+  end
+  
   #ログインしているか判定
   def gon_current_user
     gon.current_user = current_user
@@ -43,7 +52,7 @@ class ApplicationController < ActionController::Base
   def store_location
       if (request.fullpath != "/users/sign_in" &&
           request.fullpath != "/users/sign_up" &&
-          request.fullpath != "//users" &&
+          request.fullpath != "/users" &&
           request.fullpath !~ Regexp.new("\\A/users/password.*\\z") &&
           !request.xhr?) # don't store ajax calls
         session[:previous_url] = request.fullpath

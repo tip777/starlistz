@@ -4,25 +4,32 @@ class UsersController < ApplicationController
   before_action :show_head, only: [:playlist, :purchasehistory, :favuser, :favplaylist]
 
   def show_head
-    @user = User.find(params[:id])
-    @following = @user.following_relationships.count
-    @follower = @user.follower_relationships.count
-    @mylist = @user.lists.includes(:taggings)
+    @user = User.with_deleted.find(params[:id])
+    if is_delete_contr(@user)
+      reject_page
+      
+    else
+      @following = @user.following_relationships.count
+      @follower = @user.follower_relationships.count
+      @mylist = @user.lists.includes(:taggings)
     
-    if current_user != nil
-      #Customer取得
-      @customer = find_or_create_stripe_customer(current_user)
-      if current_user.id == @user.id
-        #Stripe連携しているか判定
-        is_account = is_stripe_account_id?(current_user)
-        if is_account != true
-          # flash.now[:alert] = "Stripe連携が完了していません。<br>
-          #                   「設定 / Stripe接続」からStripe連携を完了しなければプレイリストを作成できません。".html_safe
-          flash.now[:alert] = "<a href='https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write'>Stripe接続</a>　が完了していません。<br>
-                            <a href='https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write'>Stripe接続</a>　を完了しなければプレイリストを作成できません。".html_safe
+      if current_user != nil
+        #Customer取得
+        @customer = find_or_create_stripe_customer(current_user)
+        if current_user.id == @user.id
+          #Stripe連携しているか判定
+          is_account = is_stripe_account_id?(current_user)
+          if is_account != true
+            # flash.now[:alert] = "Stripe連携が完了していません。<br>
+            #                   「設定 / Stripe接続」からStripe連携を完了しなければプレイリストを作成できません。".html_safe
+            flash.now[:alert] = "<a href='https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write'>Stripe接続</a>　が完了していません。<br>
+                              <a href='https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write'>Stripe接続</a>　を完了しなければプレイリストを作成できません。".html_safe
+          end
         end
       end
+      
     end
+    
   end
   
   def favuser
@@ -52,7 +59,7 @@ class UsersController < ApplicationController
   def purchasehistory
     if current_user != nil && current_user.id == @user.id
       #購入履歴
-      @my_purchase = Purchase.includes({list: [:user]}).where(user_id: current_user.id).order(created_at: :desc)
+      @my_purchase = Purchase.with_deleted.includes({list: [:user]}).where(user_id: current_user.id).order(created_at: :desc)
       @my_purchase_pages = @my_purchase.page(params[:my_purchase_page])
     else
       reject_page
@@ -65,11 +72,11 @@ class UsersController < ApplicationController
     if current_user != nil && current_user.id == @user.id
       @sales_list = @user.lists
       # 売上がある年
-      @year_list = Purchase.where(list_id: @sales_list.pluck(:id)).group("Year(order_date)").order('order_date DESC').pluck(:order_date)
+      @year_list = Purchase.with_deleted.where(list_id: @sales_list.pluck(:id)).group("Year(order_date)").order('order_date DESC').pluck(:order_date)
       @year_list.each_with_index {|val, i| @year_list[i] =  val.strftime("%-Y")} #日付の形式変更
       
       # 全期間の合計売上額
-      calc_count = Purchase.where(list_id: @sales_list.pluck(:id)).group(:list_id).count 
+      calc_count = Purchase.with_deleted.where(list_id: @sales_list.pluck(:id)).group(:list_id).count 
       @all_amount = 0
       calc_count.each_pair { |key, value| @all_amount = List.find(key).price * value + @all_amount }
       
@@ -88,7 +95,7 @@ class UsersController < ApplicationController
         for i in 1..month.to_i do
           i = month.to_i - (i - 1) #for 逆から回す
           month_amount = 0
-          calc_count = Purchase.where(list_id: @sales_list.pluck(:id), order_date: Time.zone.local(@year, i, 1).in_time_zone.all_month ).group(:list_id).count
+          calc_count = Purchase.with_deleted.where(list_id: @sales_list.pluck(:id), order_date: Time.zone.local(@year, i, 1).in_time_zone.all_month ).group(:list_id).count
           # 一月の合計売上額　
           calc_count.each_pair { |key, value| month_amount = List.find(key).price * value + month_amount }
           if month_amount > 0 # 売り上げがあったら
@@ -104,7 +111,7 @@ class UsersController < ApplicationController
         for i in 1..month.to_i do
           i = month.to_i - (i - 1) #for 逆から回す
           month_amount = 0
-          calc_count = Purchase.where(list_id: @sales_list.pluck(:id), order_date: Time.zone.local(@year, i, 1).in_time_zone.all_month ).group(:list_id).count
+          calc_count = Purchase.with_deleted.where(list_id: @sales_list.pluck(:id), order_date: Time.zone.local(@year, i, 1).in_time_zone.all_month ).group(:list_id).count
           
           # 一月の合計売上額　
           calc_count.each_pair { |key, value| month_amount = List.find(key).price * value + month_amount }
@@ -131,13 +138,18 @@ class UsersController < ApplicationController
       year = @date.strftime("%-Y")
       month = @date.strftime("%-m")
         
-      list_amount = Purchase.where(list_id: list.pluck(:id), order_date: Time.zone.local(year, month, 1).in_time_zone.all_month ).group(:list_id).count
+      list_amount = Purchase.with_deleted.where(list_id: list.pluck(:id), order_date: Time.zone.local(year, month, 1).in_time_zone.all_month ).group(:list_id).count
       # 対象月のプレイリスト毎の売上額
       @month_amount = 0
       list_amount.each_with_index do |(key,value),i|
         target_list = List.find(key)
         amount = target_list.price * value
-        @list_amount.store(target_list.title, amount)
+        #削除済みリストだったら後尾に「(削除済)」と付ける
+        if target_list.deleted_at.nil?
+          @list_amount.store(target_list.title, amount)
+        else
+          @list_amount.store(target_list.title + Constants::DLETE_MARK_LIST, amount)
+        end
         @sales_list.push(key)
         @month_amount = @month_amount + amount
       end

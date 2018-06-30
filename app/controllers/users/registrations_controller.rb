@@ -21,12 +21,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    # #パラメータでcodeがあればstripeのデータ取得
-    # if params[:code] != nil
-    #   set_stripe_id(params[:code])
-    # end
-    
-    # @list = current_user.lists
     super
   end
 
@@ -43,8 +37,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if customer != nil 
       customer.delete
     end
-
-    super
+    
+    resource.destroy
+    #削除したユーザーのemail,nameを変更（重複対策）
+    resource.update_attributes!(email: resource.deleted_at.to_i.to_s + '_' + resource.email.to_s, name: "*" + resource.name.to_s)
+    
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    set_flash_message! :notice, :destroyed
+    yield resource if block_given?
+    respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
   end
 
   # GET /resource/cancel

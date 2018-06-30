@@ -15,4 +15,13 @@ module ApplicationHelper
     def trun_str(str, strLen)
         return str.truncate(strLen)
     end
+    
+    # targetが削除済みか判定
+    def is_delete(target)
+        if target.deleted_at.nil?
+            return false
+        else
+            return true
+        end
+    end
 end

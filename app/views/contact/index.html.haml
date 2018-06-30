@@ -16,4 +16,5 @@
       = f.submit '送信'
       
   %p
-    = link_to "退会はこちら", contact_unsubscribe_path
+    - if is_signin
+      = link_to "退会はこちら", contact_unsubscribe_path

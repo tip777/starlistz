@@ -3,7 +3,7 @@
   %h1 StarListzを退会しますか？
 
 
-  %p ・退会処理後にアカウント、プレイリストのデータを元に戻すことはできません
+  // %p ・退会処理後にアカウント、プレイリストのデータを元に戻すことはできません
   %p
     = link_to registration_path(current_user), method: :delete, data: { confirm: "退会します。よろしいですか？?" } do
       退会
