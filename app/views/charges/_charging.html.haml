@@ -2,7 +2,6 @@
 = form_tag charges_path do
   .l__btn__purchase
     %label.amount
-      // %span Amount: $5.00
     .datafield
       = hidden_field_tag :list, list.id
       
@@ -17,6 +16,7 @@
         "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
         "data-label" => "購入",
         "data-locale" => "auto",
+        "data-currency" => "jpy",
         "data-name" => "StarListz",
         "data-panel-label" => "プレイリストを購入",
         :src => "https://checkout.stripe.com/checkout.js"}
@@ -27,6 +27,7 @@
         "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
         "data-label" => "購入",
         "data-locale" => "auto",
+        "data-currency" => "jpy",
         "data-name" => "StarListz",
         "data-panel-label" => "プレイリストを購入",
         :src => "https://checkout.stripe.com/checkout.js"}
