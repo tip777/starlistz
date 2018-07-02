@@ -2,7 +2,7 @@ class List < ApplicationRecord
   #paranoia 論理削除
   acts_as_paranoid
   
-  belongs_to :user
+  belongs_to :user, -> { unscope(where: :deleted_at) } #paranoia制約なし
   has_many :list_favorites, dependent: :destroy
 
   has_many :tracks, -> { unscope(where: :deleted_at) }, dependent: :destroy #paranoia制約なし

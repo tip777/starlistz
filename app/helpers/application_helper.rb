@@ -13,7 +13,11 @@ module ApplicationHelper
     
     # 〇文字以上は...で表示する
     def trun_str(str, strLen)
-        return str.truncate(strLen)
+        if str.nil?
+            return
+        else
+            return str.truncate(strLen)
+        end
     end
     
     # targetが削除済みか判定

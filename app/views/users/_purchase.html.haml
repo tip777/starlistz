@@ -5,7 +5,7 @@
     .purchase__content
       // プレイリストが削除済みか判定
       // -if purchase.list.paranoia_destroyed?
-      -if purchase.list.nil?
+      -if purchase.list.paranoia_destroyed?
         %span.list__title= link_to trun_str(purchase.list.title, 18) + Constants::DLETE_MARK_LIST, list_path(purchase.list) , class: "testclass"
       -else
         %span.list__title= link_to trun_str(purchase.list.title, 21), list_path(purchase.list) , class: "testclass"
