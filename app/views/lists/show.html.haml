@@ -14,18 +14,18 @@
       
       .playlist__text
         .playlist__title
-          - if is_delete(@list)
+          - if @list.paranoia_destroyed?
             = @list.title + Constants::DLETE_MARK_LIST
           - else
             = @list.title
         
         .playlist__author
-          - if is_delete(@list.user)
+          - if @list.user.paranoia_destroyed?
             #{@list.user.name + Constants::DLETE_MARK_USER}
           - else
             = link_to @list.user.name, users_playlist_path(@list.user)
         
-        - if is_signin
+        - if is_signin and !@list.paranoia_destroyed?
           - if !is_signed(current_user.id, @list.user.id)
             = render 'lists/fav_form', list: @list 
 
@@ -68,7 +68,7 @@
         .l__playlistCore.clearfix
           .playlist__img
             .l__img
-              = render 'lists/is_image', list: @list
+              = image_tag @list.image.url(:thumb)
           .playlist__text
             %span.modal_song= track.song
             %span.modal_artist= track.artist

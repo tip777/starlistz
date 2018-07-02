@@ -2,11 +2,10 @@ class List < ApplicationRecord
   #paranoia 論理削除
   acts_as_paranoid
   
-  
   belongs_to :user
   has_many :list_favorites, dependent: :destroy
 
-  has_many :tracks, dependent: :destroy
+  has_many :tracks, -> { unscope(where: :deleted_at) }, dependent: :destroy #paranoia制約なし
   accepts_nested_attributes_for :tracks, reject_if: :all_blank, allow_destroy: true
 
   has_many :purchases, dependent: :destroy

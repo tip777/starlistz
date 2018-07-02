@@ -3,21 +3,32 @@ class ListsController < ApplicationController
   before_action :gon_current_user, only: [:show]
 
   def show
-    @list = List.with_deleted.find(params[:id])
-    if is_delete_contr(@list)
+    @list = List.with_deleted.find_by(id: params[:id])
+    if @list.nil?
       reject_page
-      
     else
       #自分のプレイリスト、購入したプレイリスト以外は見れないように
       if current_user.nil?
         reject_page
       else
-        my_list = current_user.lists.pluck(:id)
-        purchase_list = current_user.purchases.pluck(:list_id)
-        exclude_list = my_list.push(purchase_list)
-        exclude_list.flatten!
-        if !exclude_list.include?(params[:id].to_i)
-            reject_page
+        #プレイリストが削除されてたら
+        if @list.paranoia_destroyed?
+          #購入済みのプレイリストのみ表示
+          purchase_list = current_user.purchases.with_deleted.pluck(:list_id)
+          exclude_list = purchase_list
+          exclude_list.flatten!
+          if !exclude_list.include?(params[:id].to_i)
+              reject_page
+          end
+        else
+          #自分が作成したもの、購入済みのプレイリストを表示
+          my_list = current_user.lists.pluck(:id)
+          purchase_list = current_user.purchases.pluck(:list_id)
+          exclude_list = my_list.push(purchase_list)
+          exclude_list.flatten!
+          if !exclude_list.include?(params[:id].to_i)
+              reject_page
+          end
         end
       end
       
@@ -34,7 +45,7 @@ class ListsController < ApplicationController
   def edit
     set_lists
     
-    if is_delete_contr(@list)
+    if @list.nil? || @list.paranoia_destroyed?
       reject_page
     else
       taggings = set_list_genre
@@ -71,7 +82,7 @@ class ListsController < ApplicationController
   
   def set_lists
     @list.tap { @list = nil }
-    @list = List.with_deleted.find(params[:id])
+    @list = List.with_deleted.find_by(id: params[:id])
   end
 
   def list_params

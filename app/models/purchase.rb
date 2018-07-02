@@ -3,7 +3,7 @@ class Purchase < ApplicationRecord
   acts_as_paranoid
   
   belongs_to :user
-  belongs_to :list
+  belongs_to :list, -> { unscope(where: :deleted_at) } #paranoia制約なし
   
   validates :user_id, :uniqueness => {:scope => :list_id}
 end

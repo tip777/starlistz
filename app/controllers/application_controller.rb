@@ -27,15 +27,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  #targetが削除済みか判定
-  def is_delete_contr(target)
-      if target.deleted_at.nil?
-          return false
-      else
-          return true
-      end
-  end
-  
   #ログインしているか判定
   def gon_current_user
     gon.current_user = current_user

@@ -40,7 +40,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     
     resource.destroy
     #削除したユーザーのemail,nameを変更（重複対策）
-    resource.update_attributes!(email: resource.deleted_at.to_i.to_s + '_' + resource.email.to_s, name: "*" + resource.name.to_s)
+    resource.attributes = {email: resource.deleted_at.to_i.to_s + '_' + resource.email.to_s, name: "*" + resource.name.to_s}
+    resource.save!(validate: false)
     
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message! :notice, :destroyed

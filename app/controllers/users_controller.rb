@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   before_action :show_head, only: [:playlist, :purchasehistory, :favuser, :favplaylist]
 
   def show_head
-    @user = User.with_deleted.find(params[:id])
-    if is_delete_contr(@user)
+    @user = User.with_deleted.find_by(id: params[:id])
+    if @user.nil? || @user.paranoia_destroyed?
       reject_page
       
     else
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   def purchasehistory
     if current_user != nil && current_user.id == @user.id
       #購入履歴
-      @my_purchase = Purchase.with_deleted.includes({list: [:user]}).where(user_id: current_user.id).order(created_at: :desc)
+      @my_purchase = Purchase.unscope(:where).includes({list: [:user]}).where(user_id: current_user.id).order(created_at: :desc)
       @my_purchase_pages = @my_purchase.page(params[:my_purchase_page])
     else
       reject_page
