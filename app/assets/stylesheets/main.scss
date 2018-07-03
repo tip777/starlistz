@@ -2283,6 +2283,9 @@ table.minimum{
     color: #fff;
 }
 .l__tracks{
+  padding-top:15px;
+  margin-bottom:15px;
+  border-top: 1px solid #eee;
   table{
     margin: 0;
   }
@@ -2298,16 +2301,16 @@ table.minimum{
     width: 25px;
   }
   td:nth-of-type(3){
-    border-top: 1px solid #eee;
+    // border-top: 1px solid #eee;
 
   }
   td:nth-of-type(4){
     width: 50px;
-    border-top: 1px solid #eee;
+    // border-top: 1px solid #eee;
   }
   td:nth-of-type(5){
     width: 50px;
-    border-top: 1px solid #eee;
+    // border-top: 1px solid #eee;
   }
   td .comment i{
     color: #e8e54c;

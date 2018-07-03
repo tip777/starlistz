@@ -24567,114 +24567,114 @@ table.minimum td {
   color: #fff;
 }
 
-/* line 2286, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2285, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__tracks {
+  padding-top: 15px;
+  margin-bottom: 15px;
+  border-top: 1px solid #eee;
+}
+/* line 2289, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks table {
   margin: 0;
 }
-/* line 2289, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2292, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td {
   vertical-align: middle;
   padding: 10px 0;
 }
-/* line 2293, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2296, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td:nth-of-type(1) {
   width: 30px;
 }
-/* line 2297, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2300, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td:nth-of-type(2) {
   width: 25px;
 }
-/* line 2300, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
-.l__tracks td:nth-of-type(3) {
-  border-top: 1px solid #eee;
-}
-/* line 2304, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2307, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td:nth-of-type(4) {
   width: 50px;
-  border-top: 1px solid #eee;
 }
-/* line 2308, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2311, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td:nth-of-type(5) {
   width: 50px;
-  border-top: 1px solid #eee;
 }
-/* line 2312, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2315, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td .comment i {
   color: #e8e54c;
 }
-/* line 2315, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2318, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td .comment i.still {
   color: #000;
 }
 
 @media only screen and (min-width: 767px) {
-  /* line 2320, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2323, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__listShow {
     padding: 30px;
   }
 
-  /* line 2323, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2326, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .playlist__text {
     padding: 15px;
   }
 
-  /* line 2326, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2329, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .playlist__price {
     float: right;
     margin: 0;
   }
 
-  /* line 2331, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2334, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__tracks td:nth-of-type(1) {
     width: 40px;
   }
-  /* line 2335, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2338, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__tracks td:nth-of-type(2) {
     width: 30px;
   }
 }
-/* line 2348, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2351, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .trackSong,
 .trackArtist {
   display: block;
 }
 
-/* line 2360, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2363, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listEdit .playlist__title,
 .l__listEdit .list_genre,
 .l__listEdit .playlist__price {
   margin: 15px 0;
 }
-/* line 2366, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2369, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listEdit .l__tracks td:nth-of-type(3) span {
   margin: 5px 0;
 }
-/* line 2369, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2372, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listEdit .l__tracks td:nth-of-type(4) {
   width: 30px;
   padding: 0 5px;
 }
-/* line 2373, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2376, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listEdit .l__tracks td:nth-of-type(5) {
   width: 30px;
   padding: 0 5px;
 }
-/* line 2377, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2380, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listEdit .l__tracks input[type="text"],
 .l__listEdit .l__tracks textarea {
   border-radius: 5px;
   border-width: 2px;
 }
 
-/* line 2391, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2394, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .modal__comment {
   padding: 30px 45px;
 }
-/* line 2393, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2396, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .modal__comment .modal_song, .modal__comment .modal_artist {
   display: block;
 }
-/* line 2396, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2399, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .modal__comment .playlist__text {
   padding: 40px 15px 10px;
 }
