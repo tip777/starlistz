@@ -39,9 +39,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     
     resource.destroy
+    
     #削除したユーザーのemail,nameを変更（重複対策）
     resource.attributes = {email: resource.deleted_at.to_i.to_s + '_' + resource.email.to_s, name: "*" + resource.name.to_s}
     resource.save!(validate: false)
+    
+    #退会理由をつけたメールを運営に送信
+    contact = Contact.new(contact_params)
+    ContactMailer.unsub_email(contact, current_user).deliver
     
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message! :notice, :destroyed
@@ -59,6 +64,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+  
+  #退会理由用
+  def contact_params
+    params.require(:contact).permit(:message)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params

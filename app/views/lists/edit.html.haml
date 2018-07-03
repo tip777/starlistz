@@ -11,7 +11,12 @@
         .playlist__img
           .l__img
             = image_tag @list.image.url(:thumb)
-          .trackCount= f.input :image, as: :file, label: false
+          .trackCount= f.input :image, as: :file, label: false, :input_html => {id: "inputFileList", style: "display:none;"}
+          // ファイル選択　代わりのボタン
+          %button#inputFileSub{type: "button"} ファイルを選択
+          // ファイル名表示用
+          %p#subTxt　
+          
         .playlist__text
           .playlist__title
             = f.input :title, label: false, placeholder: 'プレイリスト名'
