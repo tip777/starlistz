@@ -11,26 +11,18 @@ rerollNumber = ->
     $(elem).val  h
     h = h + 1
     return
-
+      
 $(document).ready ->
   rerollNumber()
-  fixHelper = (e, ui) ->
-    ui.children().each ->
-      $(this).width $(this).width()
-      return
-    ui
   $('.table-sortable').sortable
-    helper: fixHelper
-    axis: 'y'
-    items: '.track_item'
-    update: (e, ui) ->
+    start: (event, ui) ->
+      $(ui.item).addClass 'draggedDiv'
+      return
+    stop: (event, ui) ->
+      $(ui.item).removeClass 'draggedDiv'
       rerollNumber()
-      item = undefined
-      item = ui.item
-      rerollNumber()
-
-    stop: (e, ui) ->
-      ui.item.children('td').effect 'highlight'
+      console.log '止まった'
+      return
   
   #曲を新規で追加時
   $('.table-sortable').on 'cocoon:after-insert', (e, insertedItem) ->
@@ -40,9 +32,11 @@ $(document).ready ->
     $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index())
     return
   
-  #曲を新規で追加時
+  #曲を削除時
   $('.table-sortable').on 'cocoon:after-remove', (e, insertedItem) ->
     rerollNumber()
     return
+    
+
 
   

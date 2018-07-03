@@ -15,8 +15,7 @@
 //= require jquery_ujs
 // require turbolinks
 //= require select2
-//= require jquery-ui/widgets/sortable
-//= require jquery-ui/effects/effect-highlight
+//= require jquery-ui
 //= require cocoon
 //= require_tree .
 
@@ -24,10 +23,6 @@
 // $(document).on('turbolinks:load', function() {
 //   ...your javascript goes here...
 // });
-
-
-
-
 
 
   // グロバールナビゲーション選択ページの判定
@@ -39,38 +34,6 @@
   //strにhogeを含む場合の処理
   }
 
-
-// $(function() {
-
-  //セレクトボックスが切り替わったら発動
-  // $('#user_name').change(function() {
-  //   var check;
-  //   var result = $.ajax({
-  //       type: 'GET',
-  //       url: '/users/sign_in',
-  //       async: false
-  //   }).responseText;
-  //   return check;
-  //
-  //   console.log(check);
-  // });
-
-//   $('#user_name').change(function test(){
-//       return $.ajax({
-//         type: 'GET',
-//         url: '/name_check',
-//         data: {content : $("#user_name ").text()},
-//         datatype: "html"
-//       }).done(function(result) {
-//           console.log(result);
-//       }).fail(function(result) {
-//           console.log("失敗");
-//       });
-//   });
-//
-// });
-
-//var result = test() //ちゃんと返り値が入ってる;
 
 // $(document).on('turbolinks:load', function() {
 $(document).ready(function(){
