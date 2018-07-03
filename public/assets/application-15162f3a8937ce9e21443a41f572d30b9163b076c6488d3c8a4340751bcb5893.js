@@ -24855,22 +24855,40 @@ $(document).ready(function(){
   });
 
   $(document).on('click', '.comment', function(e) {
-    var elem;
+    var des_elem, elem;
     elem = e.target;
-    if ($(elem).parent().siblings(".description").children("input").val().length > 0) {
+    des_elem = $(elem).parents("tr").find("#description");
+    if (des_elem.children("input").val().length > 0) {
       $(elem).text("comment");
       $(elem).removeClass().addClass("material-icons already");
     } else {
       $(elem).text("add_comment");
       $(elem).removeClass().addClass("material-icons still");
     }
-    if ($(elem).parent().siblings(".description").is(':hidden')) {
-      $(elem).parent().siblings(".description").show();
-    } else if ($(elem).parent().siblings(".description").is(':visible')) {
-      $(elem).parent().siblings(".description").hide();
+    if (des_elem.is(':hidden')) {
+      des_elem.show();
+    } else if (des_elem.is(':visible')) {
+      des_elem.hide();
     } else {
       alert('not find');
     }
+  });
+
+  $(document).ready(function() {
+    jQuery(function($) {
+      jQuery('#inputFileSub').click(function() {
+        var input_file;
+        input_file = document.getElementById('inputFileList');
+        input_file.click();
+      });
+    });
+    return $("#inputFileList").change(function() {
+      var array, input_file, regex;
+      input_file = document.getElementById('inputFileList').value;
+      regex = /\\|\\/;
+      array = input_file.split(regex);
+      document.getElementById('subTxt').innerHTML = array[array.length - 1];
+    });
   });
 
 }).call(this);
@@ -25040,7 +25058,7 @@ $(document).ready(function(){
       language: {"noResults": function(){ return "";}},
       escapeMarkup: function (markup) { return markup; },
       minimumResultsForSearch: Infinity,
-      width: 200
+      width: 100
   });
 
   $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
