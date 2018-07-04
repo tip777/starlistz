@@ -40312,23 +40312,34 @@ $(document).ready(function(){
 
   $(document).ready(function() {
     rerollNumber();
-    $('.table-sortable').sortable({
-      start: function(event, ui) {
-        $(ui.item).addClass('draggedDiv');
-      },
-      stop: function(event, ui) {
-        $(ui.item).removeClass('draggedDiv');
-        rerollNumber();
-        console.log('止まった');
-      }
-    });
     $('.table-sortable').on('cocoon:after-insert', function(e, insertedItem) {
       rerollNumber();
       $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index());
       $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
     });
-    return $('.table-sortable').on('cocoon:after-remove', function(e, insertedItem) {
+    $('.table-sortable').on('cocoon:after-remove', function(e, insertedItem) {
       rerollNumber();
+    });
+    return $('.track_sorticon').mouseover(function() {
+      var elem_sort;
+      elem_sort = $(this).parents("#track_section");
+      elem_sort.addClass('table-sortable');
+      $('.table-sortable').sortable({
+        start: function(event, ui) {
+          $(ui.item).addClass('draggedDiv');
+        },
+        stop: function(event, ui) {
+          $(ui.item).removeClass('draggedDiv');
+          rerollNumber();
+          console.log('止まった');
+        }
+      });
+      console.log('マウスオーバー');
+    }).mouseout(function() {
+      var elem_sort;
+      elem_sort = $(this).parents("#track_section");
+      elem_sort.removeClass('table-sortable');
+      console.log('マウスあうと');
     });
   });
 

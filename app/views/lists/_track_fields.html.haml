@@ -23,6 +23,9 @@
             = link_to_remove_association f, { wrapper_class: 'track_item' } do
               %i.material-icons.still delete_forever
         %td
+          %span.track_sorticon
+            %i.material-icons.still dehaze
+        %td
           %span.sort_no= f.hidden_field :row_order, class: 'sort_order'
 
 

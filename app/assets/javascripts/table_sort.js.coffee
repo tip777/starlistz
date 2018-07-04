@@ -14,15 +14,15 @@ rerollNumber = ->
       
 $(document).ready ->
   rerollNumber()
-  $('.table-sortable').sortable
-    start: (event, ui) ->
-      $(ui.item).addClass 'draggedDiv'
-      return
-    stop: (event, ui) ->
-      $(ui.item).removeClass 'draggedDiv'
-      rerollNumber()
-      console.log '止まった'
-      return
+  # $('.table-sortable').sortable
+  #   start: (event, ui) ->
+  #     $(ui.item).addClass 'draggedDiv'
+  #     return
+  #   stop: (event, ui) ->
+  #     $(ui.item).removeClass 'draggedDiv'
+  #     rerollNumber()
+  #     console.log '止まった'
+  #     return
   
   #曲を新規で追加時
   $('.table-sortable').on 'cocoon:after-insert', (e, insertedItem) ->
@@ -36,7 +36,27 @@ $(document).ready ->
   $('.table-sortable').on 'cocoon:after-remove', (e, insertedItem) ->
     rerollNumber()
     return
-    
+  
+  $('.track_sorticon').mouseover(->
+    elem_sort = $(this).parents("#track_section")
+    elem_sort.addClass 'table-sortable'
+    $('.table-sortable').sortable
+      start: (event, ui) ->
+        $(ui.item).addClass 'draggedDiv'
+        return
+      stop: (event, ui) ->
+        $(ui.item).removeClass 'draggedDiv'
+        rerollNumber()
+        console.log '止まった'
+        return
+    console.log 'マウスオーバー'
+    return
+  ).mouseout ->
+    elem_sort = $(this).parents("#track_section")
+    elem_sort.removeClass 'table-sortable'
+    console.log 'マウスあうと'
+    return
+
 
 
   

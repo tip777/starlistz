@@ -32,7 +32,8 @@
       .span.playlist__discription
         = f.input :description, label: false, placeholder: 'プレイリストの説明'
 
-    #track_section.table-sortable
+    // #track_section.table-sortable
+    #track_section
       = f.fields_for :tracks, @list.tracks.sort_by(&:row_order), include_id: false do |track|
         = render 'track_fields', f: track
 
