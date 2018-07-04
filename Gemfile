@@ -57,6 +57,9 @@ gem 'ranked-model'
 gem 'stripe'
 gem 'gon'
 gem 'rails-i18n'
+#heroku上で運営時のバックアップ機能用
+gem 'backup'
+gem 'whenever'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

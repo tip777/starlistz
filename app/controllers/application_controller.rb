@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   
   http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.test? #heroku development Basic認証
   http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.staging? #heroku staging Basic認証
+  http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.production? #本番開始　するときに消す
   
   def set_user_genre
     #Userのタグだけ抽出
