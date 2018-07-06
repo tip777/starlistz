@@ -13,11 +13,11 @@
           %span.comment
             - if f.object.description != nil
               - if f.object.description.length > 0
-                %i.material-icons.already comment
+                %i.material-icons.comment_add.already comment
               - else
-                %i.material-icons.still add_comment
+                %i.material-icons.comment_add.still add_comment
             - else
-              %i.material-icons.still add_comment
+              %i.material-icons.comment_add.still add_comment
         %td
           %span.track_delete
             = link_to_remove_association f, { wrapper_class: 'track_item' } do

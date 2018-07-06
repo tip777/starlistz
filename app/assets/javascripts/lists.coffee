@@ -15,28 +15,55 @@ $('.field_track_add')
       track_to_be_removed.fadeOut('slow')
     .on 'cocoon:after-remove', (e, removed_track) ->
       console.log('after remove')
+
+agent = navigator.userAgent
+#スマホやタブレットの場合
+if agent.search(/iPhone/) != -1 or agent.search(/iPad/) != -1 or agent.search(/iPod/) != -1 or agent.search(/Android/) != -1
+  # プレイリスト　編集、新規作成時の「曲の説明」表示、非表示
+  $(document).on 'touchstart', '.comment', (e) ->
+    elem = e.target
     
-# プレイリスト　編集、新規作成時の「曲の説明」表示、非表示
-$(document).on 'click', '.comment', (e) ->
-  elem = e.target
-  
-  #コメントアイコンを切り替える
-  des_elem = $(elem).parents("tr").find("#description")
-  if des_elem.children("input").val().length > 0
-    $(elem).text("comment")
-    $(elem).removeClass().addClass("material-icons already");
-  else
-    $(elem).text("add_comment")
-    $(elem).removeClass().addClass("material-icons still");
+    #コメントアイコンを切り替える
+    des_elem = $(elem).parents("tr").find("#description")
+    if des_elem.children("input").val().length > 0
+      $(elem).text("comment")
+      $(elem).removeClass().addClass("material-icons comment_add already");
+    else
+      $(elem).text("add_comment")
+      $(elem).removeClass().addClass("material-icons comment_add still");
+      
+    #曲の説明欄の表示、非表示
+    if des_elem.is(':hidden')
+      des_elem.show()
+    else if des_elem.is(':visible')
+     des_elem.hide()
+    else
+      alert 'not find'
+      
+    event.preventDefault()
+    return
+else
+  # プレイリスト　編集、新規作成時の「曲の説明」表示、非表示
+  $(document).on 'click', '.comment', (e) ->
+    elem = e.target
     
-  #曲の説明欄の表示、非表示
-  if des_elem.is(':hidden')
-    des_elem.show()
-  else if des_elem.is(':visible')
-   des_elem.hide()
-  else
-    alert 'not find'
-  return
+    #コメントアイコンを切り替える
+    des_elem = $(elem).parents("tr").find("#description")
+    if des_elem.children("input").val().length > 0
+      $(elem).text("comment")
+      $(elem).removeClass().addClass("material-icons comment_add already");
+    else
+      $(elem).text("add_comment")
+      $(elem).removeClass().addClass("material-icons comment_add still");
+      
+    #曲の説明欄の表示、非表示
+    if des_elem.is(':hidden')
+      des_elem.show()
+    else if des_elem.is(':visible')
+     des_elem.hide()
+    else
+      alert 'not find'
+    return
 
 # list edit ファイル選択
 $(document).ready ->
