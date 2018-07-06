@@ -40230,6 +40230,8 @@ $(document).ready(function(){
 
 
 (function() {
+  var agent;
+
   $('.field_track_add').on('cocoon:before-insert', function(e, track_to_be_added) {
     console.log('before insert');
     return track_to_be_added.fadeIn('slow');
@@ -40243,25 +40245,50 @@ $(document).ready(function(){
     return console.log('after remove');
   });
 
-  $(document).on('click', '.comment', function(e) {
-    var des_elem, elem;
-    elem = e.target;
-    des_elem = $(elem).parents("tr").find("#description");
-    if (des_elem.children("input").val().length > 0) {
-      $(elem).text("comment");
-      $(elem).removeClass().addClass("material-icons already");
-    } else {
-      $(elem).text("add_comment");
-      $(elem).removeClass().addClass("material-icons still");
-    }
-    if (des_elem.is(':hidden')) {
-      des_elem.show();
-    } else if (des_elem.is(':visible')) {
-      des_elem.hide();
-    } else {
-      alert('not find');
-    }
-  });
+  agent = navigator.userAgent;
+
+  if (agent.search(/iPhone/) !== -1 || agent.search(/iPad/) !== -1 || agent.search(/iPod/) !== -1 || agent.search(/Android/) !== -1) {
+    $(document).on('touchstart', '.comment', function(e) {
+      var des_elem, elem;
+      elem = e.target;
+      des_elem = $(elem).parents("tr").find("#description");
+      if (des_elem.children("input").val().length > 0) {
+        $(elem).text("comment");
+        $(elem).removeClass().addClass("material-icons comment_add already");
+      } else {
+        $(elem).text("add_comment");
+        $(elem).removeClass().addClass("material-icons comment_add still");
+      }
+      if (des_elem.is(':hidden')) {
+        des_elem.show();
+      } else if (des_elem.is(':visible')) {
+        des_elem.hide();
+      } else {
+        alert('not find');
+      }
+      event.preventDefault();
+    });
+  } else {
+    $(document).on('click', '.comment', function(e) {
+      var des_elem, elem;
+      elem = e.target;
+      des_elem = $(elem).parents("tr").find("#description");
+      if (des_elem.children("input").val().length > 0) {
+        $(elem).text("comment");
+        $(elem).removeClass().addClass("material-icons comment_add already");
+      } else {
+        $(elem).text("add_comment");
+        $(elem).removeClass().addClass("material-icons comment_add still");
+      }
+      if (des_elem.is(':hidden')) {
+        des_elem.show();
+      } else if (des_elem.is(':visible')) {
+        des_elem.hide();
+      } else {
+        alert('not find');
+      }
+    });
+  }
 
   $(document).ready(function() {
     jQuery(function($) {
@@ -40301,46 +40328,74 @@ $(document).ready(function(){
     n = 0;
     h = 0;
     $('.track_no').each(function(i, elem) {
-      n = n + 1;
-      return elem.innerHTML = n;
+      if ($(elem).parent().parent().parent().parent().is(':visible')) {
+        n = n + 1;
+        return elem.innerHTML = n;
+      }
     });
     return $('.sort_order').each(function(i, elem) {
-      $(elem).val(h);
-      h = h + 1;
+      if ($(elem).parent().parent().parent().parent().is(':visible')) {
+        $(elem).val(h);
+        h = h + 1;
+      }
     });
   };
 
   $(document).ready(function() {
+    var agent;
     rerollNumber();
-    $('.table-sortable').on('cocoon:after-insert', function(e, insertedItem) {
+    $('#track_section').on('cocoon:after-insert', function(e, insertedItem) {
       rerollNumber();
       $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index());
       $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
     });
-    $('.table-sortable').on('cocoon:after-remove', function(e, insertedItem) {
+    $('#track_section').on('cocoon:after-remove', function(e, insertedItem) {
       rerollNumber();
     });
-    return $('.track_sorticon').mouseover(function() {
-      var elem_sort;
-      elem_sort = $(this).parents("#track_section");
-      elem_sort.addClass('table-sortable');
-      $('.table-sortable').sortable({
-        start: function(event, ui) {
-          $(ui.item).addClass('draggedDiv');
-        },
-        stop: function(event, ui) {
-          $(ui.item).removeClass('draggedDiv');
-          rerollNumber();
-          console.log('止まった');
-        }
+    agent = navigator.userAgent;
+    if (agent.search(/iPhone/) !== -1 || agent.search(/iPad/) !== -1 || agent.search(/iPod/) !== -1 || agent.search(/Android/) !== -1) {
+      $('.track_sorticon').on('touchstart', function() {
+        var elem_sort;
+        elem_sort = $(this).parents("#track_section");
+        elem_sort.addClass('table-sortable');
+        $('.table-sortable').sortable({
+          disabled: false
+        });
+        event.preventDefault();
       });
-      console.log('マウスオーバー');
-    }).mouseout(function() {
-      var elem_sort;
-      elem_sort = $(this).parents("#track_section");
-      elem_sort.removeClass('table-sortable');
-      console.log('マウスあうと');
-    });
+      return $('.track_sorticon').on('click touchend', function() {
+        var elem_sort;
+        $('.table-sortable').sortable({
+          disabled: true
+        });
+        elem_sort = $(this).parents("#track_section");
+        elem_sort.removeClass('table-sortable');
+        rerollNumber();
+        event.preventDefault();
+      });
+    } else {
+      return $('.track_sorticon').mouseover(function() {
+        var elem_sort;
+        elem_sort = $(this).parents("#track_section");
+        elem_sort.addClass('table-sortable');
+        $('.table-sortable').sortable({
+          start: function(event, ui) {
+            $(ui.item).addClass('draggedDiv');
+          },
+          stop: function(event, ui) {
+            $(ui.item).removeClass('draggedDiv');
+            rerollNumber();
+          }
+        });
+        $('.table-sortable').bind('click.sortable', function(ev) {
+          ev.target.focus();
+        });
+      }).mouseout(function() {
+        var elem_sort;
+        elem_sort = $(this).parents("#track_section");
+        elem_sort.removeClass('table-sortable');
+      });
+    }
   });
 
 }).call(this);
