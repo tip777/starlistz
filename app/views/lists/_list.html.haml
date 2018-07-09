@@ -14,10 +14,10 @@
             .cardList__footer
               - list.tag_list.each.with_index(0) do |listgenre, i|
                 - if i > 4
-                  %span.genretag･･･
+                  %span.l__playlist.genretag･･･
                   - break
                 - else
-                  %span.genretag
+                  %span.l__playlist.genretag
                     = trun_str(listgenre, 30)
             .l__footerPrice
               %span.favoriteStar
@@ -42,10 +42,10 @@
             .tags
               - list.tag_list.each.with_index(0) do |listgenre, i|
                 - if i > 4
-                  %span.genretag･･･
+                  %span.l__playlist.genretag･･･
                   - break
                 - else
-                  %span.genretag
+                  %span.l__playlist.genretag
                     = link_to trun_str(listgenre, 30), chart_path(genre: listgenre, sort: Constants::SORT)
             .l__footerPrice
               //プレイリストお気に入り機能
@@ -70,10 +70,10 @@
               .tags
                 - list.tag_list.each.with_index(0) do |listgenre, i|
                   - if i > 4
-                    %span.genretag･･･
+                    %span.l__playlist.genretag･･･
                     - break
                   - else
-                    %span.genretag
+                    %span.l__playlist.genretag
                       = trun_str(listgenre, 30)
               .l__footerPrice
                 %span.favoriteStar
@@ -96,7 +96,7 @@
           %p= list.description
           .tags
             - list.tag_list.each.with_index(0) do |listgenre, i|
-              %span.genretag
+              %span.l__playlist.genretag
                 = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
           // モーダルウィンドウのコンテンツ終了
           %span.listprice ¥#{list.price}

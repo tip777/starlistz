@@ -32,20 +32,3 @@
         "data-panel-label" => "プレイリストを購入",
         :src => "https://checkout.stripe.com/checkout.js"}
 
-// :javascript
-//   $(document).on('turbolinks:load', function() {
-//     // checkoutの本当のボタンは非表示
-//     $('.hide_checkout').hide();
-
-//     // 購入ボタンクリック時判定
-//     $('.buy_btn').on('click', function(e){
-//       if(gon.current_user == null){
-//         console.log("してない");
-//         window.location.href = "/users/sign_in"; // 通常の遷移
-//       }else{
-//         $('.stripe-button-el').trigger('click');
-//       }
-//       console.log(gon.current_user);
-//       e.preventDefault();
-//     });
-//   });

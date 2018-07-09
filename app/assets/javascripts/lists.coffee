@@ -25,7 +25,7 @@ if agent.search(/iPhone/) != -1 or agent.search(/iPad/) != -1 or agent.search(/i
     
     #コメントアイコンを切り替える
     des_elem = $(elem).parents("tr").find("#description")
-    if des_elem.children("input").val().length > 0
+    if des_elem.children("textarea").val().length > 0
       $(elem).text("comment")
       $(elem).removeClass().addClass("material-icons comment_add already");
     else
@@ -49,7 +49,7 @@ else
     
     #コメントアイコンを切り替える
     des_elem = $(elem).parents("tr").find("#description")
-    if des_elem.children("input").val().length > 0
+    if des_elem.children("textarea").val().length > 0
       $(elem).text("comment")
       $(elem).removeClass().addClass("material-icons comment_add already");
     else

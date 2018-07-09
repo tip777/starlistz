@@ -45,11 +45,14 @@ class ListsController < ApplicationController
   def edit
     set_lists
     
-    if @list.nil? || @list.paranoia_destroyed?
+    if @list.nil? || @list.paranoia_destroyed? || @list.user != current_user
       reject_page
     else
       taggings = set_list_genre
       @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
+      if @tracks.nil?
+        @tracks = @list.tracks.without_deleted.sort_by(&:row_order)
+      end
     end
     
   end
@@ -59,6 +62,7 @@ class ListsController < ApplicationController
     if @list.save
       redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を作成しました"
     else
+      @tracks = @list.tracks
       render 'edit', alert: "「#{@list.title}」の作成に失敗しました"
     end
   end
@@ -68,6 +72,7 @@ class ListsController < ApplicationController
     if @list.update(list_params)
      redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を更新しました"
     else
+      @tracks = @list.tracks.sort_by(&:row_order)
       render 'edit', alert: "「#{@list.title}」の更新に失敗しました"
     end
   end

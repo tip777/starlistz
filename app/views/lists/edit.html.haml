@@ -33,9 +33,11 @@
         = f.input :description, label: false, placeholder: 'プレイリストの説明'
 
     // #track_section.table-sortable
-    #track_section
-      = f.fields_for :tracks, @list.tracks.without_deleted.sort_by(&:row_order) do |track|
-        = render 'track_fields', f: track
+    #track_section.table-sortable
+      // = f.fields_for :tracks, @list.tracks.without_deleted.sort_by(&:row_order) do |track|
+      = f.fields_for :tracks, @tracks do |track|
+        - if track.object.deleted_at.nil?
+          = render 'track_fields', f: track
 
     .field_track_add
       = link_to_add_association '曲を追加する', f, :tracks,:"data-association-insertion-node" => "#track_section",:"data-association-insertion-method" => "append"
