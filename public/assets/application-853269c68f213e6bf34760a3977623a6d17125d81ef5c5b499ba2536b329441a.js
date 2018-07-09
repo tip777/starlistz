@@ -40252,7 +40252,7 @@ $(document).ready(function(){
       var des_elem, elem;
       elem = e.target;
       des_elem = $(elem).parents("tr").find("#description");
-      if (des_elem.children("input").val().length > 0) {
+      if (des_elem.children("textarea").val().length > 0) {
         $(elem).text("comment");
         $(elem).removeClass().addClass("material-icons comment_add already");
       } else {
@@ -40273,7 +40273,7 @@ $(document).ready(function(){
       var des_elem, elem;
       elem = e.target;
       des_elem = $(elem).parents("tr").find("#description");
-      if (des_elem.children("input").val().length > 0) {
+      if (des_elem.children("textarea").val().length > 0) {
         $(elem).text("comment");
         $(elem).removeClass().addClass("material-icons comment_add already");
       } else {
@@ -40321,7 +40321,7 @@ $(document).ready(function(){
 
 }).call(this);
 (function() {
-  var rerollNumber;
+  var listSort, rerollNumber;
 
   rerollNumber = function() {
     var h, n;
@@ -40341,61 +40341,54 @@ $(document).ready(function(){
     });
   };
 
-  $(document).ready(function() {
+  listSort = function() {
     var agent;
-    rerollNumber();
-    $('#track_section').on('cocoon:after-insert', function(e, insertedItem) {
-      rerollNumber();
-      $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index());
-      $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
-    });
-    $('#track_section').on('cocoon:after-remove', function(e, insertedItem) {
-      rerollNumber();
-    });
     agent = navigator.userAgent;
     if (agent.search(/iPhone/) !== -1 || agent.search(/iPad/) !== -1 || agent.search(/iPod/) !== -1 || agent.search(/Android/) !== -1) {
       $('.track_sorticon').on('touchstart', function() {
-        var elem_sort;
-        elem_sort = $(this).parents("#track_section");
-        elem_sort.addClass('table-sortable');
         $('.table-sortable').sortable({
-          disabled: false
-        });
-        event.preventDefault();
-      });
-      return $('.track_sorticon').on('click touchend', function() {
-        var elem_sort;
-        $('.table-sortable').sortable({
-          disabled: true
-        });
-        elem_sort = $(this).parents("#track_section");
-        elem_sort.removeClass('table-sortable');
-        rerollNumber();
-        event.preventDefault();
-      });
-    } else {
-      return $('.track_sorticon').mouseover(function() {
-        var elem_sort;
-        elem_sort = $(this).parents("#track_section");
-        elem_sort.addClass('table-sortable');
-        $('.table-sortable').sortable({
-          start: function(event, ui) {
-            $(ui.item).addClass('draggedDiv');
-          },
+          disabled: false,
           stop: function(event, ui) {
-            $(ui.item).removeClass('draggedDiv');
             rerollNumber();
           }
         });
-        $('.table-sortable').bind('click.sortable', function(ev) {
-          ev.target.focus();
+        console.log('タッチスタート');
+        event.preventDefault();
+      });
+      $('.track_sorticon').on('click touchend', function() {
+        $('.table-sortable').sortable({
+          disabled: true
         });
-      }).mouseout(function() {
-        var elem_sort;
-        elem_sort = $(this).parents("#track_section");
-        elem_sort.removeClass('table-sortable');
+      });
+    } else {
+      $(document).on('mouseover', '.track_sorticon', function(e) {
+        $('.table-sortable').sortable({
+          disabled: false,
+          stop: function(event, ui) {
+            rerollNumber();
+          }
+        });
+      });
+      $(document).on('mouseout', '.track_sorticon', function(e) {
+        $('.table-sortable').sortable({
+          disabled: true
+        });
       });
     }
+  };
+
+  $(document).ready(function() {
+    rerollNumber();
+    listSort();
+    $('#track_section').on('cocoon:after-insert', function(e, insertedItem) {
+      rerollNumber();
+      listSort();
+      $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index());
+      return $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
+    });
+    return $('#track_section').on('cocoon:after-remove', function(e, insertedItem) {
+      rerollNumber();
+    });
   });
 
 }).call(this);
