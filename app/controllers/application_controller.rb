@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   after_action  :store_location
   helper_method :is_purchase?, :is_stripe_account_id?
   
-  http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.test? #heroku development Basic認証
+  #stripeに確認してもらうのに解除
+  # http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.test? #heroku development Basic認証
   http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.staging? #heroku staging Basic認証
   http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.production? #本番開始　するときに消す
   
