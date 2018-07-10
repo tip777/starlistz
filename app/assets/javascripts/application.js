@@ -34,8 +34,6 @@
   //strにhogeを含む場合の処理
   }
 
-
-// $(document).on('turbolinks:load', function() {
 $(document).ready(function(){
   $('.js-tags-input').each(function() {
     $(this).select2({
@@ -91,7 +89,6 @@ $(document).ready(function(){
   
 });
 
-// $(document).on('turbolinks:load', function() {
 $(document).ready(function(){
   // checkoutの本当のボタンは非表示
   $('.hide_checkout').hide();
@@ -112,7 +109,6 @@ $(document).ready(function(){
 });
 
 // モーダル表示　複数対応
-// $(document).on('turbolinks:load', function() {
 $(document).ready(function(){
 
   //グローバル変数
