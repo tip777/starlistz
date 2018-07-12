@@ -1,6 +1,11 @@
-%h2 ご登録ありがとうございます。
-%p 現在はまだ仮登録の状態です。
-%p #{resource.email} に本登録のメールをお送りいたしましたのでご登録をお願いします。
+
+- if resource.id != nil
+  %h2 ご登録ありがとうございます。
+  %p 現在はまだ仮登録の状態です。
+  %p #{resource.email} に本登録のメールをお送りいたしましたのでご登録をお願いします。
+- else
+  %h2 本登録メールを再送信します。
+  %p 現在はまだ仮登録の状態です。
 = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
   = f.error_notification
   = f.full_error :confirmation_token
