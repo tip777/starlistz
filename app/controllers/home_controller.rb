@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     taggings = set_list_genre
     @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル
-    @newlist = List.includes({user: [:user_profile]}, :taggings).order('created_at').first(20) #新着のプレイリスト
+    @newlist = List.includes({user: [:user_profile]}, :taggings).order('created_at').first(10) #新着のプレイリスト
     
     if current_user != nil
       #Customer取得

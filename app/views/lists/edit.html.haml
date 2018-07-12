@@ -21,7 +21,7 @@
           .playlist__title
             = f.input :title, label: false, placeholder: 'プレイリスト名'
           .list_genre
-            = f.text_field :tag_list, value: "# " + f.object.tag_list.to_s, placeholder: 'ジャンル'
+            = f.input :tag_list, value: "# " + f.object.tag_list.to_s, :as => :text, label: false, placeholder: 'ジャンル', input_html: {rows: 1}
             = f.hint '例　# Genre1 # Genre2'
           .span.playlist__price
             ￥
