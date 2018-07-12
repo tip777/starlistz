@@ -53,6 +53,15 @@ class User < ApplicationRecord
     generate_confirmation_token!  unless @raw_confirmation_token
     send_devise_notification(:confirmation_on_create_instructions, @raw_confirmation_token, {})
   end
+  
+  # override Devise::Models::Confirmable#resend_confirmation_instructions
+  # 本登録の再送信の際はsend_on_create_confirmation_instructionsで本登録のメールを送る
+  def resend_confirmation_instructions
+    pending_any_confirmation do
+      # send_confirmation_instructions
+      send_on_create_confirmation_instructions
+    end
+  end
 
   #フォロー機能
   has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
