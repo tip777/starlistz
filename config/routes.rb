@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'about' , to: 'home#about' #プレイリストについて
   get 'privacy' , to: 'home#privacy' #個人情報保護
   get 'term' , to: 'home#term' #利用規約
+  get 'tokutei' , to: 'home#tokutei' #特定商取引に関する表記
   #著作権どうするか
   # get 'copyright' , to: 'home#copyright'
   get 'faq' , to: 'home#faq' #よくある質問
