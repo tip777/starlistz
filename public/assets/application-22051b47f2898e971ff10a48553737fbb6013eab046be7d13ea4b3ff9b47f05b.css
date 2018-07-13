@@ -22944,7 +22944,7 @@ input[type="reset"].small,
 }
 /* line 621, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #banner {
-  background-image: url("/images/mixing-desk-351478_1920.jpg");
+  background-image: url(/assets/mixing-desk-351478_1920.jpg);
   color: #fff;
   cursor: default;
   padding: 6em 0;
