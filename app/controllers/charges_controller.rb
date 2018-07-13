@@ -43,8 +43,8 @@ class ChargesController < ApplicationController
       # purchase.save!
       if purchase.save
         #購入者、販売者にメールを送る
-        # PurcahseMailer.buyer(purchase, current_user).deliver
-        # PurcahseMailer.seller(purchase, list.user).deliver
+        PurcahseMailer.buyer(purchase, current_user).deliver
+        PurcahseMailer.seller(purchase, list.user).deliver
       else
         #あえてエラーを起こす
         raise Exception.new("")
