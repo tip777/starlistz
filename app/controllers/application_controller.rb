@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
   after_action  :store_location
   helper_method :is_purchase?, :is_stripe_account_id?
   
-  #stripeに確認してもらうのに解除
-  # http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.test? #heroku development Basic認証
+  http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.test? #heroku development Basic認証
   http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.staging? #heroku staging Basic認証
   http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.production? #本番開始　するときに消す
   
@@ -81,8 +80,6 @@ class ApplicationController < ActionController::Base
       user_taggings = set_user_genre
       @search_usergenre = ActsAsTaggableOn::Tag.where(id: user_taggings).ransack(name_cont_any: key_words).result(distinct: true).order("taggings_count DESC")
       @search_listgenre = ActsAsTaggableOn::Tag.where(id: list_taggings).ransack(name_cont_any: key_words).result(distinct: true).order("taggings_count DESC")
-
-      # binding.pry
 
       @user_pages = @search_user.page(params[:user_page])
       @list_pages = @search_list.page(params[:list_page])
@@ -160,6 +157,7 @@ class ApplicationController < ActionController::Base
         )
       else
         customer = get_stripe_customer_id(user)
+        customer.email = current_user.email
       end
 
       save_stripe_customer_id(user, customer)

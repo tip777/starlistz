@@ -4,25 +4,25 @@ class ChargesController < ApplicationController
     begin
       list = List.find_by(id: params[:list])
 
-      if list.nil? 
+      if list.nil?
           redirect_to :back, alert: 'プレイリストが存在しません。トップページから操作をやり直してください。'
       end
-      
+
       if is_purchase?(current_user, list)
         list_purchase = true
         return
       end
-      
+
       # プレイリストの金額
       @amount = list.price
-      @fee = @amount*0.1 #StarListz決済手数料：決済金額の10% 
+      @fee = @amount*0.1 #StarListz決済手数料：決済金額の10%
 
       token = params[:stripeToken]
-      
+
       customer = find_or_create_stripe_customer(current_user)
       customer.source = token
       customer.save
-      
+
       token = Stripe::Token.create({
         :customer => customer.id,
       }, {:stripe_account => list.user.stripe_acct_id})
@@ -37,20 +37,16 @@ class ChargesController < ApplicationController
       }, :stripe_account => list.user.stripe_acct_id)
 
       #購入履歴
-      purchase = current_user.purchases.create
-      purchase.list_id = list.id
-      purchase.order_date = Time.now
-      purchase.uid = SecureRandom.uuid
-      # purchase.save!
+      purchase = current_user.purchases.create(list_id: list.id, order_date: Time.now, uid: SecureRandom.uuid)
       if purchase.save
         #購入者、販売者にメールを送る
-        PurcahseMailer.buyer(purchase, current_user).deliver
-        PurcahseMailer.seller(purchase, list.user).deliver
+        PurchaseMailer.buyer(purchase, current_user).deliver
+        PurchaseMailer.seller(purchase, list.user).deliver
       else
         #あえてエラーを起こす
         raise Exception.new("")
       end
-        
+
       # TODO add more detailed error messages
     rescue Stripe::APIConnectionError => e
       flash[:error] = 'ストライプとのネットワーク通信に失敗しました'
@@ -67,7 +63,7 @@ class ChargesController < ApplicationController
       else
         flash[:error] = e.message
       end
-      
+
       puts "Status is: #{e.http_status}"
       puts "Type is: #{err[:type]}"
       puts "Charge ID is: #{err[:charge]}"
@@ -88,7 +84,7 @@ class ChargesController < ApplicationController
     ensure
       if list_purchase == true
         redirect_to  list_url(list), notice: "既にプレイリストは購入されています"
-      elsif flash[:error].nil? 
+      elsif flash[:error].nil?
         redirect_to  list_url(list), notice: "プレイリストを購入しました"
       else
         redirect_back(fallback_location: root_path, alart: "プレイリストの購入に失敗しました")
@@ -96,5 +92,5 @@ class ChargesController < ApplicationController
       end
     end
   end
-  
+
 end
