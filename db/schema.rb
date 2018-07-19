@@ -66,9 +66,10 @@ ActiveRecord::Schema.define(version: 20180629020200) do
     t.date     "order_date"
     t.integer  "user_id"
     t.integer  "list_id"
-    t.text     "uid",        limit: 65535, null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "stripe_chg_id", limit: 65535
+    t.text     "uid",           limit: 65535, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_purchases_on_deleted_at", using: :btree
     t.index ["list_id"], name: "index_purchases_on_list_id", using: :btree
