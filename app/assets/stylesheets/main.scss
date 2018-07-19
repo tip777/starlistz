@@ -150,7 +150,6 @@ sup {
 
 hr {
   border-top: solid 1px _palette(border);
-  border: 0;
   margin-top:1.6em;
   margin-bottom: 1.6em;
 }
@@ -781,6 +780,8 @@ input[type="reset"],
 
 
 .l-search-form{
+  max-width: 580px;
+  margin:auto;
   form{
     position: relative;
     padding: 0;
@@ -1194,7 +1195,7 @@ margin:0;
       border-color: #b6eb34;
       border-radius: 2em;
       padding: 0 10px;
-      display: inline-block;
+      display: inline;
       margin:3px;
     }
   }
@@ -1267,7 +1268,7 @@ margin:0;
       border-color: #b6eb34;
       border-radius: 2em;
       padding: 0 10px;
-      display: inline-block;
+      display: inline;
       margin:3px;
     }
     .numbers{
@@ -2277,14 +2278,14 @@ table.minimum{
     color: #fff;
 }
 .l__tracks{
-  margin:35px 0 35px 0;
+  padding: 20px 0;
   border-top: 1px solid #eee;
   table{
     margin: 0;
   }
   td{
     vertical-align: middle;
-        padding: 10px 0;
+        padding: 10px 5px;
   }
   td:nth-of-type(1){
     width: 30px;
@@ -2304,6 +2305,10 @@ table.minimum{
   td:nth-of-type(5){
     width: 50px;
     // border-top: 1px solid #eee;
+  }
+  td .comment,
+  td .track_sorticon{
+    cursor: pointer;
   }
   td .comment i, td .trackComment i{
     color: #e8e54c;
@@ -2345,7 +2350,13 @@ table.minimum{
 .trackArtist{
   display: block;
 }
-
+.trackSong{
+  font-weight: 700;
+    font-size: 1.2em;
+}
+.trackArtist{
+  color:#888;
+}
 
 
 
@@ -2359,6 +2370,7 @@ table.minimum{
     margin:15px 0;
   }
   .l__tracks{
+
   td:nth-of-type(3) span{
     margin:5px 0;
   }
@@ -2366,7 +2378,8 @@ table.minimum{
         width: 30px;
     padding: 0 5px;
   }
-  td:nth-of-type(5){
+  td:nth-of-type(5),
+  td:nth-of-type(6){
         width: 30px;
     padding: 0 5px;
   }
@@ -2393,3 +2406,103 @@ table.minimum{
     padding: 40px 15px 10px;
   }
 }
+.modal_song{
+  font-weight: 700;
+  font-size: 1.2em;
+}
+.modal_artist{
+  color:#888;
+}
+
+
+
+
+
+
+
+
+
+
+.js__listBack{
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.usergenre_area,
+.listgenre_area{
+  margin: 15px auto;
+    max-width: 580px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+.alert-error a{
+    position: relative;
+    padding: 2px 20px;
+    background: #1275ff;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#7dc5ee),color-stop(85%,#008cdd),to(#30a2e4));
+    background-image: linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);
+    color: #fff;
+    font-weight: 700;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+    -webkit-box-shadow: inset 0 1px 0 hsla(0,0%,100%,.25);
+    box-shadow: inset 0 1px 0 hsla(0,0%,100%,.25);
+    border-radius: 3px;
+}
+
+
+
+.l__confirmations__new{
+  max-width: 580px;
+  margin:auto;
+  h2{
+    text-align: center;
+    padding: 60px 0 20px;
+    font-size: 2em;
+    font-weight: 400;
+  }
+  p{
+    margin:10px 0; 
+  }
+  .form-actions {
+    padding: 30px 0;
+}
+}
+
+
+
+
+
+.l__unsubscribe{
+  text-align: center;
+  img{
+  display: block;
+    margin: 60px auto 0;
+    width: 20%;
+  }
+  h2{
+    font-size: 2em;
+    font-weight: 400;
+  }
+}
+
+
