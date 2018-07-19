@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   before_validation :downcase_username
-  
+
   #paranoia 論理削除
   acts_as_paranoid
 
@@ -10,8 +10,8 @@ class User < ApplicationRecord
         # :recoverable, :rememberable, :trackable, :validatable,
         #:rememberableを削除
         :recoverable, :trackable, :validatable,
-        # :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
-        :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
+        :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
+        # :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
@@ -53,7 +53,7 @@ class User < ApplicationRecord
     generate_confirmation_token!  unless @raw_confirmation_token
     send_devise_notification(:confirmation_on_create_instructions, @raw_confirmation_token, {})
   end
-  
+
   # override Devise::Models::Confirmable#resend_confirmation_instructions
   # 本登録の再送信の際はsend_on_create_confirmation_instructionsで本登録のメールを送る
   def resend_confirmation_instructions
@@ -85,7 +85,7 @@ class User < ApplicationRecord
   def following?(other_user)
     following_users.include?(other_user)
   end
-  
+
   has_many :lists, dependent: :destroy
 
   #プレイリストお気に入り
