@@ -108,11 +108,8 @@ class User < ApplicationRecord
 
   belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
   accepts_nested_attributes_for :user_profile, allow_destroy: true
-  # belongs_to :user_profile, inverse_of: :user, optional: true
-  # accepts_nested_attributes_for :user_profile
 
   has_many :purchases, dependent: :destroy
-
 
   #gem acts-as-taggable-on タグ機能
   acts_as_taggable

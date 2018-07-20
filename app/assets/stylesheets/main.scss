@@ -799,15 +799,15 @@ input[type="reset"],
         transition:0;
       }
     }
-    button{
-      display: none;
-    }
-    i{
+    button{// 検索ボタン
       position: absolute;
-      right: 15px;
-      top: 15px;
-      font-size: 35px;
-      color: #ccc;
+      top: 0;
+      right: 0;
+      margin: 15px 5px;
+      background-color: transparent;
+    }
+    i{// 虫眼鏡のところ
+      font-size: large;
     }
   }
 }
@@ -2454,7 +2454,7 @@ table.minimum{
 
 
 
-.alert-error a{
+#stripe_connect{
     position: relative;
     padding: 2px 20px;
     background: #1275ff;
