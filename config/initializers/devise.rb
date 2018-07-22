@@ -259,7 +259,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   #devise twitter login
   # config.omniauth :twitter, "aEhgS27bxXc55NHTfmEDvjljr", "b6igSkaY1Lv6eSSBigMQC6YKmpM7GU89xDtpHfRK00wcP4yVL2"
-  config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
+  config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET'], callback_url: "https://cl9-repo-tip777.c9users.io/users/auth/twitter/callback"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

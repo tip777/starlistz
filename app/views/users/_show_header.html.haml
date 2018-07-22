@@ -8,6 +8,7 @@
       - if is_signin
         - if is_signed(current_user.id, @user.id)
           .l__edit
+            = link_to "Twitterでログイン", omniauth_authorize_path(:user, :twitter)
             =link_to 'プロフィール編集', edit_user_registration_path, class: "edit__profileButton"
             %span.edit__settingButton.js__subMemu 設定
 

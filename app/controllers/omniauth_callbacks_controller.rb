@@ -1,5 +1,6 @@
 class OmniauthCallbacksController < ApplicationController
   def twitter
+      # binding.pry
       @user = User.from_omniauth(request.env["omniauth.auth"].except("extra"))
 
       if @user.persisted?
