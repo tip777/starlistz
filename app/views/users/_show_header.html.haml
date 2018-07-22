@@ -13,6 +13,25 @@
 
 
       %h2.nm #{@user.name}
+
+      - if is_signin && is_signed(current_user.id, @user.id)
+        - if @user.social_profiles.empty?
+          = link_to omniauth_authorize_path(:user, :twitter), class: "social_twitter_still" do
+            %img{:src => "#{asset_path "Twitter_Icon_Rounded_Square.svg"}"}
+        - else
+          = link_to omniauth_authorize_path(:user, :twitter), class: "social_twitter_already" do
+            %img{:src => "#{asset_path "Twitter_Icon_Rounded_Square.svg"}"}
+            %span= @user.social_profiles[0].nickname
+      - else
+        - if @user.social_profiles.nil?
+          .social_twitter_still
+            %img{:src => "#{asset_path "Twitter_Icon_Rounded_Square.svg"}"}
+        - else
+          = link_to @user.social_profiles[0].url, class: "social_twitter_already", :target=>["_blank"] do
+            %img{:src => "#{asset_path "Twitter_Icon_Rounded_Square.svg"}"}
+            %span= @user.social_profiles[0].nickname
+
+      //　ログインしていたらフォローボタン
       = render 'follow_form', user: @user if user_signed_in?
 
       .description

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180629020200) do
+ActiveRecord::Schema.define(version: 20180722090153) do
 
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "name",       limit: 65535
@@ -85,6 +85,21 @@ ActiveRecord::Schema.define(version: 20180629020200) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
     t.index ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+  end
+
+  create_table "social_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "email"
+    t.string   "url"
+    t.integer  "followers_count"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["provider", "uid"], name: "index_social_profiles_on_provider_and_uid", unique: true, using: :btree
+    t.index ["user_id"], name: "index_social_profiles_on_user_id", using: :btree
   end
 
   create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -178,6 +193,7 @@ ActiveRecord::Schema.define(version: 20180629020200) do
   add_foreign_key "lists", "users"
   add_foreign_key "purchases", "lists"
   add_foreign_key "purchases", "users"
+  add_foreign_key "social_profiles", "users"
   add_foreign_key "tracks", "lists"
   add_foreign_key "users", "user_profiles"
 end

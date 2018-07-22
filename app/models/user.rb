@@ -4,14 +4,38 @@ class User < ApplicationRecord
   #paranoia 論理削除
   acts_as_paranoid
 
+  #gem acts-as-taggable-on タグ機能
+  acts_as_taggable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
         # :recoverable, :rememberable, :trackable, :validatable,
         #:rememberableを削除
         :recoverable, :trackable, :validatable,
-        # :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
-        :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
+        :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
+        # :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
+
+  #relation
+  #フォロー機能
+  has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :following_users, through: :following_relationships, source: :followed
+
+  has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :follower_users, through: :follower_relationships, source: :follower
+
+  belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
+  accepts_nested_attributes_for :user_profile, allow_destroy: true
+
+  has_many :lists, dependent: :destroy
+
+  #プレイリストお気に入り
+  has_many :list_favorites, dependent: :destroy
+  has_many :favorite_lists, through: :list_favorites, source: :list
+
+  has_many :purchases, dependent: :destroy
+
+  has_many :social_profiles, dependent: :destroy
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
@@ -64,13 +88,6 @@ class User < ApplicationRecord
     end
   end
 
-  #フォロー機能
-  has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :following_users, through: :following_relationships, source: :followed
-
-  has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :follower_users, through: :follower_relationships, source: :follower
-
   # 他のユーザーをフォローする
   def follow(other_user)
     following_relationships.find_or_create_by(followed_id: other_user.id)
@@ -87,12 +104,6 @@ class User < ApplicationRecord
     following_users.include?(other_user)
   end
 
-  has_many :lists, dependent: :destroy
-
-  #プレイリストお気に入り
-  has_many :list_favorites, dependent: :destroy
-  has_many :favorite_lists, through: :list_favorites, source: :list
-
   def favorite(list)
     list_favorites.find_or_create_by(list_id: list.id)
   end
@@ -107,14 +118,7 @@ class User < ApplicationRecord
     favorite_lists.include?(list)
   end
 
-  belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
-  accepts_nested_attributes_for :user_profile, allow_destroy: true
-
-  has_many :purchases, dependent: :destroy
-
-  #gem acts-as-taggable-on タグ機能
-  acts_as_taggable
-
+  #Validate
   #ユーザー名　validate
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 }, user_name: true #空はダメ、一意性をもつ、30文字以内
 
