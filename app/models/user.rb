@@ -13,8 +13,8 @@ class User < ApplicationRecord
         # :recoverable, :rememberable, :trackable, :validatable,
         #:rememberableを削除
         :recoverable, :trackable, :validatable,
-        :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
-        # :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
+        # :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
+        :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
 
   #relation
   #フォロー機能
