@@ -22,9 +22,9 @@
               %img{:src => "#{asset_path "Twitter_Icon_Rounded_Square_Still.svg"}"}
               %span 連携されていません
           - else
-            = link_to omniauth_authorize_path(:user, :twitter), class: "social_twitter_already" do
+            = link_to disconnect_path, class: "social_twitter_already", :method => :delete do
               %img{:src => "#{asset_path "Twitter_Icon_Rounded_Square_Already.svg"}"}
-              %span @#{@user.social_profiles[0].nickname}
+              %span 連携を解除する
         - else
           - if @user.social_profiles.empty?
             .social_twitter_still

@@ -78,7 +78,7 @@
       %ul.settingMenu
         - if user_signed_in?
           %li
-            = link_to "Stripe接続","https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write"
+            = link_to "Stripe接続","https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['STRIPE_CLIENT_ID']}&scope=read_write"
           %li
             = link_to "売上管理", users_salesmanage_path(current_user)
         %li

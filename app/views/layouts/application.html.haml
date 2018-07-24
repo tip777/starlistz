@@ -28,14 +28,9 @@
     = render :partial => "layouts/header"
 
     %main.l__wrapper
-      - if notice
-        %p.alert.alert-notice= notice
-      - if alert
-        %p.alert.alert-error= flash[:alert].html_safe
-
-      - if flash[:error].present?
-        #error_explanation
-          %p.error.error-error= alert= flash[:error].html_safe
+      - flash.each do |type, msg|
+        %div{class: "alert_area alert-#{type}"}= msg.html_safe
+        
       .page-content
 
         = yield

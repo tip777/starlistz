@@ -28,12 +28,12 @@ class OmniauthCallbacksController < ApplicationController
         @profile = SocialProfile.where(provider: @omniauth['provider'], uid: @omniauth['uid']).new
         @profile.user = user
         @profile.save!
+        flash[:notice] = "twitterを連携しました。"
+      else
+        unless @profile.user == current_user
+          flash[:notice] = "このtwitterアカウントは他のユーザーと連携しているため連携できません。"
+        end
       end
-      # if current_user
-      #   raise "user is not identical" if current_user != @profile.user
-      # else
-      #   sign_in(:user, @profile.user)
-      # end
       @profile.set_values(@omniauth)
       redirect_to users_playlist_path(current_user)
     end
