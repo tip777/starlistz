@@ -150,6 +150,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def payment_info
+
+  end
+
   def following
     @user = User.find(params[:id])
     @following = @user.following_users

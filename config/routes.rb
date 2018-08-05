@@ -30,15 +30,15 @@ Rails.application.routes.draw do
   #ユーザー確認画面
   get "users/:id/playlist" => "users#playlist", as: 'users_playlist'
   get "users/:id/purchasehistory" => "users#purchasehistory", as: 'users_purchasehistory' #購入履歴
-  get "users/:id/payouthistory" => "users#account#payouthistory", as: 'payouthistory' #振込履歴
+  get "users/:id/payouthistory" => "users#payouthistory", as: 'payouthistory' #振込履歴
   get "users/:id/favuser" => "users#favuser", as: 'users_favuser' #お気に入りユーザー
   get "users/:id/favplaylist" => "users#favplaylist", as: 'users_favplaylist' #お気に入りプレイリスト
   get "users/:id/salesmanage" => "users#salesmanage", as: 'users_salesmanage' #売り上げ管理ページ
   get "users/:id/salesmonth" => "users#salesmonth", as: 'users_salesmonth' #月間売り上げ管理ページ
-  get "users/:id/payment_info" => "users#customer#payment_info", as: 'payment_info' #支払い方法
-  get "users/:id/account_info" => "users#account#account_info", as: 'account_info' #販売者情報
-  get "users/:id/business_info" => "users#account#business_info", as: 'business_info' #販売業者情報
-  get "users/:id/bank_info" => "users#account#bank_info", as: 'bank_info' #口座情報
+  get "users/:id/payment_info" => "users#payment_info", as: 'payment_info' #支払い方法
+  get "users/:id/account_info" => "users#account_info", as: 'account_info' #販売者情報
+  get "users/:id/business_info" => "users#business_info", as: 'business_info' #販売業者情報
+  get "users/:id/bank_info" => "users#bank_info", as: 'bank_info' #口座情報
   get "users/:id/account_tokutei" => "users#account_tokutei", as: 'account_tokutei' #特商法表示に基づく表示
 
   #検索

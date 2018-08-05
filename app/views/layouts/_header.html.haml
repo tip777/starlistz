@@ -78,15 +78,15 @@
       %ul.settingMenu
         - if user_signed_in?
           %li
-            = link_to "お支払い方法", users_salesmanage_path(current_user)
+            = link_to "お支払い方法", payment_info_path(current_user)
           %li
-            = link_to "販売者情報", users_salesmanage_path(current_user)
+            = link_to "販売者情報", account_info_path(current_user)
           %li
-            = link_to "口座情報", users_salesmanage_path(current_user)
+            = link_to "口座情報", bank_info_path(current_user)
           %li
             = link_to "売上管理", users_salesmanage_path(current_user)
           %li
-            = link_to "振込履歴", users_salesmanage_path(current_user)
+            = link_to "振込履歴", payouthistory_path(current_user)
         %li
           = link_to "お問い合わせ", contact_path
         %li
