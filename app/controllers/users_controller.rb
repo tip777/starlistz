@@ -7,29 +7,21 @@ class UsersController < ApplicationController
     @user = User.with_deleted.find_by(id: params[:id])
     if @user.nil? || @user.paranoia_destroyed?
       reject_page
-      
+
     else
       @following = @user.following_relationships.count
       @follower = @user.follower_relationships.count
       @mylist = @user.lists.includes(:user, :taggings)
-    
+
       if current_user != nil
         #Customer取得
         @customer = find_or_create_stripe_customer(current_user)
-        if current_user.id == @user.id
-          #Stripe連携しているか判定
-          is_account = is_stripe_account_id?(current_user)
-          if is_account != true
-            flash.now[:alert] = "<a id='stripe_connect' href='https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write'>Stripe接続</a>　が完了していません。<br>
-                              完了しなければプレイリストを作成できません。".html_safe
-          end
-        end
       end
-      
+
     end
-    
+
   end
-  
+
   def favuser
     if current_user != nil && current_user.id == @user.id
       following_ids = @user.following_relationships.pluck(:followed_id)
@@ -39,7 +31,7 @@ class UsersController < ApplicationController
       reject_page
     end
   end
-  
+
   def favplaylist
     if current_user != nil && current_user.id == @user.id
       favlist_ids = ListFavorite.where(user_id: @user.id).pluck(:list_id)
@@ -49,11 +41,11 @@ class UsersController < ApplicationController
       reject_page
     end
   end
-  
+
   def playlist
     @mylist_pages = @mylist.includes(:taggings).page(params[:mylist_page])
   end
-  
+
   def purchasehistory
     if current_user != nil && current_user.id == @user.id
       #購入履歴
@@ -63,7 +55,7 @@ class UsersController < ApplicationController
       reject_page
     end
   end
-  
+
   #売上管理
   def salesmanage
     @user = User.find(params[:id])
@@ -72,18 +64,18 @@ class UsersController < ApplicationController
       # 売上がある年
       @year_list = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id)).group("Year(order_date)").order('order_date DESC').pluck(:order_date)
       @year_list.each_with_index {|val, i| @year_list[i] =  val.strftime("%-Y")} #日付の形式変更
-      
+
       # 全期間の合計売上額
-      calc_count = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id)).group(:list_id).count 
+      calc_count = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id)).group(:list_id).count
       @all_amount = 0
       calc_count.each_pair { |key, value| @all_amount = List.with_deleted.find(key).price * value + @all_amount }
-      
+
       if params[:year].nil? and !@year_list.empty? #params[:year]が空だったら
         params[:year] = @year_list.first
       elsif @year_list.empty?
         return
       end
-      
+
       # 対象年度の毎月の売上額を計算
       if params[:year] == Time.zone.now.strftime("%-Y") #今年だったら
         date = Time.zone.now
@@ -96,36 +88,36 @@ class UsersController < ApplicationController
           calc_count = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id), order_date: Time.zone.local(@year, i, 1).in_time_zone.all_month ).group(:list_id).count
           # 一月の合計売上額　
           calc_count.each_pair { |key, value| month_amount = List.with_deleted.find(key).price * value + month_amount }
-          
+
           if month_amount > 0 # 売り上げがあったら
             @all_month_amount.store(i, month_amount)
           end
         end
-        
+
       else
         @year = params[:year]
         month = 12
         @all_month_amount = {}
-        
+
         for i in 1..month.to_i do
           i = month.to_i - (i - 1) #for 逆から回す
           month_amount = 0
           calc_count = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id), order_date: Time.zone.local(@year, i, 1).in_time_zone.all_month ).group(:list_id).count
-          
+
           # 一月の合計売上額　
           calc_count.each_pair { |key, value| month_amount = List.with_deleted.find(key).price * value + month_amount }
           if month_amount > 0 # 売り上げがあったら
             @all_month_amount.store(i, month_amount)
           end
         end
-        
+
       end
-      
+
     else
       reject_page
     end
   end
-  
+
   #月間売上管理
   def salesmonth
     @user = User.find(params[:id])
@@ -136,9 +128,9 @@ class UsersController < ApplicationController
       @date = Time.zone.local(params[:year], params[:month], 1)
       year = @date.strftime("%-Y")
       month = @date.strftime("%-m")
-        
+
       list_amount = Purchase.unscope(:where).where(list_id: list.pluck(:id), order_date: Time.zone.local(year, month, 1).in_time_zone.all_month ).group(:list_id).count
-      
+
       # 対象月のプレイリスト毎の売上額
       @month_amount = 0
       list_amount.each_with_index do |(key,value),i|

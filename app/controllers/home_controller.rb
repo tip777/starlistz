@@ -5,15 +5,10 @@ class HomeController < ApplicationController
     taggings = set_list_genre
     @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル
     @newlist = List.includes({user: [:user_profile]}, :taggings).order('created_at').first(10) #新着のプレイリスト
-    
+
     if current_user != nil
       #Customer取得
       @customer = find_or_create_stripe_customer(current_user)
-
-      #パラメータでcodeがあればstripeのデータ取得
-      if params[:code] != nil
-         set_stripe_id(params[:code])
-      end
     end
   end
 
