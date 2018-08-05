@@ -151,7 +151,18 @@ class UsersController < ApplicationController
   end
 
   def payment_info
+  end
 
+  def account_info
+  end
+
+  def business_info
+  end
+
+  def bank_info
+  end
+
+  def payouthistory
   end
 
   def following
