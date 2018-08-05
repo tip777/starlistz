@@ -78,9 +78,15 @@
       %ul.settingMenu
         - if user_signed_in?
           %li
-            = link_to "Stripe接続","https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['STRIPE_CLIENT_ID']}&scope=read_write"
+            = link_to "お支払い方法", users_salesmanage_path(current_user)
+          %li
+            = link_to "販売者情報", users_salesmanage_path(current_user)
+          %li
+            = link_to "口座情報", users_salesmanage_path(current_user)
           %li
             = link_to "売上管理", users_salesmanage_path(current_user)
+          %li
+            = link_to "振込履歴", users_salesmanage_path(current_user)
         %li
           = link_to "お問い合わせ", contact_path
         %li
