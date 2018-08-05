@@ -35,10 +35,10 @@ class ChargesController < ApplicationController
         :source => token.id,
         :application_fee => @fee.floor
       }, :stripe_account => list.user.stripe_acct_id)
-      
+
       #購入履歴
       purchase = current_user.purchases.create(list_id: list.id, order_date: Time.now, stripe_chg_id: charge.id, uid: SecureRandom.uuid)
-      
+
       if purchase.save
         #購入者、販売者にメールを送る
         PurchaseMailer.buyer(purchase, current_user).deliver

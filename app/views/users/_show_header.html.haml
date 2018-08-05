@@ -10,7 +10,6 @@
           .l__edit
             =link_to 'プロフィール編集', edit_user_registration_path, class: "edit__profileButton"
             %span.edit__settingButton.js__subMemu 設定
-            
 
 
       %h2.nm #{@user.name}
@@ -50,6 +49,9 @@
         %h3
           = "#{@mylist.count}"
           %span プレイリスト
+
+      .tokutei
+        = link_to "特定商取引に基づく表記", account_tokutei_path(current_user)
 
 
 

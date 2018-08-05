@@ -1,1 +1,77 @@
 %p お支払い方法
+
+= form_tag users_stripe_update_path do
+  -binding.pry
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+  = hidden_field_tag :stripeToken
+  .form-row
+    %label{:for => "card-element"}
+      Credit or debit card
+    #card-element
+      A Stripe Element will be inserted here.
+    Used to display form errors.
+    #card-errors{:role => "alert"}
+  %button Submit Payment
+
+
+:javascript
+  // Create a Stripe client.
+  var stripe = Stripe($('meta[name="stripe-key"]').attr('content'));
+
+  // Create an instance of Elements.
+  var elements = stripe.elements();
+
+  // Custom styling can be passed to options when creating an Element.
+  // (Note that this demo uses a wider set of styles than the guide below.)
+  var style = {
+    base: {
+      color: '#32325d',
+      lineHeight: '18px',
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4'
+      }
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a'
+    }
+  };
+
+
+  // Create an instance of the card Element.
+  var card = elements.create('card', {style: style});
+
+  // Add an instance of the card Element into the `card-element` <div>.
+  card.mount('#card-element');
+
+  // Handle real-time validation errors from the card Element.
+  card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+      displayError.textContent = event.error.message;
+    } else {
+      displayError.textContent = '';
+    }
+  });
+
+  // Handle form submission.
+  var form = document.getElementById('payment-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    stripe.createToken(card).then(function(result) {
+      if (result.error) {
+        // Inform the user if there was an error.
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+        console.log(result.error.message);
+      } else {
+        alert(JSON.stringify(result.token));
+        // Send the token to your server.
+        stripeTokenHandler(result.token);
+      }
+    });
+  });

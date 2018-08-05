@@ -151,6 +151,7 @@ class UsersController < ApplicationController
   end
 
   def payment_info
+
   end
 
   def account_info
@@ -165,6 +166,11 @@ class UsersController < ApplicationController
   def payouthistory
   end
 
+  def stripe_update
+    binding.pry
+    card_params
+  end
+
   def following
     @user = User.find(params[:id])
     @following = @user.following_users
@@ -176,5 +182,10 @@ class UsersController < ApplicationController
     @follower = @user.follower_users
     @relationship = @user.follower_relationships.count
   end
+
+  private
+      def card_params
+        params.permit(:amount, :stripeToken, :name, :authenticity_token)
+      end
 
 end
