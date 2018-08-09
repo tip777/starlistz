@@ -1,6 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  
+  include StripeCreate
 
   # GET /resource/sign_up
   # def new
@@ -18,8 +20,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         signup_user.save
     end
     #StripeのAccount & Customerを作成
-    find_or_create_stripe_account?(signup_user)
-    find_or_create_stripe_customer?(signup_user)
+    find_or_create_stripe_account(signup_user)
+    find_or_create_stripe_customer(signup_user)
   end
 
   # GET /resource/edit

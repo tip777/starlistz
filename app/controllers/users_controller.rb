@@ -158,7 +158,7 @@ class UsersController < ApplicationController
   end
 
   def account_info
-    customer = find_or_create_stripe_customer(current_user)
+    account = find_or_create_stripe_account(current_user)
   end
 
   def business_info
