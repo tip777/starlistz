@@ -151,10 +151,14 @@ class UsersController < ApplicationController
   end
 
   def payment_info
-
+    customer = find_or_create_stripe_customer(current_user)
+    unless customer.sources.data.empty?
+      @credit_card = customer.sources.retrieve(customer.sources.data[0].id)
+    end
   end
 
   def account_info
+    customer = find_or_create_stripe_customer(current_user)
   end
 
   def business_info
@@ -168,7 +172,29 @@ class UsersController < ApplicationController
 
   def stripe_update
     binding.pry
-    card_params
+    # カード情報の変更の場合
+    if stripe_params[:flg] == "card" 
+      customer = find_or_create_stripe_customer(current_user)
+      customer.source = stripe_params[:stripeToken]
+      if customer.save
+        redirect_to users_playlist_path(current_user), notice: "お支払い方法を更新しました"
+      else
+        redirect_to payment_info_path(current_user), notice: "お支払い方法の更新に失敗しました"
+      end
+    
+    # 販売者情報の変更の場合
+    elsif stripe_params[:flg] == "ac_info" 
+    
+    # 販売事業者の変更の場合
+    elsif stripe_params[:flg] == "biz_info" 
+    
+    # 口座情報の変更の場合
+    elsif stripe_params[:flg] == "bank" 
+    
+    else
+      redirect_to users_playlist_path(current_user)
+    end
+    
   end
 
   def following
@@ -184,8 +210,9 @@ class UsersController < ApplicationController
   end
 
   private
-      def card_params
-        params.permit(:amount, :stripeToken, :name, :authenticity_token)
-      end
+  
+  def stripe_params
+    params.permit(:stripeToken, :authenticity_token, :flg)
+  end
 
 end

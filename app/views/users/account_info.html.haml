@@ -1,1 +1,24 @@
 %p 販売者情報
+
+= simple_form_for @contact, :url => users_stripe_update_path  do |f|
+  - if @contact.errors.any?
+    %strong 入力内容にエラーがあります
+    %ul
+      - @contact.errors.each do |attr, msg|
+        %li= msg
+  = f.input :name, label: "名前", error: false, as: :string
+  = f.input :email, label: "メールアドレス　(必須)", error: false, as: :string
+  = f.input :title, label: "件名　(必須)", error: false, as: :string
+  = f.input :message, label: "詳細　(必須)", error: false, input_html: {rows: 6}
+  = f.submit '送信'
+  
+
+= form_tag (users_stripe_update_path, method: :post) do
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+  = label_tag :名前
+  = text_field_tag :name
+  = label_tag :内容
+  = text_area_tag :content
+
+  %button Submit Payment
+

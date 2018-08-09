@@ -103,17 +103,6 @@ class ApplicationController < ActionController::Base
     return ActsAsTaggableOn::Tagging.where(taggable_type: "List").group("tag_id").pluck(:tag_id)
   end
 
-  #アカウント情報取得
-  def set_stripe_id(stripe_code)
-      #Stripeからデータ取得
-      stripe_data = get_stripe_data(stripe_code)
-
-      #stripe_user_idを登録
-      current_user.update_attributes!(stripe_acct_id: stripe_data["stripe_user_id"])
-      #Cutomerデータ登録
-      find_or_create_stripe_customer(current_user)
-  end
-
   #Account登録しているか判定
   def is_stripe_account_id?(user)
     begin
@@ -127,15 +116,33 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
-
+  
   #Account保存
-  def save_stripe_account_id(user, stripe_customer)
-    User.where('id = ?', user.id).first.update_attributes!(stripe_cus_id: stripe_customer.id)
+  def save_stripe_account_id(user, stripe_account)
+    User.where('id = ?', user.id).first.update_attributes!(stripe_acct_id: stripe_account.id)
   end
 
   #Account取得
   def get_stripe_account_id(user)
     Stripe::Account.retrieve(user.stripe_acct_id.to_s)
+  end
+  
+  def find_or_create_stripe_account(user)
+    if user.nil?
+      account = nil
+    else
+      if user.stripe_acct_id.blank?
+        account = Stripe::Account.create(
+          :type => 'custom',
+          :country => 'JP'
+        )
+      else
+        account = get_stripe_account_id(user)
+      end
+
+      save_stripe_account_id(user, account)
+      return account
+    end
   end
 
   #Customer保存
@@ -165,29 +172,6 @@ class ApplicationController < ActionController::Base
       save_stripe_customer_id(user, customer)
       return customer
     end
-  end
-
-  def get_stripe_data(stripe_code)
-    require 'net/http'
-    require 'uri'
-
-    uri = URI.parse("https://connect.stripe.com/oauth/token")
-    request = Net::HTTP::Post.new(uri)
-    request.set_form_data(
-      "client_secret" => "sk_test_cqhiyTcvoKhdGDSMYa7YY3Kr",
-      "code" => stripe_code,
-      "grant_type" => "authorization_code",
-    )
-
-    req_options = {
-      use_ssl: uri.scheme == "https",
-    }
-
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(request)
-    end
-    result = ActiveSupport::JSON.decode(response.body)
-    return result
   end
 
   private

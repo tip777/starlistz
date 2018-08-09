@@ -18,7 +18,7 @@ class ChargesController < ApplicationController
       @fee = @amount*0.1 #StarListz決済手数料：決済金額の10%
 
       token = params[:stripeToken]
-
+      
       customer = find_or_create_stripe_customer(current_user)
       customer.source = token
       customer.save

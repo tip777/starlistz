@@ -17,6 +17,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         signup_user.user_profile = profile
         signup_user.save
     end
+    #StripeのAccount & Customerを作成
+    find_or_create_stripe_account?(signup_user)
+    find_or_create_stripe_customer?(signup_user)
   end
 
   # GET /resource/edit
