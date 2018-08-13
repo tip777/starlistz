@@ -15,19 +15,6 @@
           .col-sm
             =@credit_card.exp_month.to_s + "/" + @credit_card.exp_year.to_s[2, 2]
     
-    
-    // = form_tag users_stripe_update_path do
-    //   = hidden_field_tag :authenticity_token, form_authenticity_token
-    //   = hidden_field_tag :stripeToken
-    //   .form-row
-    //     %label{:for => "card-element"}
-    //       Credit or debit card
-    //     #card-element
-    //       A Stripe Element will be inserted here.
-    //     Used to display form errors.
-    //     #card-errors{:role => "alert"}
-    //   %button Submit Payment
-    
     %form#payment-form{:action => "/users/stripe_update", :method => "post"}
       = hidden_field_tag :authenticity_token, form_authenticity_token
       = hidden_field_tag :flg, "card"
@@ -37,19 +24,6 @@
           A Stripe Element will be inserted here.
         #card-errors{:role => "alert"}
       %button.submit 更新
-    
-    // %form
-    //   #example4-paymentRequest
-    //     / Stripe paymentRequestButton Element inserted here
-    //   %fieldset
-    //     %legend.card-only{"data-tid" => "elements_examples.form.pay_with_card"} Pay with card
-    //     %legend.payment-request-available{"data-tid" => "elements_examples.form.enter_card_manually"} Or enter card details
-    //     .container
-    //       #example4-card
-    //       %button{"data-tid" => "elements_examples.form.donate_button", :type => "submit"} Donate
-    //   .error{:role => "alert"}
-    //     %span.message
-
 
 :javascript
   // Create a Stripe client

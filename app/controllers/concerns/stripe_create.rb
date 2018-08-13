@@ -1,5 +1,5 @@
 module StripeCreate
-    ## StripeのAccount & Costomerの作成部分
+  ## StripeのAccount & Costomerの作成部分
     
   #Account保存
   def save_stripe_account_id(user, stripe_account)

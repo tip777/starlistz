@@ -159,6 +159,15 @@ class UsersController < ApplicationController
 
   def account_info
     account = find_or_create_stripe_account(current_user)
+    if account == nil
+      reject_page
+    else
+      @acc_info = account.legal_entity
+      @acc_info.dob.year = 1993
+      @acc_info.dob.month = 10
+      @acc_info.dob.day = 24
+    end
+    
   end
 
   def business_info
@@ -171,7 +180,6 @@ class UsersController < ApplicationController
   end
 
   def stripe_update
-    binding.pry
     # カード情報の変更の場合
     if stripe_params[:flg] == "card" 
       customer = find_or_create_stripe_customer(current_user)
