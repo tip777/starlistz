@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :show_head, only: [:playlist, :purchasehistory, :favuser, :favplaylist]
   
   include StripeValidate #Stripe Validate
+  include YahooAPI 
 
   def show_head
     @user = User.with_deleted.find_by(id: params[:id])
@@ -201,8 +202,8 @@ class UsersController < ApplicationController
           #氏名
           account.legal_entity.last_name_kanji = acc_info[:last_name_kanji]
           account.legal_entity.first_name_kanji = acc_info[:first_name_kanji]
-          account.legal_entity.last_name_kana = "ああ"
-          account.legal_entity.first_name_kana = "いい"
+          account.legal_entity.last_name_kana = put_ruby_on(acc_info[:last_name_kanji])[0]
+          account.legal_entity.first_name_kana = put_ruby_on(acc_info[:first_name_kanji])[0]
           #住所
           account.legal_entity.address_kanji.postal_code  = acc_info[:postal_code]
           account.legal_entity.address_kanji.state  = acc_info[:state]
@@ -210,10 +211,10 @@ class UsersController < ApplicationController
           account.legal_entity.address_kanji.town  = acc_info[:town]
           account.legal_entity.address_kanji.line1  = acc_info[:line1]
           account.legal_entity.address_kana.postal_code  = acc_info[:postal_code]
-          account.legal_entity.address_kana.state  = "ああ"
-          account.legal_entity.address_kana.city  = "ああ"
-          account.legal_entity.address_kana.town  = "ああ"
-          account.legal_entity.address_kana.line1  = "ああ"
+          account.legal_entity.address_kana.state  = put_ruby_on(acc_info[:state])[0]
+          account.legal_entity.address_kana.city  = put_ruby_on(acc_info[:city])[0]
+          account.legal_entity.address_kana.town  = put_ruby_on(acc_info[:town])[0]
+          account.legal_entity.address_kana.line1  = put_ruby_on(acc_info[:line1])[0]
           #電話番号
           # account.legal_entity.phone_number = acc_info_params[:phone_number]
           #生年月日
@@ -232,6 +233,7 @@ class UsersController < ApplicationController
           render 'account_info'
         end
       rescue => e
+        binding.pry
         # エラー時の処理
         flash.now[:alert] = "販売者情報の更新に失敗しました"
         render 'account_info'
