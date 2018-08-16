@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:following, :follower]
   before_action :gon_current_user, only: [:playlist, :purchasehistory, :favplaylist]
   before_action :show_head, only: [:playlist, :purchasehistory, :favuser, :favplaylist]
+  
+  include StripeValidate #Stripe Validate
 
   def show_head
     @user = User.with_deleted.find_by(id: params[:id])
@@ -17,9 +19,7 @@ class UsersController < ApplicationController
         #Customer取得
         @customer = find_or_create_stripe_customer(current_user)
       end
-
     end
-
   end
 
   def favuser
@@ -163,11 +163,8 @@ class UsersController < ApplicationController
       reject_page
     else
       @acc_info = account.legal_entity
-      @acc_info.dob.year = 1993
-      @acc_info.dob.month = 10
-      @acc_info.dob.day = 24
+      @acc_errors = Array.new
     end
-    
   end
 
   def business_info
@@ -178,12 +175,16 @@ class UsersController < ApplicationController
 
   def payouthistory
   end
-
+  
   def stripe_update
+    if current_user.nil?
+      reject_page
+      exit!
+    end
     # カード情報の変更の場合
     if stripe_params[:flg] == "card" 
       customer = find_or_create_stripe_customer(current_user)
-      customer.source = stripe_params[:stripeToken]
+      customer.source = card_params[:stripeToken]
       if customer.save
         redirect_to users_playlist_path(current_user), notice: "お支払い方法を更新しました"
       else
@@ -192,6 +193,49 @@ class UsersController < ApplicationController
     
     # 販売者情報の変更の場合
     elsif stripe_params[:flg] == "ac_info" 
+      begin
+        acc_info = acc_info_params
+        @acc_errors = acc_info_validate(acc_info)
+        if @acc_errors.empty?
+          account = find_or_create_stripe_account(current_user)
+          #氏名
+          account.legal_entity.last_name_kanji = acc_info[:last_name_kanji]
+          account.legal_entity.first_name_kanji = acc_info[:first_name_kanji]
+          account.legal_entity.last_name_kana = "ああ"
+          account.legal_entity.first_name_kana = "いい"
+          #住所
+          account.legal_entity.address_kanji.postal_code  = acc_info[:postal_code]
+          account.legal_entity.address_kanji.state  = acc_info[:state]
+          account.legal_entity.address_kanji.city  = acc_info[:city]
+          account.legal_entity.address_kanji.town  = acc_info[:town]
+          account.legal_entity.address_kanji.line1  = acc_info[:line1]
+          account.legal_entity.address_kana.postal_code  = acc_info[:postal_code]
+          account.legal_entity.address_kana.state  = "ああ"
+          account.legal_entity.address_kana.city  = "ああ"
+          account.legal_entity.address_kana.town  = "ああ"
+          account.legal_entity.address_kana.line1  = "ああ"
+          #電話番号
+          # account.legal_entity.phone_number = acc_info_params[:phone_number]
+          #生年月日
+          account.legal_entity.dob.year = acc_info[:date][:year]
+          account.legal_entity.dob.month = acc_info[:date][:month]
+          account.legal_entity.dob.day = acc_info[:date][:day]
+          #性別
+          account.legal_entity.gender = acc_info[:gender]
+          #タイプ
+          account.legal_entity.type = "individual"
+          
+          if account.save
+            redirect_to users_playlist_path(current_user), notice: "販売者情報を更新しました"
+          end
+        else
+          render 'account_info'
+        end
+      rescue => e
+        # エラー時の処理
+        flash.now[:alert] = "販売者情報の更新に失敗しました"
+        render 'account_info'
+      end
     
     # 販売事業者の変更の場合
     elsif stripe_params[:flg] == "biz_info" 
@@ -220,7 +264,15 @@ class UsersController < ApplicationController
   private
   
   def stripe_params
-    params.permit(:stripeToken, :authenticity_token, :flg)
+    params.permit(:flg)
+  end
+  
+  def card_params
+    params.permit(:stripeToken, :authenticity_token)
+  end
+  
+  def acc_info_params
+    params.permit(:authenticity_token, :last_name_kanji, :first_name_kanji, :postal_code, :state, :city, :town, :line1, :phone_number, {date: [:year, :month, :day]}, :gender)
   end
 
 end

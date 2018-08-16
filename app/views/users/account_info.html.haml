@@ -1,39 +1,89 @@
 %p 販売者情報
 
+- unless @acc_errors.empty?
+  #error_explanation.alert.alert-danger
+    %ul
+      - @acc_errors.each do |message|
+        %li= message
+
 = form_tag(users_stripe_update_path, method: :post) do
   = hidden_field_tag :authenticity_token, form_authenticity_token
+  = hidden_field_tag :flg, "ac_info"
   
-  // 姓名
-  = label_tag :last_name_kanji, "姓"
-  = text_field_tag :last_name_kanji, @acc_info.last_name_kanji
-  = label_tag :first_name_kanji, "名"
-  = text_field_tag :first_name_kanji, @acc_info.first_name_kanji
+  - if params[:flg].nil?
+    // 姓名
+    = label_tag :last_name_kanji, "姓"
+    = text_field_tag :last_name_kanji, @acc_info.last_name_kanji
+    = label_tag :first_name_kanji, "名"
+    = text_field_tag :first_name_kanji, @acc_info.first_name_kanji
+    
+    // 住所
+    = label_tag :postal_code, "郵便番号(ハイフンなし)"
+    = text_field_tag :postal_code, @acc_info.address_kanji.postal_code.tr('０-９', '0-9')
+    
+    = label_tag :state, "都道府県"
+    = text_field_tag :state, @acc_info.address_kanji.state
+    
+    = label_tag :city, "市区町村"
+    = text_field_tag :city, @acc_info.address_kanji.city
+    
+    = label_tag :town, "丁目・字"
+    = text_field_tag :town, @acc_info.address_kanji.town
+    
+    = label_tag :line1, "番地・建物名"
+    = text_field_tag :line1, @acc_info.address_kanji.line1
+    
+    = label_tag :phone_number, "電話番号(ハイフンなし)"
+    = text_field_tag :phone_number, @acc_info.phone_number
+    
+    = label_tag :dob, "生年月日"
+    - if @acc_info.dob.year.nil?
+      = select_date(Time.now, {:use_month_numbers => true, start_year: 110.years.ago(Date.today).year})
+    - else 
+      = select_date(Time.mktime(@acc_info.dob.year, @acc_info.dob.month, @acc_info.dob.day), {:use_month_numbers => true, start_year: 110.years.ago(Date.today).year})
+    
+    = label_tag :gender, "性別"
+    = select_tag :gender, options_for_select([["男", "male"], ["女", "female"]], selected: @acc_info.gender)
+    
+  - else
+    
+    // 姓名
+    = label_tag :last_name_kanji, "姓"
+    = text_field_tag :last_name_kanji, @acc_info[:last_name_kanji]
+    = label_tag :first_name_kanji, "名"
+    = text_field_tag :first_name_kanji, @acc_info[:first_name_kanji]
+    
+    // 住所
+    = label_tag :postal_code, "郵便番号(ハイフンなし)"
+    = text_field_tag :postal_code, @acc_info[:postal_code].tr('０-９', '0-9')
+    
+    = label_tag :state, "都道府県"
+    = text_field_tag :state, @acc_info[:state]
+    
+    = label_tag :city, "市区町村"
+    = text_field_tag :city, @acc_info[:city]
+    
+    = label_tag :town, "丁目・字"
+    = text_field_tag :town, @acc_info[:town]
+    
+    = label_tag :line1, "番地・建物名"
+    = text_field_tag :line1, @acc_info[:line1]
+    
+    = label_tag :phone_number, "電話番号(ハイフンなし)"
+    = text_field_tag :phone_number, @acc_info[:phone_number]
+    
+    = label_tag :dob, "生年月日"
+    - if @acc_info[:date][:year].nil?
+      = select_date(Time.now, {:use_month_numbers => true, start_year: 110.years.ago(Date.today).year})
+    - else 
+      = select_date(Time.mktime(@acc_info[:date][:year], @acc_info[:date][:month], @acc_info[:date][:day]), {:use_month_numbers => true, start_year: 110.years.ago(Date.today).year})
+    
+    = label_tag :gender, "性別"
+    = select_tag :gender, options_for_select([["男", "male"], ["女", "female"]], selected: @acc_info[:gender])
   
-  // 住所
-  = label_tag :postal_code, "郵便番号(ハイフンなし)"
-  = text_field_tag :postal_code, @acc_info.address_kanji.postal_code
-  
-  = label_tag :state, "都道府県"
-  = text_field_tag :state, @acc_info.address_kanji.state
-  
-  = label_tag :city, "市区町村"
-  = text_field_tag :city, @acc_info.address_kanji.city
-  
-  = label_tag :town, "丁目・字"
-  = text_field_tag :town, @acc_info.address_kanji.town
-  
-  = label_tag :line1, "番地・建物名"
-  = text_field_tag :line1, @acc_info.address_kanji.line1
-  
-  = label_tag :line1, "電話番号(ハイフンなし)"
-  = text_field_tag :line1, @acc_info.phone_number
-  
-  = label_tag :dob, "生年月日"
-  = select_date(Time.mktime(@acc_info.dob.year, @acc_info.dob.month, @acc_info.dob.day),{:use_month_numbers => true, start_year: 110.years.ago(Date.today).year})
-  
-  = label_tag :gender, "性別"
-  = select_tag :gender, options_for_select([["男", "male"], ["女", "female"]])
+  %button 更新
+    
   
 
-  %button 更新
+
 

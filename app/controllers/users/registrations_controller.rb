@@ -20,8 +20,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
         signup_user.save
     end
     #StripeのAccount & Customerを作成
-    find_or_create_stripe_account(signup_user)
+    account = find_or_create_stripe_account(signup_user)
     find_or_create_stripe_customer(signup_user)
+    account.tos_acceptance.date = Time.now
+    account.tos_acceptance.ip = request.remote_ip
   end
 
   # GET /resource/edit
