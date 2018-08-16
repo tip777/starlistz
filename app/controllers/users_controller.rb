@@ -233,7 +233,6 @@ class UsersController < ApplicationController
           render 'account_info'
         end
       rescue => e
-        binding.pry
         # エラー時の処理
         flash.now[:alert] = "販売者情報の更新に失敗しました"
         render 'account_info'

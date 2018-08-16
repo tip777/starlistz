@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     account = find_or_create_stripe_account(signup_user)
     find_or_create_stripe_customer(signup_user)
     account.tos_acceptance.date = Time.now
-    account.tos_acceptance.ip = request.remote_ip
+    account.tos_acceptance.ip = request.env["HTTP_X_FORWARDED_FOR"]
   end
 
   # GET /resource/edit
