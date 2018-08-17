@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get "users/:id/salesmonth" => "users#salesmonth", as: 'users_salesmonth' #月間売り上げ管理ページ
   get "users/:id/payment_info" => "users#payment_info", as: 'payment_info' #支払い方法
   get "users/:id/account_info" => "users#account_info", as: 'account_info' #販売者情報
-  get "users/:id/business_info" => "users#business_info", as: 'business_info' #販売業者情報
+  get "users/:id/company_info" => "users#company_info", as: 'company_info' #販売業者情報
   get "users/:id/bank_info" => "users#bank_info", as: 'bank_info' #口座情報
   get "users/:id/account_tokutei" => "users#account_tokutei", as: 'account_tokutei' #特商法表示に基づく表示
   post 'users/stripe_update' => 'users#stripe_update' #Stripe関係の更新はここで処理

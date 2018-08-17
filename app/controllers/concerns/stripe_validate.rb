@@ -1,10 +1,11 @@
 module StripeValidate
   ## Stripeの情報設定の際のValidation
     
-  #販売車情報Validate
+  #販売者情報Validate
   def acc_info_validate(ac_info_params)
     ac_errors = Array.new
     @acc_info = ac_info_params
+    
     if @acc_info[:last_name_kanji] == "" || @acc_info[:first_name_kanji] == ""
       ac_errors.push("氏名を入力してください")
     end
@@ -36,12 +37,30 @@ module StripeValidate
         ac_errors.push("電話番号に半角数字以外が使用されています")
       end
     end
-    
-    
-    
-    
+
     return ac_errors
+  end
+  
+  #販売事業者情報Validate
+  def com_info_validate(com_info_params)
+    com_errors = Array.new
+    @com_info = com_info_params
     
+    if @com_info[:business_name] == "" 
+      com_errors.push("販売事業者の名称を入力してください")
+    end
+    unless @com_info[:support_email] == ""
+      if @com_info[:support_email] !~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+        com_errors.push("メールアドレスの形式が不正です")
+      end
+    end
+    unless @com_info[:support_phone] == ""
+      if @com_info[:support_phone] !~ /\A^[!\d]+$\Z/
+        com_errors.push("電話番号に半角数字以外が使用されています")
+      end
+    end
+
+    return com_errors
   end
   
 end

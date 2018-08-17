@@ -168,7 +168,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def business_info
+  def company_info
+    @account = find_or_create_stripe_account(current_user)
+    if @account == nil
+      reject_page
+    else
+      
+      @com_info = @account.legal_entity
+      @com_errors = Array.new
+    end
   end
 
   def bank_info
@@ -239,7 +247,29 @@ class UsersController < ApplicationController
       end
     
     # 販売事業者の変更の場合
-    elsif stripe_params[:flg] == "biz_info" 
+    elsif stripe_params[:flg] == "com_info" 
+      begin
+        com_info = com_info_params
+        @com_errors = com_info_validate(com_info)
+        if @com_errors.empty?
+          account = find_or_create_stripe_account(current_user)
+          #会社名
+          account.legal_entity.business_name = com_info[:business_name]
+          #連絡先
+          account.support_email = com_info[:support_email]
+          account.support_email = com_info[:support_email]
+          
+          if account.save
+            redirect_to users_playlist_path(current_user), notice: "販売事業者情報を更新しました"
+          end
+        else
+          render 'company_info'
+        end
+      rescue => e
+        # エラー時の処理
+        flash.now[:alert] = "販売事業者情報の更新に失敗しました"
+        render 'company_info'
+      end
     
     # 口座情報の変更の場合
     elsif stripe_params[:flg] == "bank" 
@@ -274,6 +304,10 @@ class UsersController < ApplicationController
   
   def acc_info_params
     params.permit(:authenticity_token, :last_name_kanji, :first_name_kanji, :postal_code, :state, :city, :town, :line1, :phone_number, {date: [:year, :month, :day]}, :gender)
+  end
+  
+  def com_info_params
+    params.permit(:authenticity_token, :business_name, :support_email, :support_phone)
   end
 
 end

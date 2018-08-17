@@ -2190,6 +2190,38 @@ display: block;
   }
 }
 
+
+// 販売事業者情報画面
+
+.l__com_info{
+  max-width: 580px;
+  margin: auto;
+  h2{
+    text-align: center;
+  }
+  h3{
+    font-size: 1.2em;
+    margin: 15px 0;
+    text-align: center;
+    font-weight: 400;
+    background-color: #fff;
+    padding: 30px;
+    span{
+    font-size: 1.6em;
+    padding: 0 15px;
+  }
+  
+  }
+}
+
+.l__com_info__inner{
+  background-color: #fff;
+  padding: 30px;
+  button{
+    margin-top:30px;
+  }
+}
+
 // 売上管理画面
 
 .l__salesmanage{
