@@ -10,35 +10,40 @@
             - @acc_errors.each do |message|
               %li= message
       
-      = form_tag(users_stripe_update_path, method: :post) do
+      = form_tag(users_stripe_update_path, id: "acc-form", method: :post) do
         = hidden_field_tag :authenticity_token, form_authenticity_token
         = hidden_field_tag :flg, "ac_info"
         
         - if params[:flg].nil?
           // 姓名
           = label_tag :last_name_kanji, "姓"
-          = text_field_tag :last_name_kanji, @acc_info.last_name_kanji
+          = text_field_tag :last_name_kanji, @acc_info.last_name_kanji, placeholder: "例) 田中"
           = label_tag :first_name_kanji, "名"
-          = text_field_tag :first_name_kanji, @acc_info.first_name_kanji
+          = text_field_tag :first_name_kanji, @acc_info.first_name_kanji, placeholder: "例) 太郎"
           
           // 住所
           = label_tag :postal_code, "郵便番号(ハイフンなし)"
-          = text_field_tag :postal_code, @acc_info.address_kanji.postal_code.tr('０-９', '0-9')
+          - if @acc_info.address_kanji.postal_code.nil?
+            = text_field_tag :postal_code, "", placeholder: "例) 1234567"
+          - else
+            = text_field_tag :postal_code, @acc_info.address_kanji.postal_code.tr('０-９', '0-9'), placeholder: "例) 1234567"
+            
+            %input#button1{:onclick => "setAddress()", :type => "button", :value => "住所自動入力"}
           
           = label_tag :state, "都道府県"
-          = select_tag :state, options_for_select(Constants::STATE, selected: @acc_info.address_kanji.state)
+          = select_tag :state, options_for_select(Constants::STATE, selected: @acc_info.address_kanji.state), data: { placeholder: '選択してください' }
           
           = label_tag :city, "市区郡"
-          = text_field_tag :city, @acc_info.address_kanji.city
+          = text_field_tag :city, @acc_info.address_kanji.city, placeholder: "例) 名古屋市"
           
           = label_tag :town, "町村名・丁目・字"
-          = text_field_tag :town, @acc_info.address_kanji.town
+          = text_field_tag :town, @acc_info.address_kanji.town, placeholder: "例) 中村区1-1"
           
           = label_tag :line1, "番地・建物名"
-          = text_field_tag :line1, @acc_info.address_kanji.line1
+          = text_field_tag :line1, @acc_info.address_kanji.line1, placeholder: "例) 11番地"
           
           = label_tag :phone_number, "電話番号(ハイフンなし)"
-          = text_field_tag :phone_number, @acc_info.phone_number
+          = text_field_tag :phone_number, @acc_info.phone_number, placeholder: "例) 08012345678"
           
           = label_tag :dob, "生年月日"
           - if @acc_info.dob.year.nil?
@@ -85,9 +90,40 @@
           = label_tag :gender, "性別"
           = select_tag :gender, options_for_select([["男", "male"], ["女", "female"]], selected: @acc_info[:gender])
         
-        %button 更新
-    
+        %button 保存
+
+:javascript
+  // 郵便番号から住所を取得
+  function setAddress() {
+    var zip = $('#zip').val();
   
-
-
+    // ここでzipのバリデーションを行ってください
+  
+    $.ajax({
+      url : 'https://maps.googleapis.com/maps/api/geocode/json',
+      type : 'get',
+      dataType : 'json',
+      data : {
+        key: gon.api_key,
+        address: $('#postal_code').val(),
+        language: 'ja'
+      },
+      success : function(resp){
+        if(resp.status == "OK"){
+          // APIのレスポンスから住所を取得
+          var obj = resp.results[0].address_components;
+          if (obj.length < 5) {
+            alert('正しい郵便番号を入力してください');
+            return false;
+          }
+          $('#state').val(obj[3]['long_name']); // 都道府県
+          $('#city').val(obj[2]['long_name']);  // 市区町村
+          $('#town').val(obj[1]['long_name']); // 番地
+        }else{
+          alert('住所が取得できませんでした');
+          return false;
+        }
+      }
+    });
+  }
 

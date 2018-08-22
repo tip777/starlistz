@@ -165,6 +165,7 @@ class UsersController < ApplicationController
     else
       @acc_info = account.legal_entity
       @acc_errors = Array.new
+      gon.api_key = ENV['GOOGLE_API_KEY']
     end
   end
 
@@ -180,6 +181,13 @@ class UsersController < ApplicationController
   end
 
   def bank_info
+    account = find_or_create_stripe_account(current_user)
+    if account == nil
+      reject_page
+    else
+      @bank_info = account.external_accounts.all(:limit => 1, :object => "bank_account")
+      @bank_errors = Array.new
+    end
   end
 
   def payouthistory
@@ -224,7 +232,7 @@ class UsersController < ApplicationController
           account.legal_entity.address_kana.town  = put_ruby_on(acc_info[:town])[0]
           account.legal_entity.address_kana.line1  = put_ruby_on(acc_info[:line1])[0]
           #電話番号
-          # account.legal_entity.phone_number = acc_info_params[:phone_number]
+          account.legal_entity.phone_number = acc_info[:phone_number]
           #生年月日
           account.legal_entity.dob.year = acc_info[:date][:year]
           account.legal_entity.dob.month = acc_info[:date][:month]
@@ -272,8 +280,28 @@ class UsersController < ApplicationController
       end
     
     # 口座情報の変更の場合
-    elsif stripe_params[:flg] == "bank" 
-    
+    elsif stripe_params[:flg] == "bank_info"
+      begin
+        account = find_or_create_stripe_account(current_user)
+        bank_info = bank_info_params
+        bank_info[:owner_name] = bank_info[:owner_name].gsub(/[\s|　]+/, '')
+        @bank_errors = bank_info_validate(bank_info)
+        if @bank_errors.empty? and bank_info[:errorBank].nil?
+          bank_account = account.external_accounts.create(external_account: bank_info[:stripeToken])
+          if bank_account.save
+            redirect_to users_playlist_path(current_user), notice: "口座情報を更新しました"
+          end
+        else
+          @bank_info = account.external_accounts.all(:limit => 1, :object => "bank_account")
+          render 'bank_info'
+        end
+      rescue => e
+        # エラー時の処理
+        @bank_info = account.external_accounts.all(:limit => 1, :object => "bank_account")
+        flash.now[:alert] = "口座情報の更新に失敗しました"
+        render 'bank_info'
+      end
+      
     else
       redirect_to users_playlist_path(current_user)
     end
@@ -308,6 +336,10 @@ class UsersController < ApplicationController
   
   def com_info_params
     params.permit(:authenticity_token, :business_name, :support_email, :support_phone)
+  end
+  
+  def bank_info_params
+    params.permit(:authenticity_token, :stripeToken, :bank_code, :branch_code, :account_number, :owner_name, :bankError)
   end
 
 end

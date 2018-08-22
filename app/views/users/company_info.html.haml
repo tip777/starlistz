@@ -17,16 +17,15 @@
         - if params[:flg].nil?
           // 会社名
           = label_tag :business_name, "販売事業者の名称"
-          = text_field_tag :business_name, @com_info.business_name
+          = text_field_tag :business_name, @com_info.business_name, placeholder: "例) サンプル株式会社"
           
           // 事業者の連絡先
           %p 連絡先
           = label_tag :support_email, "メールアドレス"
-          = text_field_tag :support_email, @account.support_email
+          = text_field_tag :support_email, @account.support_email, placeholder: "例) info@example.com"
           
           = label_tag :support_phone, "電話番号"
-          = text_field_tag :support_phone, @account.support_phone
-
+          = text_field_tag :support_phone, @account.support_phone, placeholder: "例) 08012345678"
           
         - else
           // 会社名
@@ -41,7 +40,7 @@
           = label_tag :support_phone, "電話番号"
           = text_field_tag :support_phone, @com_info[:support_phone]
         
-        %button 更新
+        %button 保存
     
   
 

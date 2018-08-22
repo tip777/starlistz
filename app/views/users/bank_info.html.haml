@@ -1,1 +1,108 @@
-%p 口座情報
+.l__bank_info
+  %h2 口座情報
+  
+  .l__bank_info__inner
+    .container
+
+      - unless @bank_errors.empty?
+        #error_explanation.alert.alert-danger
+          %ul
+            - @bank_errors.each do |message|
+              %li= message
+      .row
+        -if @bank_info.empty?
+          .col-sm{:style => "margin-right:20px;"}
+            口座情報が設定されていません
+        -else
+          // - binding.pry
+          .col-sm{:style => "margin-right:20px;"}
+            設定済み
+          .col-sm{:style => "margin-right:20px;"}
+            口座番号
+          .col-sm{:style => "margin-right:20px;"}
+            末尾４桁　#{@bank_info[:data][0][:last4]}
+      
+      = form_tag(users_stripe_update_path, id: "bank-form", method: :post) do
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        = hidden_field_tag :flg, "bank_info"
+        
+        - if params[:flg].nil?
+          = label_tag :bank_code, "銀行コード"
+          = text_field_tag :bank_code, "", placeholder: "例) 0001"
+          
+          = label_tag :branch_code, "支店コード"
+          = text_field_tag :branch_code, "", placeholder: "例) 123"
+          
+          = label_tag :account_number, "口座番号"
+          = text_field_tag :account_number, "", placeholder: "例) 0123456"
+          
+          = label_tag :owner_name, "口座名義カナ"
+          = text_field_tag :owner_name, "", placeholder: "例) タナカタロウ"
+          
+        - else
+          = label_tag :bank_code, "銀行コード"
+          = text_field_tag :bank_code, params[:bank_code], placeholder: "例) 0001"
+          
+          = label_tag :branch_code, "支店コード"
+          = text_field_tag :branch_code, params[:branch_code], placeholder: "例) 123"
+          
+          = label_tag :account_number, "口座番号"
+          = text_field_tag :account_number, params[:account_number], placeholder: "例) 0123456"
+          
+          = label_tag :owner_name, "口座名義カナ"
+          = text_field_tag :owner_name, params[:owner_name], placeholder: "例) タナカタロウ"
+        
+        %button 保存
+    
+:javascript
+  // Create a Stripe client
+
+  var stripe = Stripe($('meta[name="stripe-key"]').attr('content'));
+
+  // Handle form submission
+  var form = document.getElementById('bank-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // alert(form.bank_code.value + form.branch_code.value);
+
+    stripe.createToken('bank_account', {
+      country: 'JP',
+      currency: 'jpy',
+      routing_number: form.bank_code.value + form.branch_code.value,
+      account_number: form.account_number.value,
+      account_holder_name: form.owner_name.value,
+      account_holder_type: 'individual',
+    }).then(function(result) {
+      var form = document.getElementById('bank-form');
+      var hiddenInput = document.createElement('input');
+      
+      if (result.error) {
+        // Inform the user if there was an error
+        var errorBank = document.getElementById('bank-errors');
+        console.log(result.error.message);
+        
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'bankError');
+        hiddenInput.setAttribute('value', true);
+        form.appendChild(hiddenInput);
+        
+        form.submit();
+      } else {
+        // Send the token to your server
+        // alert(JSON.stringify(result.token));
+        // console.log(JSON.stringify(result.token));
+
+        // Insert the token ID into the form so it gets submitted to the server
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', result.token.id);
+        form.appendChild(hiddenInput);
+        // Submit the form
+        form.submit();
+
+      }
+    });
+  });
+
+

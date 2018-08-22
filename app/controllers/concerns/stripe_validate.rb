@@ -63,4 +63,44 @@ module StripeValidate
     return com_errors
   end
   
+  #口座情報Validate
+  def bank_info_validate(bank_info_params)
+    bank_errors = Array.new
+    @bank_info = bank_info_params
+    
+    if @bank_info[:bank_code] == "" 
+      bank_errors.push("銀行コード(半角数値４桁)を入力してください")
+    else
+      if @bank_info[:bank_code].length != 4 || @bank_info[:bank_code] !~ /\A^[!\d]+$\Z/
+        bank_errors.push("銀行コード(半角数値４桁)が不正です")
+      end
+    end
+    
+    if @bank_info[:branch_code] == "" 
+      bank_errors.push("支店コード(半角数値３桁)を入力してください")
+    else
+      if @bank_info[:branch_code].length != 3 || @bank_info[:branch_code] !~ /\A^[!\d]+$\Z/
+        bank_errors.push("支店コード(半角数値３桁)が不正です")
+      end
+    end
+    
+    if @bank_info[:account_number] == "" 
+      bank_errors.push("口座番号(半角数値８桁以内)を入力してください")
+    else
+      if @bank_info[:account_number].length != 7 and @bank_info[:account_number].length != 8 || @bank_info[:account_number] !~ /\A^[!\d]+$\Z/
+        bank_errors.push("口座番号(半角数値８桁以内)が不正です")
+      end
+    end
+    
+    if @bank_info[:owner_name] == "" 
+      bank_errors.push("口座名義(全角カナ)を入力してください")
+    else
+      if @bank_info[:owner_name] !~ /\A^[!ァ-ン]+$\Z/
+        bank_errors.push("口座名義(全角カナ)が不正です")
+      end
+    end
+    
+    return bank_errors
+  end
+  
 end

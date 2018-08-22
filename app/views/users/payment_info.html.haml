@@ -23,7 +23,7 @@
         #card-element
           A Stripe Element will be inserted here.
         #card-errors{:role => "alert"}
-      %button.submit 更新
+      %button.submit 保存
 
 :javascript
   // Create a Stripe client
@@ -81,21 +81,20 @@
         console.log(result.error.message);
       } else {
         // Send the token to your server
-          alert(JSON.stringify(result.token));
-          console.log(JSON.stringify(result.token));
+        // alert(JSON.stringify(result.token));
+        // console.log(JSON.stringify(result.token));
 
-    // Insert the token ID into the form so it gets submitted to the server
-
-    var form = document.getElementById('payment-form');
-    var hiddenInput = document.createElement('input');
-    hiddenInput.setAttribute('type', 'hidden');
-    hiddenInput.setAttribute('name', 'stripeToken');
-    hiddenInput.setAttribute('value', result.token.id);
-    form.appendChild(hiddenInput);
-    alert(result.token.id);
-    alert('submitting form');
-    // Submit the form
-    form.submit();
+        // Insert the token ID into the form so it gets submitted to the server
+        var form = document.getElementById('payment-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', result.token.id);
+        form.appendChild(hiddenInput);
+        // alert(result.token.id);
+        // alert('submitting form');
+        // Submit the form
+        form.submit();
 
       }
     });
