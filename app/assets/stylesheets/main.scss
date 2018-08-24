@@ -849,8 +849,8 @@ input[type="reset"],
     margin:3px;
     a{
       color: #fff;
-      background-color: #b6eb34;
-      border-color: #b6eb34;
+      background-color: #33a02c;
+      border-color: #33a02c;
       border-radius: 2em;
       padding: 0 15px;
       display: inline-block;
@@ -873,8 +873,8 @@ input[type="reset"],
   }
   .button.more{
     color: #fff;
-    background-color: #b6eb34;
-    border-color: #b6eb34;
+    background-color: #33a02c;
+    border-color: #33a02c;
     border-radius: 2em;
     display: inline-block;
     font-weight: 700;
@@ -1067,16 +1067,17 @@ p.or{
   text-align: right;
 }
 .btn__purchase{
-background-color: #ddd;
+background-color: #17183a;
     padding: 10px 30px;
-    color: #000;
+    color: #fff;
+    font-weight: 700;
     border: none;
 }
 
 .genretag{
   color: #fff;
-  background-color: #b6eb34;
-  border-color: #b6eb34;
+  background-color: #33a02c;
+  border-color: #33a02c;
   border-radius: 2em;
   padding: 0 10px;
   display: inline;
@@ -1191,8 +1192,8 @@ margin:0;
     }
     .genretag{
       color: #fff;
-      background-color: #b6eb34;
-      border-color: #b6eb34;
+      background-color: #33a02c;
+      border-color: #33a02c;
       border-radius: 2em;
       padding: 0 10px;
       display: inline;
@@ -1264,8 +1265,8 @@ margin:0;
     }
     .genretag{
       color: #fff;
-      background-color: #b6eb34;
-      border-color: #b6eb34;
+      background-color: #33a02c;
+      border-color: #33a02c;
       border-radius: 2em;
       padding: 0 10px;
       display: inline;
@@ -1398,15 +1399,15 @@ margin:0;
         left: 0;
       }
       &:nth-child(1):before{
-        color: #b6eb34;
+        color: #33a02c;
         font-weight: 700;
       }
       &:nth-child(2):before{
-        color: #b6eb34;
+        color: #33a02c;
         font-weight: 700;
       }
       &:nth-child(3):before{
-        color: #b6eb34;
+        color: #33a02c;
         font-weight: 700;
       }
       .title{
@@ -1464,7 +1465,7 @@ margin:0;
         content: "";
         bottom: 0;
         display: none;
-        background-color: #b6eb34;
+        background-color: #33a02c;
         transition:0;
       }
     }
@@ -1525,7 +1526,7 @@ margin:0;
         content: "";
         bottom: 0;
         display: none;
-        background-color: #b6eb34;
+        background-color: #33a02c;
         transition:0;
       }
     }
@@ -1549,7 +1550,7 @@ margin:0;
 
 
 .border-left{
-  border-left: 5px solid #b6eb34;
+  border-left: 5px solid #33a02c;
   padding: 15px 5px 15px 15px;
 }
 

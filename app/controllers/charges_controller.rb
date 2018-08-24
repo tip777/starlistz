@@ -1,4 +1,8 @@
 class ChargesController < ApplicationController
+  
+  def index
+    
+  end
 
   def create
     begin

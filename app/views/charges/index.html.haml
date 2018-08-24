@@ -1,0 +1,91 @@
+.l__payment_info
+  %p 購入画面
+  
+  .l__payment_info__inner
+    .container
+      .row
+        -unless @credit_card.nil?
+          .col-sm{:style => "margin-right:20px;"}
+            =@credit_card.brand
+          .col-sm{:style => "margin-right:20px;"}
+            末尾４桁　#{@credit_card.last4}
+          .col-sm
+            =@credit_card.exp_month.to_s + "/" + @credit_card.exp_year.to_s[2, 2]
+        
+        -if @credit_card.nil?
+            %p カード情報
+        -else
+            %p 他のカードで購入する場合
+            
+        %form#payment-form{:action => "/charge/create", :method => "post"}
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          = hidden_field_tag :flg, "card"
+          .form-row
+            %label{:for => "card-element"}
+            #card-element
+              A Stripe Element will be inserted here.
+            #card-errors{:role => "alert"}
+          %button.submit 保存
+          
+          
+:javascript
+    // Create a Stripe client.
+  var stripe = Stripe($('meta[name="stripe-key"]').attr('content'));
+  
+  // Create an instance of Elements.
+  var elements = stripe.elements();
+  
+  // Custom styling can be passed to options when creating an Element.
+  // (Note that this demo uses a wider set of styles than the guide below.)
+  var style = {
+    base: {
+      color: '#32325d',
+      lineHeight: '18px',
+      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontSmoothing: 'antialiased',
+      fontSize: '16px',
+      '::placeholder': {
+        color: '#aab7c4'
+      }
+    },
+    invalid: {
+      color: '#fa755a',
+      iconColor: '#fa755a'
+    }
+  };
+  
+  
+  // Create an instance of the card Element.
+  var card = elements.create('card', {style: style});
+  
+  // Add an instance of the card Element into the `card-element` <div>.
+  card.mount('#card-element');
+  
+  // Handle real-time validation errors from the card Element.
+  card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+      displayError.textContent = event.error.message;
+    } else {
+      displayError.textContent = '';
+    }
+  });
+  
+  // Handle form submission.
+  var form = document.getElementById('payment-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+  
+    stripe.createToken(card).then(function(result) {
+      if (result.error) {
+        // Inform the user if there was an error.
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+        console.log(result.error.message);
+      } else {
+        alert(JSON.stringify(result.token));
+        // Send the token to your server.
+        stripeTokenHandler(result.token);
+      }
+    });
+  });

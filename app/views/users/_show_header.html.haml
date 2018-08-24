@@ -25,10 +25,7 @@
               %img{:src => "#{asset_path "Twitter_Icon_Rounded_Square_Already.svg"}"}
               %span 連携を解除する
         - else
-          - if @user.social_profiles.empty?
-            .social_twitter_still
-              %img{:src => "#{asset_path "Twitter_Icon_Rounded_Square_Still.svg"}"}
-          - else
+          - unless @user.social_profiles.empty?
             = link_to @user.social_profiles[0].url, class: "social_twitter_already", :target=>["_blank"] do
               %img{:src => "#{asset_path "Twitter_Icon_Rounded_Square_Already.svg"}"}
               %span @#{@user.social_profiles[0].nickname}

@@ -11,7 +11,7 @@
           .col-sm{:style => "margin-right:20px;"}
             =@credit_card.brand
           .col-sm{:style => "margin-right:20px;"}
-            =@credit_card.last4
+            末尾４桁　#{@credit_card.last4}
           .col-sm
             =@credit_card.exp_month.to_s + "/" + @credit_card.exp_year.to_s[2, 2]
     
