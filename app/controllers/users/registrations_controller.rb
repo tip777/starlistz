@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  
+
   include StripeCreate #Stripe 作成部分
 
   # GET /resource/sign_up
@@ -19,11 +19,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         signup_user.user_profile = profile
         signup_user.save
     end
-    #StripeのAccount & Customerを作成
-    account = find_or_create_stripe_account(signup_user)
-    find_or_create_stripe_customer(signup_user)
-    account.tos_acceptance.date = Time.now
-    account.tos_acceptance.ip = request.env["HTTP_X_FORWARDED_FOR"]
   end
 
   # GET /resource/edit
@@ -41,20 +36,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def destroy
     customer = find_or_create_stripe_customer(current_user)
     #Customer削除
-    if customer != nil 
+    if customer != nil
       customer.delete
     end
-    
+
     resource.destroy
-    
+
     #削除したユーザーのemail,nameを変更（重複対策）
-    resource.attributes = {email: resource.deleted_at.to_i.to_s + '_' + resource.email.to_s, name: "*" + resource.name.to_s}
+    delete_user = User.with_deleted.find(resource)
+    change_email = resource.deleted_at.to_i.to_s + '_' + resource.email.to_s
+    resource.email = change_email
+    resource.unconfirmed_email = nil
+    resource.skip_reconfirmation!
+    resource.attributes = {name: "*" + resource.name.to_s}
     resource.save!(validate: false)
-    
+
     #退会理由をつけたメールを運営に送信
     contact = Contact.new(contact_params)
     ContactMailer.unsub_email(contact, current_user).deliver
-    
+
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message! :notice, :destroyed
     yield resource if block_given?
@@ -71,7 +71,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
-  
+
   #退会理由用
   def contact_params
     params.require(:contact).permit(:message)

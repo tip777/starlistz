@@ -12,10 +12,15 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation?confirmation_token=abcdef
   #メール認証したらそのままログイン
   def show
-
     super do |resource|
       sign_in(resource)
     end
+    #StripeのAccount & Customerを作成
+    find_or_create_stripe_account(resource)
+    customer = find_or_create_stripe_customer(resource)
+    customer.email = resource.email
+    customer.save
+
     # super do |resource|
     #   if user_signed_in?#ログインしていたら
     #     binding.pry

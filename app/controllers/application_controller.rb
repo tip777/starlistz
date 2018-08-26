@@ -4,25 +4,25 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action  :store_location
   helper_method :is_purchase?, :is_stripe_account_id?
-  
+
   include StripeCreate #Stripe 作成部分
-  
+
   http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.test? #heroku development Basic認証
   http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.staging? #heroku staging Basic認証
   if ENV['BASIC_AUTH_PASSWORD'] != nil
     http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.production? #本番開始　するときに消す
   end
-  
+
   def set_user_genre
     #Userのタグだけ抽出
     return ActsAsTaggableOn::Tagging.where(taggable_type: "User").group("tag_id").pluck(:tag_id)
   end
-  
+
   # 〇文字以上は...で表示する
   def trun_str(str, strLen)
       return str.truncate(strLen)
   end
-  
+
   #プレイリストの購入履歴があるか
   def is_purchase?(user, list)
     if user.nil?
@@ -31,12 +31,12 @@ class ApplicationController < ActionController::Base
       !user.purchases.where(list_id: list.id).empty?
     end
   end
-  
+
   #ログインしているか判定
   def gon_current_user
     gon.current_user = current_user
   end
-  
+
   def reject_page
     begin
       redirect_back(fallback_location: root_path)
@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-  
+
   def store_location
       if (request.fullpath != "/users/sign_in" &&
           request.fullpath != "/users/sign_up" &&

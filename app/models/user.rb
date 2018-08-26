@@ -13,8 +13,8 @@ class User < ApplicationRecord
         # :recoverable, :rememberable, :trackable, :validatable,
         #:rememberableを削除
         :recoverable, :trackable, :validatable,
-        # :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
-        :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
+        :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
+        # :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
 
   #relation
   #フォロー機能
@@ -117,6 +117,7 @@ class User < ApplicationRecord
     favorite_lists.include?(list)
   end
 
+
   #Validate
   #ユーザー名　validate
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 }, user_name: true #空はダメ、一意性をもつ、30文字以内
@@ -147,6 +148,5 @@ class User < ApplicationRecord
       end
     end
   end
-
 
 end
