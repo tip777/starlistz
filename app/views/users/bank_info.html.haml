@@ -18,9 +18,9 @@
           .col-sm{:style => "margin-right:20px;"}
             設定済み
           .col-sm{:style => "margin-right:20px;"}
-            口座番号
+            ー
           .col-sm{:style => "margin-right:20px;"}
-            末尾４桁　#{@bank_info[:data][0][:last4]}
+            = @bank_info[:data][0][:last4]
       
       = form_tag(users_stripe_update_path, id: "bank-form", method: :post) do
         = hidden_field_tag :authenticity_token, form_authenticity_token
