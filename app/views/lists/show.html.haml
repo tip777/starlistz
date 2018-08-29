@@ -1,10 +1,7 @@
+// 購入ボタンのモーダルウィンドウ　紐づけ用
+- i = 1
+
 .l__m.l__listShow
-  //ログインしていたら編集できる
-  - if is_signin
-    - if is_signed(current_user.id, @list.user.id)
-      =link_to 'プレイリスト編集', edit_list_path(@list, list: @list)
-
-
   .l__playlist
     .l__playlistCore.clearfix
       .playlist__img
@@ -24,60 +21,191 @@
             #{@list.user.name + Constants::DLETE_MARK_USER}
           - else
             = link_to @list.user.name, users_playlist_path(@list.user)
-        
-        - if is_signin and !@list.paranoia_destroyed?
-          - if !is_signed(current_user.id, @list.user.id)
+            
+        -unless @list.paranoia_destroyed?
+          - if @display_list == true
             = render 'lists/fav_form', list: @list 
+          - else
+            %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"}
+              %button.btn__purchase.buy_btn{type: "button"} 購入する
 
             .span.playlist__price ￥#{@list.price}
     %hr
 
     .span.playlist__discription= @list.description
-    // .span= render 'layouts/tag_list', tag_list: @list.tag_list
+    
     .span
       - @list.tag_list.each.with_index(0) do |listgenre, i|
         %span.genretag
           = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
-
-  .track_section
-    - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
-      .l__tracks
-        %table
-          %tbody
-            %tr
-              %td
-                - if track.recommend == true
-                  %span.favoriteStar
-                    %i.material-icons star_rate
-              %td.track_no
-              %td
-                %span.trackSong= track.song
-                %span.trackArtist= track.artist
-              %td
-                - if track.description != nil && track.description.length > 0
-                  %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"} 
-                    %span.trackComment
-                      %i.material-icons.already comment
-
-
-
   
-      // ここからモーダルウィンドウ
-      .modal-content.modal__comment{:id => "modal-content-#{i}"}
-        // モーダルウィンドウのコンテンツ開始
-        .r__modalContent
-        .l__playlistCore.clearfix
-          .playlist__img
-            .l__img
-              = image_tag @list.image.url(:thumb)
-          .playlist__text
-            %span.modal_song= track.song
-            %span.modal_artist= track.artist
-        %hr
-        %p= track.description
-        // モーダルウィンドウのコンテンツ終了
-        %p.text-center
-          %a#modal-close.button-link 閉じる
+  - if @display_list == true
+    .track_section
+      - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
+        .l__tracks
+          %table
+            %tbody
+              %tr
+                %td
+                  - if track.recommend == true
+                    %span.favoriteStar
+                      %i.material-icons star_rate
+                %td.track_no
+                %td
+                  %span.trackSong= track.song
+                  %span.trackArtist= track.artist
+                %td
+                  - if track.description != nil && track.description.length > 0
+                    %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"} 
+                      %span.trackComment
+                        %i.material-icons.already comment
+  
+        // ここからトラックの説明のモーダルウィンドウ
+        .modal-content.modal__comment{:id => "modal-content-#{i}"}
+          // モーダルウィンドウのコンテンツ開始
+          .r__modalContent
+          .l__playlistCore.clearfix
+            .playlist__img
+              .l__img
+                = image_tag @list.image.url(:thumb)
+            .playlist__text
+              %span.modal_song= track.song
+              %span.modal_artist= track.artist
+          %hr
+          %p= track.description
+          // モーダルウィンドウのコンテンツ終了
+          %p.text-center
+            %a#modal-close.button-link 閉じる
+            
+  -else
+    
+    // ここから購入フォームのモーダルウィンドウ
+    .modal-content.modal__payment{:id => "modal-content-#{i}"}
+      // モーダルウィンドウのコンテンツ開始
+      - if @credit_card.nil?
+        %pカード情報入力
+        // #credit-formないはいじらないように。。。
+        %form#credit-form{:action => "/charge/create", :method => "post"}
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          .form-row
+            %label{:for => "card-element"}
+            #card-element
+              A Stripe Element will be inserted here.
+            #card-errors{:role => "alert"}
+          
+          = check_box_tag :is_regist, as: :boolean
+          = label_tag :is_regist, '入力したカード情報を登録する'
+          
+          %button.submit 購入
+        
+      - else
+        = radio_button_tag :credit_type, :already, checked: "checked"
+        = label_tag :credit_type, '登録済みカード'
+        
+        // containerクラス内のデータはbootstrapで仮にデザイン
+        .container
+          .row
+            .col-sm{:style => "margin-right:20px;"}
+              =@credit_card.brand
+            .col-sm{:style => "margin-right:20px;"}
+              末尾４桁　#{@credit_card.last4}
+            .col-sm
+              =@credit_card.exp_month.to_s + "/" + @credit_card.exp_year.to_s[2, 2]
+        
+        = radio_button_tag :credit_type, :still
+        = label_tag :credit_type, '新しいカード'
+        
+        %pカード情報入力
+        // #credit-formないはいじらないように。。。
+        %form#credit-form{:action => "/charge/create", :method => "post"}
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          .form-row
+            %label{:for => "card-element"}
+            #card-element
+              A Stripe Element will be inserted here.
+            #card-errors{:role => "alert"}
+          
+          = check_box_tag :is_regist, as: :boolean
+          = label_tag :is_regist, '入力したカード情報を登録する'
+          
+          %button.submit 購入　￥#{@list.price}
+        
+      %a#modal-close.button-link 閉じる
+    
+    :javascript
+      // Create a Stripe client
+    
+      var stripe = Stripe($('meta[name="stripe-key"]').attr('content'));
+    
+      // Create an instance of Elements
+      var elements = stripe.elements();
+    
+      // Custom styling can be passed to options when creating an Element.
+      // (Note that this demo uses a wider set of styles than the guide below.)
+      var style = {
+        base: {
+          color: '#32325d',
+          lineHeight: '24px',
+          fontFamily: 'Helvetica Neue',
+          fontSmoothing: 'antialiased',
+          fontSize: '16px',
+          '::placeholder': {
+            color: '#aab7c4'
+          }
+        },
+        invalid: {
+          color: '#fa755a',
+          iconColor: '#fa755a'
+        }
+      };
+    
+      // Create an instance of the card Element
+      var card = elements.create('card', {style: style});
+    
+      // Add an instance of the card Element into the `card-element` <div>
+      card.mount('#card-element');
+    
+      // Handle real-time validation errors from the card Element.
+      card.addEventListener('change', function(event) {
+        const displayError = document.getElementById('card-errors');
+        if (event.error) {
+          displayError.textContent = event.error.message;
+        } else {
+          displayError.textContent = '';
+        }
+      });
+    
+      // Handle form submission
+      var form = document.getElementById('credit-form');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        stripe.createToken(card).then(function(result) {
+          if (result.error) {
+            // Inform the user if there was an error
+            var errorElement = document.getElementById('card-errors');
+            errorElement.textContent = result.error.message;
+            console.log(result.error.message);
+          } else {
+            // Send the token to your server
+            // alert(JSON.stringify(result.token));
+            // console.log(JSON.stringify(result.token));
+    
+            // Insert the token ID into the form so it gets submitted to the server
+            var form = document.getElementById('credit-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', result.token.id);
+            form.appendChild(hiddenInput);
+            // alert(result.token.id);
+            // alert('submitting form');
+            // Submit the form
+            form.submit();
+    
+          }
+        });
+      });
         
 
   

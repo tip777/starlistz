@@ -32,12 +32,6 @@
           .cardList__text
             %span.listtitle= link_to trun_str(list.title, 21), list_path(list) , class: "testclass"
             %span.author= link_to trun_str(list.user.name, 23), users_playlist_path(list.user)
-            
-            // %span.favoriteStar
-            //   %i.material-icons star_rate
-            //   = list.list_favorites.count
-            
-            
             %p= trun_str(list.description, 40)
             .tags
               - list.tag_list.each.with_index(0) do |listgenre, i|
@@ -57,15 +51,12 @@
         
         - else
           //まだ購入していないプレイリスト
-          %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"} 
+          = link_to list_path(list) do
             .cardList__img
               = render 'lists/is_image', list: list
             .cardList__text
               %span.listtitle= trun_str(list.title, 21)
               %span.author= trun_str(list.user.name, 23)
-              // %span.favoriteStar
-              //   %i.material-icons star_rate
-              //   = list.list_favorites.count
               %p= trun_str(list.description, 40)
               .tags
                 - list.tag_list.each.with_index(0) do |listgenre, i|
@@ -80,27 +71,4 @@
                   %i.material-icons star_rate
                   = list.list_favorites.count
                 %span.listprice ¥#{list.price}
-
-    // ここからモーダルウィンドウ
-    .modal-content{:id => "modal-content-#{i}"}
-      // モーダルウィンドウのコンテンツ開始
-      // Stripe決済部分
-      //ログインユーザーのプレイリストじゃなかったら
-      .r__modalContent
-      
-        .cardList__img
-          = render 'lists/is_image', list: list
-        .cardList__text
-          %span.listtitle= list.title
-          %span.author= link_to list.user.name, users_playlist_path(list.user)
-          %p= list.description
-          .tags
-            - list.tag_list.each.with_index(0) do |listgenre, i|
-              %span.l__playlist.genretag
-                = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
-          // モーダルウィンドウのコンテンツ終了
-          %span.listprice ¥#{list.price}
-          = render "charges/stripe_checkout", customer: customer, list: list, cont_no: i
-          %p
-            %a#modal-close.button-link 閉じる
 
