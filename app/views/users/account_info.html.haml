@@ -91,6 +91,10 @@
           = select_tag :gender, options_for_select([["男", "male"], ["女", "female"]], selected: @acc_info[:gender])
         
         %button 保存
+        
+  .l__acc_info_description
+    %p ※この情報は他のユーザーに公開されることはありません。
+    
 
 :javascript
   // 郵便番号から住所を取得

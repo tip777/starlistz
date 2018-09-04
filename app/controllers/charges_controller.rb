@@ -1,12 +1,10 @@
 class ChargesController < ApplicationController
   
-  def index
-    
-  end
-
   def create
     begin
-      list = List.find_by(id: params[:list])
+      charge_info = charge_params
+      binding.pry
+      list = List.find_by(id: charge_info[:list])
 
       if list.nil?
           redirect_to :back, alert: 'プレイリストが存在しません。トップページから操作をやり直してください。'
@@ -21,11 +19,15 @@ class ChargesController < ApplicationController
       @amount = list.price
       @fee = @amount*0.1 #StarListz決済手数料：決済金額の10%
 
-      token = params[:stripeToken]
+      token = charge_info[:stripeToken]
       
       customer = find_or_create_stripe_customer(current_user)
       customer.source = token
-      customer.save
+      
+      //チェック入れていたらカード情報を登録する
+      if charge_info[:credit_regist] == 1
+        customer.save
+      end
 
       token = Stripe::Token.create({
         :customer => customer.id,
@@ -34,23 +36,23 @@ class ChargesController < ApplicationController
       charge = Stripe::Charge.create({
         :receipt_email => current_user.email,
         :amount      => @amount,
-        :description => 'Rails Stripe customer',
+        :description => "#{list.title}購入",
         :currency    => 'jpy',
         :source => token.id,
         :application_fee => @fee.floor
       }, :stripe_account => list.user.stripe_acct_id)
 
-      #購入履歴
-      purchase = current_user.purchases.create(list_id: list.id, order_date: Time.now, stripe_chg_id: charge.id, uid: SecureRandom.uuid)
+      # #購入履歴
+      # purchase = current_user.purchases.create(list_id: list.id, order_date: Time.now, stripe_chg_id: charge.id, uid: SecureRandom.uuid)
 
-      if purchase.save
-        #購入者、販売者にメールを送る
-        PurchaseMailer.buyer(purchase, current_user).deliver
-        PurchaseMailer.seller(purchase, list.user).deliver
-      else
-        #あえてエラーを起こす
-        raise Exception.new("")
-      end
+      # if purchase.save
+      #   #購入者、販売者にメールを送る
+      #   PurchaseMailer.buyer(purchase, current_user).deliver
+      #   PurchaseMailer.seller(purchase, list.user).deliver
+      # else
+      #   #あえてエラーを起こす
+      #   raise Exception.new("")
+      # end
 
       # TODO add more detailed error messages
     rescue Stripe::APIConnectionError => e
@@ -96,6 +98,12 @@ class ChargesController < ApplicationController
         flash[:alert] = 'プレイリストの購入に失敗しました'
       end
     end
+  end
+  
+  private
+  
+  def charge_params
+    params.permit(:authenticity_token, :stripeToken, :list, :credit_regist)
   end
 
 end

@@ -155,6 +155,7 @@ class UsersController < ApplicationController
     customer = find_or_create_stripe_customer(current_user)
     unless customer.sources.data.empty?
       @credit_card = customer.sources.retrieve(customer.sources.data[0].id)
+      binding.pry
     end
   end
 
