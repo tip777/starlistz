@@ -2,9 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:following, :follower]
   before_action :gon_current_user, only: [:playlist, :purchasehistory, :favplaylist]
   before_action :show_head, only: [:playlist, :purchasehistory, :favuser, :favplaylist]
-  
-  include StripeValidate #Stripe Validate
-  include YahooAPI 
 
   def show_head
     @user = User.with_deleted.find_by(id: params[:id])
@@ -19,8 +16,17 @@ class UsersController < ApplicationController
       if current_user != nil
         #Customer取得
         @customer = find_or_create_stripe_customer(current_user)
+        if current_user.id == @user.id
+          #Stripe連携しているか判定
+          is_account = is_stripe_account_id?(current_user)
+          if is_account != true
+            flash.now[:alert] = "<a id='stripe_connect' href='#{stripe_url_edit(current_user)}'>Stripe接続</a>　が完了していません。<br>
+                            完了しなければプレイリストを作成できません。".html_safe
+          end
+        end
       end
     end
+    
   end
 
   def favuser
@@ -151,164 +157,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def payment_info
-    customer = find_or_create_stripe_customer(current_user)
-    unless customer.sources.data.empty?
-      @credit_card = customer.sources.retrieve(customer.sources.data[0].id)
-      binding.pry
-    end
-  end
-
-  def account_info
-    account = find_or_create_stripe_account(current_user)
-    if account == nil
-      reject_page
-    else
-      @acc_info = account.legal_entity
-      @acc_errors = Array.new
-      gon.api_key = ENV['GOOGLE_API_KEY']
-    end
-  end
-
-  def company_info
-    @account = find_or_create_stripe_account(current_user)
-    if @account == nil
-      reject_page
-    else
-      
-      @com_info = @account.legal_entity
-      @com_errors = Array.new
-    end
-  end
-
-  def bank_info
-    account = find_or_create_stripe_account(current_user)
-    if account == nil
-      reject_page
-    else
-      @bank_info = account.external_accounts.all(:limit => 1, :object => "bank_account")
-      @bank_errors = Array.new
-    end
-  end
-
-  def payouthistory
-  end
-  
-  def stripe_update
-    if current_user.nil?
-      reject_page
-      exit!
-    end
-    # カード情報の変更の場合
-    if stripe_params[:flg] == "card" 
-      customer = find_or_create_stripe_customer(current_user)
-      customer.source = card_params[:stripeToken]
-      if customer.save
-        redirect_to users_playlist_path(current_user), notice: "お支払い方法を更新しました"
-      else
-        redirect_to payment_info_path(current_user), notice: "お支払い方法の更新に失敗しました"
-      end
-    
-    # 販売者情報の変更の場合
-    elsif stripe_params[:flg] == "ac_info" 
-      begin
-        acc_info = acc_info_params
-        @acc_errors = acc_info_validate(acc_info)
-        if @acc_errors.empty?
-          account = find_or_create_stripe_account(current_user)
-          #氏名
-          account.legal_entity.last_name_kanji = acc_info[:last_name_kanji]
-          account.legal_entity.first_name_kanji = acc_info[:first_name_kanji]
-          account.legal_entity.last_name_kana = put_ruby_on(acc_info[:last_name_kanji])[0]
-          account.legal_entity.first_name_kana = put_ruby_on(acc_info[:first_name_kanji])[0]
-          #住所
-          account.legal_entity.address_kanji.postal_code  = acc_info[:postal_code]
-          account.legal_entity.address_kanji.state  = acc_info[:state]
-          account.legal_entity.address_kanji.city  = acc_info[:city]
-          account.legal_entity.address_kanji.town  = acc_info[:town]
-          account.legal_entity.address_kanji.line1  = acc_info[:line1]
-          account.legal_entity.address_kana.postal_code  = acc_info[:postal_code]
-          account.legal_entity.address_kana.state  = put_ruby_on(acc_info[:state])[0]
-          account.legal_entity.address_kana.city  = put_ruby_on(acc_info[:city])[0]
-          account.legal_entity.address_kana.town  = put_ruby_on(acc_info[:town])[0]
-          account.legal_entity.address_kana.line1  = put_ruby_on(acc_info[:line1])[0]
-          #電話番号
-          account.legal_entity.phone_number = acc_info[:phone_number]
-          #生年月日
-          account.legal_entity.dob.year = acc_info[:date][:year]
-          account.legal_entity.dob.month = acc_info[:date][:month]
-          account.legal_entity.dob.day = acc_info[:date][:day]
-          #性別
-          account.legal_entity.gender = acc_info[:gender]
-          #タイプ
-          account.legal_entity.type = "individual"
-          
-          if account.save
-            redirect_to users_playlist_path(current_user), notice: "販売者情報を更新しました"
-          end
-        else
-          render 'account_info'
-        end
-      rescue => e
-        # エラー時の処理
-        flash.now[:alert] = "販売者情報の更新に失敗しました"
-        render 'account_info'
-      end
-    
-    # 販売事業者の変更の場合
-    elsif stripe_params[:flg] == "com_info" 
-      begin
-        com_info = com_info_params
-        @com_errors = com_info_validate(com_info)
-        if @com_errors.empty?
-          account = find_or_create_stripe_account(current_user)
-          #会社名
-          account.legal_entity.business_name = com_info[:business_name]
-          #連絡先
-          account.support_email = com_info[:support_email]
-          account.support_email = com_info[:support_email]
-          
-          if account.save
-            redirect_to users_playlist_path(current_user), notice: "販売事業者情報を更新しました"
-          end
-        else
-          render 'company_info'
-        end
-      rescue => e
-        # エラー時の処理
-        flash.now[:alert] = "販売事業者情報の更新に失敗しました"
-        render 'company_info'
-      end
-    
-    # 口座情報の変更の場合
-    elsif stripe_params[:flg] == "bank_info"
-      begin
-        account = find_or_create_stripe_account(current_user)
-        bank_info = bank_info_params
-        bank_info[:owner_name] = bank_info[:owner_name].gsub(/[\s|　]+/, '')
-        @bank_errors = bank_info_validate(bank_info)
-        if @bank_errors.empty? and bank_info[:errorBank].nil?
-          bank_account = account.external_accounts.create(external_account: bank_info[:stripeToken])
-          if bank_account.save
-            redirect_to users_playlist_path(current_user), notice: "口座情報を更新しました"
-          end
-        else
-          @bank_info = account.external_accounts.all(:limit => 1, :object => "bank_account")
-          render 'bank_info'
-        end
-      rescue => e
-        # エラー時の処理
-        @bank_info = account.external_accounts.all(:limit => 1, :object => "bank_account")
-        flash.now[:alert] = "口座情報の更新に失敗しました"
-        render 'bank_info'
-      end
-      
-    else
-      redirect_to users_playlist_path(current_user)
-    end
-    
-  end
-
   def following
     @user = User.find(params[:id])
     @following = @user.following_users
@@ -321,26 +169,5 @@ class UsersController < ApplicationController
     @relationship = @user.follower_relationships.count
   end
 
-  private
-  
-  def stripe_params
-    params.permit(:flg)
-  end
-  
-  def card_params
-    params.permit(:stripeToken, :authenticity_token)
-  end
-  
-  def acc_info_params
-    params.permit(:authenticity_token, :last_name_kanji, :first_name_kanji, :postal_code, :state, :city, :town, :line1, :phone_number, {date: [:year, :month, :day]}, :gender)
-  end
-  
-  def com_info_params
-    params.permit(:authenticity_token, :business_name, :support_email, :support_phone)
-  end
-  
-  def bank_info_params
-    params.permit(:authenticity_token, :stripeToken, :bank_code, :branch_code, :account_number, :owner_name, :bankError)
-  end
 
 end

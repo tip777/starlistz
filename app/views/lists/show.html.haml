@@ -26,8 +26,14 @@
           - if @display_list == true
             = render 'lists/fav_form', list: @list 
           - else
-            %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"}
-              %button.btn__purchase.buy_btn{type: "button"} 購入する
+            = form_tag charges_path do
+              .l__btn__purchase
+                %label.amount
+                .datafield
+                  = hidden_field_tag :list, @list.id
+                  
+                // 購入前のログイン判定用
+                %button.btn__purchase.buy_btn{type: "button"} 購入する
 
             .span.playlist__price ￥#{@list.price}
     %hr
@@ -76,158 +82,32 @@
           // モーダルウィンドウのコンテンツ終了
           %p.text-center
             %a#modal-close.button-link 閉じる
-            
-  -else
-    
-    // ここから購入フォームのモーダルウィンドウ
-    .modal-content.modal__payment{:id => "modal-content-#{i}"}
-      // モーダルウィンドウのコンテンツ開始
-      - if @credit_card.nil?
-        %pカード情報入力
-        // #credit-formないはいじらないように。。。
-        %form#credit-form{:action => "/charges", :method => "post"}
-          = hidden_field_tag :authenticity_token, form_authenticity_token
-          = hidden_field_tag :list, @list.id
-          .form-row
-            %label{:for => "card-element"}
-            #card-element
-              A Stripe Element will be inserted here.
-            #card-errors{:role => "alert"}
-          
-          = check_box_tag :credit_regist
-          = label_tag :credit_regist, '入力したカード情報を登録する'
-          
-          = button_tag "購入　￥#{@list.price}", class: "submit", data: { confirm: "#{trun_str(@list.title, 21)} を購入しますか？?" }
-        
-      - else
-        
-        %input#use_credit1{:name => "use_credit", :type => "radio", :value => "already", checked: "checked"}
-        %label{:for => "use_credit1"} 登録済みカード
-        
-        // containerクラス内のデータはbootstrapで仮にデザイン
-        .container
-          .row
-            .col-sm{:style => "margin-right:20px;"}
-              =@credit_card.brand
-            .col-sm{:style => "margin-right:20px;"}
-              末尾４桁　#{@credit_card.last4}
-            .col-sm
-              =@credit_card.exp_month.to_s + "/" + @credit_card.exp_year.to_s[2, 2]
-        
-        %input#use_credit2{:name => "use_credit", :type => "radio", :value => "still"}
-        %label{:for => "use_credit2"} 新しいカード
-        
-        %pカード情報入力
-        // #credit-formないはいじらないように。。。
-        %form#credit-form{:action => "/charges", :method => "post"}
-          = hidden_field_tag :authenticity_token, form_authenticity_token
-          = hidden_field_tag :list, @list.id
-          .form-row
-            %label{:for => "card-element"}
-            #card-element
-              A Stripe Element will be inserted here.
-            #card-errors{:role => "alert"}
-          
-          = check_box_tag :credit_regist
-          = label_tag :credit_regist, '入力したカード情報を登録する'
-          
-          = button_tag "購入　￥#{@list.price}", class: "submit", data: { confirm: "#{trun_str(@list.title, 21)} を購入しますか？?" }
-        
-      %a#modal-close.button-link 閉じる
-    
-    :javascript
-      // Create a Stripe client
-    
-      var stripe = Stripe($('meta[name="stripe-key"]').attr('content'));
-    
-      // Create an instance of Elements
-      var elements = stripe.elements();
-      
-      // Custom styling can be passed to options when creating an Element.
-      // (Note that this demo uses a wider set of styles than the guide below.)
-      var style = {
-        base: {
-          color: '#32325d',
-          lineHeight: '24px',
-          fontFamily: 'Helvetica Neue',
-          fontSmoothing: 'antialiased',
-          fontSize: '16px',
-          '::placeholder': {
-            color: '#aab7c4'
-          }
-        },
-        invalid: {
-          color: '#fa755a',
-          iconColor: '#fa755a'
-        }
-      };
-    
-      // Create an instance of the card Element
-      var card = elements.create('card', {style: style});
-    
-      // Add an instance of the card Element into the `card-element` <div>
-      card.mount('#card-element');
-    
-      // Handle real-time validation errors from the card Element.
-      card.addEventListener('change', function(event) {
-        const displayError = document.getElementById('card-errors');
-        if (event.error) {
-          displayError.textContent = event.error.message;
-        } else {
-          displayError.textContent = '';
-        }
-      });
-    
-      // Handle form submission
-      var form = document.getElementById('credit-form');
-      var credit_radio1 = document.getElementById('use_credit1');
-      var credit_radio2 = document.getElementById('use_credit2');
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // 登録済みのカードを使用する場合
-        if(credit_radio1 !== undefined && credit_radio1 !== null){
-            if (credit_radio1.checked === true) {
-              var form = document.getElementById('credit-form');
-              var hiddenInput = document.createElement('input');
-              hiddenInput.setAttribute('type', 'hidden');
-              hiddenInput.setAttribute('name', 'stripeToken');
-              hiddenInput.setAttribute('value', "none");
-              form.appendChild(hiddenInput);
+  - else
+    // Stripe決済部分
+  .hide_checkout
+    - if @customer.nil?
+      %script.stripe-button{"data-amount" => "#{@list.price}",
+        "data-description" => "#{@list.title}",
+        "data-email" => "",
+        "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+        "data-label" => "購入",
+        "data-locale" => "auto",
+        "data-currency" => "jpy",
+        "data-name" => "StarListz",
+        "data-panel-label" => "プレイリストを購入",
+        :src => "https://checkout.stripe.com/checkout.js"}
+    - else
+      %script.stripe-button{"data-amount" => "#{@list.price}",
+        "data-description" => "#{@list.title}",
+        "data-email" => "#{@customer.email}",
+        "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+        "data-label" => "購入",
+        "data-locale" => "auto",
+        "data-currency" => "jpy",
+        "data-name" => "StarListz",
+        "data-panel-label" => "プレイリストを購入",
+        :src => "https://checkout.stripe.com/checkout.js"}
+  
 
-              form.submit();
-              return false;
-            }
-        } 
-        
-        // 入力したカードを使用する場合
-        stripe.createToken(card).then(function(result) {
-          if (result.error) {
-            // Inform the user if there was an error
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = result.error.message;
-            console.log(result.error.message);
-          } else {
-            // Send the token to your server
-            // alert(JSON.stringify(result.token));
-            // console.log(JSON.stringify(result.token));
-    
-            // Insert the token ID into the form so it gets submitted to the server
-            var form = document.getElementById('credit-form');
-            var hiddenInput = document.createElement('input');
-            hiddenInput.setAttribute('type', 'hidden');
-            hiddenInput.setAttribute('name', 'stripeToken');
-            hiddenInput.setAttribute('value', result.token.id);
-            form.appendChild(hiddenInput);
-            
-            // alert(result.token.id);
-            // alert('submitting form');
-            // Submit the form
-            form.submit();
-          }
-        
-        });
-      });
-        
 
   

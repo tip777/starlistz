@@ -18,8 +18,6 @@
       .form-group
         = f.input :password_confirmation, required: true
         
-      .form-agreement 
-        サインインすることにより、当サービスの#{link_to '利用規約', term_path}および#{link_to 'プライバシー規約', privacy_path}に同意したと見なされます。
       .form-actions
         = f.button :submit, "登録する"
     = render "devise/shared/links"

@@ -9,6 +9,11 @@ class HomeController < ApplicationController
     if current_user != nil
       #Customer取得
       @customer = find_or_create_stripe_customer(current_user)
+      
+      #パラメータでcodeがあればstripeのデータ取得
+      if params[:code] != nil
+        set_stripe_id(current_user, params[:code])
+      end
     end
   end
 

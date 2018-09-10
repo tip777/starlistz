@@ -22,17 +22,23 @@ class ListsController < ApplicationController
       end
     end
     
-    customer = find_or_create_stripe_customer(current_user)
-    unless customer.sources.data.empty?
-      @credit_card = customer.sources.retrieve(customer.sources.data[0].id)
-    end
+    @customer = find_or_create_stripe_customer(current_user)
     
   end
 
   def new
-    @list = List.new
-    taggings = set_list_genre
-    @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      if is_stripe_account_id?(current_user)
+        @list = List.new
+        taggings = set_list_genre
+        @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
+      else
+        redirect_to users_playlist_path(current_user)
+      end
+    end
+    
   end
 
   def edit

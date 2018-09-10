@@ -2,7 +2,7 @@
   .l-profile
     .ll-profile
       = image_tag @user.user_profile.avatar.url(:thumb)
-
+    
     .rr-profile
       //ログインしていたら編集できる
       - if is_signin
