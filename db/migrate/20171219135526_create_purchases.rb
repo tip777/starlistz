@@ -6,6 +6,7 @@ class CreatePurchases < ActiveRecord::Migration[5.0]
       t.references :list, foreign_key: true
       t.text :stripe_charge_id, unique: true
       t.text :uid, null: false, unique: true
+      t.string :status, null: false, default: "failed"
 
       t.timestamps null:false
     end

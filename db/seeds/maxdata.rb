@@ -63,4 +63,4 @@ $list_list.each_with_index do |tag, i|
   target.save
 end
 
-Purchase.create(user_id: 1, list_id: 100, order_date: Time.zone.local(2014, 3, 20), uid: SecureRandom.uuid)
+Purchase.create(user_id: 1, list_id: 100, order_date: Time.zone.local(2014, 3, 20), uid: SecureRandom.uuid, status: "succeeded")

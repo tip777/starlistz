@@ -3,7 +3,7 @@ module StripeCreate
   
   #Stripe 認証ページのURLを編集
   def stripe_url_edit(current_user)
-    stripe_url = Constants::STRIPE_AUTH_URL + "&stripe_user[email]=#{current_user.email}" + "&stripe_user[url]=#{Constants::HP_URL}" + "&stripe_user[country]=JP" + "&stripe_user[business_name]=StarListz"  + "&stripe_user[business_type]=sole_prop" # + "&stripe_user[product_description]=StarListzを使用しているすべてのユーザーに対しプレイリストの販売を行うことができます。購入時に即座に決済が行われます。"　
+    return Constants::STRIPE_AUTH_URL + "&stripe_user[email]=#{current_user.email}" + "&stripe_user[url]=#{Constants::HP_URL}" + "&stripe_user[country]=JP" + "&stripe_user[business_name]=StarListz" + "&stripe_user[business_type]=sole_prop" + "&stripe_user[product_description]=StarListzを使用しているすべてのユーザーに対しプレイリストの販売を行うことができます。購入時に即座に決済が行われます。"
   end
   
   #アカウント情報取得
@@ -11,9 +11,14 @@ module StripeCreate
   	#Stripeからデータ取得
   	stripe_data = get_stripe_data(stripe_code)
   	#stripe_user_idを登録
-  	current_user.update_attributes!(stripe_acct_id: stripe_data["stripe_user_id"])
-  	#Cutomerデータ登録
-  	find_or_create_stripe_customer(current_user)
+  	if stripe_data["error"].nil?
+    	current_user.update_attributes!(stripe_acct_id: stripe_data["stripe_user_id"])
+    	#Cutomerデータ登録
+    	find_or_create_stripe_customer(current_user)
+    else
+      # Stripe認証がエラーだったら
+      flash.now[:alert] = "Stripe連携に失敗しました。"
+    end
   end
   
   # Stripe認証
@@ -24,7 +29,7 @@ module StripeCreate
     uri = URI.parse("https://connect.stripe.com/oauth/token")
     request = Net::HTTP::Post.new(uri)
     request.set_form_data(
-      "client_secret" => STRIPE_PUBLIC_KEY,
+      "client_secret" => Stripe.api_key,
       "code" => stripe_code,
       "grant_type" => "authorization_code",
     )
@@ -67,7 +72,7 @@ module StripeCreate
       if user.stripe_cus_id.blank?
         customer = Stripe::Customer.create(
             :description => "user_id: #{user.id.to_s}",
-            :email => user.email.to_s
+            :email => Constants::SUPPORT_MAIL
         )
       else
         customer = get_stripe_customer_id(user)

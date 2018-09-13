@@ -17,9 +17,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def chart
     #セレクトボックス用のタグ
     taggings = set_list_genre
@@ -42,9 +39,21 @@ class HomeController < ApplicationController
       end
     end
 
-     @pages = @genre_list.page(params[:page])
-     #Customer取得
-     @customer = find_or_create_stripe_customer(current_user)
+    @pages = @genre_list.page(params[:page])
+    #Customer取得
+    @customer = find_or_create_stripe_customer(current_user)
+  end
+  
+  def privacy
+    
+  end
+  
+  def term
+    
+  end
+  
+  def tokutei
+    
   end
 
   def search

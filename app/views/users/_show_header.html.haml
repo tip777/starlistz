@@ -47,12 +47,6 @@
           = "#{@mylist.count}"
           %span プレイリスト
 
-      .tokutei
-        = link_to "特定商取引に基づく表記", account_tokutei_path(@user)
-
-
-
-
 - if is_signin && is_signed(current_user.id, @user.id)
   %ul.l__profile__tab
     %li{ class: controller.action_name == 'playlist' ? 'active' : '' }

@@ -34,6 +34,31 @@
                   
                 // 購入前のログイン判定用
                 %button.btn__purchase.buy_btn{type: "button"} 購入する
+              
+              // Stripe決済部分
+              .hide_checkout
+                - if @customer.nil?
+                  %script.stripe-button{"data-amount" => "#{@list.price}",
+                    "data-description" => "#{@list.title}",
+                    "data-email" => "",
+                    "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+                    "data-label" => "購入",
+                    "data-locale" => "auto",
+                    "data-currency" => "jpy",
+                    "data-name" => "StarListz",
+                    "data-panel-label" => "プレイリストを購入",
+                    :src => "https://checkout.stripe.com/checkout.js"}
+                - else
+                  %script.stripe-button{"data-amount" => "#{@list.price}",
+                    "data-description" => "#{@list.title}",
+                    "data-email" => "#{@customer.email}",
+                    "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+                    "data-label" => "購入",
+                    "data-locale" => "auto",
+                    "data-currency" => "jpy",
+                    "data-name" => "StarListz",
+                    "data-panel-label" => "プレイリストを購入",
+                    :src => "https://checkout.stripe.com/checkout.js"}
 
             .span.playlist__price ￥#{@list.price}
     %hr
@@ -82,32 +107,3 @@
           // モーダルウィンドウのコンテンツ終了
           %p.text-center
             %a#modal-close.button-link 閉じる
-  - else
-    // Stripe決済部分
-  .hide_checkout
-    - if @customer.nil?
-      %script.stripe-button{"data-amount" => "#{@list.price}",
-        "data-description" => "#{@list.title}",
-        "data-email" => "",
-        "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
-        "data-label" => "購入",
-        "data-locale" => "auto",
-        "data-currency" => "jpy",
-        "data-name" => "StarListz",
-        "data-panel-label" => "プレイリストを購入",
-        :src => "https://checkout.stripe.com/checkout.js"}
-    - else
-      %script.stripe-button{"data-amount" => "#{@list.price}",
-        "data-description" => "#{@list.title}",
-        "data-email" => "#{@customer.email}",
-        "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
-        "data-label" => "購入",
-        "data-locale" => "auto",
-        "data-currency" => "jpy",
-        "data-name" => "StarListz",
-        "data-panel-label" => "プレイリストを購入",
-        :src => "https://checkout.stripe.com/checkout.js"}
-  
-
-
-  
