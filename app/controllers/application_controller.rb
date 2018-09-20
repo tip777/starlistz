@@ -40,7 +40,8 @@ class ApplicationController < ActionController::Base
   def reject_page
     begin
       redirect_back(fallback_location: root_path)
-    rescue ActionController::RedirectBackError
+    rescue ActionController::RedirectBackError => e
+      logger.error(e.message)
       redirect_to root_path
     end
   end
@@ -99,7 +100,8 @@ class ApplicationController < ActionController::Base
       else
         @q = User.search
       end
-    rescue
+    rescue StandardError => e
+      logger.error(e.message)
       @q = User.search
     end
   end
@@ -118,7 +120,8 @@ class ApplicationController < ActionController::Base
         Stripe::Account.retrieve(user.stripe_acct_id.to_s)
         return true
       end
-    rescue => e
+    rescue StandardError => e
+      logger.error(e.message)
       return false
     end
   end

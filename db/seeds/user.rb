@@ -1,7 +1,12 @@
 #ユーザー設定
 50.times do |i|
+  random = Random.new
   profile = UserProfile.create(description: "これはユーザープロフィールの説明[ #{i+1} ]")
-  user = User.create(id: i+1,name: "test#{i+1}", email: "test#{i}@gmail.com", password: "testtest", password_confirmation: "testtest")
+  if i == random.rand(1..50)
+    user = User.create(id: i+1,name: "test#{i+1}", email: "test#{i}@gmail.com", password: "testtest", password_confirmation: "testtest", identity: "verified")
+  else
+    user = User.create(id: i+1,name: "test#{i+1}", email: "test#{i}@gmail.com", password: "testtest", password_confirmation: "testtest")
+  end
   user.user_profile = profile
   user.save
 end

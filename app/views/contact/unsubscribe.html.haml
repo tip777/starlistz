@@ -2,7 +2,9 @@
 
   = image_tag asset_path "Logo.png"
   %h2 StarListzを退会しますか？
-  %p ※退会処理後にアカウント、プレイリストのデータを元に戻すことはできません
+  %p ※退会処理後にアカウント、プレイリストのデータを元に戻すことはできません。
+  %p ※Stripeのアカウントは削除されません。
+  
 
   .form__contact
     = simple_form_for @contact, :url => registration_path(current_user), method: :delete do |f|

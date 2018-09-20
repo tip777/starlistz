@@ -19,6 +19,19 @@ module ApplicationHelper
         end
     end
     
+    #本人確認されているか判定
+    def is_identity?(user)
+        if user.nil?
+          return false
+        else
+          if user.identity == 'verified'
+            return true
+          else
+            return false
+          end
+        end
+    end
+    
     # 〇文字以上は...で表示する
     def trun_str(str, strLen)
         if str.nil?

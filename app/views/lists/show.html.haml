@@ -21,6 +21,9 @@
             #{@list.user.name + Constants::DLETE_MARK_USER}
           - else
             = link_to @list.user.name, users_playlist_path(@list.user)
+            // 本人確認バッジ
+            - if is_identity?(@list.user)
+              = render "users/identity"
             
         -unless @list.paranoia_destroyed?
           - if @display_list == true

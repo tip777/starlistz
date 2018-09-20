@@ -125,7 +125,8 @@ class UsersController < ApplicationController
         reject_page
       end
       
-    rescue
+    rescue StandardError => e
+      logger.error(e.message)
       @all_amount = ""
       @year_list = ""
       @all_month_amount = ""
@@ -166,7 +167,8 @@ class UsersController < ApplicationController
         reject_page
       end
       
-    rescue
+    rescue StandardError => e
+      logger.error(e.message)
       @month_amount = ""
       @list_amount = ""
       @sales_list = ""

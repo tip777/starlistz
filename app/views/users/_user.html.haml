@@ -5,6 +5,10 @@
 
             .l-text
                 %h2.name #{trun_str(user.name, 23)}
+                
+                // 本人確認バッジ
+                - if is_identity?(user)
+                    = render "users/identity"
 
                 .discrition= trun_str(user.user_profile.description, 40)
 

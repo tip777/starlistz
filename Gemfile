@@ -76,5 +76,8 @@ group :development do
   gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
 end
 
+# herokuでのログ表示のため
+gem 'rails_12factor', group: :production
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

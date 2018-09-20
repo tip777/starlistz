@@ -13,7 +13,8 @@ class ContactController < ApplicationController
       else
         render "index"
       end
-    rescue
+    rescue StandardError => e
+      logger.error(e.message)
       flash.now[:alert] = "お問い合わせの送信に失敗しました"
       render "index"
     end
