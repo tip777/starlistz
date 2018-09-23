@@ -31,7 +31,16 @@ class ApplicationController < ActionController::Base
       !user.purchases.where(list_id: list.id, status: "succeeded").empty?
     end
   end
-
+  
+  #プレイリストが公開されているかどうか
+  def is_release_list?(list)
+    if list.status == "release"
+      return true
+    else
+      return false
+    end
+  end
+  
   #ログインしているか判定
   def gon_current_user
     gon.current_user = current_user

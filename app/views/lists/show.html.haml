@@ -28,7 +28,7 @@
         -unless @list.paranoia_destroyed?
           - if @display_list == true
             = render 'lists/fav_form', list: @list 
-          - else
+          - elsif is_release_list?(@list)
             = form_tag charges_path do
               .l__btn__purchase
                 %label.amount

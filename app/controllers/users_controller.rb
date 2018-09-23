@@ -11,7 +11,12 @@ class UsersController < ApplicationController
     else
       @following = @user.following_relationships.count
       @follower = @user.follower_relationships.count
-      @mylist = @user.lists.includes(:user, :taggings)
+      #マイページだったら非公開プレイリストも表示する
+      if @user == current_user
+        @mylist = @user.lists.includes(:user, :taggings)
+      else
+        @mylist = @user.lists.is_status.includes(:user, :taggings)
+      end
 
       if current_user != nil
         #Customer取得

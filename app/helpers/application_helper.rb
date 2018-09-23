@@ -49,4 +49,13 @@ module ApplicationHelper
             return true
         end
     end
+    
+    #プレイリストが公開されているかどうか
+    def is_release_list?(list)
+        if list.status == "release"
+            return true
+        else
+            return false
+        end
+    end
 end
