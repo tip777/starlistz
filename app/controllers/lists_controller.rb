@@ -30,13 +30,9 @@ class ListsController < ApplicationController
     if current_user.nil?
       redirect_to new_user_session_path
     else
-      if is_stripe_account_id?(current_user)
-        @list = List.new
-        taggings = set_list_genre
-        @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
-      else
-        redirect_to users_playlist_path(current_user)
-      end
+      @list = List.new
+      taggings = set_list_genre
+      @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
     end
     
   end
