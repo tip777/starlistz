@@ -17,6 +17,7 @@
         = f.input :password, required: true, hint: ("#{@minimum_password_length} 文字以上" if @minimum_password_length)
       .form-group
         = f.input :password_confirmation, required: true
+        
       .form-actions
         = f.button :submit, "登録する"
     = render "devise/shared/links"

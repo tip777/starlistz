@@ -1,4 +1,12 @@
 module ApplicationHelper
+    
+    include StripeCreate #Stripe 作成部分
+    
+    #Stripe 認証ページのURLを編集 _header.html.haml用
+    def stripe_url_header(current_user)
+        return stripe_url_edit(current_user)
+    end
+    
     def is_signed(user_id, other_id)
         if user_id == other_id
             return  true 
@@ -8,6 +16,19 @@ module ApplicationHelper
     def is_signin
         if current_user != nil
             return  true 
+        end
+    end
+    
+    #本人確認されているか判定
+    def is_identity?(user)
+        if user.nil?
+          return false
+        else
+          if user.identity == 'verified'
+            return true
+          else
+            return false
+          end
         end
     end
     

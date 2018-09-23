@@ -117,6 +117,7 @@ class User < ApplicationRecord
     favorite_lists.include?(list)
   end
 
+
   #Validate
   #ユーザー名　validate
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 }, user_name: true #空はダメ、一意性をもつ、30文字以内
@@ -147,6 +148,5 @@ class User < ApplicationRecord
       end
     end
   end
-
 
 end

@@ -4,42 +4,41 @@ class ListsController < ApplicationController
 
   def show
     @list = List.with_deleted.find_by(id: params[:id])
+    @display_list = true
     if @list.nil?
       reject_page
     else
-      #自分のプレイリスト、購入したプレイリスト以外は見れないように
-      if current_user.nil?
-        reject_page
+      if current_user != nil and @list.user == current_user
+        redirect_to edit_list_path(@list) 
       else
-        #プレイリストが削除されてたら
-        if @list.paranoia_destroyed?
-          #購入済みのプレイリストのみ表示
-          purchase_list = current_user.purchases.with_deleted.pluck(:list_id)
-          exclude_list = purchase_list
-          exclude_list.flatten!
-          if !exclude_list.include?(params[:id].to_i)
-              reject_page
-          end
-        else
-          #自分が作成したもの、購入済みのプレイリストを表示
-          my_list = current_user.lists.pluck(:id)
-          purchase_list = current_user.purchases.pluck(:list_id)
-          exclude_list = my_list.push(purchase_list)
-          exclude_list.flatten!
-          if !exclude_list.include?(params[:id].to_i)
-              reject_page
+        unless is_purchase?(current_user, @list)
+          if @list.paranoia_destroyed?
+            reject_page
+          else
+            @display_list = false
           end
         end
+        
       end
-      
     end
-
+    
+    @customer = find_or_create_stripe_customer(current_user)
+    
   end
 
   def new
-    @list = List.new
-    taggings = set_list_genre
-    @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      if is_stripe_account_id?(current_user)
+        @list = List.new
+        taggings = set_list_genre
+        @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
+      else
+        redirect_to users_playlist_path(current_user)
+      end
+    end
+    
   end
 
   def edit

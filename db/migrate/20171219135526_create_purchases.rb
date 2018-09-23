@@ -4,8 +4,9 @@ class CreatePurchases < ActiveRecord::Migration[5.0]
       t.date :order_date
       t.references :user, foreign_key: true
       t.references :list, foreign_key: true
-      t.text :stripe_chg_id, unique: true
+      t.text :stripe_charge_id, unique: true
       t.text :uid, null: false, unique: true
+      t.string :status, null: false, default: "failed"
 
       t.timestamps null:false
     end

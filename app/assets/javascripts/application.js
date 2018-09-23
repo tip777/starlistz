@@ -101,7 +101,7 @@ $(document).ready(function(){
     }else{
       //$(this).attr("name")　これで番号がとれる
       // $('.stripe-button-el').trigger('click');
-      $('#modal-content-' + $(this).attr("name") + ' .stripe-button-el').trigger('click');
+      $('.stripe-button-el').trigger('click');
     }
     console.log(gon.current_user);
     e.preventDefault();

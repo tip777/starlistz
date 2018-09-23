@@ -66,10 +66,11 @@ ActiveRecord::Schema.define(version: 20180722090153) do
     t.date     "order_date"
     t.integer  "user_id"
     t.integer  "list_id"
-    t.text     "stripe_chg_id", limit: 65535
-    t.text     "uid",           limit: 65535, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.text     "stripe_charge_id", limit: 65535
+    t.text     "uid",              limit: 65535,                    null: false
+    t.string   "status",                         default: "failed", null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_purchases_on_deleted_at", using: :btree
     t.index ["list_id"], name: "index_purchases_on_list_id", using: :btree
@@ -178,6 +179,7 @@ ActiveRecord::Schema.define(version: 20180722090153) do
     t.string   "name",                                null: false
     t.string   "stripe_acct_id"
     t.string   "stripe_cus_id"
+    t.string   "identity"
     t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree

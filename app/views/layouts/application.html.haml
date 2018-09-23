@@ -15,11 +15,12 @@
     %link{:href => "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", :rel => "stylesheet"}/
     %link{:rel => "stylesheet", :href => "https://fonts.googleapis.com/icon?family=Material+Icons"}
 
-    // = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    // = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-    
+
+    = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
+
+
     // faviconの設定
     = favicon_link_tag('/favicon_logo/logo32.ico')
 
@@ -30,18 +31,10 @@
     %main.l__wrapper
       - flash.each do |type, msg|
         %div{class: "alert_area alert-#{type}"}= msg.html_safe
-        
+
       .page-content
 
         = yield
-
-    / Scripts
-    // %script{:src => "assets/js/jquery.min.js"}
-    // %script{:src => "assets/js/jquery.dropotron.min.js"}
-    // %script{:src => "assets/js/jquery.scrolly.min.js"}
-    // %script{:src => "assets/js/jquery.scrollgress.min.js"}
-    // %script{:src => "assets/js/skel.min.js"}
-    // %script{:src => "assets/js/util.js"}
-    /[if lte IE 8] <script src="assets/js/ie/respond.min.js"></script>
-    // %script{:src => "assets/js/main.js"}
+        
+    = render :partial => "layouts/footer"
 

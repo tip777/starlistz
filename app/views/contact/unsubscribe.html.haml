@@ -1,23 +1,12 @@
 .l__contact.l__unsubscribe
-  // = image_tag asset_path "Logo.png"
-  // %h1 StarListzを退会しますか？
 
-
-  // // %p ・退会処理後にアカウント、プレイリストのデータを元に戻すことはできません
-  // %p
-  //   = link_to registration_path(current_user), method: :delete, data: { confirm: "退会します。よろしいですか？?" } do
-  //     退会
-  
   = image_tag asset_path "Logo.png"
   %h2 StarListzを退会しますか？
+  %p ※退会処理後にアカウント、プレイリストのデータを元に戻すことはできません。
+  %p ※Stripeのアカウントは削除されません。
   
+
   .form__contact
     = simple_form_for @contact, :url => registration_path(current_user), method: :delete do |f|
       = f.input :message, label: "退会理由", error: false, input_html: {rows: 6}, placeholder: '退会理由を入力してください'
       = f.submit '退会', data: { confirm: "退会します。よろしいですか？?" }
-
-
-  // %p ・退会処理後にアカウント、プレイリストのデータを元に戻すことはできません
-  %p
-    // = link_to registration_path(current_user), id: "unsubBtn", method: :delete, data: { confirm: "退会します。よろしいですか？?" } do
-    //   退会

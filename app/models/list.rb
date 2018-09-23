@@ -50,7 +50,7 @@ class List < ApplicationRecord
   #５曲以上入っているか確認　validation作業に入ったらコメント外す
   # after_save do
   #   if self.tracks.count < 5
-  #     self.errors.add(:base, "５曲以上登録してください")
+  #     self.errors.add(:base, "５曲以上登録してください。")
   #     raise ActiveRecord::Rollback
   #   end
   # end

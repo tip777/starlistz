@@ -5,5 +5,6 @@ class AddColumnsToUsers < ActiveRecord::Migration[5.0]
     add_column :users, :name, :string, null: false, unique: true
     add_column :users, :stripe_acct_id, :string
     add_column :users, :stripe_cus_id, :string
+    add_column :users, :identity, :string
   end
 end

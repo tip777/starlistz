@@ -19,6 +19,7 @@
                 = link_to "ユーザー", :controller => "searches", :action => "user", q: params[:q]
             %li{ class: controller.action_name == 'playlist_genre' ? 'active' : '' }
                 = link_to "プレイリストジャンル", :controller => "searches", :action => "playlist_genre", q: params[:q]
-            %li{ class: controller.action_name == 'user_genre' ? 'active' : '' }
-                = link_to "ユーザージャンル", :controller => "searches", :action => "user_genre", q: params[:q]
+            // ユーザージャンルで検索は検索後のページができていないので保留
+            // %li{ class: controller.action_name == 'user_genre' ? 'active' : '' }
+            //     = link_to "ユーザージャンル", :controller => "searches", :action => "user_genre", q: params[:q]
 

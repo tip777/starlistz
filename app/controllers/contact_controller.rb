@@ -5,12 +5,18 @@ class ContactController < ApplicationController
   end
 
   def thanks
-    @contact = Contact.new(contact_params)
-    if @contact.valid?
-      ContactMailer.received_email(@contact, current_user).deliver
-      redirect_to root_path, notice: "お問い合わせを送信しました"
-    else
-      render :action => 'index'
+    begin
+      @contact = Contact.new(contact_params)
+      if @contact.valid?
+        ContactMailer.received_email(@contact, current_user).deliver
+        redirect_to root_path, notice: "お問い合わせを送信しました"
+      else
+        render "index"
+      end
+    rescue StandardError => e
+      logger.error(e.message)
+      flash.now[:alert] = "お問い合わせの送信に失敗しました"
+      render "index"
     end
   end
   
