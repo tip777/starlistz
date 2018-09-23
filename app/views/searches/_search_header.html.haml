@@ -1,0 +1,25 @@
+.content-container
+    .sc.bg-whi
+        .l-search-form.imwl
+            %h2.h-tit
+                検索
+
+            = search_form_for  @q, html: {class: 'navbar-form' }, url: searches_playlist_path, enforce_utf8: false do |f|
+                = text_field_tag :q, @search_word, placeholder: "キーワード", class: "search-box"
+                = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn'
+                // .input-group-btn
+                //     = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn'
+                // %i.glyphicon.glyphicon-search
+  
+    .sc
+        %ul.l__search__tab
+            %li{ class: controller.action_name == 'playlist' ? 'active' : '' }
+                = link_to "プレイリスト", :controller => "searches", :action => "playlist", q: params[:q]
+            %li{ class: controller.action_name == 'user' ? 'active' : '' }
+                = link_to "ユーザー", :controller => "searches", :action => "user", q: params[:q]
+            %li{ class: controller.action_name == 'playlist_genre' ? 'active' : '' }
+                = link_to "プレイリストジャンル", :controller => "searches", :action => "playlist_genre", q: params[:q]
+            // ユーザージャンルで検索は検索後のページができていないので保留
+            // %li{ class: controller.action_name == 'user_genre' ? 'active' : '' }
+            //     = link_to "ユーザージャンル", :controller => "searches", :action => "user_genre", q: params[:q]
+

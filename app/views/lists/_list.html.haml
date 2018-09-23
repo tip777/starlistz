@@ -1,0 +1,74 @@
+.outer__cardList
+  - lists.each_with_index do |list, i|
+    .l__cardList
+      -if is_signin && is_signed(current_user.id, list.user.id)
+        //自分のプレイリスト
+        = link_to edit_list_path(list) do
+          .cardList__img
+            = render 'lists/is_image', list: list
+          .cardList__text
+            %span.listtitle= trun_str(list.title, 21)
+            %span.author= trun_str(list.user.name, 23)
+
+            %p= trun_str(list.description, 40)
+            .cardList__footer
+              - list.tag_list.each.with_index(0) do |listgenre, i|
+                - if i > 4
+                  %span.l__playlist.genretag･･･
+                  - break
+                - else
+                  %span.l__playlist.genretag
+                    = trun_str(listgenre, 30)
+            .l__footerPrice
+              %span.favoriteStar
+                %i.material-icons star_rate
+                = list.list_favorites.count
+              %span.listprice ¥#{list.price}
+      -else
+        - if is_purchase?(current_user, list) 
+          //購入済みリスト
+          .cardList__img
+            = render 'lists/is_image', list: list
+          .cardList__text
+            %span.listtitle= link_to trun_str(list.title, 21), list_path(list) , class: "testclass"
+            %span.author= link_to trun_str(list.user.name, 23), users_playlist_path(list.user)
+            %p= trun_str(list.description, 40)
+            .tags
+              - list.tag_list.each.with_index(0) do |listgenre, i|
+                - if i > 4
+                  %span.l__playlist.genretag･･･
+                  - break
+                - else
+                  %span.l__playlist.genretag
+                    = link_to trun_str(listgenre, 30), chart_path(genre: listgenre, sort: Constants::SORT)
+            .l__footerPrice
+              //プレイリストお気に入り機能
+              %span.favoriteStar
+                %i.material-icons star_rate
+                = list.list_favorites.count
+              %span.label.label-warning 購入済み
+              %span.listprice ¥#{list.price}
+        
+        - else
+          //まだ購入していないプレイリスト
+          = link_to list_path(list) do
+            .cardList__img
+              = render 'lists/is_image', list: list
+            .cardList__text
+              %span.listtitle= trun_str(list.title, 21)
+              %span.author= trun_str(list.user.name, 23)
+              %p= trun_str(list.description, 40)
+              .tags
+                - list.tag_list.each.with_index(0) do |listgenre, i|
+                  - if i > 4
+                    %span.l__playlist.genretag･･･
+                    - break
+                  - else
+                    %span.l__playlist.genretag
+                      = trun_str(listgenre, 30)
+              .l__footerPrice
+                %span.favoriteStar
+                  %i.material-icons star_rate
+                  = list.list_favorites.count
+                %span.listprice ¥#{list.price}
+

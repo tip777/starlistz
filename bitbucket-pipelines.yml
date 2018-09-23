@@ -8,9 +8,19 @@
 # 1. $HEROKU_API_KEY - https://devcenter.heroku.com/articles/platform-api-quickstart
 # 2. $HEROKU_APP_NAME - Your app name in Heroku
 
+# すべてのCommitで起きてしまう
+# pipelines:
+#   default:
+#     - step:
+#         script: # Modify the commands below to build your repository.
+#           - chmod a+x heroku-deploy.sh
+#           - ./heroku-deploy.sh
+
+# devブランチでコミットが起きると発動
 pipelines:
-  default:
-    - step:
-        script: # Modify the commands below to build your repository.
-          - chmod a+x heroku-deploy.sh
-          - ./heroku-deploy.sh
+  branches:
+    dev:
+      - step:
+          script: # Modify the commands below to build your repository.
+            - chmod a+x heroku-deploy.sh
+            - ./heroku-deploy.sh

@@ -1,2 +1,44 @@
-%h1 Lists#new
-%p Find me in app/views/lists/new.html.haml
+- if @list.errors.any?
+  #error_explanation.alert.alert-danger
+    %ul
+      - @list.errors.full_messages.each do |message|
+        %li= message
+
+.l__m.l__listShow.l__listEdit
+  = simple_form_for @list do |f|
+    .l__playlist
+      .l__playlistCore.clearfix
+        .playlist__img
+          .l__img
+            = image_tag @list.image.url(:thumb)
+          .trackCount= f.input :image, as: :file, label: false, :input_html => {id: "inputFileList", style: "display:none;"}
+          // ファイル選択　代わりのボタン
+          %button#inputFileSub{type: "button"} ファイルを選択
+          // ファイル名表示用
+          %p#subTxt　
+          
+        .playlist__text
+          .playlist__title
+            = f.input :title, label: false, placeholder: 'プレイリスト名'
+          .list_genre
+            = f.text_field :tag_list, value: "# " + f.object.tag_list.to_s, placeholder: 'ジャンル'
+            = f.hint '例　# Genre1 # Genre2'
+          .span.playlist__price
+            ￥
+            = f.select :price, options_for_select(Constants::AMOUNT, selected: f.object.price), {}, { class: 'js-hide-search', data: { placeholder: '金額を選択してください' } }
+          
+      %hr
+      
+      .span.playlist__discription
+        = f.input :description, label: false, placeholder: 'プレイリストの説明'
+      
+    #track_section.table-sortable
+      = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
+        = render 'track_fields', f: track
+          
+    .field_track_add
+      = link_to_add_association '曲を追加する', f, :tracks,:"data-association-insertion-node" => "#track_section",:"data-association-insertion-method" => "append"
+
+    .actions
+      = f.submit "作成"
+      

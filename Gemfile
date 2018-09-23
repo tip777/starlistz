@@ -24,7 +24,7 @@ gem 'coffee-rails', '~> 4.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -33,36 +33,34 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 #追加
-gem 'jquery-turbolinks'
+#gem 'jquery-turbolinks'
+gem 'jquery-ui-rails'
 gem 'devise'
+gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'bootstrap-sass'
-gem 'font-awesome-sass'
-gem "font-awesome-rails"
 gem 'haml-rails'
 gem 'erb2haml'
 gem 'ransack'
 gem 'kaminari'
 gem 'paperclip'
-gem "paranoia"
+gem 'aws-sdk', '~> 2.3'
+gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
 gem "gretel"
-# gem 'pg', '~> 0.20.0'
 gem "mysql2"
 gem 'select2-rails'
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'nokogiri', '~> 1.6'
-gem 'rename'
-gem 'dotenv-rails', require: 'dotenv/rails-now'
+# gem 'rename'
+gem "cocoon"
+gem 'simple_form'
+gem 'ranked-model'
+gem 'stripe'
+gem 'gon'
+gem 'rails-i18n'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
-  gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
-end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -71,7 +69,15 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet' #N+1問題検出
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
+  gem 'byebug', platform: :mri
+  gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
+  gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
 end
+
+# herokuでのログ表示のため
+gem 'rails_12factor', group: :production
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

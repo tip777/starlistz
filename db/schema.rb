@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220095540) do
+ActiveRecord::Schema.define(version: 20180722090153) do
+
+  create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "name",       limit: 65535
+    t.text     "email",      limit: 65535
+    t.text     "title",      limit: 65535
+    t.text     "message",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "item_services", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "music_service_id"
-    t.integer  "list_item_id"
+    t.integer  "track_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["list_item_id"], name: "index_item_services_on_list_item_id", using: :btree
     t.index ["music_service_id"], name: "index_item_services_on_music_service_id", using: :btree
-  end
-
-  create_table "list_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "list_id"
-    t.integer  "list_item_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["list_id"], name: "index_list_contents_on_list_id", using: :btree
-    t.index ["list_item_id"], name: "index_list_contents_on_list_item_id", using: :btree
+    t.index ["track_id"], name: "index_item_services_on_track_id", using: :btree
   end
 
   create_table "list_favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -39,25 +39,19 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.index ["user_id"], name: "index_list_favorites_on_user_id", using: :btree
   end
 
-  create_table "list_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "artist"
-    t.string   "song"
-    t.integer  "favorite"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.string   "description"
+    t.string   "title"
+    t.text     "description",        limit: 65535
     t.integer  "price"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_lists_on_deleted_at", using: :btree
     t.index ["user_id"], name: "index_lists_on_user_id", using: :btree
   end
 
@@ -72,10 +66,41 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.date     "order_date"
     t.integer  "user_id"
     t.integer  "list_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "stripe_charge_id", limit: 65535
+    t.text     "uid",              limit: 65535,                    null: false
+    t.string   "status",                         default: "failed", null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_purchases_on_deleted_at", using: :btree
     t.index ["list_id"], name: "index_purchases_on_list_id", using: :btree
+    t.index ["user_id", "list_id"], name: "index_purchases_on_user_id_and_list_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_purchases_on_user_id", using: :btree
+  end
+
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+    t.index ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+  end
+
+  create_table "social_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "email"
+    t.string   "url"
+    t.integer  "followers_count"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["provider", "uid"], name: "index_social_profiles_on_provider_and_uid", unique: true, using: :btree
+    t.index ["user_id"], name: "index_social_profiles_on_user_id", using: :btree
   end
 
   create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -103,18 +128,21 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
-  create_table "user_favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "favoriting_id"
-    t.integer  "favoriter_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["favoriter_id"], name: "index_user_favorites_on_favoriter_id", using: :btree
-    t.index ["favoriting_id", "favoriter_id"], name: "index_user_favorites_on_favoriting_id_and_favoriter_id", unique: true, using: :btree
-    t.index ["favoriting_id"], name: "index_user_favorites_on_favoriting_id", using: :btree
+  create_table "tracks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "list_id"
+    t.string   "artist"
+    t.string   "song"
+    t.text     "description", limit: 65535
+    t.boolean  "recommend",                 default: false, null: false
+    t.integer  "row_order"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_tracks_on_deleted_at", using: :btree
+    t.index ["list_id"], name: "index_tracks_on_list_id", using: :btree
   end
 
   create_table "user_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
     t.text     "description",         limit: 65535
     t.text     "insta_url",           limit: 65535
     t.text     "tw_url",              limit: 65535
@@ -124,7 +152,8 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.index ["user_id"], name: "index_user_profiles_on_user_id", using: :btree
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_user_profiles_on_deleted_at", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -142,24 +171,31 @@ ActiveRecord::Schema.define(version: 20171220095540) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "user_profile_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
     t.string   "name",                                null: false
+    t.string   "stripe_acct_id"
+    t.string   "stripe_cus_id"
+    t.string   "identity"
+    t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["user_profile_id"], name: "index_users_on_user_profile_id", using: :btree
   end
 
-  add_foreign_key "item_services", "list_items"
   add_foreign_key "item_services", "music_services"
-  add_foreign_key "list_contents", "list_items"
-  add_foreign_key "list_contents", "lists"
+  add_foreign_key "item_services", "tracks"
   add_foreign_key "list_favorites", "lists"
   add_foreign_key "list_favorites", "users"
   add_foreign_key "lists", "users"
   add_foreign_key "purchases", "lists"
   add_foreign_key "purchases", "users"
-  add_foreign_key "user_profiles", "users"
+  add_foreign_key "social_profiles", "users"
+  add_foreign_key "tracks", "lists"
+  add_foreign_key "users", "user_profiles"
 end

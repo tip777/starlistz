@@ -1,0 +1,18 @@
+= render "users/show_header"
+
+- if is_signin && is_signed(current_user.id, @user.id)
+  .sc
+    .l-tabbox
+      .favuser_area
+        - if @favuser != nil and not @favuser.empty?
+          = render "users/user", users: @favuser_pages
+        -else
+          .no_playlist
+            フォロー中ユーザーはいません
+        -if @favuser_pages != nil
+          #favuser_paginator
+            = paginate @favuser_pages, param_name: 'favuser_page'
+-else
+  .sc
+    .no_playlist
+      フォロー中ユーザーはいません

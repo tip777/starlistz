@@ -1,0 +1,5 @@
+#checkout_form
+  - if is_purchase?(current_user, list)
+    = render 'charges/charged'
+  - else
+    = render 'charges/charging', customer: customer, list: list, cont_no: cont_no

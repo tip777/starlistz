@@ -1,0 +1,112 @@
+// 購入ボタンのモーダルウィンドウ　紐づけ用
+- i = 1
+
+.l__m.l__listShow
+  .l__playlist
+    .l__playlistCore.clearfix
+      .playlist__img
+        .l__img
+          = image_tag @list.image.url(:thumb)
+        .span.trackCount #{@list.tracks.count}曲
+      
+      .playlist__text
+        .playlist__title
+          - if @list.paranoia_destroyed?
+            = @list.title + Constants::DLETE_MARK_LIST
+          - else
+            = @list.title
+        
+        .playlist__author
+          - if @list.user.paranoia_destroyed?
+            #{@list.user.name + Constants::DLETE_MARK_USER}
+          - else
+            = link_to @list.user.name, users_playlist_path(@list.user)
+            // 本人確認バッジ
+            - if is_identity?(@list.user)
+              = render "users/identity"
+            
+        -unless @list.paranoia_destroyed?
+          - if @display_list == true
+            = render 'lists/fav_form', list: @list 
+          - else
+            = form_tag charges_path do
+              .l__btn__purchase
+                %label.amount
+                .datafield
+                  = hidden_field_tag :list, @list.id
+                  
+                // 購入前のログイン判定用
+                %button.btn__purchase.buy_btn{type: "button"} 購入する
+              
+              // Stripe決済部分
+              .hide_checkout
+                - if @customer.nil?
+                  %script.stripe-button{"data-amount" => "#{@list.price}",
+                    "data-description" => "#{@list.title}",
+                    "data-email" => "",
+                    "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+                    "data-label" => "購入",
+                    "data-locale" => "auto",
+                    "data-currency" => "jpy",
+                    "data-name" => "StarListz",
+                    "data-panel-label" => "プレイリストを購入",
+                    :src => "https://checkout.stripe.com/checkout.js"}
+                - else
+                  %script.stripe-button{"data-amount" => "#{@list.price}",
+                    "data-description" => "#{@list.title}",
+                    "data-email" => "#{@customer.email}",
+                    "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+                    "data-label" => "購入",
+                    "data-locale" => "auto",
+                    "data-currency" => "jpy",
+                    "data-name" => "StarListz",
+                    "data-panel-label" => "プレイリストを購入",
+                    :src => "https://checkout.stripe.com/checkout.js"}
+
+            .span.playlist__price ￥#{@list.price}
+    %hr
+
+    .span.playlist__discription= @list.description
+    
+    .span
+      - @list.tag_list.each.with_index(0) do |listgenre, i|
+        %span.genretag
+          = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+  
+  - if @display_list == true
+    .track_section
+      - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
+        .l__tracks
+          %table
+            %tbody
+              %tr
+                %td
+                  - if track.recommend == true
+                    %span.favoriteStar
+                      %i.material-icons star_rate
+                %td.track_no
+                %td
+                  %span.trackSong= track.song
+                  %span.trackArtist= track.artist
+                %td
+                  - if track.description != nil && track.description.length > 0
+                    %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"} 
+                      %span.trackComment
+                        %i.material-icons.already comment
+  
+        // ここからトラックの説明のモーダルウィンドウ
+        .modal-content.modal__comment{:id => "modal-content-#{i}"}
+          // モーダルウィンドウのコンテンツ開始
+          .r__modalContent
+          .l__playlistCore.clearfix
+            .playlist__img
+              .l__img
+                = image_tag @list.image.url(:thumb)
+            .playlist__text
+              %span.modal_song= track.song
+              %span.modal_artist= track.artist
+          %hr
+          %p= track.description
+          // モーダルウィンドウのコンテンツ終了
+          %p.text-center
+            %a#modal-close.button-link 閉じる

@@ -1,0 +1,20 @@
+.l__contact
+  %h2 お問い合わせ
+
+
+  .form__contact
+    = simple_form_for @contact, :url => contact_thanks_path  do |f|
+      - if @contact.errors.any?
+        %strong 入力内容にエラーがあります
+        %ul
+          - @contact.errors.each do |attr, msg|
+            %li= msg
+      = f.input :name, label: "名前", error: false, as: :string
+      = f.input :email, label: "メールアドレス　(必須)", error: false, as: :string
+      = f.input :title, label: "件名　(必須)", error: false, as: :string
+      = f.input :message, label: "詳細　(必須)", error: false, input_html: {rows: 6}
+      = f.submit '送信'
+      
+  %p
+    - if is_signin
+      = link_to "退会はこちら", contact_unsubscribe_path

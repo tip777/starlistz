@@ -1,0 +1,23 @@
+%p StarListzからの問い合わせ
+%br/
+%p -----------------------------------------------------------------------
+%dl
+  %dt ＜名前＞
+  %dd= @contact.name
+  %dt ＜メールアドレス＞
+  %dd= @contact.email
+  %dt ＜お問い合わせ内容＞
+  %dd= @contact.message
+%br/
+%br/
+- if @current_user != nil
+  %h2 ログインユーザー
+  %dl
+    %dt ＜ユーザー名＞
+    %dd= @current_user.name
+    %dt ＜ユーザー メールアドレス＞
+    %dd= @current_user.email
+  %br/
+  %br/
+
+%p -----------------------------------------------------------------------

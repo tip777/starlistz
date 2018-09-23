@@ -1,0 +1,21 @@
+- purchases.each_with_index do |purchase, i|
+  .list__purchase
+    .purchase__time
+      %span= purchase.created_at.strftime('%Y/%m/%d')
+    .purchase__content
+      // プレイリストが削除済みか判定
+      // -if purchase.list.paranoia_destroyed?
+      -if purchase.list.paranoia_destroyed?
+        %span.list__title= link_to trun_str(purchase.list.title, 18) + Constants::DLETE_MARK_LIST, list_path(purchase.list) , class: "testclass"
+      -else
+        %span.list__title= link_to trun_str(purchase.list.title, 21), list_path(purchase.list) , class: "testclass"
+      %span.list__star
+        %i.material-icons star
+        = purchase.list.list_favorites.count
+        // ユーザーが退会済みか判定
+      -if purchase.list.user.paranoia_destroyed?
+        %span.list__author #{trun_str(purchase.list.user.name, 20) + Constants::DLETE_MARK_USER}
+      -else
+        %span.list__author= link_to trun_str(purchase.list.user.name, 23), users_playlist_path(purchase.list.user)
+
+      %span.price ¥#{purchase.list.price}

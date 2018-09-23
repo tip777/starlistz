@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  list: one
+  artist: MyString
+  song: MyString
+  recommend: 1
+  'no': 1
+
+two:
+  list: two
+  artist: MyString
+  song: MyString
+  recommend: 1
+  'no': 1
