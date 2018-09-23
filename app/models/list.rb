@@ -2,6 +2,11 @@ class List < ApplicationRecord
   #paranoia 論理削除
   acts_as_paranoid
   
+  ##Scope
+  #公開状態かどうか
+  scope :is_status, -> { where(status: "release") }
+  
+  ##Relation
   belongs_to :user, -> { unscope(where: :deleted_at) } #paranoia制約なし
   has_many :list_favorites, dependent: :destroy
 
@@ -32,7 +37,7 @@ class List < ApplicationRecord
   end
   
 
-  ## validation
+  ## Validation
   #ジャンルvalidate (日本語、英語、英数字、アンダーバーのみ)
   validates :tag_list, tag: true
   

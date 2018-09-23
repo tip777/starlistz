@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   
         #ユーザー、プレイリスト検索結果
         @search_user = @q.result(distinct: true)
-        @search_list = List.includes({user: [:user_profile]}, :taggings).ransack(title_cont_any: key_words).result(distinct: true)
+        @search_list = List.is_status.includes({user: [:user_profile]}, :taggings).ransack(title_cont_any: key_words).result(distinct: true)
   
         #ジャンル検索結果
         list_taggings = set_list_genre

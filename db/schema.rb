@@ -44,8 +44,9 @@ ActiveRecord::Schema.define(version: 20180722090153) do
     t.string   "title"
     t.text     "description",        limit: 65535
     t.integer  "price"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.string   "status",                           default: "closed", null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

@@ -5,6 +5,7 @@ class CreateLists < ActiveRecord::Migration[5.0]
       t.string :title
       t.text :description
       t.integer :price
+      t.string :status, null: false, default: "closed"
 
       t.timestamps null: false
     end

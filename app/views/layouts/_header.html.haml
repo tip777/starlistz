@@ -22,14 +22,9 @@
         %span.link__title 検索
 
       - if user_signed_in?
-        - if is_stripe_account_id?(current_user)
-          = link_to new_list_path,{ class: "navigation__link" } do
-            %i.material-icons add_circle_outline
-            %span.link__title アップロード
-        - else
-          = link_to users_playlist_path(current_user),{ class: "navigation__link" } do
-            %i.material-icons add_circle_outline
-            %span.link__title アップロード
+        = link_to new_list_path,{ class: "navigation__link" } do
+          %i.material-icons add_circle_outline
+          %span.link__title アップロード
       - else
         = link_to new_user_session_path,{ class: "navigation__link login is__SP" } do
           %i.material-icons add_circle_outline

@@ -2,7 +2,7 @@ class ChargesController < ApplicationController
   
   def create
     begin
-      list = List.find_by(id: params[:list])
+      list = List.is_status.find_by(id: params[:list])
 
       if list.nil?
           redirect_to :back, alert: 'プレイリストが存在しません。トップページから操作をやり直してください。'
