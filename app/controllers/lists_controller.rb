@@ -48,7 +48,7 @@ class ListsController < ApplicationController
       if @tracks.nil?
         @tracks = @list.tracks.without_deleted.sort_by(&:row_order)
       end
-      if is_release_list(@list) != true
+      if is_release_list?(@list) != true
         flash.now[:alert] = "このプレイリストは非公開です。<br>
                         公開したい場合は<a id='stripe_connect' href='#{stripe_url_edit(current_user)}'>Stripe接続</a>　をしてください。".html_safe
       end
