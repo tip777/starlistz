@@ -1889,7 +1889,6 @@ form.edit_user{
 @media only screen and (max-width: 767px) {
 .l__wrapper{
   padding-top:0;
-  padding-bottom: 64px;
 }
 }
 
@@ -2676,7 +2675,7 @@ table.minimum{
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-left: 7px;
-  display: block;
+  display: inline-block;
   overflow: hidden;
   text-indent: 110%;
   white-space: nowrap;
@@ -2689,4 +2688,78 @@ table.minimum{
 
 
 
+@media only screen and (max-width: 767px) {
+.l__footer{
+  padding-bottom: 64px;
+}
+}
 
+.footer__list{
+  font-size: 0;
+  border-top: 1px solid #e5e5e5;
+  margin:0;
+}
+.footer__listItem:nth-child(odd) {
+    border-right: 1px solid #e5e5e5;
+}
+.footer__listItem:nth-child(odd) {
+    border-right: 1px solid #e5e5e5;
+}
+
+.footer__listItem{
+  font-size: 13px;
+  display: inline-block;
+  padding:0 16px;
+    width: 50%;
+    border-bottom: 1px solid #e5e5e5;
+    height:50px;
+  a{
+    display: table;
+    width: 100%;
+    height: 100%;
+    span{
+      display: table-cell;
+    line-height: 17px;
+    vertical-align: middle;
+    }
+  }
+}
+
+
+.l__copyright{
+  padding:15px 0;
+}
+.copyright__text{
+  text-align: center;
+    font-size: 12px;
+}
+
+
+
+
+
+
+.l__tokutei,
+.l__about{
+  background: #fff;
+    border-radius: 5px;
+    padding: 30px 20px;
+    max-width: 480px;
+    margin:auto;
+    h3{
+      margin:30px 0 7px;
+    }
+    p{
+      margin:0 0 20px;
+    }
+}
+
+
+.liststatus{
+  background-color: red;
+    border-radius: 3px;
+    padding: 2px 10px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+}

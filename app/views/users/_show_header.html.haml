@@ -12,11 +12,12 @@
             %span.edit__settingButton.js__subMemu 設定
 
 
-      %h2.nm #{@user.name}
+      %h2.nm
+        #{@user.name}
       
-      // 本人確認バッジ
-      - if is_identity?(@user)
-        = render "users/identity"
+        // 本人確認バッジ
+        - if is_identity?(@user)
+          = render "users/identity"
 
       .socaial_area
         - if is_signin && is_signed(current_user.id, @user.id)

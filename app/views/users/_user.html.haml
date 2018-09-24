@@ -4,11 +4,12 @@
             .img= image_tag user.user_profile.avatar.url(:thumb)
 
             .l-text
-                %h2.name #{trun_str(user.name, 23)}
+                %h2.name 
+                    #{trun_str(user.name, 23)}
                 
-                // 本人確認バッジ
-                - if is_identity?(user)
-                    = render "users/identity"
+                    // 本人確認バッジ
+                    - if is_identity?(user)
+                        = render "users/identity"
 
                 .discrition= trun_str(user.user_profile.description, 40)
 
