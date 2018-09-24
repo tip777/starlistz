@@ -2740,7 +2740,8 @@ table.minimum{
 
 
 .l__tokutei,
-.l__about{
+.l__about,
+.l__privacy{
   background: #fff;
     border-radius: 5px;
     padding: 30px 20px;
@@ -2751,6 +2752,12 @@ table.minimum{
     }
     p{
       margin:0 0 20px;
+    }
+    ul{
+      list-style-type: disc;
+    }
+    a{
+      color:#324fe1;
     }
 }
 
