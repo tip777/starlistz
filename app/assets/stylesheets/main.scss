@@ -91,19 +91,30 @@ body {
   font-size: 12px;
 }
 
-a {
-  @include vendor('transition', ('color 0.2s ease-in-out', 'border-color 0.2s ease-in-out', 'background-color 0.2s ease-in-out'));
-  color: inherit;
-  text-decoration: none;
-
-  &:hover,
-  &:focus{
-
-    color:inherit;
-    background-color: inherit;
+// aリンク　iosのダブルタップのバグに対応
+@media screen and ( max-width: 767px ){
+	a {
+    @include vendor('transition', ('color 0.2s ease-in-out', 'border-color 0.2s ease-in-out', 'background-color 0.2s ease-in-out'));
+    color: inherit;
     text-decoration: none;
+    pointer-events: none;
   }
-
+}
+@media screen and ( min-width: 767px ){
+	a {
+    @include vendor('transition', ('color 0.2s ease-in-out', 'border-color 0.2s ease-in-out', 'background-color 0.2s ease-in-out'));
+    color: inherit;
+    text-decoration: none;
+  
+    &:hover,
+    &:focus{
+  
+      color:inherit;
+      background-color: inherit;
+      text-decoration: none;
+    }
+  
+  }
 }
 
 strong, b {
