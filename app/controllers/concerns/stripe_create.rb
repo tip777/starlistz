@@ -13,8 +13,12 @@ module StripeCreate
   	#stripe_user_idを登録
   	if stripe_data["error"].nil?
     	current_user.update_attributes!(stripe_acct_id: stripe_data["stripe_user_id"])
-    	my_lists = current_user.lists
-    	my_lists.each_with_index {|val, i| my_lists[i].status =  "release"} #プレイリストを公開状態にする
+    	#プレイリストを公開状態にする
+    	my_lists = current_user.lists.includes(:user, :taggings)
+    	my_lists.each_with_index do |val, i|
+        my_lists[i].status =  "release"
+        my_lists[i].save
+      end
     	#Cutomerデータ登録
     	find_or_create_stripe_customer(current_user)
     else
