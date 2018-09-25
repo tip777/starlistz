@@ -58,6 +58,9 @@ class ListsController < ApplicationController
 
   def create
     @list = current_user.lists.new(list_params)
+    unless current_user.stripe_acct_id.nil?
+      @list.status = "release"
+    end
     if @list.save
       redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を作成しました"
     else

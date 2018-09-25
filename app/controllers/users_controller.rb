@@ -13,9 +13,9 @@ class UsersController < ApplicationController
       @follower = @user.follower_relationships.count
       #マイページだったら非公開プレイリストも表示する
       if @user == current_user
-        @mylist = @user.lists.includes(:user, :taggings)
+        @mylist = @user.lists
       else
-        @mylist = @user.lists.is_status.includes(:user, :taggings)
+        @mylist = @user.lists.is_status
       end
 
       if current_user != nil
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   end
 
   def playlist
-    @mylist_pages = @mylist.includes(:taggings).page(params[:mylist_page])
+    @mylist_pages = @mylist.includes(:user, :taggings).page(params[:mylist_page])
   end
 
   def purchasehistory
