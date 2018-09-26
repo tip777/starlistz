@@ -52,9 +52,9 @@ class List < ApplicationRecord
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   do_not_validate_attachment_file_type :image
 
-  #５曲以上入っているか確認　validation作業に入ったらコメント外す
+  #５曲以上入っているか確認　validation作業に入ったらコメント外す（削除済みの曲は除外）
   after_save do
-    if self.tracks.count < 5
+    if self.tracks.without_deleted.count < 5
       self.errors.add(:base, "５曲以上登録してください。")
       raise ActiveRecord::Rollback
     end

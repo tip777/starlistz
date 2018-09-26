@@ -72,7 +72,14 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     if @list.update(list_params)
-     redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を更新しました"
+      # 削除済みのトラックを物理削除する
+      mylist_tracks = @list.tracks
+      mylist_tracks.each_with_index do |track, i|
+        unless mylist_tracks[i].deleted_at.nil?
+          mylist_tracks[i].really_destroy!
+        end
+      end
+      redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を更新しました"
     else
       @tracks = @list.tracks.sort_by(&:row_order)
       render 'edit', alert: "「#{@list.title}」の更新に失敗しました"
