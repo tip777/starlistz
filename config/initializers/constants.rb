@@ -5,7 +5,7 @@ module Constants
     GENRE = "All genre"
     SUPPORT_MAIL = "support@starlistz.com" 
     COMPANY_ADDRESS = "〒451-0045 愛知県名古屋市西区名駅2丁目34-17 セントラル名古屋1101" 
-    COMPANY_TELL = "050-9999-9999" 
+    COMPANY_TELL = "050-5433-0291" 
     DLETE_MARK_LIST = "(削除済)"
     DLETE_MARK_USER = "(退会済)"
     HP_URL = "https://www.starlistz.com"

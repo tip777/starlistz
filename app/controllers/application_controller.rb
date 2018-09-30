@@ -28,7 +28,9 @@ class ApplicationController < ActionController::Base
     if user.nil?
       return false
     else
-      !user.purchases.unscope(:where).where(list_id: list.id, status: "succeeded").empty?
+      if !user.purchases.unscope(:where).where(list_id: list.id, status: "succeeded").empty?
+        return true
+      end
     end
   end
   
