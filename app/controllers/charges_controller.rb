@@ -50,7 +50,7 @@ class ChargesController < ApplicationController
       charge = Stripe::Charge.create({
         :receipt_email => customer.email,
         :amount      => @amount,
-        :description => 'StarListzからプレイリストが購入されました',
+        :description => "StarListzからプレイリストが購入されました。プレイリスト名：#{list.title}",
         :currency    => 'jpy',
         :source => token.id,
         :statement_descriptor => "StarListz",
