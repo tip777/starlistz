@@ -38,8 +38,8 @@ class ChargesController < ApplicationController
         # 購入履歴のステータスを保留中に変更
         purchase.update!(status: "pending")
         
-      else #　購入が失敗もしくは保留中の購入履歴があったら　
-        purchase = current_user.purchases.where(user_id: current_user.id, list_id: list.id)
+      else #　購入が失敗もしくは保留中の購入履歴があったら
+        purchase = current_user.purchases.where(user_id: current_user.id, list_id: list.id).first
         
       end
       
