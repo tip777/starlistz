@@ -44,8 +44,7 @@ class ChargesController < ApplicationController
       end
       
       # わざとpendingにするテストコード
-      # purchase.update!(status: 123)
-      raise
+      # raise
       
       # Stripeで決済処理
       charge = Stripe::Charge.create({
