@@ -17,7 +17,6 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     end
     #StripeのCustomerを作成
     customer = find_or_create_stripe_customer(resource)
-    customer.email = resource.email
     customer.save
 
     # super do |resource|
