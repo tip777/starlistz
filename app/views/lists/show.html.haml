@@ -3,6 +3,12 @@
 
 .l__m.l__listShow
   .l__playlist
+    -if is_signin && is_signed(current_user.id, @list.user.id)
+      .playlist__editLink
+        = link_to edit_list_path(@list), { class: "edit_link" } do
+          = button_tag :type => "button", :class =>"btn btn__favorite__square" do
+            %i.material-icons edit
+            プレイリストを編集
     .l__playlistCore.clearfix
       .playlist__img
         .l__img
@@ -27,7 +33,8 @@
             
         -unless @list.paranoia_destroyed?
           - if @display_list == true
-            = render 'lists/fav_form', list: @list 
+            -unless is_signin && is_signed(current_user.id, @list.user.id)
+              = render 'lists/fav_form', list: @list 
           - elsif is_release_list?(@list)
             = form_tag charges_path do
               .l__btn__purchase

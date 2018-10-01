@@ -2782,7 +2782,7 @@ table.minimum{
 }
 .copyright__text{
   text-align: center;
-    font-size: 12px;
+  font-size: 12px;
 }
 
 
@@ -2794,22 +2794,25 @@ table.minimum{
 .l__about,
 .l__privacy{
   background: #fff;
-    border-radius: 5px;
-    padding: 30px 20px;
-    max-width: 480px;
-    margin:auto;
-    h3{
-      margin:30px 0 7px;
-    }
-    p{
-      margin:0 0 20px;
-    }
-    ul{
-      list-style-type: disc;
-    }
-    a{
-      color:#324fe1;
-    }
+  border-radius: 5px;
+  padding: 30px 20px;
+  max-width: 480px;
+  margin:auto;
+  h3{
+    margin:30px 0 7px;
+  }
+  p{
+    margin:0 0 20px;
+  }
+  ul{
+    list-style-type: disc;
+  }
+  a{
+    color:#324fe1;
+  }
+}
+.l__playlist .playlist__editLink{
+  padding: 30px 0;
 }
 
 

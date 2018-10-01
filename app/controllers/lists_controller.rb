@@ -9,9 +9,9 @@ class ListsController < ApplicationController
       reject_page
     else
       if current_user != nil and @list.user == current_user
-        redirect_to edit_list_path(@list) 
+        @display_list = true
       else
-        unless is_purchase?(current_user, @list)
+        unless is_purchase?(current_user, @list) 
           if @list.paranoia_destroyed?
             reject_page
           else
