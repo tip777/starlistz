@@ -19,7 +19,7 @@
         - @list_amount.each_with_index  do |(key,value),i|
           %tr.track_item
             - if key[key.length-1] == "*"
-              %td= link_to trun_str(key, 10) + Constants::DLETE_MARK_LIST, edit_list_path(@sales_list[i])
+              %td= link_to trun_str(key, 10) + Constants::DLETE_MARK_LIST, list_path(@sales_list[i])
             - else
-              %td= link_to trun_str(key, 10) , edit_list_path(@sales_list[i])
+              %td= link_to trun_str(key, 10) , list_path(@sales_list[i])
             %td #{value}円
