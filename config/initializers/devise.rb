@@ -16,6 +16,8 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
+  #devise mailer 上書きのために追加
+  config.mailer = "DeviseMailer"
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
@@ -130,7 +132,8 @@ Devise.setup do |config|
   # their account can't be confirmed with the token any more.
   # Default is nil, meaning there is no restriction on how long a user can take
   # before confirming their account.
-  # config.confirm_within = 3.days
+  # config.confirm_within = 1.days #仮登録系のメールの期限は1日
+  config.confirm_within = 5.minute 
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
@@ -169,7 +172,7 @@ Devise.setup do |config|
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
-  config.timeout_in = 1.day
+  config.timeout_in = 2.day
 
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
@@ -234,6 +237,8 @@ Devise.setup do |config|
   # Set this configuration to false if you want /users/sign_out to sign out
   # only the current scope. By default, Devise signs out all scopes.
   # config.sign_out_all_scopes = true
+  #ログアウト後のリダイレクトを有効にするため
+  config.sign_out_all_scopes = false
 
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like
@@ -254,7 +259,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   #devise twitter login
-  config.omniauth :twitter, "aEhgS27bxXc55NHTfmEDvjljr", "b6igSkaY1Lv6eSSBigMQC6YKmpM7GU89xDtpHfRK00wcP4yVL2"
+  # config.omniauth :twitter, "aEhgS27bxXc55NHTfmEDvjljr", "b6igSkaY1Lv6eSSBigMQC6YKmpM7GU89xDtpHfRK00wcP4yVL2"
+  config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -278,4 +284,7 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+
+
 end

@@ -1,0 +1,9 @@
+// ajaxでボタン押した際にローカル変数が取れない場合の対処
+- if defined?(user) == nil
+  - user = @user
+
+= form_for(current_user.following_relationships.build, remote: true) do |f|
+  %div= hidden_field_tag :followed_id, user.id
+  = button_tag :type => "submit", :class =>"btn" do
+    %i.material-icons add
+    フォロー

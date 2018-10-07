@@ -1,0 +1,33 @@
+// Place all the styles related to the Lists controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//曲のお気に入り設定　チェックボックスを画像に変更
+.custom-check-box {
+    display: none;
+    vertical-align: middle;
+    
+    & + label:before{
+        font-family:Material Icons;
+        content:"\e83a";
+        padding: 0 ;
+        vertical-align: middle ;
+        cursor: pointer;
+        font-size:22px;
+        color: #666666;
+    }
+     
+    &:checked + label:before {
+        color:#e3e176;
+        font-family:Material Icons;
+        content:"\e838";
+    }
+}
+.list_tracks_recommend {
+    color: #666666;
+    font-weight:700;
+    label{
+        font-size: 12px;
+    }
+}

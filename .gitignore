@@ -6,6 +6,10 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor
+
+#Ignore environment variables
+/.env
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

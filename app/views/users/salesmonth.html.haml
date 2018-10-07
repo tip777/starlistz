@@ -1,0 +1,25 @@
+
+.l__salesmanage
+
+  %h2 #{@date.strftime("%-Y/%-m")}の売り上げ
+
+  %h3
+    総額
+    %span ¥#{@month_amount}
+
+
+  .l__salesmanage__inner
+
+    %table.minimum
+      %tbody
+        %tr
+          %th プレイリスト名
+          %th 売上額
+      %tbody#item_area
+        - @list_amount.each_with_index  do |(key,value),i|
+          %tr.track_item
+            - if key[key.length-1] == "*"
+              %td= link_to trun_str(key, 10) + Constants::DLETE_MARK_LIST, list_path(@sales_list[i])
+            - else
+              %td= link_to trun_str(key, 10) , list_path(@sales_list[i])
+            %td #{value}円

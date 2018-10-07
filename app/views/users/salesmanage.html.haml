@@ -1,0 +1,28 @@
+
+.l__salesmanage
+  %h2 売上管理
+
+  %h3
+    総額 
+    %span ¥#{@all_amount}
+
+  // %h3 今月の売り上げ #{@all_amount} 円
+
+
+  .l__salesmanage__inner
+
+    // 年 選択のセレクトボックス
+    = select_tag 'page[name]', options_for_select(options_for_select(@year_list, selected: params[:year])), class: "select-year js-hide-search"
+    %table.minimum
+      %tbody
+        %tr
+          %th 期間
+          %th 売上額
+      %tbody#item_area
+      -if !@all_month_amount.nil?
+        - @all_month_amount.each do |key, value|
+          %tr.track_item
+            %td
+              = link_to "#{@year}/#{key}", users_salesmonth_path(@user, year: "#{@year}", month: "#{key}")
+            %td ¥#{value}
+

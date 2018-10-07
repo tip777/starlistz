@@ -1,0 +1,13 @@
+.sc.bg-whi
+  %h2.h-tit プレイリストチャート
+  .l-searchchart
+    %span.searchchart-sub
+      = select_tag :person, options_for_select(@tag, selected: params[:genre]), class: "js-search"
+
+    %span.searchchart-main
+      = select_tag 'page[name]', options_for_select([["ランキング", "ranking"], ["新着", "new"]], selected: params[:sort]), class: "select-main js-hide-search"
+
+.sc
+  = render "lists/list", lists: @pages, customer: @customer
+
+= paginate @pages

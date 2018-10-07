@@ -1,0 +1,83 @@
+%header.l__header
+  = link_to root_path, { class: "header__brandImg is__PC" } do
+    // %img{:alt => "", :src => "/assets/Logo.png"}
+    %img{:src => "#{asset_path "Logo.png"}"}
+
+  .row__header
+    = link_to root_path, { class: "header__title is__PC" } do
+      %span StarListz
+
+    %nav.header__navigation{:role => "navigation"}
+      .l__header__form.navigation__link.is__PC
+        = search_form_for  @q, html: {class: 'header__form' }, url: searches_playlist_path, enforce_utf8: false do |f|
+          = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
+          = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn', :name => nil
+
+      = link_to root_path,{ class: "navigation__link is__SP" } do
+        %i.material-icons home
+        %span.link__title ホーム
+
+      = link_to searches_playlist_path,{ class: "navigation__link is__SP" } do
+        %i.material-icons search
+        %span.link__title 検索
+
+      - if user_signed_in?
+        = link_to new_list_path,{ class: "navigation__link" } do
+          %i.material-icons add_circle_outline
+          %span.link__title アップロード
+      - else
+        = link_to new_user_session_path,{ class: "navigation__link login is__SP" } do
+          %i.material-icons add_circle_outline
+          %span.link__title アップロード
+
+      = link_to chart_path(genre: Constants::GENRE, sort: Constants::SORT),{ class: "navigation__link" } do
+        %i.material-icons queue_music
+        %span.link__title プレイリスト
+
+      / = link_to root_path,{ class: "navigation__link is__SP" } do
+      /   %i.material-icons star
+      /   %span.link__title お気に入り
+
+      - if user_signed_in?
+        = link_to users_playlist_path(current_user),{ class: "navigation__link is__PC" } do
+          %i.material-icons perm_identity
+          %span.link__title アカウント
+      - else
+        = link_to new_user_session_path,{ class: "navigation__link login is__PC" } do
+          %i.material-icons input
+          %span.link__title ログイン
+
+      - if user_signed_in?
+        = link_to users_playlist_path(current_user),{ class: "navigation__link is__SP" } do
+          %i.material-icons perm_identity
+          %span.link__title アカウント
+      - else
+        = link_to new_user_session_path,{ class: "navigation__link login is__SP" } do
+          %i.material-icons perm_identity
+          %span.link__title アカウント
+
+      // ログインしてなかったら説明
+      - if !user_signed_in?
+        = link_to new_user_registration_path,{ class: "navigation__link beginner is__PC" } do
+          %span.link__title 初めての方
+
+        %span.navigation__link.is__PC.js__subMemu
+          %i.material-icons more_vert
+
+.settingMenu_back
+  .l__settingMenu
+    .r__settingMenu
+      %ul.settingMenu
+        - if user_signed_in?
+          %li
+            = link_to "Stripe接続", stripe_url_header(current_user)
+          %li
+            = link_to "売上管理", users_salesmanage_path(current_user)
+        %li
+          = link_to "お問い合わせ", contact_path
+        %li
+          = link_to "PlayListzについて", about_path
+
+        - if user_signed_in?
+          %li
+            =link_to 'ログアウト', destroy_user_session_path, method: :delete

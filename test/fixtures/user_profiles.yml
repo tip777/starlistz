@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  description: MyText
+  insta_url: MyText
+  tw_url: MyText
+
+two:
+  user: two
+  description: MyText
+  insta_url: MyText
+  tw_url: MyText

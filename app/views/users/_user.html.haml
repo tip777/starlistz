@@ -1,0 +1,16 @@
+.l__m
+    - users.each do |user|
+        =link_to users_playlist_path(user), {class: "l-userprofile" } do
+            .img= image_tag user.user_profile.avatar.url(:thumb)
+
+            .l-text
+                %h2.name 
+                    #{trun_str(user.name, 23)}
+                
+                    // 本人確認バッジ
+                    - if is_identity?(user)
+                        = render "users/identity"
+
+                .discrition= trun_str(user.user_profile.description, 40)
+
+               

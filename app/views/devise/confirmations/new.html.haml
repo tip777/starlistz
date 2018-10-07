@@ -1,0 +1,12 @@
+.l__confirmations__new
+  %h2 ご登録ありがとうございます。
+  %p 現在はまだ仮登録の状態です。
+  %p 本登録メールを再送信する場合はメールアドレスを入力し「再送信」を押してください。
+
+  = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    = f.error_notification
+    = f.full_error :confirmation_token
+    .form-inputs
+      = f.input :email, required: true, autofocus: true
+    .form-actions
+      = f.button :submit, "再送信"

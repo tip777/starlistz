@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %title Starlistz
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+
+    /[if lte IE 8] <script src="assets/js/ie/html5shiv.js"></script>
+    // %link{:href => "assets/css/main.css", :rel => "stylesheet"}/
+    /[if lte IE 8] <link rel="stylesheet" href="assets/css/ie8.css" />
+    /[if lte IE 9] <link rel="stylesheet" href="assets/css/ie9.css" />
+    = csrf_meta_tags
+    = Gon::Base.render_data
+    %link{:href => "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:rel => "stylesheet", :href => "https://fonts.googleapis.com/icon?family=Material+Icons"}
+
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+
+    = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
+
+
+    // faviconの設定
+    = favicon_link_tag('/favicon_logo/logo32.ico')
+
+
+  %body{class:"#{controller.controller_name}"}
+    = render :partial => "layouts/header"
+
+    %main.l__wrapper
+      - flash.each do |type, msg|
+        %div{class: "alert_area alert-#{type}"}= msg.html_safe
+
+      .page-content
+
+        = yield
+        
+    = render :partial => "layouts/footer"
+

@@ -1,0 +1,34 @@
+// Stripe決済部分
+= form_tag charges_path do
+  .l__btn__purchase
+    %label.amount
+    .datafield
+      = hidden_field_tag :list, list.id
+      
+    // 購入前のログイン判定用
+    %button.btn__purchase.buy_btn{type: "button", name: cont_no} 購入する
+
+  .hide_checkout
+    - if customer.nil?
+      %script.stripe-button{"data-amount" => "#{list.price}",
+        "data-description" => "#{list.title}",
+        "data-email" => "",
+        "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+        "data-label" => "購入",
+        "data-locale" => "auto",
+        "data-currency" => "jpy",
+        "data-name" => "StarListz",
+        "data-panel-label" => "プレイリストを購入",
+        :src => "https://checkout.stripe.com/checkout.js"}
+    - else
+      %script.stripe-button{"data-amount" => "#{list.price}",
+        "data-description" => "#{list.title}",
+        "data-email" => "#{customer.email}",
+        "data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
+        "data-label" => "購入",
+        "data-locale" => "auto",
+        "data-currency" => "jpy",
+        "data-name" => "StarListz",
+        "data-panel-label" => "プレイリストを購入",
+        :src => "https://checkout.stripe.com/checkout.js"}
+

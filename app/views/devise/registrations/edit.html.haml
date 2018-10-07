@@ -1,0 +1,55 @@
+
+- if devise_mapping.confirmable? && resource.pending_reconfirmation?
+  .alert.alert-warning
+    メールアドレスの変更が完了していません。確認のメールを #{resource.unconfirmed_email}に送信しました。変更を完了してください。
+
+// = link_to "Stripe接続", "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=ca_CU55IGFy2bacKCDlhMVgJ81nDmPqAeDR&scope=read_write"
+- if resource.errors.any?
+  #error_explanation.alert.alert-danger
+    %ul
+      - resource.errors.full_messages.each do |message|
+        %li= message
+
+.sc.imwl
+  %h2.h-tit プロフィール編集
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    .form-inputs
+      .field_name
+        = f.fields_for :user_profile do |m|
+          .field_profile_image.text-center
+            = image_tag resource.user_profile.avatar.url(:thumb)
+            = m.input :avatar, as: :file, label: false
+
+          .field_profile
+            = f.input :name, label: "ユーザー名", autocomplete: "off"
+
+        %label ジャンル
+        = f.text_field :tag_list, value: "# " + f.object.tag_list.to_s
+        = f.hint '例　#Genre1 #Genre2'
+
+        = f.fields_for :user_profile do |m|
+          .field_profile
+            = m.input :description, label: "ユーザープロフィール", placeholder: 'プロフィールを入力してください', autofocus: true
+
+
+      .field_email
+        = f.input :email, label: "メールアドレス", required: true
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          %p
+            メールアドレスの変更待ち: #{resource.unconfirmed_email}
+      .field_password
+        = f.input :password, label: "パスワード変更", autocomplete: "off", hint: "変更したくない場合は空白のままにしてください。", required: false
+      .field_password_confirmation
+        = f.input :password_confirmation, label: "パスワード確認", required: false
+    
+    .form-actions
+      = f.button :submit, "更新"
+
+.sc
+  // %h2.ntm プレイリスト一覧
+  // = render file: "/lists/_list.html.haml", locals: {lists: @list, customer: @customer}
+
+  // %h3 Cancel my account
+  // %p
+  //   Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+  // = link_to "Back", :back
