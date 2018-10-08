@@ -62,7 +62,8 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'www.starlistz.com' }
+  # config.action_mailer.default_url_options = { host: 'www.starlistz.com' }
+  config.action_mailer.default_url_options = { host: 'star-prev.herokuapp.com' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
