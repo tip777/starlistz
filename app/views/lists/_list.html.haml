@@ -31,6 +31,9 @@
           .cardList__img
             = render 'lists/is_image', list: list
           .cardList__text
+            -if is_signin && is_signed(current_user.id, list.user.id)
+              - if !is_release_list?(list)
+                %span.liststatus 非公開
             %span.listtitle= trun_str(list.title, 21)
             %span.author= trun_str(list.user.name, 23)
             %p= trun_str(list.description, 40)
