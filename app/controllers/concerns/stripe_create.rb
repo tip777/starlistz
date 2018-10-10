@@ -8,20 +8,26 @@ module StripeCreate
   
   #アカウント情報取得
   def set_stripe_id(current_user, stripe_code)
-  	#Stripeからデータ取得
-  	stripe_data = get_stripe_data(stripe_code)
-  	#stripe_user_idを登録
-  	if stripe_data["error"].nil?
-    	current_user.update_attributes!(stripe_acct_id: stripe_data["stripe_user_id"])
-    	#プレイリストを公開状態にする
-    	my_lists = current_user.lists.includes(:user, :taggings)
-    	my_lists.each_with_index do |val, i|
-        my_lists[i].status =  "release"
-        my_lists[i].save
+    begin
+    	#Stripeからデータ取得
+    	stripe_data = get_stripe_data(stripe_code)
+    	#stripe_user_idを登録
+    	if stripe_data["error"].nil?
+      	current_user.update_attributes!(stripe_acct_id: stripe_data["stripe_user_id"], stripe_acct_secret: encrypt_data(stripe_data["access_token"]))
+      	#プレイリストを公開状態にする
+      	my_lists = current_user.lists.includes(:user, :taggings)
+      	my_lists.each_with_index do |val, i|
+          my_lists[i].status =  "release"
+          my_lists[i].save
+        end
+      	#Cutomerデータ登録
+      	find_or_create_stripe_customer(current_user)
+      else
+        # Stripe認証がエラーだったら
+        flash.now[:alert] = "Stripe連携に失敗しました。"
       end
-    	#Cutomerデータ登録
-    	find_or_create_stripe_customer(current_user)
-    else
+    rescue StandardError => e
+      logger.error(e.message)
       # Stripe認証がエラーだったら
       flash.now[:alert] = "Stripe連携に失敗しました。"
     end
@@ -88,5 +94,19 @@ module StripeCreate
       return customer
     end
   end
+  
+  private
+  
+  # 暗号化
+  def encrypt_data(data)
+    crypt = ActiveSupport::MessageEncryptor.new(Constants::ENCRYPT_SECRET_KEY, cipher: 'aes-256-cbc')
+    crypt.encrypt_and_sign(data)
+  end
+  
+  # 復号化
+  # def decrypt_data(data)
+  #   crypt = ActiveSupport::MessageEncryptor.new(Constants::ENCRYPT_SECRET_KEY, cipher: 'aes-256-cbc')
+  #   crypt.decrypt_and_verify(data)
+  # end
 
 end

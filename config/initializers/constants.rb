@@ -10,6 +10,7 @@ module Constants
     DLETE_MARK_USER = "(退会済)"
     HP_URL = "https://www.starlistz.com"
     STRIPE_AUTH_URL = "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['STRIPE_CLIENT_ID']}&scope=read_write"
+    ENCRYPT_SECRET_KEY = "c859acf64199f3fcdfac854ebd726f32a16cc619caef5b694f6ebba07d16a1c2491469cc49b4458bb954fe0d5bc8165df32f30e90e3bbfce962ca9e1c70a14bcc0cf8d63cfe63ac264a388ae319ecdaa156d9d4cf3d2ea974d4aeb466dd53ade9a94853a4a14c077e5bc5ac4973a90026db1b92479c473bb763b729063f281f5"
     
     arr = []
     # arr.push(50)
