@@ -23,6 +23,7 @@ module StripeCreate
       	#Cutomerデータ登録
       	find_or_create_stripe_customer(current_user)
       else
+        logger.error(stripe_data["error_description"])
         # Stripe認証がエラーだったら
         flash.now[:alert] = "Stripe連携に失敗しました。"
       end
