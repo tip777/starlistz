@@ -14,7 +14,6 @@ module StripeCreate
     	#stripe_user_idを登録
     	if stripe_data["error"].nil?
     	  encrypt_key = SecureRandom::hex(128)
-    	  binding.pry
       	current_user.update_attributes!(stripe_acct_id: stripe_data["stripe_user_id"], stripe_acct_secret: encrypt_data(stripe_data["access_token"], encrypt_key), secret_key: encrypt_key)
       	#プレイリストを公開状態にする
       	my_lists = current_user.lists.includes(:user, :taggings)
@@ -103,7 +102,6 @@ module StripeCreate
   # 暗号化
   def encrypt_data(data, key)
     crypt = ActiveSupport::MessageEncryptor.new(key, cipher: 'aes-256-cbc')
-    binding.pry
     crypt.encrypt_and_sign(data)
   end
   
