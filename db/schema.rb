@@ -181,6 +181,7 @@ ActiveRecord::Schema.define(version: 20180722090153) do
     t.string   "stripe_acct_id"
     t.string   "stripe_cus_id"
     t.string   "stripe_acct_secret"
+    t.string   "secret_key"
     t.string   "identity"
     t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
