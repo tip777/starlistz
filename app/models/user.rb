@@ -121,7 +121,8 @@ class User < ApplicationRecord
   #Validate
   #ユーザー名　validate
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 }, user_name: true #空はダメ、一意性をもつ、30文字以内
-
+  #利用規約の同意しているかチェック
+  validates_acceptance_of :tos_acceptance, allow_nil: false, on: :create, message: "にチェックが入っていません。"
   #ジャンルvalidate (日本語、英語、英数字、アンダーバーのみ)
   validates :tag_list, tag: true
 

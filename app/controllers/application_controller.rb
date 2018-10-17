@@ -148,7 +148,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name]) #アカウント登録時にnameカラムも登録
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :tos_acceptance]) #アカウント登録時にname、tos_acceptanceカラムも登録
     #user edit ジャンルのselectbox用
     devise_parameter_sanitizer.permit(:account_update,
            keys: [:tag_list, :user_profiles => [:id,:user_id, :description, :insta_url, :tw_url, :avatar]]) #userモデル編集時にプロフィールも編集
