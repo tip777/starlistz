@@ -17,6 +17,9 @@
         = f.input :password, required: true, hint: ("#{@minimum_password_length} 文字以上" if @minimum_password_length)
       .form-group
         = f.input :password_confirmation, required: true
+      .form-group.tos_check
+        = f.input_field :tos_acceptance, inline_label: "#{link_to '利用規約', term_path, target: ['_blank']}に同意する".html_safe, as: :boolean
+        
         
       .form-actions
         = f.button :submit, "登録する"

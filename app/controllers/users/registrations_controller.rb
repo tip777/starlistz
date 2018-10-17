@@ -17,6 +17,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         profile.save
         signup_user = User.find(resource.id)
         signup_user.user_profile = profile
+        signup_user.tos_acceptance = true
+        signup_user.tos_acceptance_date = Time.now
         signup_user.save
     end
   end
@@ -81,7 +83,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     # devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
     devise_parameter_sanitizer.permit(:sign_up) do |params|
-      params.permit(:email, :password, :password_confirmation, :current_password, :name)
+      params.permit(:email, :password, :password_confirmation, :current_password, :name, :tos_acceptance)
     end
   end
 

@@ -30,6 +30,7 @@ ja:
         password_confirmation: パスワード(確認用)
         current_password: 現在のパスワード
         remember_me: 保存する
+        tos_acceptance: 利用規約の同意
       user_profile:
         description: プロフィール
         insta_url: インスタグラムURL
