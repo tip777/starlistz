@@ -70,14 +70,14 @@
       %ul.settingMenu
         - if user_signed_in?
           %li
-            = link_to "Stripe接続", stripe_url_header(current_user)
-          %li
             = link_to "売上管理", users_salesmanage_path(current_user)
+          %li
+            = link_to "Stripe連携", stripe_url_header(current_user)
+          %li
+            = link_to "Stripeダッシュボード", "https://dashboard.stripe.com/dashboard", target: ["_blank"]
+          
         %li
           = link_to "お問い合わせ", contact_path
-        %li
-          = link_to "PlayListzについて", about_path
-
         - if user_signed_in?
           %li
             =link_to 'ログアウト', destroy_user_session_path, method: :delete

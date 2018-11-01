@@ -17,7 +17,7 @@
         %a.ga-class.ga-footer-guide-list{:href => ""}
           %span.footer__listText はじめての方へ
       %li.footer__listItem
-        %a.ga-class.ga-footer-guide-list{:href => ""}
+        = link_to "https://help.starlistz.com/", class: "ga-class ga-footer guide-list" do
           %span.footer__listText StarListzヘルプページ
       %li.footer__listItem
         = link_to term_path, class: "ga-class ga-footer guide-list" do
