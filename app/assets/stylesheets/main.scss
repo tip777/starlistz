@@ -658,6 +658,7 @@ input[type="reset"],
 
 #banner {
   background-image: url(/images/mixing-desk.jpg);
+  background-size: cover;
   color: _palette(banner, fg);
   cursor: default;
   padding: 6em 0;
@@ -693,7 +694,7 @@ input[type="reset"],
               margin: 0 ;
               h2 {
                 font-size: 2em;
-                font-weight: 400;
+                font-weight: 700;
                 margin: 20px 0 10px;
                 padding:0;
                 position: relative;

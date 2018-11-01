@@ -25,7 +25,7 @@ class UsersController < ApplicationController
           #Stripe連携しているか判定
           is_account = is_stripe_account_id?(current_user)
           if is_account != true
-            flash.now[:alert] = "<a id='stripe_connect' href='#{stripe_url_edit(current_user)}'>Stripe接続</a>　が完了していません。<br>
+            flash.now[:alert] = "<a id='stripe_connect' href='#{stripe_url_edit(current_user)}'>Stripe連携</a>　が完了していません。<br>
                             完了しなければプレイリストは公開されません。".html_safe
           end
         end
