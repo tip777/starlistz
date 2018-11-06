@@ -25,7 +25,7 @@ class UserProfile < ApplicationRecord
   # validates :insta_url, format: /\A#{URI::regexp(%w(http https))}\z/
   # validates :tw_url, format: /\A#{URI::regexp(%w(http https))}\z/
   #プロフィール画像 validate
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :avatar, :content_type => ["image/png", "image/jpg", "image/jpeg"]
   do_not_validate_attachment_file_type :avatar
 
   

@@ -49,7 +49,7 @@ class List < ApplicationRecord
   validates_numericality_of :price,  less_than_or_equal_to: 5000
   
   #プレイリスト画像 validate
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :image, :content_type => ["image/png", "image/jpg", "image/jpeg"]
   do_not_validate_attachment_file_type :image
 
   #５曲以上入っているか確認　validation作業に入ったらコメント外す（削除済みの曲は除外）
