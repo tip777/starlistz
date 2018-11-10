@@ -86,7 +86,7 @@ module StripeCreate
       if user.stripe_cus_id.blank?
         customer = Stripe::Customer.create(
             :description => "user_id: #{user.id.to_s}",
-            :email => Constants::SUPPORT_MAIL
+            :email => SecureRandom::uuid + "-customer@starlistz.com"
         )
       else
         customer = get_stripe_customer_id(user)
