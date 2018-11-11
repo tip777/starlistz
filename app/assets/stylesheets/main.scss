@@ -657,7 +657,11 @@ input[type="reset"],
 }
 
 #banner {
-  background-image: url(/images/mixing-desk.jpg);
+  // background-image: url(/images/mixing-desk.jpg);
+  background-image: url(/images/191329715.jpg);
+  @media only screen and (max-width: 767px) {
+    background-position: center right;
+  }
   background-size: cover;
   color: _palette(banner, fg);
   cursor: default;
