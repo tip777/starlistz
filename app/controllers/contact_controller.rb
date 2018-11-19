@@ -28,12 +28,6 @@ class ContactController < ApplicationController
       @contact = Contact.new
     end
   end
-  
-  # def unsubscribe_thanks
-  #   if current_user.nil?
-  #     reject_page
-  #   end
-  # end
 
   private
 
