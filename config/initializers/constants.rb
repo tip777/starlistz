@@ -9,7 +9,7 @@ module Constants
     DLETE_MARK_LIST = "(削除済)"
     DLETE_MARK_USER = "(退会済)"
     LOG_ERROR_LEVEL = "Error"
-    LOG_Fetal_LEVEL = "Fetal"
+    LOG_Fatal_LEVEL = "Fatal"
     HP_URL = "https://www.starlistz.com"
     STRIPE_AUTH_URL = "https://dashboard.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['STRIPE_CLIENT_ID']}&scope=read_write"
     

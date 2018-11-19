@@ -1,12 +1,12 @@
 module ErrorUtility
   #exceptions のログ共通か
   def log_error(e, level, msg)
-    if level == Constants::LOG_Fetal_LEVEL
-      Rails.logger.fetal("#{level}: #{msg}")
+    if level == Constants::LOG_Fatal_LEVEL
+      Rails.logger.fatal("#{level}: #{msg}")
       if e != nil
-        Rails.logger.fetal e.class
-        Rails.logger.fetal e.message
-        Rails.logger.fetal e.backtrace.join("\n")
+        Rails.logger.fatal e.class
+        Rails.logger.fatal e.message
+        Rails.logger.fatal e.backtrace.join("\n")
       end
     else
       Rails.logger.error("#{level}: #{msg}")

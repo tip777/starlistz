@@ -15,7 +15,7 @@ class ContactController < ApplicationController
         render "index"
       end
     rescue StandardError => e
-      log_error(e, Constants::LOG_Fetal_LEVEL, "ContactController : StandardError")
+      log_error(e, Constants::LOG_Fatal_LEVEL, "ContactController : StandardError")
       flash.now[:alert] = "お問い合わせの送信に失敗しました"
       render "index"
     end
