@@ -65,16 +65,16 @@ class ChargesController < ApplicationController
 
       # TODO add more detailed error messages
     rescue Stripe::APIConnectionError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "ChargesController : Stripe::APIConnectionError")
       flash[:error] = 'ストライプとのネットワーク通信に失敗しました'
     rescue Stripe::APIError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "ChargesController : Stripe::APIError")
       flash[:error] = 'ストライプとのネットワーク通信に失敗しました'
     rescue Stripe::AuthenticationError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "ChargesController : Stripe::AuthenticationError")
       flash[:error] = "StripeのAPIによる認証に失敗しました<br/>（最近APIキーを変更した可能性があります）"
     rescue Stripe::CardError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "ChargesController : Stripe::CardError")
       # Since it's a decline, Stripe::CardError will be caught
       body = e.json_body
       err  = body[:error]
@@ -93,13 +93,13 @@ class ChargesController < ApplicationController
       puts "Param is: #{err[:param]}" if err[:param]
       puts "Message is: #{err[:message]}" if err[:message]
     rescue Stripe::InvalidRequestError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "ChargesController : Stripe::InvalidRequestError")
       flash[:error] = '無効なパラメータがStripeのAPIに供給されました'
     rescue Stripe::StripeError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "ChargesController : Stripe::StripeError")
       flash[:error] = 'エラーが発生しました'
     rescue StandardError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "ChargesController : StandardError")
       flash[:error] = "エラーが発生しました"
     ensure
       if list_purchase == true
