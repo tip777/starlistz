@@ -55,7 +55,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     #退会理由をつけたメールを運営に送信
     contact = Contact.new(contact_params)
-    # ContactMailer.unsub_email(contact, current_user).deliver
     log_unsubscribe(contact, current_user)
 
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
