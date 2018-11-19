@@ -10,7 +10,7 @@ class ContactController < ApplicationController
       if @contact.valid?
         ContactMailer.received_email(@contact, current_user).deliver
         redirect_to root_path, notice: "お問い合わせを送信しました"
-        log_supportContact(contact, current_user)
+        log_supportContact(@contact, current_user)
       else
         render "index"
       end
