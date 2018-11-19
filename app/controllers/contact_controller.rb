@@ -21,13 +21,13 @@ class ContactController < ApplicationController
     end
   end
   
-  # def unsubscribe
-  #   if current_user.nil?
-  #     reject_page
-  #   else
-  #     @contact = Contact.new
-  #   end
-  # end
+  def unsubscribe
+    if current_user.nil?
+      reject_page
+    else
+      @contact = Contact.new
+    end
+  end
   
   # def unsubscribe_thanks
   #   if current_user.nil?
