@@ -1,4 +1,6 @@
 module StripeCreate
+  include ErrorUtility #ログ 共通部分
+  
   ## StripeのAccount & Costomerの作成部分
   
   #Stripe 認証ページのURLを編集
@@ -24,12 +26,12 @@ module StripeCreate
       	#Cutomerデータ登録
       	find_or_create_stripe_customer(current_user)
       else
-        logger.error(stripe_data["error_description"])
+        log_error(nil, "StripeCreate : set_stripe_id : error_description:#{stripe_data["error_description"]}")
         # Stripe認証がエラーだったら
         flash.now[:alert] = "Stripe連携に失敗しました。"
       end
     rescue StandardError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "StripeCreate : set_stripe_id : StandardError")
       # Stripe認証がエラーだったら
       flash.now[:alert] = "Stripe連携に失敗しました。"
     end

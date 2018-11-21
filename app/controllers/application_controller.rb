@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :is_purchase?, :is_stripe_account_id?
 
   include StripeCreate #Stripe 作成部分
+  include ErrorUtility #ログ 共通部分
 
   http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.test? #heroku development Basic認証
   http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.staging? #heroku staging Basic認証
@@ -54,7 +55,7 @@ class ApplicationController < ActionController::Base
     begin
       redirect_back(fallback_location: root_path)
     rescue ActionController::RedirectBackError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "ApplicationController : reject_page : ActionController::RedirectBackError")
       redirect_to root_path
     end
   end
@@ -114,7 +115,7 @@ class ApplicationController < ActionController::Base
         @q = User.search
       end
     rescue StandardError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "ApplicationController : search_header : StandardError")
       @q = User.search
     end
   end
@@ -134,7 +135,7 @@ class ApplicationController < ActionController::Base
         return true
       end
     rescue StandardError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "ApplicationController : is_stripe_account_id? : StandardError")
       return false
     end
   end
