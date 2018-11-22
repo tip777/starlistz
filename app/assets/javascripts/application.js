@@ -17,7 +17,6 @@
 //= require select2
 //= require jquery-ui
 //= require cocoon
-//= require google_analytics
 //= require_tree .
 
 // turbolinks対応文
