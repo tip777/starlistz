@@ -8,9 +8,9 @@ class ContactMailer < ApplicationMailer
         mail(subject: @contact.title)
     end
     
-    def unsub_email(contact, current_user)
-        @contact = contact
-        @current_user = current_user
-        mail(subject: "ユーザーが退会")
-    end
+    # def unsub_email(contact, current_user)
+    #     @contact = contact
+    #     @current_user = current_user
+    #     mail(subject: "ユーザーが退会")
+    # end
 end

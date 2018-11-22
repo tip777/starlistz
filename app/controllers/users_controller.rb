@@ -131,7 +131,7 @@ class UsersController < ApplicationController
       end
       
     rescue StandardError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "UsersController : salesmanage : StandardError")
       @all_amount = ""
       @year_list = ""
       @all_month_amount = ""
@@ -173,7 +173,7 @@ class UsersController < ApplicationController
       end
       
     rescue StandardError => e
-      logger.error(e.message)
+      log_error(e, Constants::LOG_ERROR_LEVEL, "UsersController : salesmonth : StandardError")
       @month_amount = ""
       @list_amount = ""
       @sales_list = ""

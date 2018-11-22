@@ -39526,6 +39526,15 @@ return $.ui.tooltip;
 })(jQuery);
 
 
+window.onload = function() {
+  console.log('onload は動いてる');
+  if (typeof ga === 'function') {
+    ga('set', 'location', location.pathname);
+    ga('send', 'pageview');
+    console.log('analytics 送ってるよー');
+  }
+}
+;
 (function() {
   (function() {
     (function() {
@@ -40321,6 +40330,10 @@ $(document).ready(function(){
 
 }).call(this);
 (function() {
+
+
+}).call(this);
+(function() {
   var listSort, rerollNumber;
 
   rerollNumber = function() {
@@ -40417,20 +40430,22 @@ $(document).ready(function(){
 
 
 
+
 // turbolinks対応文
 // $(document).on('turbolinks:load', function() {
 //   ...your javascript goes here...
 // });
 
 
-  // グロバールナビゲーション選択ページの判定
-  var url = window.location.pathname;
-  $('.nav li a[href="'+url+'"]').parents('.collapse-down').addClass('active');
+// グロバールナビゲーション選択ページの判定
+var url = window.location.pathname;
+$('.nav li a[href="'+url+'"]').parents('.collapse-down').addClass('active');
 
-  if ( url.match(/chart/)) {
-            $('.nav li a[ href *= "chart" ]').parents('.collapse-down').addClass('active');
-  //strにhogeを含む場合の処理
-  }
+if ( url.match(/chart/)) {
+          $('.nav li a[ href *= "chart" ]').parents('.collapse-down').addClass('active');
+//strにhogeを含む場合の処理
+}
+
 
 $(document).ready(function(){
   $('.js-tags-input').each(function() {
@@ -40499,7 +40514,7 @@ $(document).ready(function(){
     }else{
       //$(this).attr("name")　これで番号がとれる
       // $('.stripe-button-el').trigger('click');
-      $('#modal-content-' + $(this).attr("name") + ' .stripe-button-el').trigger('click');
+      $('.stripe-button-el').trigger('click');
     }
     console.log(gon.current_user);
     e.preventDefault();
