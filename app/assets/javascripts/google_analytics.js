@@ -1,6 +1,7 @@
-document.addEventListener('load', function(event) {
+window.onload = function() {
   if (typeof ga === 'function') {
-    ga('set', 'location', event.data.url);
+    ga('set', 'location', location.pathname);
     ga('send', 'pageview');
+    // console.log('analytics 送ってるよー');
   }
-});
+}
