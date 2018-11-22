@@ -39526,12 +39526,15 @@ return $.ui.tooltip;
 })(jQuery);
 
 
-document.addEventListener('load', function(event) {
+window.onload = function() {
+  // console.log('onload は動いてる');
   if (typeof ga === 'function') {
-    ga('set', 'location', event.data.url);
+    ga('set', 'location', location.pathname);
     ga('send', 'pageview');
+    // console.log('analytics 送ってるよー');
   }
-});
+}
+;
 (function() {
   (function() {
     (function() {
@@ -40434,14 +40437,15 @@ $(document).ready(function(){
 // });
 
 
-  // グロバールナビゲーション選択ページの判定
-  var url = window.location.pathname;
-  $('.nav li a[href="'+url+'"]').parents('.collapse-down').addClass('active');
+// グロバールナビゲーション選択ページの判定
+var url = window.location.pathname;
+$('.nav li a[href="'+url+'"]').parents('.collapse-down').addClass('active');
 
-  if ( url.match(/chart/)) {
-            $('.nav li a[ href *= "chart" ]').parents('.collapse-down').addClass('active');
-  //strにhogeを含む場合の処理
-  }
+if ( url.match(/chart/)) {
+          $('.nav li a[ href *= "chart" ]').parents('.collapse-down').addClass('active');
+//strにhogeを含む場合の処理
+}
+
 
 $(document).ready(function(){
   $('.js-tags-input').each(function() {
