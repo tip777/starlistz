@@ -22965,7 +22965,8 @@ input[type="reset"].small,
 }
 /* line 659, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #banner {
-  background-image: url(/images/mixing-desk.jpg);
+  background-image: url(/images/191329715.jpg);
+  background-size: cover;
   color: #fff;
   cursor: default;
   padding: 6em 0;
@@ -22973,7 +22974,13 @@ input[type="reset"].small,
   position: relative;
   margin-bottom: 30px;
 }
-/* line 667, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+@media only screen and (max-width: 767px) {
+  /* line 659, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  #banner {
+    background-position: center right;
+  }
+}
+/* line 672, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #banner .overlay {
   content: "";
   position: absolute;
@@ -22984,7 +22991,7 @@ input[type="reset"].small,
   z-index: 2;
   background: linear-gradient(to right, rgba(150, 184, 3, 0.8), rgba(192, 175, 4, 0.8));
 }
-/* line 678, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 683, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #banner .inner {
   -moz-animation: reveal-banner 1s 0.25s ease-in-out;
   -webkit-animation: reveal-banner 1s 0.25s ease-in-out;
@@ -23002,36 +23009,36 @@ input[type="reset"].small,
   z-index: 3;
   position: relative;
 }
-/* line 691, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 696, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #banner .inner header {
   display: inline-block;
   margin: 0;
 }
-/* line 694, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 699, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #banner .inner header h2 {
   font-size: 2em;
-  font-weight: 400;
+  font-weight: 700;
   margin: 20px 0 10px;
   padding: 0;
   position: relative;
   text-transform: uppercase;
 }
-/* line 704, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 709, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #banner .inner p {
   margin: 0;
   font-weight: 700;
 }
-/* line 707, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 712, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #banner .inner p a {
   color: inherit;
   font-weight: 400;
   text-decoration: none;
 }
-/* line 714, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 719, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #banner .inner footer {
   margin: 60px 0 0 0;
 }
-/* line 717, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 722, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #banner .inner .button {
   border-radius: 2em;
   border: 3px solid #fff;
@@ -23043,21 +23050,21 @@ input[type="reset"].small,
 }
 
 /* Main */
-/* line 731, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 736, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #main {
   padding: 7em 0;
 }
-/* line 738, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 743, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #main > :last-child {
   margin-bottom: 0;
 }
-/* line 743, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 748, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #main .sidebar section {
   border-top: solid 1px rgba(124, 128, 129, 0.2);
   margin: 3em 0 0 0;
   padding: 3em 0 0 0;
 }
-/* line 748, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 753, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #main .sidebar section:first-child {
   border-top: 0;
   padding-top: 0;
@@ -23069,7 +23076,7 @@ input[type="reset"].small,
  CTA
 
 =============================================================*/
-/* line 764, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 769, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #cta {
   background-attachment: scroll, scroll, scroll, fixed;
   background-color: #645862;
@@ -23078,7 +23085,7 @@ input[type="reset"].small,
   padding: 5em;
   text-align: center;
 }
-/* line 775, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 780, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #cta header {
   margin-bottom: 2em;
 }
@@ -23088,47 +23095,47 @@ input[type="reset"].small,
  Footer
 
 =============================================================*/
-/* line 787, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 792, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #footer {
   color: #7c8081;
   padding: 5em 5em 10em 5em;
   text-align: center;
 }
-/* line 792, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 797, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #footer .copyright {
   font-size: 0.8em;
   line-height: 1em;
 }
-/* line 796, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 801, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #footer .copyright a {
   color: inherit;
 }
-/* line 800, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 805, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #footer .copyright li {
   display: inline-block;
   margin-left: 1em;
   padding-left: 1em;
   border-left: dotted 1px;
 }
-/* line 806, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 811, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #footer .copyright li:first-child {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-/* line 821, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 826, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-search-form {
   max-width: 580px;
   margin: auto;
 }
-/* line 824, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 829, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-search-form form {
   position: relative;
   padding: 0;
   margin: 0;
 }
-/* line 828, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 833, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-search-form form input[type="text"] {
   border-radius: 0;
   padding: 15px 5px;
@@ -23138,12 +23145,12 @@ input[type="reset"].small,
   background-color: inherit;
   transition: 0;
 }
-/* line 836, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 841, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-search-form form input[type="text"]:focus {
   border-bottom: 2px solid #333;
   transition: 0;
 }
-/* line 841, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 846, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-search-form form button {
   position: absolute;
   top: 0;
@@ -23151,16 +23158,16 @@ input[type="reset"].small,
   margin: 15px 5px;
   background-color: transparent;
 }
-/* line 848, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 853, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-search-form form i {
   font-size: large;
 }
 
-/* line 880, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 885, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .genre ul.bigblock {
   font-size: 0;
 }
-/* line 883, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 888, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .genre li {
   font-size: 18px;
   display: inline-block;
@@ -23168,7 +23175,7 @@ input[type="reset"].small,
   position: relative;
   margin: 3px;
 }
-/* line 889, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 894, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .genre li a {
   color: #fff;
   background-color: #33a02c;
@@ -23181,13 +23188,13 @@ input[type="reset"].small,
   transition: .1s;
 }
 @media screen and (min-width: 767px) {
-  /* line 900, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 905, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .genre li a:hover {
     transform: scale(1.05);
     transition: .1s;
   }
 }
-/* line 906, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 911, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .genre li:before {
   position: absolute;
   width: 100%;
@@ -23196,7 +23203,7 @@ input[type="reset"].small,
   top: 0;
   left: 0;
 }
-/* line 915, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 920, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .genre .button.more {
   color: #fff;
   background-color: #33a02c;
@@ -23217,34 +23224,34 @@ input[type="reset"].small,
 
 
 =============================================================*/
-/* line 949, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 954, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .inform form {
   color: #666;
 }
-/* line 952, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 957, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .inform form .input label {
   font-weight: 400;
   color: #ccc;
   font-size: 12px;
 }
-/* line 957, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 962, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .inform form .input input {
   margin: auto;
   padding: 1em 2em;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 @media screen and (min-width: 767px) {
-  /* line 962, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 967, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .inform form .input input:hover {
     border-color: #7ac943;
   }
-  /* line 965, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 970, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .inform form .input input:focus {
     border-color: #7ac943;
     border-left: 7px solid #7ac943;
   }
 }
-/* line 972, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 977, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .inform form .form-actions .btn {
   background-color: #000;
   border: 1px solid #000;
@@ -23256,7 +23263,7 @@ input[type="reset"].small,
   font-size: 12px;
 }
 @media screen and (min-width: 767px) {
-  /* line 982, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 987, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .inform form .form-actions .btn:hover {
     background-color: #7ac943;
     border: 1px solid #7ac943;
@@ -23264,7 +23271,7 @@ input[type="reset"].small,
   }
 }
 
-/* line 992, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 997, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 p.or {
   color: #999;
   display: block;
@@ -23273,7 +23280,7 @@ p.or {
   text-align: center;
   margin: 30px 0 0;
 }
-/* line 999, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1004, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 p.or:before, p.or:after {
   content: '';
   position: absolute;
@@ -23282,12 +23289,12 @@ p.or:before, p.or:after {
   top: 20px;
   border-bottom: 1px solid #ddd;
 }
-/* line 1008, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1013, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 p.or:after {
   right: 0;
 }
 
-/* line 1013, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1018, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .shared a {
   display: table;
   margin: 10px auto 0;
@@ -23299,13 +23306,13 @@ p.or:after {
 * cardList
 *
 *=============================================================*/
-/* line 1031, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1036, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .outer__cardList {
   max-width: 600px;
   margin: auto;
 }
 
-/* line 1035, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1040, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__cardList {
   width: 100%;
   padding: 0;
@@ -23314,58 +23321,58 @@ p.or:after {
   border: 1px solid #eee;
 }
 
-/* line 1042, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1047, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .cardList__img {
   width: 90px;
   height: 90px;
   float: left;
   padding: 15px;
 }
-/* line 1047, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1052, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .cardList__img img {
   border-radius: 50%;
   overflow: hidden;
   width: 60px;
 }
 
-/* line 1053, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1058, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .cardList__text {
   padding: 20px 10px;
   margin: 0 0 0 90px;
 }
-/* line 1056, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1061, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .cardList__text .listtitle {
   font-size: 15px;
   padding-right: 10px;
   font-weight: 700;
   display: block;
 }
-/* line 1062, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1067, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .cardList__text .author {
   color: #999;
   padding-right: 10px;
 }
-/* line 1066, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1071, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .cardList__text p {
   margin: 0;
   padding: 5px 0;
   color: #999;
 }
 
-/* line 1072, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1077, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__footerPrice {
   border-top: 1px solid #fafafa;
   text-align: right;
   margin: 15px 0 0 0;
 }
-/* line 1076, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1081, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__footerPrice .label-warning {
   display: inline-block;
   padding: 5px 7px;
   margin: 5px 0;
 }
 
-/* line 1082, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1087, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .listprice {
   color: #808080;
   font-size: 1.4em;
@@ -23373,12 +23380,12 @@ p.or:after {
   display: inline-block;
 }
 
-/* line 1088, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1093, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .cardList__footer {
   padding: 20px 0 0 0;
 }
 
-/* line 1092, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1097, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .favoriteStar {
   display: inline-block;
   padding: 5px 0;
@@ -23386,7 +23393,7 @@ p.or:after {
   font-size: 14px;
   color: #999;
 }
-/* line 1098, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1103, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .favoriteStar i {
   width: 20px;
   font-size: 23px;
@@ -23394,17 +23401,17 @@ p.or:after {
   vertical-align: bottom;
 }
 
-/* line 1107, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1112, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .UnFavoriteStar i {
   color: #8e8e86;
 }
 
-/* line 1111, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1116, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__.btn__purchase {
   text-align: right;
 }
 
-/* line 1114, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1119, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .btn__purchase {
   background-color: #17183a;
   padding: 10px 30px;
@@ -23413,7 +23420,7 @@ p.or:after {
   border: none;
 }
 
-/* line 1122, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1127, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .genretag {
   color: #fff;
   background-color: #33a02c;
@@ -23424,12 +23431,12 @@ p.or:after {
   margin: 3px;
   overflow: scroll;
 }
-/* line 1131, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1136, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .genretag a {
   border-radius: 2em;
 }
 
-/* line 1137, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1142, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__cardlist__short {
   display: table;
   width: 100%;
@@ -23439,13 +23446,13 @@ p.or:after {
   margin: 0;
   height: 100%;
 }
-/* line 1147, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1152, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__cardlist__short a {
   display: block;
   width: 100%;
   height: 100%;
 }
-/* line 1152, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1157, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__cardlist__short .l-cardlist .cardlist-left {
   display: table-cell;
   width: 40px;
@@ -23453,7 +23460,7 @@ p.or:after {
   vertical-align: top;
   padding: 15px 10px;
 }
-/* line 1159, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1164, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__cardlist__short .l-cardlist .cardlist-right {
   display: table-cell;
   height: 100%;
@@ -23462,29 +23469,29 @@ p.or:after {
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 1167, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1172, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__cardList {
     display: block;
   }
 
-  /* line 1170, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1175, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .cardList__img {
     float: none;
   }
 
-  /* line 1173, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1178, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .cardList__text {
     margin: 0;
   }
 }
-/* line 1182, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1187, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-searchchart .searchchart-sub,
 .l-searchchart .searchchart-main {
   display: inline-block;
   padding: 0 20px 0 0;
 }
 
-/* line 1188, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1193, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .select2-container--default .select2-selection--single {
   border: none;
   border-bottom: 1px solid #eee;
@@ -23492,24 +23499,24 @@ p.or:after {
   height: 40px;
   background-color: inherit;
 }
-/* line 1194, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1199, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   color: #000;
   line-height: 40px;
 }
-/* line 1198, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1203, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   height: 40px;
 }
 
-/* line 1207, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1212, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-playlist {
   display: table;
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
 }
-/* line 1212, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1217, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-playlist .ll-playlist {
   display: table-cell;
   width: 300px;
@@ -23517,31 +23524,31 @@ p.or:after {
   vertical-align: top;
   padding: 15px;
 }
-/* line 1218, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1223, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-playlist .ll-playlist img {
   overflow: hidden;
   width: 300px;
 }
-/* line 1223, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1228, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-playlist .rr-playlist {
   display: table-cell;
   height: 100%;
   vertical-align: top;
   padding: 15px;
 }
-/* line 1228, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1233, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-playlist .rr-playlist h3 {
   font-weight: 700;
   color: #ccc;
   font-size: 1em;
   margin: 30px 0 0;
 }
-/* line 1234, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1239, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-playlist .rr-playlist .listtitle {
   font-size: 1.6em;
   font-weight: 700;
 }
-/* line 1238, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1243, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-playlist .rr-playlist .genretag {
   color: #fff;
   background-color: #33a02c;
@@ -23553,30 +23560,30 @@ p.or:after {
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 1250, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1255, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l-playlist {
     display: block;
   }
-  /* line 1253, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1258, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l-playlist .ll-playlist {
     display: block;
     padding: 0;
   }
-  /* line 1256, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1261, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l-playlist .ll-playlist img {
     width: auto;
   }
-  /* line 1260, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1265, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l-playlist .rr-playlist {
     display: block;
   }
 }
-/* line 1278, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1283, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile {
   display: table;
   width: 100%;
 }
-/* line 1281, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1286, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile .ll-profile {
   display: table-cell;
   width: 90px;
@@ -23584,36 +23591,36 @@ p.or:after {
   vertical-align: top;
   padding: 80px;
 }
-/* line 1287, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1292, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile .ll-profile img {
   overflow: hidden;
   width: 90px;
   border-radius: 50%;
 }
-/* line 1293, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1298, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile .rr-profile {
   display: table-cell;
   height: 100%;
   vertical-align: top;
   padding: 15px;
 }
-/* line 1298, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1303, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile .rr-profile h2 {
   font-size: 2em;
   font-weight: 400;
 }
-/* line 1302, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1307, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile .rr-profile .description {
   margin: 10px 0 30px;
 }
-/* line 1305, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1310, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile .rr-profile h3 {
   font-weight: 400;
   color: #ccc;
   font-size: 1em;
   margin: 10px 0;
 }
-/* line 1311, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1316, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile .rr-profile .genretag {
   color: #fff;
   background-color: #33a02c;
@@ -23623,47 +23630,47 @@ p.or:after {
   display: inline;
   margin: 3px;
 }
-/* line 1320, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1325, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile .rr-profile .numbers {
   margin-top: 30px;
 }
-/* line 1322, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1327, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile .rr-profile .numbers h3 {
   color: #333;
   display: inline-block;
   padding-right: 15px;
   font-weight: 700;
 }
-/* line 1327, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1332, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-profile .rr-profile .numbers h3 span {
   color: #ccc;
   font-weight: 400;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 1336, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1341, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l-profile {
     display: block;
   }
-  /* line 1339, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1344, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l-profile .ll-profile {
     display: block;
     padding: 0;
   }
-  /* line 1343, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1348, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l-profile .rr-profile {
     display: block;
   }
 }
-/* line 1360, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1365, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-search {
   max-width: 600px;
 }
-/* line 1362, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1367, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-search form {
   position: relative;
 }
-/* line 1364, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1369, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-search form input[type="text"] {
   border-radius: 0;
   padding: 15px 5px;
@@ -23673,16 +23680,16 @@ p.or:after {
   background-color: inherit;
   transition: 0;
 }
-/* line 1372, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1377, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-search form input[type="text"]:focus {
   border-bottom: 2px solid #333;
   transition: 0;
 }
-/* line 1377, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1382, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-search form input[type="submit"] {
   display: none;
 }
-/* line 1380, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1385, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-search form i {
   position: absolute;
   right: 15px;
@@ -23691,11 +23698,11 @@ p.or:after {
   color: #ccc;
 }
 
-/* line 1391, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1396, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #genre_search .genre-list {
   max-width: 600px;
 }
-/* line 1394, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1399, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #genre_search .genre-list li {
   position: relative;
   list-style-type: none;
@@ -23704,7 +23711,7 @@ p.or:after {
   width: 100%;
   border-bottom: 1px solid #ebebeb;
 }
-/* line 1402, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1407, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #genre_search .genre-list li:before {
   line-height: 1;
   padding: 15px;
@@ -23712,23 +23719,23 @@ p.or:after {
   top: 0;
   left: 0;
 }
-/* line 1410, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1415, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #genre_search .genre-list li .title {
   display: table-cell;
   font-size: 18px;
 }
-/* line 1415, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1420, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #genre_search .genre-list li .number {
   display: table-cell;
   width: 60px;
 }
 
-/* line 1426, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1431, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-ranking .genre-list {
   counter-reset: ranking-mark;
   max-width: 600px;
 }
-/* line 1430, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1435, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-ranking .genre-list li {
   position: relative;
   list-style-type: none;
@@ -23737,7 +23744,7 @@ p.or:after {
   width: 100%;
   border-bottom: 1px solid #ebebeb;
 }
-/* line 1437, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1442, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-ranking .genre-list li:before {
   content: counter(ranking-mark,decimal);
   counter-increment: ranking-mark;
@@ -23747,40 +23754,40 @@ p.or:after {
   top: 0;
   left: 0;
 }
-/* line 1446, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1451, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-ranking .genre-list li:nth-child(1):before {
   color: #33a02c;
   font-weight: 700;
 }
-/* line 1450, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1455, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-ranking .genre-list li:nth-child(2):before {
   color: #33a02c;
   font-weight: 700;
 }
-/* line 1454, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1459, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-ranking .genre-list li:nth-child(3):before {
   color: #33a02c;
   font-weight: 700;
 }
-/* line 1458, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1463, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-ranking .genre-list li .title {
   display: table-cell;
   font-size: 18px;
 }
-/* line 1462, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1467, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-genre-ranking .genre-list li .number {
   display: table-cell;
   width: 60px;
 }
 
-/* line 1472, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1477, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__search__tab {
   position: relative;
   font-size: 0;
   margin: 15px auto;
   max-width: 580px;
 }
-/* line 1478, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1483, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__search__tab li {
   height: 43px;
   text-align: center;
@@ -23791,7 +23798,7 @@ p.or:after {
   color: #ccc;
   position: relative;
 }
-/* line 1487, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1492, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__search__tab li:before {
   position: absolute;
   height: 3px;
@@ -23802,7 +23809,7 @@ p.or:after {
   display: inline-block;
   background-color: #f0f0f0;
 }
-/* line 1498, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1503, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__search__tab li a {
   position: relative;
   padding-top: 6px;
@@ -23811,7 +23818,7 @@ p.or:after {
   height: 100%;
   line-height: 3;
 }
-/* line 1505, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1510, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__search__tab li a:after {
   position: absolute;
   height: 3px;
@@ -23823,24 +23830,24 @@ p.or:after {
   background-color: #33a02c;
   transition: 0;
 }
-/* line 1518, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1523, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__search__tab li.active {
   color: #333;
   transition: 0;
 }
-/* line 1521, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1526, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__search__tab li.active a:after {
   display: inline-block;
   transition: 0;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 1531, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1536, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__search__tab li {
     width: 50%;
   }
 }
-/* line 1543, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1548, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__profile__tab {
   height: 50px;
   position: relative;
@@ -23850,7 +23857,7 @@ p.or:after {
   background-color: #fff;
   line-height: 50px;
 }
-/* line 1551, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1556, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__profile__tab li {
   height: 100%;
   text-align: center;
@@ -23860,7 +23867,7 @@ p.or:after {
   color: #ccc;
   vertical-align: top;
 }
-/* line 1560, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1565, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__profile__tab li a {
   position: relative;
   vertical-align: top;
@@ -23868,7 +23875,7 @@ p.or:after {
   height: 100%;
   transition: 0;
 }
-/* line 1566, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1571, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__profile__tab li a:after {
   position: absolute;
   height: 3px;
@@ -23880,30 +23887,30 @@ p.or:after {
   background-color: #33a02c;
   transition: 0;
 }
-/* line 1579, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1584, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__profile__tab li.active {
   color: #333;
   transition: 0;
   font-weight: 700;
 }
-/* line 1583, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1588, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__profile__tab li.active a:after {
   display: inline-block;
   transition: 0;
 }
 
-/* line 1590, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1595, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .tabbox {
   display: none;
 }
 
-/* line 1597, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1602, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .border-left {
   border-left: 5px solid #33a02c;
   padding: 15px 5px 15px 15px;
 }
 
-/* line 1603, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1608, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .alert_area {
   padding: 30px 5px;
   text-align: center;
@@ -23916,25 +23923,25 @@ p.or:after {
   font-size: 12px;
 }
 
-/* line 1668, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1673, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .field_profile_image img {
   border-radius: 50%;
 }
 
-/* line 1676, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1681, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .new-playlist-table th {
   font-weight: 700;
   color: #ccc;
   border-bottom: 1px solid #ccc;
   padding: 8px;
 }
-/* line 1683, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1688, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .new-playlist-table .track_item td {
   vertical-align: middle;
   padding: 8px;
 }
 
-/* line 1689, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1694, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .field_track_add a {
   display: inline-block;
   border: 1px solid #808080;
@@ -23942,12 +23949,12 @@ p.or:after {
   margin: 0 0 0 15px;
 }
 
-/* line 1696, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1701, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .actions {
   margin-top: 60px;
   text-align: center;
 }
-/* line 1699, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1704, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .actions a {
   padding: 5px;
   border: 1px solid #444;
@@ -23955,11 +23962,11 @@ p.or:after {
   margin: auto;
 }
 
-/* line 1718, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1723, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 form.edit_user .user_user_profile_avatar input {
   line-height: 1;
 }
-/* line 1722, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1727, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 form.edit_user label {
   font-weight: 700;
   color: #ccc;
@@ -23968,30 +23975,30 @@ form.edit_user label {
   display: block;
 }
 
-/* line 1737, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1742, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-userprofile {
   display: table;
   width: 100%;
   margin-bottom: 20px;
 }
-/* line 1741, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1746, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-userprofile .img {
   display: table-cell;
   width: 120px;
   vertical-align: middle;
 }
-/* line 1745, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1750, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-userprofile .img img {
   border-radius: 50%;
 }
-/* line 1749, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1754, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l-userprofile .l-text {
   display: table-cell;
   vertical-align: middle;
   padding: 15px;
 }
 
-/* line 1760, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1765, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__header {
   background-color: #18183a;
   height: 64px;
@@ -24001,7 +24008,7 @@ form.edit_user label {
   width: 100%;
 }
 
-/* line 1768, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1773, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .row__header {
   display: -webkit-box;
   display: -webkit-flex;
@@ -24012,7 +24019,7 @@ form.edit_user label {
   padding: 0 40px 0 80px;
 }
 
-/* line 1777, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1782, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .header__title {
   color: #fff;
   font-size: 20px;
@@ -24021,25 +24028,25 @@ form.edit_user label {
   line-height: 64px;
 }
 @media screen and (min-width: 767px) {
-  /* line 1784, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1789, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .header__title:hover {
     color: #fff;
   }
 }
 
-/* line 1789, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1794, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .header__brandImg {
   position: absolute;
   width: 50px;
   height: 50px;
   margin: 7px 12px;
 }
-/* line 1794, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1799, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .header__brandImg img {
   width: 100%;
 }
 
-/* line 1798, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1803, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .header__navigation {
   display: -webkit-box;
   display: -webkit-flex;
@@ -24054,7 +24061,7 @@ form.edit_user label {
   margin-left: auto;
 }
 
-/* line 1811, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1816, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .navigation__link {
   display: block;
   color: #fff;
@@ -24066,22 +24073,22 @@ form.edit_user label {
   letter-spacing: 0;
   opacity: .8;
 }
-/* line 1821, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1826, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .navigation__link.l__header__form {
   opacity: 1;
 }
 @media screen and (min-width: 767px) {
-  /* line 1825, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1830, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .navigation__link:hover {
     opacity: 1;
   }
 }
-/* line 1829, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1834, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .navigation__link .material-icons {
   vertical-align: middle;
 }
 
-/* line 1834, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1839, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .link__title {
   display: inline-block;
   color: #fff;
@@ -24090,7 +24097,7 @@ form.edit_user label {
   margin-left: -3px;
 }
 
-/* line 1842, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1847, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .header__form {
   display: inline-block;
   padding: 0;
@@ -24099,7 +24106,7 @@ form.edit_user label {
   border: none;
   position: relative;
 }
-/* line 1849, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1854, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .header__form input.search-box {
   box-shadow: none;
   border: 1px solid #efefef;
@@ -24111,28 +24118,28 @@ form.edit_user label {
   text-align: center;
   width: 150px;
 }
-/* line 1860, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1865, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .header__form button.search-btn {
   display: none;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 1865, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1870, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__header {
     bottom: 0;
   }
 
-  /* line 1868, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1873, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .row__header {
     padding: 0;
   }
 
-  /* line 1871, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1876, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .header__navigation {
     width: 100%;
   }
 
-  /* line 1874, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1879, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .navigation__link {
     text-align: center;
     line-height: 50px;
@@ -24141,19 +24148,19 @@ form.edit_user label {
     flex: 1;
     padding: 0 3px;
   }
-  /* line 1881, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1886, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .navigation__link .material-icons {
     font-size: 30px;
   }
 
-  /* line 1885, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1890, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .link__title {
     display: block;
     line-height: 0;
     font-size: 10px;
   }
 }
-/* line 1898, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1903, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .material-icons {
   font-family: 'Material Icons';
   font-weight: 400;
@@ -24171,36 +24178,36 @@ form.edit_user label {
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 1916, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1921, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .mdl-layout__header {
     bottom: 0;
   }
-  /* line 1918, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1923, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .mdl-layout__header .mdl-layout__header-row {
     padding: 0;
   }
-  /* line 1920, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1925, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .mdl-layout__header .mdl-layout__header-row .mdl-navigation {
     height: inherit;
     width: 100%;
   }
-  /* line 1923, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1928, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .mdl-layout__header .mdl-layout__header-row .mdl-navigation .mdl-navigation__link {
     flex-grow: 1;
   }
 }
-/* line 1935, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1940, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__wrapper {
   padding-top: 64px;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 1939, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1944, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__wrapper {
     padding-top: 0;
   }
 }
-/* line 1947, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1952, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .mdl-layout__content {
   display: block;
 }
@@ -24210,28 +24217,28 @@ form.edit_user label {
 * state
 *
 *=============================================================*/
-/* line 1961, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1966, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .is__PC {
   display: block !important;
 }
 
-/* line 1964, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 1969, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .is__SP {
   display: none !important;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 1970, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1975, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .is__PC {
     display: none !important;
   }
 
-  /* line 1973, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 1978, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .is__SP {
     display: block !important;
   }
 }
-/* line 2001, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2006, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .edit__profileButton, .edit__settingButton {
   display: inline-block;
   border: 1px solid #cdcdcd;
@@ -24240,7 +24247,7 @@ form.edit_user label {
   cursor: pointer;
 }
 
-/* line 2010, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2015, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .settingMenu_back {
   display: none;
   position: fixed;
@@ -24257,7 +24264,7 @@ form.edit_user label {
   z-index: 10;
 }
 
-/* line 2025, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2030, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__settingMenu {
   display: table;
   padding: 10px 0;
@@ -24265,14 +24272,14 @@ form.edit_user label {
   height: 100%;
 }
 
-/* line 2031, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2036, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .r__settingMenu {
   display: table-cell;
   padding: 2.7em 2em;
   vertical-align: middle;
 }
 
-/* line 2036, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2041, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .settingMenu {
   margin: 0 auto;
   max-width: 600px;
@@ -24282,11 +24289,11 @@ form.edit_user label {
   background-color: #fff;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
-/* line 2044, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2049, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .settingMenu li {
   background-color: #fff;
 }
-/* line 2046, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2051, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .settingMenu li a {
   display: block;
   border-bottom: 1px solid #dbdbdb;
@@ -24294,7 +24301,7 @@ form.edit_user label {
   padding: 10px;
 }
 
-/* line 2055, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2060, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .edit__settingButton__close {
   float: right;
   margin-top: .8em;
@@ -24312,30 +24319,30 @@ form.edit_user label {
 }
 
 @media screen and (min-width: 767px) {
-  /* line 2071, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2076, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .edit__settingButton__close:hover {
     background-color: #dd7979;
   }
 }
-/* line 2078, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2083, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .pagination {
   display: block;
   text-align: center;
   color: #666;
   font-size: 0;
 }
-/* line 2083, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2088, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .pagination li {
   display: inline-block;
   font-size: 14px;
 }
 
-/* line 2091, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2096, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .no_playlist, .no_purchase {
   text-align: center;
 }
 
-/* line 2098, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2103, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__new__registrations,
 .l__new__sessions {
   max-width: 360px;
@@ -24345,12 +24352,12 @@ form.edit_user label {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* line 2109, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2114, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__new__registrations .tos_check a {
   color: #324fe1;
 }
 
-/* line 2116, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2121, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__purchase {
   max-width: 580px;
   margin: auto;
@@ -24359,51 +24366,51 @@ form.edit_user label {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* line 2123, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2128, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .list__purchase {
   margin: 0 0 30px 0;
 }
 
-/* line 2126, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2131, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .purchase__time {
   color: #ccc;
 }
 
-/* line 2129, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2134, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .purchase__content {
   margin: 10px 0 0 30px;
 }
-/* line 2131, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2136, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .purchase__content .list__title {
   font-size: 1.2em;
   vertical-align: middle;
 }
-/* line 2135, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2140, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .purchase__content .list__star {
   display: inline-block;
   padding: 0 0 0 10px;
 }
-/* line 2138, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2143, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .purchase__content .list__star i {
   vertical-align: middle;
   font-size: 16px;
   color: #e8e54c;
 }
-/* line 2145, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2150, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .purchase__content .list__author {
   display: block;
 }
 
-/* line 2153, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2158, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__payment_info {
   max-width: 580px;
   margin: auto;
 }
-/* line 2156, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2161, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__payment_info h2 {
   text-align: center;
 }
-/* line 2159, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2164, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__payment_info h3 {
   font-size: 1.2em;
   margin: 15px 0;
@@ -24412,27 +24419,27 @@ form.edit_user label {
   background-color: #fff;
   padding: 30px;
 }
-/* line 2166, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2171, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__payment_info h3 span {
   font-size: 1.6em;
   padding: 0 15px;
 }
 
-/* line 2174, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2179, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__payment_info__inner {
   background-color: #fff;
   padding: 30px;
 }
-/* line 2177, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2182, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__payment_info__inner button {
   margin-top: 30px;
 }
-/* line 2183, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2188, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__payment_info__inner #payment-form {
   max-width: 496px !important;
   padding: 0 15px;
 }
-/* line 2186, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2191, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__payment_info__inner #payment-form button {
   padding: 5px;
   border: 1px solid #444;
@@ -24440,7 +24447,7 @@ form.edit_user label {
   margin-top: 30px;
 }
 
-/* line 2198, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2203, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .StripeElement {
   background-color: white;
   padding: 8px 12px;
@@ -24451,36 +24458,36 @@ form.edit_user label {
   transition: box-shadow 150ms ease;
 }
 
-/* line 2208, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2213, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .StripeElement--focus {
   box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
-/* line 2212, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2217, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .StripeElement--invalid {
   border-color: #fa755a;
 }
 
-/* line 2216, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2221, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
 
-/* line 2220, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2225, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #card-errors {
   color: #e25950;
 }
 
-/* line 2227, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2232, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__acc_info {
   max-width: 580px;
   margin: auto;
 }
-/* line 2230, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2235, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__acc_info h2 {
   text-align: center;
 }
-/* line 2233, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2238, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__acc_info h3 {
   font-size: 1.2em;
   margin: 15px 0;
@@ -24489,32 +24496,32 @@ form.edit_user label {
   background-color: #fff;
   padding: 30px;
 }
-/* line 2240, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2245, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__acc_info h3 span {
   font-size: 1.6em;
   padding: 0 15px;
 }
 
-/* line 2248, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2253, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__acc_info__inner {
   background-color: #fff;
   padding: 30px;
 }
-/* line 2251, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2256, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__acc_info__inner button {
   margin-top: 30px;
 }
 
-/* line 2259, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2264, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__com_info {
   max-width: 580px;
   margin: auto;
 }
-/* line 2262, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2267, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__com_info h2 {
   text-align: center;
 }
-/* line 2265, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2270, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__com_info h3 {
   font-size: 1.2em;
   margin: 15px 0;
@@ -24523,32 +24530,32 @@ form.edit_user label {
   background-color: #fff;
   padding: 30px;
 }
-/* line 2272, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2277, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__com_info h3 span {
   font-size: 1.6em;
   padding: 0 15px;
 }
 
-/* line 2280, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2285, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__com_info__inner {
   background-color: #fff;
   padding: 30px;
 }
-/* line 2283, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2288, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__com_info__inner button {
   margin-top: 30px;
 }
 
-/* line 2291, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2296, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__bank_info {
   max-width: 580px;
   margin: auto;
 }
-/* line 2294, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2299, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__bank_info h2 {
   text-align: center;
 }
-/* line 2297, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2302, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__bank_info h3 {
   font-size: 1.2em;
   margin: 15px 0;
@@ -24557,32 +24564,32 @@ form.edit_user label {
   background-color: #fff;
   padding: 30px;
 }
-/* line 2304, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2309, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__bank_info h3 span {
   font-size: 1.6em;
   padding: 0 15px;
 }
 
-/* line 2312, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2317, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__bank_info__inner {
   background-color: #fff;
   padding: 30px;
 }
-/* line 2315, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2320, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__bank_info__inner button {
   margin-top: 30px;
 }
 
-/* line 2323, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2328, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__salesmanage {
   max-width: 580px;
   margin: auto;
 }
-/* line 2326, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2331, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__salesmanage h2 {
   text-align: center;
 }
-/* line 2329, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2334, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__salesmanage h3 {
   font-size: 1.2em;
   margin: 15px 0;
@@ -24591,71 +24598,71 @@ form.edit_user label {
   background-color: #fff;
   padding: 30px;
 }
-/* line 2336, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2341, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__salesmanage h3 span {
   font-size: 1.6em;
   padding: 0 15px;
 }
 
-/* line 2344, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2349, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__salesmanage__inner {
   background-color: #fff;
   padding: 30px;
 }
 
-/* line 2350, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2355, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 table.minimum {
   background-color: #fff;
   letter-spacing: 1px;
   margin: 30px 0 0;
 }
-/* line 2354, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2359, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 table.minimum th {
   padding: 10px;
   background-color: #f2f2f2;
   font-weight: 700;
 }
-/* line 2359, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2364, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 table.minimum td {
   padding: 10px;
 }
 
-/* line 2368, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2373, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__contact {
   max-width: 580px;
   margin: auto;
 }
-/* line 2371, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2376, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__contact h2 {
   text-align: center;
 }
 
-/* line 2376, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2381, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .form__contact {
   padding: 30px;
   background-color: #fff;
 }
-/* line 2379, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2384, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .form__contact .input {
   margin: 0 0 20px 0;
 }
-/* line 2382, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2387, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .form__contact input {
   margin: 0;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 2388, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2393, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .form__contact input {
     width: 100%;
   }
 }
-/* line 2396, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2401, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #follow_form {
   margin: 15px 0;
 }
 
-/* line 2400, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2405, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #follow_form button {
   background-color: transparent;
   border: 1px solid #666;
@@ -24663,104 +24670,104 @@ table.minimum td {
   vertical-align: middle;
   font-weight: 700;
 }
-/* line 2406, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2411, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #follow_form button i {
   vertical-align: middle;
 }
-/* line 2409, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2414, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #follow_form button.unfollow {
   background-color: #f0ad4e;
   border-color: #f0ad4e;
   color: #fff;
 }
 
-/* line 2435, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2440, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .clearfix:after {
   content: "";
   clear: both;
   display: block;
 }
 
-/* line 2443, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2448, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__m {
   max-width: 580px;
   margin: auto;
 }
 
-/* line 2449, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2454, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__playlist {
   margin: 0 0 60px 0;
 }
-/* line 2451, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2456, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__playlist hr {
   border-top: 1px solid #eee;
   margin: 10px 0 30px 0;
 }
 
-/* line 2457, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2462, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listShow {
   background-color: #fff;
   padding: 15px;
 }
 
 @media only screen and (min-width: 767px) {
-  /* line 2462, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2467, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__listShow {
     padding: 30px;
   }
 }
-/* line 2467, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2472, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .playlist__img {
   float: left;
   width: 120px;
 }
-/* line 2470, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2475, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .playlist__img img {
   width: 100%;
   border-radius: 7px;
 }
 
-/* line 2475, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2480, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .trackCount {
   color: #999;
 }
 
-/* line 2478, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2483, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .playlist__text {
   margin: 0 0 0 120px;
   padding: 0 0 0 15px;
   overflow: hidden;
 }
 
-/* line 2483, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2488, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .playlist__title {
   font-weight: 700;
   font-size: 1.2em;
 }
 
-/* line 2487, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2492, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .playlist__author {
   color: #999;
 }
 
-/* line 2490, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2495, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .playlist__price {
   color: #999;
   font-size: 1.2em;
   margin: 10px 0 0 0;
 }
 
-/* line 2495, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2500, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .playlist__discription {
   margin: 0 0 30px 0;
 }
 
-/* line 2498, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2503, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .favchange {
   margin: 10px 0 0 0;
 }
 
-/* line 2501, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2506, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .btn__favorite__square {
   border: 2px solid #ccc;
   line-height: 2;
@@ -24768,164 +24775,164 @@ table.minimum td {
   color: #666;
   background-color: transparent;
 }
-/* line 2507, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2512, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .btn__favorite__square i {
   vertical-align: middle;
   font-size: 16px;
 }
 
-/* line 2512, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2517, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .unfavorite.btn__favorite__square {
   background-color: #f0ad4e;
   border-color: #f0ad4e;
   color: #fff;
 }
 
-/* line 2517, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2522, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks {
   padding: 20px 0;
   border-top: 1px solid #eee;
 }
-/* line 2520, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2525, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks table {
   margin: 0;
 }
-/* line 2523, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2528, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td {
   vertical-align: middle;
   padding: 10px 5px;
 }
-/* line 2527, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2532, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td:nth-of-type(1) {
   width: 30px;
 }
-/* line 2531, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2536, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td:nth-of-type(2) {
   width: 25px;
 }
-/* line 2538, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2543, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td:nth-of-type(4) {
   width: 50px;
 }
-/* line 2542, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2547, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td:nth-of-type(5) {
   width: 50px;
 }
-/* line 2546, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2551, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td .comment,
 .l__tracks td .track_sorticon {
   cursor: pointer;
 }
-/* line 2550, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2555, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td .comment i, .l__tracks td .trackComment i {
   color: #e8e54c;
 }
-/* line 2553, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2558, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tracks td .comment i.still {
   color: #000;
 }
 
 @media only screen and (min-width: 767px) {
-  /* line 2558, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2563, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__listShow {
     padding: 30px;
   }
 
-  /* line 2561, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2566, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .playlist__text {
     padding: 15px;
   }
 
-  /* line 2564, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2569, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .playlist__price {
     float: right;
     margin: 0;
   }
 
-  /* line 2569, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2574, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__tracks td:nth-of-type(1) {
     width: 40px;
   }
-  /* line 2573, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2578, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__tracks td:nth-of-type(2) {
     width: 30px;
   }
 }
-/* line 2586, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2591, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .trackSong,
 .trackArtist {
   display: block;
 }
 
-/* line 2590, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2595, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .trackSong {
   font-weight: 700;
   font-size: 1.2em;
 }
 
-/* line 2594, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2599, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .trackArtist {
   color: #888;
 }
 
-/* line 2604, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2609, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listEdit .playlist__title,
 .l__listEdit .list_genre,
 .l__listEdit .playlist__price {
   margin: 15px 0;
 }
-/* line 2611, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2616, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listEdit .l__tracks td:nth-of-type(3) span {
   margin: 5px 0;
 }
-/* line 2614, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2619, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listEdit .l__tracks td:nth-of-type(4) {
   width: 30px;
   padding: 0 5px;
 }
-/* line 2618, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2623, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listEdit .l__tracks td:nth-of-type(5),
 .l__listEdit .l__tracks td:nth-of-type(6) {
   width: 30px;
   padding: 0 5px;
 }
-/* line 2623, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2628, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__listEdit .l__tracks input[type="text"],
 .l__listEdit .l__tracks textarea {
   border-radius: 5px;
   border-width: 2px;
 }
 
-/* line 2637, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2642, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .modal__comment {
   padding: 30px 45px;
 }
-/* line 2639, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2644, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .modal__comment .modal_song, .modal__comment .modal_artist {
   display: block;
 }
-/* line 2642, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2647, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .modal__comment .playlist__text {
   padding: 40px 15px 10px;
 }
 
-/* line 2646, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2651, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .modal_song {
   font-weight: 700;
   font-size: 1.2em;
 }
 
-/* line 2650, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2655, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .modal_artist {
   color: #888;
 }
 
-/* line 2663, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2668, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .js__listBack {
   cursor: pointer;
 }
 
-/* line 2668, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2673, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .usergenre_area,
 .listgenre_area {
   margin: 15px auto;
@@ -24933,7 +24940,7 @@ table.minimum td {
   text-align: center;
 }
 
-/* line 2675, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2680, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 #stripe_connect {
   position: relative;
   padding: 2px 20px;
@@ -24949,54 +24956,54 @@ table.minimum td {
   border-radius: 3px;
 }
 
-/* line 2690, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2695, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__confirmations__new {
   max-width: 580px;
   margin: auto;
 }
-/* line 2693, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2698, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__confirmations__new h2 {
   text-align: center;
   padding: 60px 0 20px;
   font-size: 2em;
   font-weight: 400;
 }
-/* line 2699, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2704, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__confirmations__new p {
   margin: 10px 0;
 }
-/* line 2702, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2707, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__confirmations__new .form-actions {
   padding: 30px 0;
 }
 
-/* line 2709, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2714, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__unsubscribe {
   text-align: center;
 }
-/* line 2711, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2716, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__unsubscribe img {
   display: block;
   margin: 60px auto 0;
   width: 20%;
 }
-/* line 2716, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2721, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__unsubscribe h2 {
   font-size: 2em;
   font-weight: 400;
 }
 
-/* line 2723, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2728, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .socaial_area {
   display: block;
   margin: 5px 0;
 }
-/* line 2726, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2731, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .socaial_area img {
   width: 30px;
 }
 
-/* line 2733, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2738, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .VerifiedBadge {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
@@ -25013,29 +25020,29 @@ table.minimum td {
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 2752, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+  /* line 2757, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
   .l__footer {
     padding-bottom: 64px;
   }
 }
-/* line 2757, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2762, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .footer__list {
   font-size: 0;
   border-top: 1px solid #e5e5e5;
   margin: 0;
 }
 
-/* line 2762, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2767, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .footer__listItem:nth-child(odd) {
   border-right: 1px solid #e5e5e5;
 }
 
-/* line 2765, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2770, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .footer__listItem:nth-child(odd) {
   border-right: 1px solid #e5e5e5;
 }
 
-/* line 2769, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2774, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .footer__listItem {
   font-size: 13px;
   display: inline-block;
@@ -25044,71 +25051,83 @@ table.minimum td {
   border-bottom: 1px solid #e5e5e5;
   height: 50px;
 }
-/* line 2776, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2781, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .footer__listItem a {
   display: table;
   width: 100%;
   height: 100%;
 }
-/* line 2780, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2785, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .footer__listItem a span {
   display: table-cell;
   line-height: 17px;
   vertical-align: middle;
 }
 
-/* line 2789, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2794, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__copyright {
   padding: 15px 0;
 }
 
-/* line 2792, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2797, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .copyright__text {
   text-align: center;
   font-size: 12px;
 }
 
-/* line 2802, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2807, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei,
 .l__about,
-.l__privacy {
+.l__privacy,
+.l__term {
   background: #fff;
   border-radius: 5px;
   padding: 30px 20px;
   max-width: 480px;
   margin: auto;
 }
-/* line 2810, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2816, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei h3,
 .l__about h3,
-.l__privacy h3 {
+.l__privacy h3,
+.l__term h3 {
   margin: 30px 0 7px;
 }
-/* line 2813, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2819, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei p,
 .l__about p,
-.l__privacy p {
+.l__privacy p,
+.l__term p {
   margin: 0 0 20px;
 }
-/* line 2816, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2822, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei ul,
 .l__about ul,
-.l__privacy ul {
+.l__privacy ul,
+.l__term ul {
   list-style-type: disc;
 }
-/* line 2819, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2825, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+.l__tokutei dd,
+.l__about dd,
+.l__privacy dd,
+.l__term dd {
+  padding-left: 30px;
+}
+/* line 2828, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei a,
 .l__about a,
-.l__privacy a {
+.l__privacy a,
+.l__term a {
   color: #324fe1;
 }
 
-/* line 2823, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2832, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .l__playlist .playlist__editLink {
   padding: 30px 0;
 }
 
-/* line 2828, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
+/* line 2837, /home/ubuntu/workspace/starlistz/app/assets/stylesheets/main.scss */
 .liststatus {
   background-color: red;
   border-radius: 3px;
