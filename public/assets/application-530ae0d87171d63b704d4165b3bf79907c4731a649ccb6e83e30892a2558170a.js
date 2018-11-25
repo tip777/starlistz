@@ -40144,6 +40144,12 @@ return $.ui.tooltip;
 
 
 }).call(this);
+document.addEventListener('load', function(event) {
+  if (typeof ga === 'function') {
+    ga('set', 'location', event.data.url);
+    ga('send', 'pageview');
+  }
+});
 (function() {
 
 
@@ -40503,7 +40509,7 @@ $(document).ready(function(){
     }else{
       //$(this).attr("name")　これで番号がとれる
       // $('.stripe-button-el').trigger('click');
-      $('#modal-content-' + $(this).attr("name") + ' .stripe-button-el').trigger('click');
+      $('.stripe-button-el').trigger('click');
     }
     console.log(gon.current_user);
     e.preventDefault();

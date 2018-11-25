@@ -17,6 +17,7 @@
 //= require select2
 //= require jquery-ui
 //= require cocoon
+//= require google_analytics
 //= require_tree .
 
 // turbolinks対応文
@@ -25,14 +26,15 @@
 // });
 
 
-  // グロバールナビゲーション選択ページの判定
-  var url = window.location.pathname;
-  $('.nav li a[href="'+url+'"]').parents('.collapse-down').addClass('active');
+// グロバールナビゲーション選択ページの判定
+var url = window.location.pathname;
+$('.nav li a[href="'+url+'"]').parents('.collapse-down').addClass('active');
 
-  if ( url.match(/chart/)) {
-            $('.nav li a[ href *= "chart" ]').parents('.collapse-down').addClass('active');
-  //strにhogeを含む場合の処理
-  }
+if ( url.match(/chart/)) {
+          $('.nav li a[ href *= "chart" ]').parents('.collapse-down').addClass('active');
+//strにhogeを含む場合の処理
+}
+
 
 $(document).ready(function(){
   $('.js-tags-input').each(function() {
