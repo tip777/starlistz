@@ -21,20 +21,20 @@ module ErrorUtility
   def log_supportContact(contact, user)
     Rails.logger.info("Info: StarListz_SupportContact")
     if user != nil
-      Rails.logger.info("user_id: #{user.id} | user_name: #{user.name}")
+      Rails.logger.info("SupportContact_user_id: #{user.id} | user_name: #{user.name}")
     end
-    Rails.logger.info("contact_name: #{contact.name}")
-    Rails.logger.info("contact_email: #{contact.email}")
-    Rails.logger.info("contact_title: #{contact.title}")
-    Rails.logger.info("contact_message: #{contact.message}")
+    Rails.logger.info("SupportContact__name: #{contact.name}")
+    Rails.logger.info("SupportContact__email: #{contact.email}")
+    Rails.logger.info("SupportContact__title: #{contact.title}")
+    Rails.logger.info("SupportContact__message: #{contact.message}")
   end
   
   def log_unsubscribe(contact, user)
     Rails.logger.info("Info: StarListz_Unsubscribe")
     if user != nil
-      Rails.logger.info("user_id: #{user.id} | user_name: #{user.name}")
+      Rails.logger.info("Unsubscribe_user_id: #{user.id} | user_name: #{user.name}")
     end
-    Rails.logger.info("contact_message: #{contact.message}")
+    Rails.logger.info("Unsubscribe_contact_message: #{contact.message}")
   end
 
 end
