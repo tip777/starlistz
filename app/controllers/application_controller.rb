@@ -19,11 +19,13 @@ class ApplicationController < ActionController::Base
  
   # redirect correct server from herokuapp domain for SEO
   def redirect_domain
-    return unless /\star-prod.herokuapp.com/ =~ request.host
+    return unless /star-prod/ =~ request.host
+    
+    redirect_url = "www.starlistz.com"
     
     # 主にlocalテスト用の対策80と443以外でアクセスされた場合ポート番号をURLに含める 
     port = ":#{request.port}" unless [80, 443].include?(request.port)
-    redirect_to "#{request.protocol}#{Constants::HP_URL}#{port}#{request.path}", status: :moved_permanently
+    redirect_to "#{request.protocol}#{redirect_url}#{port}#{request.path}", status: :moved_permanently
   end
   
 
