@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action  :store_location
   helper_method :is_purchase?, :is_stripe_account_id?
+  #herokuapp.comから独自ドメインへリダイレクト
+  before_filter :redirect_domain
 
   include StripeCreate #Stripe 作成部分
   include ErrorUtility #ログ 共通部分
@@ -13,6 +15,17 @@ class ApplicationController < ActionController::Base
   if ENV['BASIC_AUTH_PASSWORD'] != nil
     http_basic_authenticate_with :name => "starlistz", :password => "testtest" if Rails.env.production? #本番開始　するときに消す
   end
+  
+ 
+  # redirect correct server from herokuapp domain for SEO
+  def redirect_domain
+    return unless /\star-prod.herokuapp.com/ =~ request.host
+    
+    # 主にlocalテスト用の対策80と443以外でアクセスされた場合ポート番号をURLに含める 
+    port = ":#{request.port}" unless [80, 443].include?(request.port)
+    redirect_to "#{request.protocol}#{Constants::HP_URL}#{port}#{request.path}", status: :moved_permanently
+  end
+  
 
   def set_user_genre
     #Userのタグだけ抽出
