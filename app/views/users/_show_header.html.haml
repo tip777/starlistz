@@ -39,7 +39,7 @@
       = render 'follow_form', user: @user if user_signed_in?
 
       .description
-        = @user.user_profile.description
+        = simple_format(@user.user_profile.description)
 
       = render 'layouts/tag_list', tag_list: @user.tag_list
 
