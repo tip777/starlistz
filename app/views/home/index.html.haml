@@ -18,16 +18,62 @@
       %footer
         = link_to "無料登録する", new_user_registration_path,{ class: "button" }
 
-%section.genre
-  .container-fluid.sc
-    %h2.ntm ジャンルTOP10
-    %ul.bigblock
-      - @genre.each do |genre|
-        %li
-          = link_to trun_str(genre.name, 30), chart_path(genre: genre.name, sort: Constants::SORT)
 
+%section.top__copy
+  %h2 ........とは
+  %p ああああさああああああああああああああ
+  %p さあああああああああああああああああああああああ
+
+
+%section.top__discription
   .container-fluid.sc
-    %h2.ntm NEWプレイリスト
-    .outer-cardlist
-      = render "lists/list", lists: @newlist, customer: @customer
+    .l__block
+      .l__text
+        %h2 ぶんしょう1
+        %p らあああああああああああ
+        %p らあああああああああああああああああああ
+        %p らああああああああ
+      %img{:src => "#{asset_path "listener.png"}"}
+  .container-fluid.sc
+    .l__block
+      .l__text
+        %h2 ぶんしょう1
+        %p らあああああああああああ
+        %p らあああああああああああああああああああ
+        %p らああああああああ
+      %img{:src => "#{asset_path "listener.png"}"}
+  .container-fluid.sc
+    .l__block
+      .l__text
+        %h2 ぶんしょう1
+        %p らあああああああああああ
+        %p らあああああああああああああああああああ
+        %p らああああああああ
+      %img{:src => "#{asset_path "listener.png"}"}
+
+
+%section.top__sample
+  %h2 SAMPLE
+  %p ここここここここ
+
+  .l__btn__sample
+    = link_to "無料登録する", new_user_registration_path,{ class: "button" }
+
+
+
+%section.top__question
+  %h2 よくある質問
+  .l__q
+    %p Q. ここに質問内容
+  .l__a
+    %p A. ここに回答
+  .l__q
+    %p Q. ここに質問内容
+  .l__a
+    %p A. ここに回答
+  .l__q
+    %p Q. ここに質問内容
+  .l__a
+    %p A. ここに回答
+
 
