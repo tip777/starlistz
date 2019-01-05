@@ -1,4 +1,4 @@
-/ Banner
+
 %section#banner
   /
     ".inner" is set up as an inline-block so it automatically expands
@@ -18,62 +18,78 @@
       %footer
         = link_to "無料登録する", new_user_registration_path,{ class: "button" }
 
-
-%section.top__copy
-  %h2 ........とは
-  %p ああああさああああああああああああああ
-  %p さあああああああああああああああああああああああ
-
-
-%section.top__discription
+- if user_signed_in?
+  %section.genre
   .container-fluid.sc
-    .l__block
-      .l__text
-        %h2 ぶんしょう1
-        %p らあああああああああああ
-        %p らあああああああああああああああああああ
-        %p らああああああああ
-      %img{:src => "#{asset_path "listener.png"}"}
+    %h2.ntm ジャンルTOP10
+    %ul.bigblock
+      - @genre.each do |genre|
+        %li
+          = link_to trun_str(genre.name, 30), chart_path(genre: genre.name, sort: Constants::SORT)
+
   .container-fluid.sc
-    .l__block
-      .l__text
-        %h2 ぶんしょう1
-        %p らあああああああああああ
-        %p らあああああああああああああああああああ
-        %p らああああああああ
-      %img{:src => "#{asset_path "listener.png"}"}
-  .container-fluid.sc
-    .l__block
-      .l__text
-        %h2 ぶんしょう1
-        %p らあああああああああああ
-        %p らあああああああああああああああああああ
-        %p らああああああああ
-      %img{:src => "#{asset_path "listener.png"}"}
+    %h2.ntm NEWプレイリスト
+    .outer-cardlist
+      = render "lists/list", lists: @newlist, customer: @customer
 
+- else
 
-%section.top__sample
-  %h2 SAMPLE
-  %p ここここここここ
-
-  .l__btn__sample
-    = link_to "無料登録する", new_user_registration_path,{ class: "button" }
-
-
-
-%section.top__question
-  %h2 よくある質問
-  .l__q
-    %p Q. ここに質問内容
-  .l__a
-    %p A. ここに回答
-  .l__q
-    %p Q. ここに質問内容
-  .l__a
-    %p A. ここに回答
-  .l__q
-    %p Q. ここに質問内容
-  .l__a
-    %p A. ここに回答
+  %section.top__copy
+    %h2 StarListzとは？
+    %p 普段聞いてきた曲を想いと一緒にプレイリストにして誰でも配信出来るサービスです。
+  
+  
+  %section.top__discription
+    .container-fluid.sc
+      .l__block
+        .l__text
+          %h2 他の人が聞いてきた曲が知れる
+          %p 「普段どんな曲を聴いているんだろう」
+          %p 「どんな曲を聴いて影響を受けているんだろう」
+          %p 意外と知らない普段聞いている曲を知ることができます。
+        %img{:src => "#{asset_path "listener.png"}"}
+    .container-fluid.sc
+      .l__block
+        .l__text
+          %h2 曲への気持ちが分かる
+          %p 曲に対してどう思っているか、
+          %p 説明が書ける機能があるため
+          %p 作成者の深いところまで知ることができます。
+        %img{:src => "#{asset_path "listener.png"}"}
+    .container-fluid.sc
+      .l__block
+        .l__text
+          %h2 違う音楽の楽しみ方がある
+          %p 誰かの曲への気持ちから
+          %p 知らない曲への興味が湧き、
+          %p 聴くのとは違う形の楽しみ方があります。
+          // %p らああああああああ
+        %img{:src => "#{asset_path "listener.png"}"}
+  
+  
+  %section.top__sample
+    %h2 サンプル
+    %p 実際のプレイリストがこちらです。
+  
+    .l__btn__sample
+      = link_to "サンプルリスト", "",{ class: "button" }
+  
+  
+  
+  %section.top__question
+    %h2 よくある質問
+    .l__q
+      %p Q. 誰でもプレイリストを作成してもいいですか？
+    .l__a
+      %p A. はい。誰でも作成して大丈夫です。
+    .l__q
+      %p Q. プレイリストの曲は聞けますか？
+    .l__a
+      %p A. 現状は楽曲を再生することはできません。
+      %p 気になった曲があればお使いのストリーミングサービス等でチェックしてみてください。
+    .l__q
+      %p Q. 有料でプレイリストの販売は可能ですか？
+    .l__a
+      %p A. はい、プレイリストは100円～価格を設定できます。
 
 
