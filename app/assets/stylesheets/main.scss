@@ -2894,87 +2894,72 @@ table.minimum{
 
 
 .top__discription{
-  .container-fluid{
-    background-color: rgba(0, 0, 0, 0.03);
-    display: flex;
-    justify-content: center;
-    margin-bottom: 80px;
-  }
+  padding:60px 0 90px;
+  background-color: rgba(0, 0, 0, 0.03);
+  color:#333;
   .l__block{
     position: relative;
-    height: 400px;
     width: 100%;
-    max-width: 1000px;
-    flex-wrap: nowrap;
-    -webkit-box-pack: end;
-    justify-content: flex-end;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    margin-top: 0px;
-    flex-flow: row wrap;
   }
-  .l__text{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  .l__r{
+    float:right;
+    padding-left: 5%;
+    width:50%;
+    display: block;
+    max-width: 500px;
+    margin:auto;
   }
-  @media only screen and (min-width: 767px) {
-    h2{
-      font-size: 30px;
-      color: rgb(102, 102, 102);
-      text-align: center;
-      font-weight: bold;
-      padding: 40px 0px 40px 0px;
-    }
-    p{
-      font-size: 22px;
-      color: rgb(102, 102, 102);
-      text-align: center;
-      padding: 0px 20px;
-      margin:0;
-    }
+  .l__l{
+    float:left;
+    width: 49%;
+    display: block;
+    max-width: 500px;
+    margin:auto;
+  }
+  h2{
+    font-size: 2em;
+    padding: 40px 0px 40px 0px;
+    margin:0;
+    font-weight: normal;
+    letter-spacing: 0.03em;
+  }
+  p{
+    font-size: 1.4em;
+    padding: 0px 20px;
+    margin:0;
   }
   @media only screen and (max-width: 767px) {
     h2{
-      font-size: 22px;
-      color: rgb(102, 102, 102);
+      font-size: 1.4em;
       text-align: center;
-      font-weight: bold;
-      padding: 30px 0px 15px 0px;
+      font-weight: normal;
+      padding: 30px 0px;
       margin: 0;
     }
     p{
-      font-size: 16px;
-      color: rgb(102, 102, 102);
+      font-size: 14px;
       text-align: center;
       margin:0;
     }
   }
-  img{
-    position: absolute;
-    left: 5%;
-  }
 }
-
 @media only screen and (max-width: 767px) {
 
-.top__discription{
-  .l__block{
-    flex-direction: column;
-    height: 450px;
-    -webkit-box-pack: center;
-    justify-content: center;
-    flex-flow: column;
-  }
-  img{
-    position: relative;
-      left: auto;
-      width: 45%;
-      padding-top:45px; 
+  .top__discription{
+    padding:30px 0;
+    .sc{
+      padding:20px 30px;
+    }
+    .l__l, .l__r{
+      float: none;
+      width: 100%;
+      padding: 0;
     }
   }
 }
+
+
+
 
 .top__sample{
   background-color: rgb(24, 24, 58);
@@ -2984,6 +2969,7 @@ table.minimum{
     color: rgb(255, 255, 255);
     text-align: center;
     padding: 80px 0px 30px;
+    margin:0;
 
   }
   p{
