@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks", :registrations => "users/registrations", :confirmations => "users/confirmations"}
 
   root 'home#index'
+  get 'samplelist' , to: 'home#samplelist' #サンプルプレイリスト
   # get 'name_check', to: 'home#name_check'#ユーザー名重複チェック用
   get 'chart' , to: 'home#chart' #チャート
   get 'about' , to: 'home#about' #プレイリストについて
