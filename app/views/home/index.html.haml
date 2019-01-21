@@ -36,7 +36,7 @@
 
   %section.top__copy
     %h2 StarListzとは？
-    %p 普段聞いてきた曲を想いと一緒にプレイリストにして誰でも配信出来るサービスです。
+    %p 普段聞いてきた曲を想いと一緒にプレイリストにして誰でも公開出来るサービスです。
   
   
   %section.top__discription
@@ -70,12 +70,36 @@
   
   %section.top__sample
     %h2 サンプル
-    %p 実際のプレイリストがこちらです。
+    %p.sample_p 実際のプレイリストがこちらです。
   
-    .l__btn__sample
-      = link_to "サンプルリスト", samplelist_path,{ class: "button" }
-  
-  
+    // .l__btn__sample
+    //   = link_to "サンプルリスト", samplelist_path,{ class: "button" }
+    .sc
+      .outer__cardList
+        .l__cardList
+          / /まだ購入していないプレイリスト
+          %a{:href => "/lists/2"}
+            .cardList__img
+              %img{:alt => "Thumb", :src => "//s3.amazonaws.com/starlistz-bucket-prod/images/2/thumb.jpg?1543994708"}/
+            .cardList__text
+              %span.listtitle
+                StarListz ベストプレイリスト
+              %span.author
+                sample_starlistz
+              %p
+                これはサンプルのリストです。
+              .tags
+                %span.l__playlist.genretag
+                  sample
+                %span.l__playlist.genretag
+                  playlist
+              .l__footerPrice
+                %span.favoriteStar
+                  %i.material-icons
+                    star_rate
+                  0
+                %span.listprice
+                  無料
   
   %section.top__question
     %h2 よくある質問
