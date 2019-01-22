@@ -2,19 +2,24 @@ class HomeController < ApplicationController
   before_action :gon_current_user, only: [:index, :show, :chart, :search]
 
   def index
-    taggings = set_list_genre
-    @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル
-    @newlist = List.is_status.includes({user: [:user_profile]}, :taggings).order('created_at').first(10) #新着のプレイリスト
-
-    if current_user != nil
-      #Customer取得
-      @customer = find_or_create_stripe_customer(current_user)
-      
-      #パラメータでcodeがあればstripeのデータ取得
-      if params[:code] != nil
-        set_stripe_id(current_user, params[:code])
+    if !current_user.nil?
+      taggings = set_list_genre
+      @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル
+      @newlist = List.is_status.includes({user: [:user_profile]}, :taggings).order('created_at').first(10) #新着のプレイリスト
+  
+      if current_user != nil
+        #Customer取得
+        @customer = find_or_create_stripe_customer(current_user)
+        
+        #パラメータでcodeがあればstripeのデータ取得
+        if params[:code] != nil
+          set_stripe_id(current_user, params[:code])
+        end
       end
     end
+  end
+  
+  def samplelist
   end
 
   def chart

@@ -24,15 +24,15 @@
       - if user_signed_in?
         = link_to new_list_path,{ class: "navigation__link" } do
           %i.material-icons add_circle_outline
-          %span.link__title アップロード
+          %span.link__title リスト作成
       - else
         = link_to new_user_session_path,{ class: "navigation__link login is__SP" } do
           %i.material-icons add_circle_outline
-          %span.link__title アップロード
+          %span.link__title リスト作成
 
       = link_to chart_path(genre: Constants::GENRE, sort: Constants::SORT),{ class: "navigation__link" } do
         %i.material-icons queue_music
-        %span.link__title プレイリスト
+        %span.link__title 見つける
 
       / = link_to root_path,{ class: "navigation__link is__SP" } do
       /   %i.material-icons star
