@@ -2463,25 +2463,49 @@ table.minimum{
   background-color: #fff;
     padding: 15px;
 }
+
 @media only screen and (min-width: 767px) {
-.l__listShow{
-  padding: 30px;
+  .l__listShow{
+    padding: 30px;
+  }
 }
+
+.playlist__topimg{
+  float: left;
+  width: 120px;
+  img{
+    width:100%;
+    border-radius: 7px;
+  }
 }
 
 .playlist__img{
-  float: left;
+  @media only screen and (min-width: 767px) {
+    float: left;
     width: 120px;
     img{
       width:100%;
-          border-radius: 7px;
+      border-radius: 7px;
     }
+  }
+  @media only screen and (max-width: 767px) {
+    float: left;
+    width: 60px;
+    img{
+      width:100%;
+      border-radius: 7px;
+    }
+  }
 }
+
 .trackCount{
   color: #999;
 }
+
 .playlist__text{
-  margin: 0 0 0 120px;
+  @media only screen and (min-width: 767px) {
+    margin: 0 0 0 120px;
+  }
   padding:0 0 0 15px;
   overflow: hidden;
 }
@@ -2644,8 +2668,10 @@ table.minimum{
   .modal_song,.modal_artist{
     display: block;
   }
-  .playlist__text{
-    padding: 40px 15px 10px;
+  @media only screen and (min-width: 767px) {
+    .playlist__text{
+      padding: 40px 15px 10px;
+    }
   }
 }
 .modal_song{
