@@ -1143,10 +1143,8 @@ background-color: #17183a;
   display: table;
   width: 100%;
   padding: 0;
-
   background-color: #fff;
-
-  border-bottom: 1px solid #eee;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   margin: 0;
   height: 100%;
   a{
@@ -1546,13 +1544,14 @@ margin:0;
 
 
 .l__profile__tab{
-  height: 50px;
+    height: 50px;
     position: relative;
     font-size: 0;
     margin: 30px auto;
     max-width: 580px;
     background-color: #fff;
     line-height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
   li{
     height: 100%;
     text-align: center;
@@ -2337,6 +2336,7 @@ display: block;
     text-align: center;
     font-weight: 400;
     background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 30px;
     span{
     font-size: 1.6em;
@@ -2349,6 +2349,7 @@ display: block;
 .l__salesmanage__inner{
   background-color: #fff;
   padding: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 
@@ -2381,6 +2382,7 @@ table.minimum{
 .form__contact{
   padding: 30px ;
   background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   .input{
     margin: 0 0 20px 0;
   }
