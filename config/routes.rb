@@ -35,10 +35,9 @@ Rails.application.routes.draw do
   get "users/:id/salesmonth" => "users#salesmonth", as: 'users_salesmonth' #月間売り上げ管理ページ
 
   #検索
+  get 'searches/all_result'
   get 'searches/playlist'
   get 'searches/user'
-  get 'searches/playlist_genre'
-  get 'searches/user_genre'
 
   #　twitter連携　解除用
   delete 'disconnect', to: 'social_profile#destroy'
