@@ -1,0 +1,48 @@
+.l__payment
+  %h2 決済設定
+
+
+  .l__disc
+    %h3 Stripeとの連携
+    %hr
+    .l__innertext
+      %p Stripe社(ストライプ)は、個人や企業がインターネットを通して料金を受納する方法を提供するサービスを提供している企業です。
+      %p Facebook、Twitterといった大手サービスでも採用されている世界最大手のオンライン決済サービスです。
+      %p あなたがStripeのアカウントを作成すれば、SELECTTYPE(セレクトタイプ)と連携させてお客様にクレジットカードの決済機能を提供することが出来るようになります。
+      %img{:src => "/images/visa.png"}
+      %img{:src => "/images/mastercard.png"}
+      %img{:src => "/images/americanExpress.png"}
+      %p 下の「決済代行サービス「Stripe」アカウントを作成/連携する」からStripeのアカウントを作成します。あるいはすでにお持ちのStripeアカウントと連携させます。
+      %p Stripe連携を行いStarListzでプレイリストを公開しましょう！
+    .l__btn
+      = link_to "決済サービス", contact_unsubscribe_path ,class: "btn"
+
+    .l__stripeinfo.success
+      %h4 連携中Stripeアカウント情報
+      .pull__right
+        %p Stripe
+        = link_to "ダッシュボードへ", contact_unsubscribe_path
+
+      %table
+        %tbody
+          %tr
+            %td メールアドレス
+            %td test@starlists.com
+          %tr
+            %td プレイリスト公開情報
+            %td.state 公開中
+
+    .l__stripeinfo.failed
+      %h4 連携中Stripeアカウント情報
+      .pull__right
+        %p Stripe
+        = link_to "ダッシュボードへ", contact_unsubscribe_path
+
+      %table
+        %tbody
+          %tr
+            %td メールアドレス
+            %td test@starlists.com
+          %tr
+            %td プレイリスト公開情報
+            %td.state 非公開
