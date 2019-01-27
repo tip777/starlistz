@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks", :registrations => "users/registrations", :confirmations => "users/confirmations"}
 
   root 'home#index'
+  get 'samplelist' , to: 'home#samplelist' #サンプルプレイリスト
   # get 'name_check', to: 'home#name_check'#ユーザー名重複チェック用
   get 'chart' , to: 'home#chart' #チャート
   get 'about' , to: 'home#about' #プレイリストについて
@@ -34,10 +35,9 @@ Rails.application.routes.draw do
   get "users/:id/salesmonth" => "users#salesmonth", as: 'users_salesmonth' #月間売り上げ管理ページ
 
   #検索
+  get 'searches/all_result'
   get 'searches/playlist'
   get 'searches/user'
-  get 'searches/playlist_genre'
-  get 'searches/user_genre'
 
   #　twitter連携　解除用
   delete 'disconnect', to: 'social_profile#destroy'

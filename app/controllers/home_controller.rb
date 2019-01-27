@@ -18,6 +18,9 @@ class HomeController < ApplicationController
       end
     end
   end
+  
+  def samplelist
+  end
 
   def chart
     #セレクトボックス用のタグ
