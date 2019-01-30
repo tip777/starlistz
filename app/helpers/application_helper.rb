@@ -2,7 +2,7 @@ module ApplicationHelper
     
     include StripeCreate #Stripe 作成部分
     
-    #Stripe 認証ページのURLを編集 _header.html.haml用
+    #Stripe 認証ページのURLを編集 
     def stripe_url_header(current_user)
         return stripe_url_edit(current_user)
     end

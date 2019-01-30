@@ -15,7 +15,9 @@ class HomeController < ApplicationController
         if params[:code] != nil
           set_stripe_id(current_user, params[:code])
         end
+        
       end
+      
     end
   end
   

@@ -9,7 +9,7 @@
 
     %nav.header__navigation{:role => "navigation"}
       .l__header__form.navigation__link.is__PC
-        = search_form_for  @q, html: {class: 'header__form' }, url: searches_playlist_path, enforce_utf8: false do |f|
+        = search_form_for  @q, html: {class: 'header__form' }, url: searches_all_result_path, enforce_utf8: false do |f|
           = text_field_tag :q, @search_word, placeholder: "キーワード", class: "form-control search-box"
           = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn', :name => nil
 
@@ -17,7 +17,7 @@
         %i.material-icons home
         %span.link__title ホーム
 
-      = link_to searches_playlist_path,{ class: "navigation__link is__SP" } do
+      = link_to searches_all_result_path,{ class: "navigation__link is__SP" } do
         %i.material-icons search
         %span.link__title 検索
 
@@ -72,9 +72,7 @@
           %li
             = link_to "売上管理", users_salesmanage_path(current_user)
           %li
-            = link_to "Stripe連携", stripe_url_header(current_user)
-          %li
-            = link_to "Stripeダッシュボード", "https://dashboard.stripe.com/dashboard"
+            = link_to "決済管理", users_payment_path(current_user)
           
         %li
           = link_to "お問い合わせ", contact_path

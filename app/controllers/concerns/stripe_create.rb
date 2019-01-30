@@ -25,6 +25,9 @@ module StripeCreate
         end
       	#Cutomerデータ登録
       	find_or_create_stripe_customer(current_user)
+      	
+      	flash.now[:notice] = "「Stripe」アカウントの連携が完了しました。"
+      	
       else
         log_error(nil, "StripeCreate : set_stripe_id : error_description:#{stripe_data["error_description"]}")
         # Stripe認証がエラーだったら

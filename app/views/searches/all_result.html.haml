@@ -1,0 +1,16 @@
+= render :partial => "searches/search_header"
+.sc
+    .l-tabbox
+        .playlist_area
+        
+            %h2 ユーザー
+            - if @search_user != nil and not @search_user.empty?
+                = render "users/user", users: @user_pages
+                
+            = link_to "すべて見る", :controller => "searches", :action => "user", q: params[:q]
+            
+            %h2 プレイリスト
+            - if @search_list != nil and not @search_list.empty?
+                = render "lists/list", lists: @list_pages.limit(3), customer: @customer
+                
+            = link_to "すべて見る", :controller => "searches", :action => "playlist", q: params[:q]
