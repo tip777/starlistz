@@ -25,9 +25,8 @@ class UsersController < ApplicationController
           #Stripe連携しているか判定
           is_account = is_stripe_account_id?(current_user)
           if is_account != true
-            flash.now[:alert] = "<a id='stripe_connect' href='#{stripe_url_edit(current_user)}'>Stripe連携</a>　が完了していません。<br>
-                            完了しなければプレイリストは公開されません。<br><br>
-                            <a style='font-size:1em;' class='label label-info' href='https://help.starlistz.com/91stripe%E3%81%A8%E3%81%AF%EF%BC%9F/' target='_blank'>Stripeについて詳しくはこちら</a>".html_safe
+            flash.now[:alert] = "<a id='stripe_connect' href='#{users_payment_path(current_user)}'>決済設定</a>　が完了していません。<br>
+                            完了しなければプレイリストは公開されません。"
           end
         end
       end
@@ -66,6 +65,27 @@ class UsersController < ApplicationController
       @my_purchase_pages = @my_purchase.page(params[:my_purchase_page])
     else
       reject_page
+    end
+  end
+  
+  #決算管理
+  def payment
+    @user = User.with_deleted.find_by(id: params[:id])
+    if @user.nil? || @user.paranoia_destroyed?
+      reject_page
+
+    else
+      if current_user != nil && current_user.id == @user.id
+        unless current_user.stripe_acct_id.nil?
+          stripe_account = get_stripe_account_id(current_user)
+          @stripe_email = stripe_account.email
+        else
+          @stripe_email = nil
+        end
+      else
+        reject_page
+      end
+      
     end
   end
 

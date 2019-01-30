@@ -5,7 +5,7 @@ class ListsController < ApplicationController
   def show
     @list = List.with_deleted.find_by(id: params[:id])
     @display_list = true
-    if @list.nil?
+    if @list.nil? || @list.status == "closed"
       reject_page
     else
       if current_user != nil and @list.user == current_user

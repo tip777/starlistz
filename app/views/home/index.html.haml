@@ -20,17 +20,17 @@
 
 - if user_signed_in?
   %section.genre
-  .container-fluid.sc
-    %h2.ntm ジャンルTOP10
-    %ul.bigblock
-      - @genre.each do |genre|
-        %li
-          = link_to trun_str(genre.name, 30), chart_path(genre: genre.name, sort: Constants::SORT)
-
-  .container-fluid.sc
-    %h2.ntm NEWプレイリスト
-    .outer-cardlist
-      = render "lists/list", lists: @newlist, customer: @customer
+    .container-fluid.sc
+      %h2.ntm ジャンルTOP10
+      %ul.bigblock
+        - @genre.each do |genre|
+          %li
+            = link_to trun_str(genre.name, 30), chart_path(genre: genre.name, sort: Constants::SORT)
+  
+    .container-fluid.sc
+      %h2.ntm NEWプレイリスト
+      .outer-cardlist
+        = render "lists/list", lists: @newlist, customer: @customer
 
 - else
 

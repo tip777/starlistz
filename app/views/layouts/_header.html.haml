@@ -72,9 +72,7 @@
           %li
             = link_to "売上管理", users_salesmanage_path(current_user)
           %li
-            = link_to "Stripe連携", stripe_url_header(current_user)
-          %li
-            = link_to "Stripeダッシュボード", "https://dashboard.stripe.com/dashboard"
+            = link_to "決済管理", users_payment_path(current_user)
           
         %li
           = link_to "お問い合わせ", contact_path
