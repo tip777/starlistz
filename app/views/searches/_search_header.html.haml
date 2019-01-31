@@ -1,9 +1,8 @@
-.content-container.bg-whi
-    .sc
-        .l-search-form.imwl
-            = search_form_for  @q, html: {class: 'navbar-form' }, url: searches_all_result_path, enforce_utf8: false do |f|
-                = text_field_tag :q, @search_word, placeholder: "キーワード", class: "search-box"
-                = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn'
+.bg__w
+    .l__searchform
+        = search_form_for  @q, html: {class: 'navbar-form' }, url: searches_all_result_path, enforce_utf8: false do |f|
+            = text_field_tag :q, @search_word, placeholder: "キーワード", class: "search-box"
+            = button_tag "#{content_tag(:i, '', class: 'glyphicon glyphicon-search')}".html_safe, type: :submit, class: 'btn search-btn'
 
     %ul.l__search__tab
         %li{ class: controller.action_name == 'all_result' ? 'active' : '' }

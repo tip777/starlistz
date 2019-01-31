@@ -41,9 +41,8 @@
       - flash.each do |type, msg|
         %div{class: "alert_area alert-#{type}"}= msg.html_safe
 
-      .page-content
 
-        = yield
+      = yield
         
     = render :partial => "layouts/footer"
 

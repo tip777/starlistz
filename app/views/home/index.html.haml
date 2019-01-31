@@ -8,8 +8,7 @@
   .overlay
   .inner
 
-    %header
-      %h2 すべてのプレイリストには価値がある
+    %h2 すべてのプレイリストには価値がある
 
     %p
       無料登録をしてプレイリストを投稿してみよう！
@@ -19,18 +18,16 @@
         = link_to "無料登録する", new_user_registration_path,{ class: "button" }
 
 - if user_signed_in?
-  %section.genre
-    .container-fluid.sc
-      %h2.ntm ジャンルTOP10
-      %ul.bigblock
-        - @genre.each do |genre|
-          %li
-            = link_to trun_str(genre.name, 30), chart_path(genre: genre.name, sort: Constants::SORT)
+  %section.top__genre
+    %h2 ジャンルTOP10
+    %ul
+      - @genre.each do |genre|
+        %li
+          = link_to trun_str(genre.name, 30), chart_path(genre: genre.name, sort: Constants::SORT)
   
-    .container-fluid.sc
-      %h2.ntm NEWプレイリスト
-      .outer-cardlist
-        = render "lists/list", lists: @newlist, customer: @customer
+  .top__playlist
+    %h2 NEWプレイリスト
+    = render "lists/list", lists: @newlist, customer: @customer
 
 - else
 
@@ -72,11 +69,12 @@
     %h2 サンプル
     %p.sample_p 実際のプレイリストがこちらです。
     .sc
-      .outer__cardList
-        .l__cardList
+      %ul.card
+        %li
           / /まだ購入していないプレイリスト
           = link_to samplelist_path do
-            .cardList__img
+            .l__uppper
+            .l__img
               %img{:alt => "Thumb", :src => "//s3.amazonaws.com/starlistz-bucket-prod/sample_playlist/samplelist_thumb.jpg"}/
             .cardList__text
               %span.listtitle
