@@ -1,18 +1,16 @@
 = render "users/show_header"
 
-- if is_signin && is_signed(current_user.id, @user.id)
-  .sc
-    .l-tabbox
-      .mylist_area
-        - if @mylist != nil and not @mylist.empty?
-          = render "lists/list", lists: @mylist_pages, customer: @customer
-        -else
-          .no_playlist
-            プレイリストはありません
-        -if @mylist_pages != nil
-          #mylist_paginator
-            = paginate @mylist_pages, param_name: 'mylist_page'
+.l__tabbox__account
+  - if is_signin && is_signed(current_user.id, @user.id)
+    .mylist_area
+      - if @mylist != nil and not @mylist.empty?
+        = render "lists/list", lists: @mylist_pages, customer: @customer
+      -else
+        .no_playlist
+          プレイリストはありません
+      -if @mylist_pages != nil
+        #mylist_paginator
+          = paginate @mylist_pages, param_name: 'mylist_page'
 
--else
-  .sc
+  -else
     = render "lists/list", lists: @mylist, customer: @customer

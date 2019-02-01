@@ -1,19 +1,18 @@
 = render "users/show_header"
 
-- if is_signin && is_signed(current_user.id, @user.id)
-  .sc
-    .l-tabbox
-      .favlist_area
-        - if @favlist != nil and not @favlist.empty?
-          = render "lists/list", lists: @favlist_pages, customer: @customer
-        -else
-          .no_playlist
-            お気に入りのプレイリストはありません
-        -if @favlist_pages != nil
-          #favlist_paginator
-            = paginate @favlist_pages, param_name: 'favlist_page'
+.l__tabbox__account
+  - if is_signin && is_signed(current_user.id, @user.id)
+    .favlist_area
+      - if @favlist != nil and not @favlist.empty?
+        = render "lists/list", lists: @favlist_pages, customer: @customer
+      -else
+        .no_playlist
+          お気に入りのプレイリストはありません
+      -if @favlist_pages != nil
+        #favlist_paginator
+          = paginate @favlist_pages, param_name: 'favlist_page'
 
--else
-  .sc
-    .no_playlist
-      お気に入りのプレイリストはありません
+  -else
+    .sc
+      .no_playlist
+        お気に入りのプレイリストはありません

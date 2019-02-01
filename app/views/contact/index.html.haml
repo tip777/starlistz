@@ -1,8 +1,6 @@
 .l__contact
-  %h2 お問い合わせ
-
-
   .form__contact
+    %h2 お問い合わせ
     = simple_form_for @contact, :url => contact_thanks_path  do |f|
       - if @contact.errors.any?
         %strong 入力内容にエラーがあります

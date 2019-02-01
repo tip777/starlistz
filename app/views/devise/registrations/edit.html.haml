@@ -10,8 +10,8 @@
       - resource.errors.full_messages.each do |message|
         %li= message
 
-.sc.imwl
-  %h2.h-tit プロフィール編集
+.l__edit__account
+  %h2 プロフィール編集
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
     .form-inputs
       .field_name
