@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   after_action  :store_location
   helper_method :is_purchase?, :is_stripe_account_id?
   #herokuapp.comから独自ドメインへリダイレクト
-  before_filter :redirect_domain
+  before_action  :redirect_domain
 
   include StripeCreate #Stripe 作成部分
   include ErrorUtility #ログ 共通部分

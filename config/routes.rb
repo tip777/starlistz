@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+    
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks", :registrations => "users/registrations", :confirmations => "users/confirmations"}
 
   root 'home#index'
@@ -42,5 +43,5 @@ Rails.application.routes.draw do
 
   #　twitter連携　解除用
   delete 'disconnect', to: 'social_profile#destroy'
-
+  
 end

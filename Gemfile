@@ -1,16 +1,13 @@
 source 'https://rubygems.org'
-ruby "2.3.4"
+ruby "2.5.3"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
-# Use sqlite3 as the database for Active Record
-# gem 'sqlite3', group: :development
+gem 'rails', '5.2.2'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -42,23 +39,25 @@ gem 'omniauth-twitter'
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'erb2haml'
-gem 'ransack'
-gem 'kaminari'
+gem 'ransack', '~> 2.1.1'
+gem 'kaminari', '~> 0.17.0'
 gem 'paperclip'
-gem 'aws-sdk', '~> 2.3'
-gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
+# gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk-s3', '~> 1'
+gem "paranoia", "~> 2.2"
 gem "gretel"
-gem "mysql2"
+gem 'mysql2', '~> 0.4.4'
 gem 'select2-rails'
-gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 6.0'
 gem 'nokogiri', '~> 1.6'
 # gem 'rename'
 gem "cocoon"
 gem 'simple_form'
-gem 'ranked-model'
+gem 'ranked-model', '~> 0.4.0'
 gem 'stripe'
 gem 'gon'
 gem 'rails-i18n'
+gem "bootsnap", ">= 1.1.0", require: false #rails 5.2.2 で標準で必要なよう
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -75,7 +74,7 @@ group :development do
   gem 'byebug', platform: :mri
   gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
   gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
-  gem 'rails-erd' # ER図自動生成
+  # gem 'rails-erd' # ER図自動生成
 end
 
 # herokuでのログ表示のため
