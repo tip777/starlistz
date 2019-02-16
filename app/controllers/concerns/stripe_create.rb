@@ -5,7 +5,7 @@ module StripeCreate
   
   #Stripe 認証ページのURLを編集
   def stripe_url_edit(current_user)
-    return Constants::STRIPE_AUTH_URL + "&stripe_user[email]=#{current_user.email}" + "&stripe_user[url]=#{Constants::HP_URL}" + "&stripe_user[country]=JP" + "&stripe_user[business_name]=StarListz" + "&stripe_user[business_type]=sole_prop" + "&stripe_user[product_description]=StarListzを使用しているすべてのユーザーに対しプレイリストの販売を行うことができます。購入時に即座に決済が行われます。"
+    return Constants::STRIPE_AUTH_URL + "&stripe_user[email]=#{current_user.email}" + "&stripe_user[url]=#{Constants::HP_URL}" + "&stripe_user[country]=JP" + "&stripe_user[phone_number]=05054330291" + "&stripe_user[business_name]=StarListz" + "&stripe_user[business_type]=sole_prop" + "&stripe_user[physical_product]=false" + "&stripe_user[product_description]=StarListzを使用しているすべてのユーザーに対しプレイリストの販売を行うことができます。購入時に即座に決済が行われます。"
   end
   
   #アカウント情報取得

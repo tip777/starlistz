@@ -9,13 +9,15 @@
   .inner
 
     %h2 すべてのプレイリストには価値がある
-
-    %p
-      無料登録をしてプレイリストを投稿してみよう！
     
     - if !user_signed_in?
+      %p
+        無料登録をしてプレイリストを投稿してみよう！
+      
       %footer
-        = link_to "無料登録する", new_user_registration_path,{ class: "button" }
+        = link_to "新規登録する", new_user_registration_path,{ class: "button" }
+        
+        = link_to "ログインする", new_user_session_path,{ class: "button" }
 
 - if user_signed_in?
   %section.top__genre

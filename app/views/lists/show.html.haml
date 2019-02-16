@@ -81,6 +81,22 @@
   
   - if @display_list == true
     .track_section
+      .l__tracks.cont_desc
+        %table
+          %tbody
+            %tr
+              %td
+                %span.favoriteStar
+                  おすすめ
+              %td.track_no_sample
+              %td
+                %span.trackSong 曲名
+                %span.trackArtist アーティスト名
+              %td
+                %a.modal-syncer.js__listBack{"data-target" => "modal-content-0"}
+                  %span.trackComment
+                    曲の説明
+
       - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
         .l__tracks
           %table
