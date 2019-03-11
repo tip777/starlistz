@@ -55,11 +55,20 @@ $(document).ready(function(){
       escapeMarkup: function (markup) { return markup; },
       width: 200
   });
+  
   $(".js-hide-search").select2({
       language: {"noResults": function(){ return "";}},
       escapeMarkup: function (markup) { return markup; },
       minimumResultsForSearch: Infinity,
       width: 100
+  });
+  
+  //list new width200px
+  $(".js-hide-search_listprice").select2({
+      language: {"noResults": function(){ return "";}},
+      escapeMarkup: function (markup) { return markup; },
+      minimumResultsForSearch: Infinity,
+      width: 200
   });
 
   $(".js-search").val($(".js-search").val()).trigger("change");//genre set value

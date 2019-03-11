@@ -1,7 +1,7 @@
 // 購入ボタンのモーダルウィンドウ　紐づけ用
 - i = 1
 
-.l__listShow
+.l__listShow.l__s
   .l__playlist
     -if is_signin && is_signed(current_user.id, @list.user.id)
       .playlist__editLink
@@ -70,7 +70,7 @@
                     "data-panel-label" => "プレイリストを購入",
                     :src => "https://checkout.stripe.com/checkout.js"}
 
-            .span.playlist__price ￥#{@list.price}
+          .span.playlist__price ￥#{@list.price}
 
     .span.playlist__discription= simple_format(@list.description)
     
@@ -81,7 +81,7 @@
   
   - if @display_list == true
     .track_section
-      .l__tracks.cont_desc
+      #cont_desc_show.l__tracks
         %table
           %tbody
             %tr

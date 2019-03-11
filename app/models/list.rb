@@ -10,7 +10,7 @@ class List < ApplicationRecord
   belongs_to :user, -> { unscope(where: :deleted_at) } #paranoia制約なし
   has_many :list_favorites, dependent: :destroy
 
-  has_many :tracks, -> { unscope(where: :deleted_at) }, dependent: :destroy #paranoia制約なし
+  has_many :tracks, -> { unscope(where: :deleted_at) }, inverse_of: :list, dependent: :destroy #paranoia制約なし
   accepts_nested_attributes_for :tracks, reject_if: :all_blank, allow_destroy: true
 
   has_many :purchases, dependent: :destroy
@@ -51,7 +51,7 @@ class List < ApplicationRecord
   #プレイリスト画像 validate
   validates_attachment_content_type :image, :content_type => ["image/png", "image/jpg", "image/jpeg"]
   do_not_validate_attachment_file_type :image
-
+  
   #５曲以上入っているか確認　validation作業に入ったらコメント外す（削除済みの曲は除外）
   after_save do
     if self.tracks.without_deleted.count < 5

@@ -19,18 +19,39 @@
           
         .playlist__text
           .playlist__title
-            = f.input :title, label: false, placeholder: 'プレイリスト名'
+            = f.input :title, label: "プレイリスト名", placeholder: 'プレイリスト名（必須５０文字まで）'
           .list_genre
-            = f.text_field :tag_list, value: "# " + f.object.tag_list.to_s, placeholder: 'ジャンル'
-            = f.hint '例　# Genre1 # Genre2'
+            = f.label :playlist_genre, "ジャンル"
+            = f.text_field :tag_list, value: f.object.tag_list.to_s, placeholder: 'ジャンル（#HIPHOP #RAP...）'
           .span.playlist__price
-            ￥
-            = f.select :price, options_for_select(Constants::AMOUNT, selected: f.object.price), {}, { class: 'js-hide-search', data: { placeholder: '金額を選択してください' } }
+            = f.label :price do
+              価格
+              %span.form-require 必須
+            .price-input
+              ￥
+              = f.select :price, options_for_select(Constants::AMOUNT, selected: f.object.price), {}, { class: 'js-hide-search_listprice', data: { placeholder: '選択してください' } }
 
       .span.playlist__discription
-        = f.input :description, label: false, placeholder: 'プレイリストの説明'
+        = f.label :description, "プレイリスト説明"
+        = f.input :description, label: false, placeholder: 'プレイリストの説明（400文字以内）' + "\n" + '例)　このリストは自分が特にインスピレーションもらった曲を集めました。', :input_html => {:rows => 5}
       
     #track_section.table-sortable
+      #cont_desc_newedit.l__tracks
+        %table
+          %tbody
+            %tr
+              %td
+                %span.favoriteStar
+                  おすすめ
+              %td.track_no_sample
+              %td
+                %span 曲名（必須９０文字まで）
+                %span.trackArtist アーティスト名（必須５０文字まで）
+              %td
+                %a.modal-syncer.js__listBack{"data-target" => "modal-content-0"}
+                  %span.trackComment
+                    曲の説明
+      
       = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
         = render 'track_fields', f: track
           

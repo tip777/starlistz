@@ -268,7 +268,15 @@ input[type="email"] {
   margin:0 0 15px;
 }
 
-
+.form-require {
+    background: #ea352d;
+    margin: 0 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+}
 
 
 
@@ -1884,11 +1892,12 @@ background-color: #17183a;
   }
 }
 .field_track_add{
+  margin-top: 15px;
   a{
     display: inline-block;
     border: 1px solid #808080;
     padding: 5px 15px;
-    margin: 0 0 0 15px;
+    // margin: 0 0 0 15px;
   }
 }
 .actions{
@@ -1919,7 +1928,6 @@ form.edit_user{
   }
   label{
     font-weight:700;
-    color:#ccc;
     font-size: 1em;
     margin:30px 0 0;
     display: block;
@@ -2404,8 +2412,8 @@ table.minimum{
 
 .l__listShow{
   background-color: #fff;
-    padding: 30px;
-    max-width: 580px;
+  padding: 30px;
+  max-width: 580px;
   margin:30px auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
   .actions{
@@ -2464,20 +2472,28 @@ table.minimum{
   padding:0 0 0 15px;
   overflow: hidden;
 }
-.playlist__title{
-  font-weight: 700;
+
+.l__s{
+  .playlist__title{
+    font-weight: 700;
     font-size: 1.2em;
+  }
+  
+  .playlist__price{
+    font-weight: 600;
+    font-size: 2em;
+    margin: 10px 0 0 0;
+  }
 }
+
 .playlist__author{
   color:#999;
 }
-.playlist__price{
-  color: #999;
-    font-size: 1.2em;
-    margin: 10px 0 0 0;
-}
+
+
 .playlist__discription{
   margin:10px 0 30px 0 ;
+  padding-left: 15px;
 }
 .favchange{
   margin: 10px 0 0 0;
@@ -2499,8 +2515,22 @@ table.minimum{
     color: #fff;
 }
 
-.cont_desc{
+#cont_desc_show{
   background-color: #eee;
+}
+
+#cont_desc_newedit{
+  background-color: #eee;
+  
+  
+  td:nth-of-type(2){
+    width: 0px;
+    padding: 0;
+  }
+
+  td:nth-of-type(4){
+    width: 50px;
+  }
 }
 
 .l__tracks{
@@ -2569,10 +2599,13 @@ table.minimum{
 .trackArtist{
   display: block;
 }
-.trackSong{
-  font-weight: 700;
+.track_section{
+  .trackSong{
+    font-weight: 700;
     font-size: 1.2em;
+  }
 }
+
 .trackArtist{
   color:#888;
 }
