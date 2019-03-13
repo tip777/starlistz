@@ -29,8 +29,8 @@
               %span.form-require 必須
             .price-input
               ￥
-              = f.select :price, options_for_select(Constants::AMOUNT, selected: f.object.price), {}, { class: 'js-hide-search_listprice', data: { placeholder: '選択してください' } }
-
+              = f.input :price, label: false, required: false, error: false, placeholder: '例）100'
+              
       .span.playlist__discription
         = f.label :description, "プレイリスト説明"
         = f.input :description, label: false, placeholder: 'プレイリストの説明（400文字以内）' + "\n" + '例)　このリストは自分が特にインスピレーションもらった曲を集めました。', :input_html => {:rows => 5}

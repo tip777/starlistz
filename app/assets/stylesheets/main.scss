@@ -213,6 +213,7 @@ input[type="reset"],
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="number"],
 textarea {
   @include vendor('transition', ('background-color 0.2s ease-in-out', 'border-color 0.2s ease-in-out'));
   @include vendor('appearance', 'none');
@@ -1260,9 +1261,9 @@ ul.card{
 }
 .listprice{
   color: #808080;
-    font-size: 1.4em;
-    padding: 5px 15px 5px 0;
-    display: inline-block;
+  font-size: 1.4em;
+  padding: 5px 15px 5px 0;
+  display: inline-block;
 }
 .cardList__footer{
   padding:20px 0 0 0 ;
@@ -2616,6 +2617,13 @@ table.minimum{
   .playlist__price{
     margin:15px 0;
   }
+  .playlist__price{
+    .list_price{
+      width:50%;
+      display:inline-block;
+    }
+  }
+  
   .l__tracks{
 
   td:nth-of-type(3) span{
