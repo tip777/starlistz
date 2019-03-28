@@ -38,9 +38,9 @@ class ListsController < ApplicationController
   end
 
   def edit
-    set_lists
+    @list = current_user.lists.find_by(id: params[:id])
     
-    if @list.nil? || @list.paranoia_destroyed? || @list.user != current_user
+    if @list.nil? || @list.paranoia_destroyed?
       reject_page
     else
       taggings = set_list_genre
@@ -58,7 +58,7 @@ class ListsController < ApplicationController
 
   def create
     @list = current_user.lists.new(list_params)
-    unless current_user.stripe_acct_id.nil?
+    unless current_user.stripe_acct_id.nil? #Stripe連携済だったら
       @list.status = "release"
     end
     if @list.save
@@ -70,34 +70,44 @@ class ListsController < ApplicationController
   end
 
   def update
-    @list = List.find(params[:id])
-    if @list.update(list_params)
-      # 削除済みのトラックを物理削除する
-      mylist_tracks = @list.tracks
-      mylist_tracks.each_with_index do |track, i|
-        unless mylist_tracks[i].deleted_at.nil?
-          mylist_tracks[i].really_destroy!
+    @list = current_user.lists.find_by(id: params[:id])
+    
+    if !@list.nil?
+      if @list.update(list_params)
+        # 削除済みのトラックを物理削除する
+        mylist_tracks = @list.tracks
+        mylist_tracks.each_with_index do |track, i|
+          unless mylist_tracks[i].deleted_at.nil?
+            mylist_tracks[i].really_destroy!
+          end
         end
+        redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を更新しました"
+      else
+        @tracks = @list.tracks.sort_by(&:row_order)
+        render 'edit', alert: "「#{@list.title}」の更新に失敗しました"
       end
-      redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を更新しました"
     else
-      @tracks = @list.tracks.sort_by(&:row_order)
-      render 'edit', alert: "「#{@list.title}」の更新に失敗しました"
+      redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」の更新に失敗しました"
     end
   end
 
   def destroy
-    @list = List.find(params[:id])
-    @list.destroy
-    redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を削除しました"
+    @list = current_user.lists.find_by(id: params[:id])
+    
+    if !@list.nil?
+      @list.destroy
+      redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を削除しました"
+    else
+      redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」の削除に失敗しました"
+    end
   end
 
   private
   
-  def set_lists
-    @list.tap { @list = nil }
-    @list = List.with_deleted.find_by(id: params[:id])
-  end
+  # def set_lists
+  #   @list.tap { @list = nil }
+  #   @list = List.with_deleted.find_by(id: params[:id])
+  # end
 
   def list_params
     params.require(:list).permit(:title, :description, :price, :image, :tag_list, tracks_attributes:[:id, :artist, :song, :description, :recommend, :row_order, :_destroy])

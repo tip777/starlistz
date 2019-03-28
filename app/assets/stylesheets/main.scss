@@ -580,13 +580,13 @@ input[type="email"] {
   }
 
   .inner {
-    padding: 3em 1em;
+    padding: 3em 0.5em;
     text-align: center;
     z-index: 3;
     position: relative ;
 
     h2 {
-      font-size: 2em;
+      font-size: 1.8em;
       margin: 20px 0 10px;
       padding:0;
       position: relative;
@@ -2804,7 +2804,8 @@ table.minimum{
 .l__about,
 .l__privacy,
 .l__term,
-.l__contact{
+.l__contact,
+.l__personInfo{
     max-width: 580px;
     background-color: #fff;
     margin: 60px auto;
@@ -2842,7 +2843,8 @@ table.minimum{
   }
 }
 
-.form__contact{
+.form__contact,
+.form__personInfo{
   .input{
     margin: 0 0 20px 0;
   }

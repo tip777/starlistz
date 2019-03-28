@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.datetime "updated_at", null: false
     t.string "image_file_name"
     t.string "image_content_type"
-    t.integer "image_file_size"
+    t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_lists_on_deleted_at"
@@ -61,6 +61,26 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.text "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "person_infos", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "first_name_kana"
+    t.string "last_name_kana"
+    t.date "birthday"
+    t.string "zipcode"
+    t.string "prefecture"
+    t.string "city"
+    t.string "address1"
+    t.string "address2"
+    t.integer "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_person_infos_on_deleted_at"
+    t.index ["user_id"], name: "index_person_infos_on_user_id"
   end
 
   create_table "purchases", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -144,6 +164,7 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
   end
 
   create_table "user_profiles", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
     t.text "description"
     t.text "insta_url"
     t.text "tw_url"
@@ -151,10 +172,11 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.datetime "updated_at", null: false
     t.string "avatar_file_name"
     t.string "avatar_content_type"
-    t.integer "avatar_file_size"
+    t.bigint "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_user_profiles_on_deleted_at"
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
   create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -172,7 +194,6 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.integer "user_profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "provider"
@@ -190,7 +211,6 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["user_profile_id"], name: "index_users_on_user_profile_id"
   end
 
   add_foreign_key "item_services", "music_services"
@@ -198,9 +218,10 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
   add_foreign_key "list_favorites", "lists"
   add_foreign_key "list_favorites", "users"
   add_foreign_key "lists", "users"
+  add_foreign_key "person_infos", "users"
   add_foreign_key "purchases", "lists"
   add_foreign_key "purchases", "users"
   add_foreign_key "social_profiles", "users"
   add_foreign_key "tracks", "lists"
-  add_foreign_key "users", "user_profiles"
+  add_foreign_key "user_profiles", "users"
 end

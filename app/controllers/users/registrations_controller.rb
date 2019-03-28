@@ -13,10 +13,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     if resource.save
-        profile = UserProfile.new
-        profile.save
         signup_user = User.find(resource.id)
-        signup_user.user_profile = profile
+        signup_user.create_user_profile #user_profile 作成
+        #規約への同意フラグ、同意日時を保存
         signup_user.tos_acceptance = true
         signup_user.tos_acceptance_date = Time.now
         signup_user.save

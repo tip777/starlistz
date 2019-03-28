@@ -53,8 +53,8 @@
           %span.link__title アカウント
       - else
         = link_to new_user_session_path,{ class: "navigation__link login is__SP" } do
-          %i.material-icons perm_identity
-          %span.link__title アカウント
+          %i.material-icons input
+          %span.link__title ログイン
 
       // ログインしてなかったら説明
       - if !user_signed_in?
@@ -71,6 +71,8 @@
         - if user_signed_in?
           %li
             = link_to "売上管理", users_salesmanage_path(current_user)
+          %li
+            = link_to "アカウント情報", person_info_path(current_user)
           %li
             = link_to "決済管理", users_payment_path(current_user)
           

@@ -1,0 +1,58 @@
+.l__personInfo
+  .form__personInfo
+    %h2 会員情報
+    = simple_form_for [@user, @person_info], url: person_info_path do |f|
+      - if @person_info.errors.any?
+        %strong 入力内容にエラーがあります
+        %ul
+          - @person_info.errors.each do |attr, msg|
+            %li= msg
+      
+      // = f.label :last_name, "お名前"
+      = f.label :last_name do
+        お名前
+        %span.form-require 必須
+      = f.input :last_name, label: false, error: false, placeholder: '例）山田', as: :string
+      = f.input :first_name, label: false, error: false, placeholder: '例）太郎', as: :string
+      
+      = f.label :last_name_kana do
+        お名前カナ
+        %span.form-require 必須
+      = f.input :last_name_kana, label: false, error: false, placeholder: '例）ヤマダ', as: :string
+      = f.input :first_name_kana, label: false, error: false, placeholder: '例）タロウ', as: :string
+      
+      = f.label :birthday do
+        誕生日
+        %span.form-require 必須
+      = f.input :birthday, label:false, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year - 10
+      
+      = f.label :zipcode do
+        郵便番号
+        %span.form-require 必須
+      = f.input :zipcode, label: false, error: false, placeholder: "例) 1234567"
+      
+      = f.label :prefecture do
+        都道府県
+        %span.form-require 必須
+      // = select_tag :prefecture, options_for_select(Constants::STATE), data: { placeholder: '選択してください' }
+      = f.input :prefecture, as: :select, label: false, error: false, collection: Constants::STATE
+      
+      = f.label :city do
+        市区町村
+        %span.form-require 必須
+      = f.input :city, label: false, error: false, placeholder: '例）名古屋市', as: :string
+      
+      = f.label :address1 do
+        番地
+        %span.form-require 必須
+      = f.input :address1, label: false, error: false, placeholder: '例）中村区1-1', as: :string
+      
+      = f.label :address2, "建物名"
+      = f.input :address2, label: false, error: false, placeholder: '例）11番地', as: :string
+      
+      = f.label :block, "電話番号"
+      = f.input :phone_number, label: false, error: false, placeholder: "例) 08012345678", as: :numeric
+          
+          
+      = f.submit '送信'
+      

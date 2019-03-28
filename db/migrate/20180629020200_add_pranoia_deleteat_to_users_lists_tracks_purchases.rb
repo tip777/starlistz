@@ -6,6 +6,9 @@ class AddPranoiaDeleteatToUsersListsTracksPurchases < ActiveRecord::Migration[5.
     add_column :user_profiles, :deleted_at, :datetime
     add_index :user_profiles, :deleted_at
     
+    add_column :person_infos, :deleted_at, :datetime
+    add_index :person_infos, :deleted_at
+    
     add_column :lists, :deleted_at, :datetime
     add_index :lists, :deleted_at
     

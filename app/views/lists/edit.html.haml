@@ -29,11 +29,13 @@
               %span.form-require 必須
             .price-input
               ￥
-              = f.input :price, label: false, required: false, error: false, placeholder: '例）100'
+              = f.input :price, label: false, required: false, error: false, placeholder: '例）100', as: :string
               
       .span.playlist__discription
-        = f.label :description, "プレイリスト説明"
-        = f.input :description, label: false, placeholder: 'プレイリストの説明'
+        = f.label :description do
+          プレイリスト説明
+          %span.form-require 必須
+        = f.input :description, label: false, placeholder: 'プレイリストの説明（400文字以内）' + "\n" + '例)　このリストは自分が特にインスピレーションもらった曲を集めました。', :input_html => {:rows => 5}
 
     // #track_section.table-sortable
     #track_section.table-sortable
