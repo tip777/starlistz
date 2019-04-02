@@ -1,12 +1,18 @@
+- if @person_info.errors.any?
+  #error_explanation.alert.alert-danger
+    %ul
+      - @person_info.errors.full_messages.each do |message|
+        %li= message
+
 .l__personInfo
   .form__personInfo
     %h2 会員情報
     = simple_form_for [@user, @person_info], url: person_info_path do |f|
-      - if @person_info.errors.any?
-        %strong 入力内容にエラーがあります
-        %ul
-          - @person_info.errors.each do |attr, msg|
-            %li= msg
+      // - if @person_info.errors.any?
+      //   %strong 入力内容にエラーがあります
+      //   %ul
+      //     - @person_info.errors.each do |attr, msg|
+      //       %li= msg
       
       // = f.label :last_name, "お名前"
       = f.label :last_name do
@@ -24,7 +30,9 @@
       = f.label :birthday do
         誕生日
         %span.form-require 必須
-      = f.input :birthday, label:false, as: :date, start_year: Date.today.year - 100, end_year: Date.today.year - 10
+      = raw sprintf(f.input(:birthday, label:false, as: :date, use_month_numbers: true, :date_separator => '%s', start_year: Date.today.year - 100, end_year: Date.today.year - 10), ' / ',' / ')
+      
+      %i.material-icons expand_more
       
       = f.label :zipcode do
         郵便番号
@@ -53,6 +61,9 @@
       = f.label :block, "電話番号"
       = f.input :phone_number, label: false, error: false, placeholder: "例) 08012345678", as: :numeric
           
-          
-      = f.submit '送信'
+      
+      - if @person_info.id.nil?
+        = f.submit '登録する'
+      -else
+        = f.submit '変更する'
       

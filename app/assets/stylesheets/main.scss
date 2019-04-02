@@ -214,7 +214,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="number"],
-textarea {
+textarea{
   @include vendor('transition', ('background-color 0.2s ease-in-out', 'border-color 0.2s ease-in-out'));
   @include vendor('appearance', 'none');
   background-color:#fff ;
@@ -226,8 +226,21 @@ textarea {
   width: 100%;
   outline: 0;
   font-weight: 400;
+}
 
-
+// 会員情報ページのセレクトボックス
+.form__personInfo select{
+  @include vendor('transition', ('background-color 0.2s ease-in-out', 'border-color 0.2s ease-in-out'));
+  @include vendor('appearance', 'none');
+  background-color:#fff ;
+  border: solid 1px _palette(border);
+  color: #333;
+  // display: block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  outline: 0;
+  font-weight: 400;
+  line-height: 1em;
 }
 
 input[type="text"],
@@ -2838,7 +2851,8 @@ table.minimum{
   .l__about,
   .l__privacy,
   .l__term,
-  .l__contact{
+  .l__contact,
+  .l__personInfo{
     margin:0;
   }
 }

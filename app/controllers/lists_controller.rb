@@ -38,6 +38,8 @@ class ListsController < ApplicationController
   end
 
   def edit
+    reject_pageh if current_user.nil?
+
     @list = current_user.lists.find_by(id: params[:id])
     
     if @list.nil? || @list.paranoia_destroyed?
@@ -52,11 +54,14 @@ class ListsController < ApplicationController
         flash.now[:alert] = "このプレイリストは非公開です。<br>
                         公開したい場合は　<a id='stripe_connect' href='#{stripe_url_edit(current_user)}'>Stripe連携</a>　をしてください。".html_safe
       end
+      
     end
-    
+
   end
 
   def create
+    reject_pageh if current_user.nil?
+
     @list = current_user.lists.new(list_params)
     unless current_user.stripe_acct_id.nil? #Stripe連携済だったら
       @list.status = "release"
@@ -65,11 +70,14 @@ class ListsController < ApplicationController
       redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を作成しました"
     else
       @tracks = @list.tracks
-      render 'edit', alert: "「#{@list.title}」の作成に失敗しました"
+      render 'edit'
     end
+
   end
 
   def update
+    reject_pageh if current_user.nil?
+
     @list = current_user.lists.find_by(id: params[:id])
     
     if !@list.nil?
@@ -84,14 +92,17 @@ class ListsController < ApplicationController
         redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を更新しました"
       else
         @tracks = @list.tracks.sort_by(&:row_order)
-        render 'edit', alert: "「#{@list.title}」の更新に失敗しました"
+        render 'edit'
       end
     else
       redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」の更新に失敗しました"
     end
+
   end
 
   def destroy
+    reject_pageh if current_user.nil?
+
     @list = current_user.lists.find_by(id: params[:id])
     
     if !@list.nil?
@@ -100,6 +111,7 @@ class ListsController < ApplicationController
     else
       redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」の削除に失敗しました"
     end
+
   end
 
   private
