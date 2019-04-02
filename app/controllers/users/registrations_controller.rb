@@ -44,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.destroy
 
     #削除したユーザーのemail,nameを変更（重複対策）
-    delete_user = User.with_deleted.find(resource)
+    delete_user = User.with_deleted.find(resource.id)
     change_email = resource.deleted_at.to_i.to_s + '_' + resource.email.to_s
     resource.email = change_email
     resource.unconfirmed_email = nil
