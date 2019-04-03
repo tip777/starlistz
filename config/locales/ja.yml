@@ -46,7 +46,7 @@ ja:
         last_name_kana: お名前カナ
         first_name_kana: お名前カナ
         birthday: 誕生日
-        zipcode: 都道府県
+        zipcode: 郵便番号
         prefecture: 都道府県
         city: 市区町村
         address1: 番地
