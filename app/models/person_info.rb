@@ -10,7 +10,7 @@ class PersonInfo < ApplicationRecord
     validates :first_name_kana, presence: true, length: { maximum: 35 }, format: { with: /\A(?:\p{Katakana}|[ー－])+\z/ }
     validates :last_name_kana, presence: true, length: { maximum: 35 }, format: { with: /\A(?:\p{Katakana}|[ー－])+\z/ }
     # validates :birthday, presence: true　#:birthdayはcontroller側でvalidateする
-    # validates :zipcode, numericality: true, length: { maximum: 7 }
+    validates :zipcode, numericality: true, length: { maximum: 7 }
     validates :prefecture, presence: true, length: { maximum: 35 } #リストボックス以外のだったらはじくようにする
     validates :city, presence: true, length: { maximum: 50 }
     validates :address1, presence: true, length: { maximum: 100 }

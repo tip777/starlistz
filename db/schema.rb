@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.string "city"
     t.string "address1"
     t.string "address2"
-    t.integer "phone_number"
+    t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"

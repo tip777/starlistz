@@ -12,7 +12,7 @@ class CreatePersonInfos < ActiveRecord::Migration[5.0]
       t.string :city
       t.string :address1
       t.string :address2
-      t.integer :phone_number
+      t.string :phone_number
       
       t.timestamps
     end
