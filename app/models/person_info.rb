@@ -15,6 +15,6 @@ class PersonInfo < ApplicationRecord
     validates :city, presence: true, length: { maximum: 50 }
     validates :address1, presence: true, length: { maximum: 100 }
     validates :address2, length: { maximum: 100 }
-    validates :phone_number, length: { maximum: 20 }, numericality: true, allow_nil: true
+    validates :phone_number, length: { maximum: 20 }, numericality: true, allow_blank: true
     
 end

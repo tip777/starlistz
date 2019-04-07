@@ -18,7 +18,7 @@ ja:
     models:
       user: ユーザー
       user_profile: ユーザープロフィール
-      person_info: 会員情報
+      person_info: アカウント情報
       list: プレイリスト
       purchase: 購入履歴
       tag: ジャンル

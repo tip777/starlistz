@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   post 'users/:id/person_info', to: 'person_info#create'
   patch 'users/:id/person_info', to: 'person_info#update'
   put 'users/:id/person_info', to: 'person_info#update'
+  get "users/:id/list_release" => "users#list_release", as: 'list_release'                #プレイリスト公開設定
 
   #検索
   get 'searches/all_result'

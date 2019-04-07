@@ -3,6 +3,13 @@ class PersonInfoController < ApplicationController
   def index
     @user = User.find(params[:id])
     
+    #list newからのリダイレクトかどうか
+    if params[:ref] == "list_add"
+      @is_ref_list_add = 1
+    else
+      @is_ref_list_add = nil
+    end
+    
     if current_user.nil?
       redirect_to new_user_session_path
       
@@ -26,19 +33,25 @@ class PersonInfoController < ApplicationController
 
     @person_info = current_user.create_person_info(personinfo_params)
     
-    begin
-      @person_info.birthday = Date.new(personinfo_params['birthday(1i)'].to_i, personinfo_params['birthday(2i)'].to_i, personinfo_params['birthday(3i)'].to_i)
+    # begin
+    #   @person_info.birthday = Date.new(personinfo_params['birthday(1i)'].to_i, personinfo_params['birthday(2i)'].to_i, personinfo_params['birthday(3i)'].to_i)
       
-    rescue ArgumentError #存在しない日付だったら
-      @person_info.errors.add(:birthday, "誕生日の日付が不正です")
-      # return
+    # rescue ArgumentError #存在しない日付だったら
+    #   @person_info.errors.add(:birthday, "誕生日の日付が不正です")
+    #   # return
       
-    end
+    # end
     
     if @person_info.save
-      redirect_to person_info_path(current_user), notice: "会員情報を登録しました"
+      if params[:is_ref_list_add] == '1'
+        redirect_to new_list_path
+      else
+        redirect_to person_info_path(current_user), notice: "アカウント情報を登録しました"
+      end
+      
     else
-      render 'index'
+        render 'index'
+      
     end
 
   end
@@ -53,7 +66,7 @@ class PersonInfoController < ApplicationController
     end
     
     if @person_info.update(personinfo_params)
-      redirect_to person_info_path(current_user), notice: "会員情報を変更しました"
+      redirect_to person_info_path(current_user), notice: "アカウント情報を変更しました"
     else
       render 'index'
     end
@@ -69,7 +82,7 @@ class PersonInfoController < ApplicationController
 
   def personinfo_params
     params.require(:person_info).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :birthday,
-                                        :zipcode, :prefecture, :city, :address1, :address2, :phone_number)
+                                        :zipcode, :prefecture, :city, :address1, :address2, :phone_number, :is_ref_list_add)
   end
   
 end

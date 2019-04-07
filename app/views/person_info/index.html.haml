@@ -5,16 +5,21 @@
         %li= message
 
 .l__personInfo
-  .form__personInfo
-    %h2 会員情報
+  %h2 アカウント情報
+  
+  .l__personInfo__inner
+    
+    - if @is_ref_list_add == 1
+      .personInfoContentHeader
+        %p.detail プレイリストを作成するにはアカウント情報の登録が必要です
+    
     = simple_form_for [@user, @person_info], url: person_info_path do |f|
-      // - if @person_info.errors.any?
-      //   %strong 入力内容にエラーがあります
-      //   %ul
-      //     - @person_info.errors.each do |attr, msg|
-      //       %li= msg
+
+      - if @is_ref_list_add == 1
+        = hidden_field_tag :is_ref_list_add, @is_ref_list_add
+      - else
+        = hidden_field_tag :is_ref_list_add, params[:is_ref_list_add]
       
-      // = f.label :last_name, "お名前"
       = f.label :last_name do
         お名前
         %span.form-require 必須
@@ -31,8 +36,6 @@
         誕生日
         %span.form-require 必須
       = raw sprintf(f.input(:birthday, label:false, as: :date, use_month_numbers: true, :date_separator => '%s', start_year: Date.today.year - 100, end_year: Date.today.year - 10), ' / ',' / ')
-      
-      %i.material-icons expand_more
       
       = f.label :zipcode do
         郵便番号
@@ -58,8 +61,8 @@
       = f.label :address2, "建物名"
       = f.input :address2, label: false, error: false, placeholder: '例）柳ビル104', as: :string
       
-      = f.label :block, "電話番号"
-      = f.input :phone_number, label: false, error: false, placeholder: "例) 08012345678", as: :numeric
+      = f.label :phone_number, "電話番号"
+      = f.input :phone_number, label: false, error: false, placeholder: "例) 08012345678", as: :string
           
       
       - if @person_info.id.nil?

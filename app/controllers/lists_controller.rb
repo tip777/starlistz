@@ -5,11 +5,15 @@ class ListsController < ApplicationController
   def show
     @list = List.with_deleted.find_by(id: params[:id])
     @display_list = true
-    if @list.nil? || @list.status == "closed"
+    if @list.nil?
       reject_page
     else
       if current_user != nil and @list.user == current_user
         @display_list = true
+        if is_release_list?(@list) != true
+          flash.now[:alert] = "このプレイリストは非公開です。<br>
+                          <a id='listRelease' href='#{list_release_path(current_user)}'>プレイリストを公開する</a>".html_safe
+        end
       else
         unless is_purchase?(current_user, @list) 
           if @list.paranoia_destroyed?
@@ -29,10 +33,19 @@ class ListsController < ApplicationController
   def new
     if current_user.nil?
       redirect_to new_user_session_path
+      
     else
-      @list = List.new
-      taggings = set_list_genre
-      @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
+      #アカウント情報が登録済みかどうか
+      if PersonInfo.where(user_id: current_user.id).empty?
+        redirect_to person_info_path(current_user, ref: "list_add")
+        
+      else
+        @list = List.new
+        taggings = set_list_genre
+        @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
+        
+      end
+      
     end
     
   end
@@ -47,12 +60,9 @@ class ListsController < ApplicationController
     else
       taggings = set_list_genre
       @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
+      
       if @tracks.nil?
         @tracks = @list.tracks.without_deleted.sort_by(&:row_order)
-      end
-      if is_release_list?(@list) != true
-        flash.now[:alert] = "このプレイリストは非公開です。<br>
-                        公開したい場合は　<a id='stripe_connect' href='#{stripe_url_edit(current_user)}'>Stripe連携</a>　をしてください。".html_safe
       end
       
     end
@@ -63,11 +73,20 @@ class ListsController < ApplicationController
     reject_pageh if current_user.nil?
 
     @list = current_user.lists.new(list_params)
+    is_stripe = false #Stripe連携済みかのフラグ
+    
     unless current_user.stripe_acct_id.nil? #Stripe連携済だったら
       @list.status = "release"
+      is_stripe = true
     end
+    
     if @list.save
-      redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を作成しました"
+      if is_stripe
+        redirect_to users_playlist_path(current_user), notice: "「#{trun_str(@list.title, 18)}」を作成しました"
+      else
+        redirect_to users_payment_path(current_user)
+      end
+      
     else
       @tracks = @list.tracks
       render 'edit'

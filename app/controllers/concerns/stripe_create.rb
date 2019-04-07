@@ -5,7 +5,43 @@ module StripeCreate
   
   #Stripe 認証ページのURLを編集
   def stripe_url_edit(current_user)
-    return Constants::STRIPE_AUTH_URL + "&stripe_user[email]=#{current_user.email}" + "&stripe_user[url]=#{Constants::HP_URL}" + "&stripe_user[country]=JP" + "&stripe_user[phone_number]=05054330291" + "&stripe_user[business_name]=StarListz" + "&stripe_user[business_type]=sole_prop" + "&stripe_user[physical_product]=false" + "&stripe_user[product_description]=StarListzを使用しているすべてのユーザーに対しプレイリストの販売を行うことができます。購入時に即座に決済が行われます。"
+    person_info = current_user.person_info
+    if person_info.nil?
+      # return Constants::STRIPE_AUTH_URL + "&stripe_user[email]=#{current_user.email}" + "&stripe_user[url]=#{Constants::HP_URL}" + "&stripe_user[country]=JP" + "&stripe_user[phone_number]=05054330291" + "&stripe_user[business_name]=StarListz" + "&stripe_user[business_type]=sole_prop" + "&stripe_user[physical_product]=false" + "&stripe_user[product_description]=StarListzを使用しているすべてのユーザーに対しプレイリストの販売を行うことができます。購入時に即座に決済が行われます。"
+      return Constants::STRIPE_AUTH_URL +
+    		"&stripe_user[email]=#{current_user.email}" +
+    		"&stripe_user[url]=#{Constants::HP_URL}" +
+    		"&stripe_user[country]=JP" +
+    		"&stripe_user[phone_number]=#05054330291" +
+    		"&stripe_user[business_name]=StarListz" +
+    		"&stripe_user[business_type]=sole_prop" +
+    		"&stripe_user[physical_product]=false" +
+    		"&stripe_user[product_description]=StarListzを使用しているすべてのユーザーに対しプレイリストの販売を行うことができます。購入時に即座に決済が行われます。"
+    else
+      #アカウント情報に登録したデータをパラメータで渡す
+      return Constants::STRIPE_AUTH_URL +
+    		"&stripe_user[email]=#{current_user.email}" +
+    		"&stripe_user[url]=#{Constants::HP_URL}" +
+    		"&stripe_user[country]=JP" +
+    		"&stripe_user[phone_number]=05054330291" +
+    		"&stripe_user[business_name]=StarListz" +
+    		"&stripe_user[business_type]=sole_prop" +
+    		"&stripe_user[first_name_kana]=#{person_info.first_name_kana}" +
+    		"&stripe_user[first_name_kanji]=#{person_info.first_name}" +
+    		"&stripe_user[last_name_kana]=#{person_info.last_name_kana}" +
+    		"&stripe_user[last_name_kanji]=#{person_info.last_name}" +
+    		"&stripe_user[dob_day]=#{person_info.birthday.strftime("%d")}" +
+    		"&stripe_user[dob_month]=#{person_info.birthday.strftime("%m")}" +
+    		"&stripe_user[dob_year]=#{person_info.birthday.strftime("%Y")}" +
+    		"&stripe_user[block_kanji]=#{person_info.address1}" +
+    		"&stripe_user[building_kanji]=#{person_info.address2}" +
+    		"&stripe_user[zip]=#{person_info.zipcode}" +
+    		"&stripe_user[physical_product]=false" +
+    		"&stripe_user[product_description]=StarListzを使用しているすべてのユーザーに対しプレイリストの販売を行うことができます。購入時に即座に決済が行われます。"
+    end
+
+  	
+  
   end
   
   #アカウント情報取得

@@ -24,9 +24,10 @@ class UsersController < ApplicationController
         if current_user.id == @user.id
           #Stripe連携しているか判定
           is_account = is_stripe_account_id?(current_user)
-          if is_account != true
-            flash.now[:alert] = "<a id='stripe_connect' href='#{users_payment_path(current_user)}'>決済設定</a>　が完了していません。<br>
-                            完了しなければプレイリストは公開されません。"
+          #プレイリストがあってStripeと連携していない場合
+          if is_account != true && current_user.lists.exists?
+            flash.now[:alert] = "プレイリストはまだ非公開です。<br>
+                            <a id='listRelease' href='#{list_release_path(current_user)}'>プレイリストを公開する</a>"
           end
         end
       end
@@ -82,6 +83,7 @@ class UsersController < ApplicationController
         else
           @stripe_email = nil
         end
+        
       else
         reject_page
       end
@@ -211,6 +213,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @follower = @user.follower_users
     @relationship = @user.follower_relationships.count
+  end
+  
+  def list_release
+    @user = User.find(params[:id])
+    
+    if @user.person_info.nil?
+      redirect_to person_info_path(@user)
+    else
+      redirect_to users_payment_path(@user)
+    end
+    
   end
 
 

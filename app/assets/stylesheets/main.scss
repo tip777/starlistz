@@ -228,21 +228,6 @@ textarea{
   font-weight: 400;
 }
 
-// 会員情報ページのセレクトボックス
-.form__personInfo select{
-  @include vendor('transition', ('background-color 0.2s ease-in-out', 'border-color 0.2s ease-in-out'));
-  @include vendor('appearance', 'none');
-  background-color:#fff ;
-  border: solid 1px _palette(border);
-  color: #333;
-  // display: block;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  outline: 0;
-  font-weight: 400;
-  line-height: 1em;
-}
-
 input[type="text"],
 input[type="password"],
 input[type="email"] {
@@ -2664,11 +2649,11 @@ table.minimum{
 }
 .liststatus{
   background-color: red;
-    border-radius: 3px;
-    padding: 2px 10px;
-    color: #fff;
-    font-weight: 700;
-    font-size: 12px;
+  border-radius: 3px;
+  padding: 2px 10px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
 }
 .modal__comment{
   padding: 30px 45px;
@@ -2734,7 +2719,7 @@ table.minimum{
     text-align: center;
 }
 
-#stripe_connect{
+#listRelease{
   position: relative;
 //  padding: 2px 20px;
   text-decoration: underline;
@@ -2793,7 +2778,61 @@ table.minimum{
 
 
 
+// アカウント情報画面
+/////////////////////////////////////////////////////////////////////////
 
+.l__personInfo{
+  max-width: 580px;
+  margin:30px auto;
+  h2{
+    text-align: center;
+  }
+  h3{
+    font-size: 1.2em;
+    margin: 15px 0;
+    text-align: center;
+    font-weight: 400;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    span{
+    font-size: 1.6em;
+    padding: 0 15px;
+  }
+
+  }
+}
+
+.l__personInfo__inner{
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  
+  // アカウント情報ページのセレクトボックス
+  select{
+    @include vendor('transition', ('background-color 0.2s ease-in-out', 'border-color 0.2s ease-in-out'));
+    @include vendor('appearance', 'none');
+    background-color:#fff ;
+    border: solid 1px _palette(border);
+    color: #333;
+    // display: block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    outline: 0;
+    font-weight: 400;
+    line-height: 1em;
+  }
+  
+  .input,
+  .personInfoContentHeader{
+    margin: 0 0 20px 0;
+  }
+  
+  input{
+    margin: 0;
+  }
+
+}
 
 
 
@@ -2817,8 +2856,7 @@ table.minimum{
 .l__about,
 .l__privacy,
 .l__term,
-.l__contact,
-.l__personInfo{
+.l__contact{
     max-width: 580px;
     background-color: #fff;
     margin: 60px auto;
@@ -2851,14 +2889,12 @@ table.minimum{
   .l__about,
   .l__privacy,
   .l__term,
-  .l__contact,
-  .l__personInfo{
+  .l__contact{
     margin:0;
   }
 }
 
-.form__contact,
-.form__personInfo{
+.form__contact{
   .input{
     margin: 0 0 20px 0;
   }
@@ -2924,6 +2960,9 @@ table.minimum{
   }
   h3{
     text-align: left;
+  }
+  .paymentContentHeader{
+    margin: 0 0 20px 0;
   }
   .l__disc{
     padding: 30px ;
