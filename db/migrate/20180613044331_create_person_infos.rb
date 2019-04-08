@@ -8,7 +8,8 @@ class CreatePersonInfos < ActiveRecord::Migration[5.0]
       t.string :last_name_kana
       t.date :birthday
       t.string :zipcode
-      t.string :prefecture
+      # t.string :prefecture
+      t.references :prefecture, foreign_key: true
       t.string :city
       t.string :address1
       t.string :address2

@@ -35,7 +35,7 @@
       = f.label :birthday do
         誕生日
         %span.form-require 必須
-      = raw sprintf(f.input(:birthday, label:false, as: :date, use_month_numbers: true, :date_separator => '%s', start_year: Date.today.year - 100, end_year: Date.today.year - 10), ' / ',' / ')
+      = raw sprintf(f.input(:birthday, label:false, as: :date, use_month_numbers: true, :date_separator => '%s', start_year: Date.today.year, end_year: Date.today.year - 100), ' / ',' / ')
       
       = f.label :zipcode do
         郵便番号
@@ -46,7 +46,10 @@
         都道府県
         %span.form-require 必須
       // = select_tag :prefecture, options_for_select(Constants::STATE), data: { placeholder: '選択してください' }
-      = f.input :prefecture, as: :select, label: false, error: false, collection: Constants::STATE
+      // = f.input :prefecture, as: :select, label: false, error: false, collection: Constants::STATE
+      // = f.input :prefecture, as: :select, label: false, error: false, collection: Prefecture.all, value_method: :id
+      = f.input :prefecture_id, as: :select, label: false, error: false, collection: Prefecture.all
+      // = f.input :prefecture, as: :select, label: false, error: false, collection: Prefecture.all.collect {|c| [ c.name, c.id ] }
       
       = f.label :city do
         市区町村

@@ -30,7 +30,7 @@ class PersonInfoController < ApplicationController
   
   def create
     reject_pageh if current_user.nil?
-
+    
     @person_info = current_user.create_person_info(personinfo_params)
     
     # begin
@@ -82,7 +82,7 @@ class PersonInfoController < ApplicationController
 
   def personinfo_params
     params.require(:person_info).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :birthday,
-                                        :zipcode, :prefecture, :city, :address1, :address2, :phone_number, :is_ref_list_add)
+                                        :zipcode, :prefecture_id, :city, :address1, :address2, :phone_number, :is_ref_list_add)
   end
   
 end
