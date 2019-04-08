@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_22_090153) do
+ActiveRecord::Schema.define(version: 2019_04_08_095206) do
 
   create_table "areas", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postal_code", null: false
@@ -181,7 +181,6 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
   end
 
   create_table "user_profiles", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
     t.text "description"
     t.text "insta_url"
     t.text "tw_url"
@@ -192,6 +191,7 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.bigint "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.datetime "deleted_at"
+    t.integer "user_id"
     t.index ["deleted_at"], name: "index_user_profiles_on_deleted_at"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
