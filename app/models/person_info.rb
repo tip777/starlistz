@@ -20,7 +20,7 @@ class PersonInfo < ApplicationRecord
     #郵便番号存在チェック
     before_validation do
         if Area.where(postal_code: self.zipcode).empty?
-            self.errors.add(:zipcode, "郵便番号が不正です")
+            self.errors.add(:zipcode, "が不正です")
         end
     end
     
