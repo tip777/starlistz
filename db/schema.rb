@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_22_090153) do
+ActiveRecord::Schema.define(version: 2019_04_08_095206) do
+
+  create_table "areas", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postal_code", null: false
+    t.integer "prefecture_id"
+    t.string "city", default: ""
+    t.string "street", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prefecture_id"], name: "index_areas_on_prefecture_id"
+  end
 
   create_table "contacts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "name"
@@ -49,7 +59,7 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.datetime "updated_at", null: false
     t.string "image_file_name"
     t.string "image_content_type"
-    t.integer "image_file_size"
+    t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_lists_on_deleted_at"
@@ -59,6 +69,33 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
   create_table "music_services", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "person_infos", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "first_name_kana"
+    t.string "last_name_kana"
+    t.date "birthday"
+    t.string "zipcode"
+    t.integer "prefecture_id"
+    t.string "city"
+    t.string "address1"
+    t.string "address2"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_person_infos_on_deleted_at"
+    t.index ["prefecture_id"], name: "index_person_infos_on_prefecture_id"
+    t.index ["user_id"], name: "index_person_infos_on_user_id"
+  end
+
+  create_table "prefectures", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -151,10 +188,12 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.datetime "updated_at", null: false
     t.string "avatar_file_name"
     t.string "avatar_content_type"
-    t.integer "avatar_file_size"
+    t.bigint "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.datetime "deleted_at"
+    t.integer "user_id"
     t.index ["deleted_at"], name: "index_user_profiles_on_deleted_at"
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
   create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -172,7 +211,6 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.integer "user_profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "provider"
@@ -190,17 +228,19 @@ ActiveRecord::Schema.define(version: 2018_07_22_090153) do
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["user_profile_id"], name: "index_users_on_user_profile_id"
   end
 
+  add_foreign_key "areas", "prefectures"
   add_foreign_key "item_services", "music_services"
   add_foreign_key "item_services", "tracks"
   add_foreign_key "list_favorites", "lists"
   add_foreign_key "list_favorites", "users"
   add_foreign_key "lists", "users"
+  add_foreign_key "person_infos", "prefectures"
+  add_foreign_key "person_infos", "users"
   add_foreign_key "purchases", "lists"
   add_foreign_key "purchases", "users"
   add_foreign_key "social_profiles", "users"
   add_foreign_key "tracks", "lists"
-  add_foreign_key "users", "user_profiles"
+  add_foreign_key "user_profiles", "users"
 end

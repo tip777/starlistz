@@ -119,11 +119,11 @@ class ApplicationController < ActionController::Base
           format.js
         end
       else
-        @q = User.search
+        @q = User.ransack
       end
     rescue StandardError => e
       log_error(e, Constants::LOG_ERROR_LEVEL, "ApplicationController : search_header : StandardError")
-      @q = User.search
+      @q = User.ransack
     end
   end
 

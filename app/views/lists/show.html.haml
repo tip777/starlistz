@@ -9,6 +9,10 @@
           = button_tag :type => "button", :class =>"btn btn__favorite__square" do
             %i.material-icons edit
             プレイリストを編集
+            
+      -if !is_release_list?(@list)
+        %span.liststatus 非公開
+      
     .l__playlistCore.clearfix
       .playlist__topimg
         .l__img

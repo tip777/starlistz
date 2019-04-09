@@ -18,6 +18,7 @@ ja:
     models:
       user: ユーザー
       user_profile: ユーザープロフィール
+      person_info: アカウント情報
       list: プレイリスト
       purchase: 購入履歴
       tag: ジャンル
@@ -39,6 +40,18 @@ ja:
         avatar_file_name: プロフィール画像名
         avatar_content_type: プロフィール画像形式
         avatar_file_size: プロフィール画像サイズ
+      person_info:
+        last_name: お名前
+        first_name: お名前
+        last_name_kana: お名前カナ
+        first_name_kana: お名前カナ
+        birthday: 誕生日
+        zipcode: 郵便番号
+        prefecture: 都道府県
+        city: 市区町村
+        address1: 番地
+        address2: 建物名
+        phone_number: 電話番号
       list/tracks:
         artist: アーティスト
         song: 曲

@@ -22,10 +22,14 @@
 
           .field_profile
             = f.input :name, label: "ユーザー名", autocomplete: "off"
-
+        
         %label ジャンル
-        = f.text_field :tag_list, value: "# " + f.object.tag_list.to_s
-        = f.hint '例　#Genre1 #Genre2'
+        - if f.object.tag_list.empty?
+          - delimiter_char = ''
+        -else
+          - delimiter_char = '# '
+        
+        = f.text_field :tag_list, value: delimiter_char + f.object.tag_list.to_s, placeholder: '#シンガー #ビートメイカー #カメラマン...'
 
         = f.fields_for :user_profile do |m|
           .field_profile
@@ -45,11 +49,3 @@
     .form-actions
       = f.button :submit, "更新"
 
-.sc
-  // %h2.ntm プレイリスト一覧
-  // = render file: "/lists/_list.html.haml", locals: {lists: @list, customer: @customer}
-
-  // %h3 Cancel my account
-  // %p
-  //   Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-  // = link_to "Back", :back

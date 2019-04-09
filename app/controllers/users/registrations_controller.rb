@@ -13,10 +13,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     if resource.save
-        profile = UserProfile.new
-        profile.save
         signup_user = User.find(resource.id)
-        signup_user.user_profile = profile
+        signup_user.create_user_profile #user_profile 作成
+        #規約への同意フラグ、同意日時を保存
         signup_user.tos_acceptance = true
         signup_user.tos_acceptance_date = Time.now
         signup_user.save
@@ -45,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.destroy
 
     #削除したユーザーのemail,nameを変更（重複対策）
-    delete_user = User.with_deleted.find(resource)
+    delete_user = User.with_deleted.find(resource.id)
     change_email = resource.deleted_at.to_i.to_s + '_' + resource.email.to_s
     resource.email = change_email
     resource.unconfirmed_email = nil

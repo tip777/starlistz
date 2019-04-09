@@ -1,8 +1,11 @@
 .l__payment
   %h2 決済設定
 
-
   .l__disc
+    - if @stripe_email.nil?
+      .paymentContentHeader
+        %p.detail プレイリストを公開するにはStripeとの連携が必要です
+    
     %h3 Stripeとの連携
     %hr
     
@@ -19,7 +22,7 @@
               %td メールアドレス
               %td 未連携
             %tr
-              %td プレイリスト公開情報
+              %td プレイリスト公開状況
               %td.state 非公開
     
     -else
@@ -38,7 +41,7 @@
               %td メールアドレス
               %td= @stripe_email
             %tr
-              %td プレイリスト公開情報
+              %td プレイリスト公開状況
               %td.state 公開中
     
     .l__innertext

@@ -16,7 +16,7 @@ class ChargesController < ApplicationController
       
       # プレイリストの金額
       @amount = list.price
-      @fee = @amount*0.1 #StarListz決済手数料：決済金額の10%
+      # @fee = @amount*0.1 #StarListz決済手数料：決済金額の10%　ベータ版では手数料は取らない
 
       token = params[:stripeToken]
 
@@ -53,7 +53,7 @@ class ChargesController < ApplicationController
         :currency    => 'jpy',
         :source => token.id,
         :statement_descriptor => "StarListz",
-        :application_fee => @fee.floor
+        # :application_fee => @fee.floor
       }, :stripe_account => list.user.stripe_acct_id)
       
       # 購入履歴のステータスを成功に変更

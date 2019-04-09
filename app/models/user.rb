@@ -13,8 +13,8 @@ class User < ApplicationRecord
         # :recoverable, :rememberable, :trackable, :validatable,
         #:rememberableを削除
         :recoverable, :trackable, :validatable,
-        # :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
-        :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
+        :confirmable, :timeoutable, :omniauthable, omniauth_providers: [:twitter]
+        # :timeoutable, :omniauthable, omniauth_providers: [:twitter] #cloud9用
 
   #relation
   #フォロー機能
@@ -24,8 +24,10 @@ class User < ApplicationRecord
   has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower
 
-  belongs_to :user_profile, dependent: :destroy, inverse_of: :user, optional: true
+  has_one :user_profile, dependent: :destroy, inverse_of: :user
   accepts_nested_attributes_for :user_profile, allow_destroy: true
+  
+  has_one :person_info, dependent: :destroy
 
   has_many :lists, dependent: :destroy
 
