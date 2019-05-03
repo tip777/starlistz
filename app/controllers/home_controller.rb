@@ -3,8 +3,13 @@ class HomeController < ApplicationController
 
   def index
     if !current_user.nil?
+      binding.pry
       # 初めてのログインはウェルカムページへ
-      if current_user.sign_in_count == 1
+      if current_user.sign_in_count == 1 || current_user.last_sign_in_at < Date.new(2019, 5 , 3) 
+        current_user.update(
+          last_sign_in_at: Time.current,
+          sign_in_count: current_user.sign_in_count + 1
+        )
         redirect_to welcome_path
       end
       
