@@ -1,69 +1,22 @@
-// A set of walkthrough screens in HTML/CSS/JS. A personal experiment with layering images, CSS3 transitions, & flexbox. 
 .contentMain
-  // %button.open-walkthrough Start
   .walkthrough.showframe.reveal
     .walkthrough-pagination
       %a.dot.active
       %a.dot
       %a.dot
       %a.dot
-      // %a.dot
     .walkthrough-body
       %ul.screens.animate
 
         %li.screen.active
-          // .media.logo
-          //   %img.logo{src: "https://s3.amazonaws.com/jebbles-codepen/icon.png"}
-          // %h3
-          //   Product Intro
-          //   %br Walkthrough
-          // %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
           %img.pc{:src => "/images/onboard_1.png"}
           %img.sp{:src => "/images/onboarding_mb_1.png"}
           
         %li.screen
-          // .media.books
-          //   %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/book_icon_1.png"}
-          //   %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/book_icon_2.png"}
-          //   %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/book_icon_3.png"}
-          // %h3
-          //   Data and File
-          //   %br Management
-          // %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
           %img.pc{:src => "/images/onboard_2.png"}
           %img.sp{:src => "/images/onboarding_mb_2.png"}
-          
-        // %li.screen
-        //   .media.bars
-        //     %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/bar_icon_axis.png"}
-        //     %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/bar_icon_3.png"}
-        //     %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/bar_icon_2.png"}
-        //     %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/bar_icon_1.png"}
-
-        //   %h3
-        //     Analytics
-        //     %br and Metrics
-        //   %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-
-        // %li.screen
-        //   .media.files
-        //     %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/file_icon_1.png"}
-        //     %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/file_icon_2.png"}
-        //     %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/file_icon_3.png"}
-        //     %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/file_icon_4.png"}
-        //   %h3
-        //     Reporting
-        //     %br and Insights
-        //   %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-
+        
         %li.screen
-          // .media.comm
-          //   %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/comm_icon_1.png"}
-          //   %img.icon{src: "https://s3.amazonaws.com/jebbles-codepen/comm_icon_2.png"}
-          // %h3
-          //   Communications
-          //   %br Tools
-          // %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
           %img.pc{:src => "/images/onboard_3.png"}
           %img.sp{:src => "/images/onboarding_mb_3.png"}
         
@@ -78,7 +31,6 @@
 
     .walkthrough-footer
       %button.button.next-screen 次へ
-      // %button.button.finish.close{disabled: "true"} 閉じる
       = button_tag type: 'button', onclick: "location.href='./'", class: "button finish"  do
         閉じる
       

@@ -3,8 +3,7 @@ class HomeController < ApplicationController
 
   def index
     if !current_user.nil?
-      binding.pry
-      # 初めてのログインはウェルカムページへ
+      # 初めてのログイン、オンボーディング対応後にログインした場合はオンボーディングへ
       if current_user.sign_in_count == 1 || current_user.last_sign_in_at < Date.new(2019, 5 , 3) 
         current_user.update(
           last_sign_in_at: Time.current,

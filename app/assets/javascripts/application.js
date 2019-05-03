@@ -148,14 +148,6 @@ $(document).ready(function(){
     indexMax: function() {
       return $('.screen').length - 1;
     },
-    // closeModal: function() {
-    //   $('.walkthrough, .shade').removeClass('reveal');
-    //   return setTimeout((() => {
-    //     $('.walkthrough, .shade').removeClass('showframe');
-    //     this.index = 0;
-    //     return this.updateScreen();
-    //   }), 200);
-    // },
     openModal: function() {
       $('.walkthrough, .shade').addClass('showframe');
       setTimeout((() => {
@@ -170,12 +162,6 @@ $(document).ready(function(){
   $('.prev-screen').click(function() {
     return walkthrough.prevScreen();
   });
-  // $('.close').click(function() {
-  //   return walkthrough.closeModal();
-  // });
-  // $('.open-walkthrough').click(function() {
-  //   return walkthrough.openModal();
-  // });
   walkthrough.openModal();
   
   // Optionally use arrow keys to navigate walkthrough
@@ -187,7 +173,6 @@ $(document).ready(function(){
         break;
       case 38:
         // up
-        // walkthrough.openModal();
         break;
       case 39:
         // right
@@ -195,7 +180,6 @@ $(document).ready(function(){
         break;
       case 40:
         // down
-        // walkthrough.closeModal();
         break;
       default:
         return;
