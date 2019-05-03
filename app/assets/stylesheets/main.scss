@@ -41,11 +41,12 @@ body {
 
 .h-ful{
     display: block;
-    position: absolute;
+    // position: absolute;
     width: 100%;
     height: 100%;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
+    //iphone 下のメニューをずっと出す為に追加したがモーダルで問題があったので一旦コメント
+    // overflow: scroll;
+    // -webkit-overflow-scrolling: touch;
 }
 
 .small{
