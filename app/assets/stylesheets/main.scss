@@ -30,8 +30,7 @@
 body {
   background-color: #f7f9f9;
   color: #111;
-  // font-family: -apple-system, BlinkMacSystemFont,'Lato', 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif, "Noto Sans JP";
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif,'Lato', 'Hiragino Kaku Gothic Pro', Meiryo, "Noto Sans JP";
+  font-family: -apple-system, BlinkMacSystemFont,'Lato', 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif, "Noto Sans JP";
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0;
@@ -545,7 +544,6 @@ input[type="email"] {
 .contentMain {
   // color: white;
   background: #18183a;
-  font-family: "Lato";
   font-weight: light;
   justify-content: center;
   align-items: center;
