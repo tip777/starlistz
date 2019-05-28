@@ -19,6 +19,9 @@
       
       %footer
         = link_to "新規登録する", new_user_registration_path,{ class: "button" }
+    - else
+      %footer
+        %p.button.noButton ベータ版
 
 - if user_signed_in?
   %section.top__genre
@@ -36,7 +39,7 @@
 
   %section.top__copy
     %h2 StarListzとは？
-    %p あなたが好きな曲や思い入れのある曲たちに説明を加え誰でもプレイリストをシェア出来るサービスです。
+    %p あなたが好きな曲や思い入れのある曲たちに説明を加えたプレイリストをシェア出来るサービスです。
   
   
   %section.top__discription

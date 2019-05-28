@@ -35,14 +35,15 @@
 
 
   %body{class:"#{controller.controller_name}"}
-    = render :partial => "layouts/header"
-
-    %main.l__wrapper
-      - flash.each do |type, msg|
-        %div{class: "alert_area alert-#{type}"}= msg.html_safe
-
-
-      = yield
-        
-    = render :partial => "layouts/footer"
+    .h-ful
+      = render :partial => "layouts/header"
+  
+      %main.l__wrapper
+        - flash.each do |type, msg|
+          %div{class: "alert_area alert-#{type}"}= msg.html_safe
+  
+  
+        = yield
+          
+      = render :partial => "layouts/footer"
 

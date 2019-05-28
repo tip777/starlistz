@@ -1,0 +1,46 @@
+.contentMain
+  .walkthrough.showframe.reveal
+    .walkthrough-pagination
+      %a.dot.active
+      %a.dot
+      %a.dot
+      %a.dot
+    .walkthrough-body
+      %ul.screens.animate
+
+        %li.screen.active
+          %img.pc{:src => "/images/onboard_1.png"}
+          %img.sp{:src => "/images/onboarding_mb_1.png"}
+          
+        %li.screen
+          %img.pc{:src => "/images/onboard_2.png"}
+          %img.sp{:src => "/images/onboarding_mb_2.png"}
+        
+        %li.screen
+          %img.pc{:src => "/images/onboard_3.png"}
+          %img.sp{:src => "/images/onboarding_mb_3.png"}
+        
+        %li.screen
+          %img.pc{:src => "/images/onboard_4.png"}
+          %img.sp{:src => "/images/onboarding_mb_4.png"}
+          
+      %button.prev-screen
+        %i.material-icons arrow_back_ios
+      %button.next-screen
+        %i.material-icons arrow_forward_ios
+
+    .walkthrough-footer
+      %button.button.next-screen 次へ
+      = button_tag type: 'button', onclick: "location.href='./'", class: "button finish"  do
+        閉じる
+      
+      
+/
+  Copyright (c) 2019 by Jeff Ham (https://codepen.io/jebbles/pen/MKoYya)
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
