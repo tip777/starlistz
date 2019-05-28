@@ -954,6 +954,10 @@ input[type="email"] {
       font-size: 1.2em;
       padding: 15px 60px;
     }
+    .noButton{
+      pointer-events: none;
+      border-radius: inherit;
+    }
   }
 }
 
