@@ -47,9 +47,7 @@
         = "#{@follower}"
         %span フォロワー
 
-      %h3
-        = "#{@mylist.count}"
-        %span プレイリスト
+      
 
 - if is_signin && is_signed(current_user.id, @user.id)
   .bg__w

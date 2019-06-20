@@ -12,10 +12,10 @@ class HomeController < ApplicationController
         redirect_to welcome_path
       end
       
-      taggings = set_list_genre
-      @genre = ActsAsTaggableOn::Tag.where(id: taggings).order("taggings_count").first(10) #トップ10　ジャンル
-      @newlist = List.is_status.includes({user: [:user_profile]}, :taggings).order('created_at').first(10) #新着のプレイリスト
-  
+      @newusers = User.includes(:user_profile).order(created_at: :desc).limit(5)
+      @newlists = List.is_status.includes({user: [:user_profile]}, :taggings).order('created_at').first(10) #新着のプレイリスト
+      
+      
       #Customer取得
       @customer = find_or_create_stripe_customer(current_user)
       
