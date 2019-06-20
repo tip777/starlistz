@@ -24,7 +24,7 @@
         %p.button.noButton ベータ版
 
 - if user_signed_in?
-  .top__genre
+  .top__user
     %h2.top__title NEWユーザー
     - if @newusers != nil and not @newusers.empty?
       = render "users/user", users: @newusers
@@ -69,38 +69,10 @@
           %p 聴くのとは違う形の楽しみ方があります。
   
   
-  %section.top__sample
-    // %h2 サンプル
+  %section.top__newRegist
     %h2 新しい体験をはじめよう
     %footer
       = link_to "新規登録する", new_user_registration_path,{ class: "button" }
-    // %p.sample_p 実際のプレイリストがこちらです。
-    // %ul.card
-    //   %li
-    //     / /まだ購入していないプレイリスト
-    //     = link_to samplelist_path do
-    //       .l__upper
-    //         .l__img
-    //           %img{:alt => "Thumb", :src => "//s3.amazonaws.com/starlistz-bucket-prod/sample_playlist/samplelist_thumb.jpg"}/
-    //         %span.listtitle
-    //           StarListz ベストプレイリスト
-    //         %span.author
-    //           sample_starlistz
-    //       .l__bottom
-    //         %p
-    //           これはサンプルのリストです。
-    //         .tags
-    //           %span.l__playlist.genretag
-    //             sample
-    //           %span.l__playlist.genretag
-    //             playlist
-    //         .l__footerPrice
-    //           %span.favoriteStar
-    //             %i.material-icons
-    //               star_rate
-    //             0
-    //           %span.listprice
-    //             無料
   
   %section.top__question
     %h2 よくある質問

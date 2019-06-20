@@ -79,9 +79,9 @@
     .span.playlist__discription= simple_format(@list.description)
     
     .span
-      - @list.tag_list.each.with_index(0) do |listgenre, i|
+      - @list.tag_list.each.with_index(0) do |listmood, i|
         %span.genretag
-          = link_to listgenre, chart_path(genre: listgenre, sort: Constants::SORT)
+          = link_to listmood, chart_path(mood: listmood, sort: Constants::SORT)
   
   - if @display_list == true
     .track_section

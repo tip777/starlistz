@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   def playlist
     if current_user != nil && current_user.id == @user.id
       @mylists = @user.lists
-      @mylist_pages = mylists.includes(:user, :taggings).page(params[:mylist_page])
+      @mylist_pages = @mylists.includes(:user, :taggings).page(params[:mylist_page])
     
     else
       if !@user.lists.empty?
@@ -60,9 +60,6 @@ class UsersController < ApplicationController
           moodlist_ids = @user.lists.is_status.tagged_with(params[:mood]).pluck(:id) #moodの対象のリストのIDの一覧取得
           @moodlists = List.includes(:user, :taggings).where(id: moodlist_ids).order(:created_at)
           @moodlist_pages = @moodlists.page(params[:mylist_page])
-          
-          # mood = @user.lists.is_status.tagged_with(params[:mood]).pluck(:id)#moodの対象のリストのIDの一覧取得
-          # @genre_list = List.is_status.includes({user: [:user_profile]}, :taggings).where(id: genre).order(:created_at)
           
         else
           @btn_patterns = []

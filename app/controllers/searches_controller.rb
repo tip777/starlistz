@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  before_action :gon_current_user, only: [:playlist, :user, :playlist_genre, :user_genre]
+  before_action :gon_current_user, only: [:playlist, :user]
   
   def all_result
   end

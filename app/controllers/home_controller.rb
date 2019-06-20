@@ -35,27 +35,27 @@ class HomeController < ApplicationController
 
   def chart
     #セレクトボックス用のタグ
-    taggings = set_list_genre
+    taggings = set_list_mood
     @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
-    @tag.unshift("All genre") #先頭に"All genre"追加
+    @tag.unshift("All mood") #先頭に"All mood"追加
 
     #パラメータからリスト抽出
-    if chart_params[:genre] == "All genre" || chart_params[:genre].nil? #ジャンルが空だったら
+    if chart_params[:mood] == "All mood" || chart_params[:mood].nil? #ジャンルが空だったら
       if chart_params[:sort] == "new" || chart_params[:sort].nil? #sortが新着or空欄の場合
-        @genre_list = List.is_status.includes({user: [:user_profile]}, :taggings).order(:created_at)
+        @mood_list = List.is_status.includes({user: [:user_profile]}, :taggings).order(:created_at)
       else  # ランキングの場合
-        @genre_list = List.is_status.includes({user: [:user_profile]}, :taggings).joins(:list_favorites).group(:list_id).order('count(list_id) desc')
+        @mood_list = List.is_status.includes({user: [:user_profile]}, :taggings).joins(:list_favorites).group(:list_id).order('count(list_id) desc')
       end
     else
-      genre = List.tagged_with(chart_params[:genre]).pluck(:id)#ジャンルの対象のリストのIDの一覧取得
+      listMood_ids = List.tagged_with(chart_params[:mood]).pluck(:id)#ジャンルの対象のリストのIDの一覧取得
       if chart_params[:sort] == "new" || chart_params[:sort].nil? #sortが新着or空欄の場合
-        @genre_list = List.is_status.includes({user: [:user_profile]}, :taggings).where(id: genre).order(:created_at)
+        @mood_list = List.is_status.includes({user: [:user_profile]}, :taggings).where(id: listMood_ids).order(:created_at)
       else  # ランキングの場合
-        @genre_list = List.is_status.includes({user: [:user_profile]}, :taggings).joins(:list_favorites).where(id: genre).group(:list_id).order('count(list_id) desc')
+        @mood_list = List.is_status.includes({user: [:user_profile]}, :taggings).joins(:list_favorites).where(id: listMood_ids).group(:list_id).order('count(list_id) desc')
       end
     end
 
-    @pages = @genre_list.page(params[:page])
+    @pages = @mood_list.page(params[:page])
     #Customer取得
     @customer = find_or_create_stripe_customer(current_user)
   end
@@ -79,12 +79,8 @@ class HomeController < ApplicationController
 
   private
 
-  def genre_params
-    params.permit(:user_search, :list_search)
-  end
-
   def chart_params
-    params.permit(:genre, :sort)
+    params.permit(:mood, :sort)
   end
 
   # def name_check(name)

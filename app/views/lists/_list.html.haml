@@ -11,13 +11,13 @@
         .l__bottom
           %p= trun_str(list.description, 40)
           .tags
-            - list.tag_list.each.with_index(0) do |listgenre, i|
+            - list.tag_list.each.with_index(0) do |listmood, i|
               - if i > 4
                 %span.genretag･･･
                 - break
               - else
                 %span.genretag
-                  = link_to trun_str(listgenre, 30), chart_path(genre: listgenre, sort: Constants::SORT)
+                  = link_to trun_str(listmood, 30), chart_path(mood: listmood, sort: Constants::SORT)
             .l__footerPrice
               //playlist favorite
               %span.favoriteStar
@@ -41,13 +41,13 @@
           .l__bottom
             %p= trun_str(list.description, 40)
             .tags
-              - list.tag_list.each.with_index(0) do |listgenre, i|
+              - list.tag_list.each.with_index(0) do |listmood, i|
                 - if i > 4
                   %span.genretag･･･
                   - break
                 - else
                   %span.genretag
-                    = trun_str(listgenre, 30)
+                    = trun_str(listmood, 30)
             .l__footerPrice
               %span.favoriteStar
                 %i.material-icons star_rate

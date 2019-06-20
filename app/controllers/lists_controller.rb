@@ -41,8 +41,6 @@ class ListsController < ApplicationController
         
       else
         @list = List.new
-        taggings = set_list_genre
-        @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
         
       end
       
@@ -57,10 +55,8 @@ class ListsController < ApplicationController
     
     if @list.nil? || @list.paranoia_destroyed?
       reject_page
-    else
-      taggings = set_list_genre
-      @tag = ActsAsTaggableOn::Tag.where(id: taggings).pluck(:name)
       
+    else
       if @tracks.nil?
         @tracks = @list.tracks.without_deleted.sort_by(&:row_order)
       end

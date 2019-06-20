@@ -60,15 +60,20 @@ class List < ApplicationRecord
     end
   end
   
-  #ジャンルは30個まで
+  #ムードは1個以上 30個まで
   before_save do
+    if self.tag_list.count == 0
+      self.errors.add(:base, "ムードは1つ以上入力してください。")
+      raise ActiveRecord::Rollback
+    end
+    
     if self.tag_list.count > 30
       extra_tags = self.tag_list.count - 30
       self.tag_list.slice!(30, self.tag_list.count - 1) 
     end
   end
   
-  #ジャンルは99文字まで
+  #ムードは99文字まで
   before_save do
     self.tag_list.each_with_index do |val, i|
       if  self.tag_list[i].length > 99

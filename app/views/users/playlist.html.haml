@@ -3,7 +3,7 @@
 .l__tabbox__account
   - if is_signin && is_signed(current_user.id, @user.id)
     .mylist_area
-      - if @mylist != nil and not @mylist.empty?
+      - if @mylists != nil and not @mylists.empty?
         = render "lists/list", lists: @mylist_pages, customer: @customer
       -else
         .no_playlist

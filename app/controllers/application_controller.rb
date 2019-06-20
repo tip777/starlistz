@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_list_genre
+  def set_list_mood
     #Listのタグだけ抽出
     return ActsAsTaggableOn::Tagging.where(taggable_type: "List").group("tag_id").pluck(:tag_id)
   end
