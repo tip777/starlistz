@@ -24,11 +24,11 @@
             = paginate @moodlist_pages, param_name: 'mylist_page'
             
       - else
-        .buttons
+        .moodButtons
           - if !@btn_patterns.nil?
             - @user.lists.tag_counts.each_with_index do |mood, i|
-              // %button{class: "btn-hover color-#{@btn_patterns[i]}"}= mood.name
-              = link_to mood.name, users_playlist_path(@user, mood: mood.name),{ class: "btn-hover color-#{@btn_patterns[i]}" }
+              // %button{class: "moodBtn-hover color-#{@btn_patterns[i]}"}= mood.name
+              = link_to mood.name, users_playlist_path(@user, mood: mood.name),{ class: "moodBtn-hover color-#{@btn_patterns[i]}" }
           
           
           
