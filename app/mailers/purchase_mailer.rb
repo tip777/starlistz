@@ -1,5 +1,5 @@
 class PurchaseMailer < ApplicationMailer
-  default from: Constants::INFO_MAIL #送信元アドレス
+  default from: "#{Constants::COMPANY_NAME} <#{Constants::INFO_MAIL}>" #送信元アドレス
 
   #プレイリスト購入者へのメール
   def buyer(purchase, buyer_user)

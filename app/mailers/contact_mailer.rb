@@ -1,5 +1,6 @@
 class ContactMailer < ApplicationMailer
-    default from: Constants::INFO_MAIL #送信元アドレス
+    # default from: Constants::INFO_MAIL #送信元アドレス
+    default from: "#{Constants::COMPANY_NAME} <#{Constants::INFO_MAIL}>" #送信元アドレス
     default to: Constants::SUPPORT_MAIL #送信先アドレス
 
     def received_email(contact, current_user)
