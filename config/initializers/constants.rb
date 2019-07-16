@@ -4,6 +4,7 @@ module Constants
     SORT = "new"
     MOOD = "All mood"
     SUPPORT_MAIL = "support@starlistz.com" 
+    INFO_MAIL = "info@starlistz.com" 
     COMPANY_ADDRESS = "〒451-0045 愛知県名古屋市西区名駅2丁目34-17 セントラル名古屋1101" 
     COMPANY_TELL = "050-5433-0291" 
     DLETE_MARK_LIST = "(削除済)"

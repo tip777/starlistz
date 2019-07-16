@@ -1,6 +1,6 @@
 class ContactMailer < ApplicationMailer
-    default from: "info@starlistz.com" #送信元アドレス
-    default to: "support@starlistz.com" #送信先アドレス
+    default from: Constants::INFO_MAIL #送信元アドレス
+    default to: Constants::SUPPORT_MAIL #送信先アドレス
 
     def received_email(contact, current_user)
         @contact = contact
