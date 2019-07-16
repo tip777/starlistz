@@ -11,7 +11,7 @@ default: &default
   database: starlistz_dev
   pool: 5
   username: local_user
-  password: ""
+  password: "stardev"
   host: localhost
   variables:
     sql_mode: TRADITIONAL
