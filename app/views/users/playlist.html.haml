@@ -24,6 +24,7 @@
             = paginate @moodlist_pages, param_name: 'mylist_page'
             
       - else
+        %h2 ムード
         .moodButtons
           - if !@btn_patterns.nil?
             - @user.lists.tag_counts.each_with_index do |mood, i|
