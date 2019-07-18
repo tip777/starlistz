@@ -963,57 +963,11 @@ input[type="email"] {
 
 
 
-.top__genre{
+.top__user{
   padding:30px;
-  h2{
+  .top__title{
     margin:60px 0 30px;
     text-align: center;
-  }
-  ul{
-    font-size: 0;
-  }
-  li{
-    font-size: 18px;
-    display: inline-block;
-    text-align: center;
-    position: relative;
-    margin:3px;
-    a{
-      color: #fff;
-      background-color: #33a02c;
-      border-color: #33a02c;
-      border-radius: 2em;
-      padding: 0 15px;
-      display: inline-block;
-      margin: 5px 3px;
-      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
-      transition:.1s;
-      @media screen and ( min-width: 767px ){
-        &:hover{
-          transform:scale(1.05);
-          transition:.1s;
-        }
-      }
-    }
-    &:before{
-      position: absolute;
-      width:100%;
-      height:1px;
-      background-color: #eee;
-      top:0;
-      left:0;
-    }
-  }
-  .button.more{
-    color: #fff;
-    background-color: #33a02c;
-    border-color: #33a02c;
-    border-radius: 2em;
-    display: inline-block;
-    font-weight: 700;
-    font-size: 1.2em;
-    padding: 15px 60px;
-    margin: 30px 0;
   }
 }
 .top__playlist{
@@ -1026,7 +980,7 @@ input[type="email"] {
 
 
 @media only screen and (max-width: 767px) {
-.top__genre{
+.top__user{
   padding:15px 5px;
   h2{
     margin:30px 0 15px;
@@ -1065,7 +1019,7 @@ input[type="email"] {
   @media only screen and (min-width: 767px) {
     h2{
       text-align: center;
-      font-size: 28px;
+      font-size: 1.8em;
       padding:0;
     }
     p{
@@ -1131,7 +1085,7 @@ input[type="email"] {
     font-size: 2em;
     padding: 40px 0px 40px 0px;
     margin:0;
-    font-weight: normal;
+    font-weight: bold;
     letter-spacing: 0.03em;
   }
   p{
@@ -1141,9 +1095,9 @@ input[type="email"] {
   }
   @media only screen and (max-width: 767px) {
     h2{
-      font-size: 1.4em;
+      font-size: 1.8em;
       text-align: center;
-      font-weight: normal;
+      font-weight: bold;
       padding: 30px 0px;
       margin: 0;
     }
@@ -1172,16 +1126,31 @@ input[type="email"] {
 
 
 
-.top__sample{
+.top__newRegist{
   background-color: rgb(24, 24, 58);
   padding-bottom: 60px;
   h2{
-    font-size: 30px;
+    font-size: 1.8em;
     color: rgb(255, 255, 255);
     text-align: center;
-    padding: 80px 0px 10px;
+    padding: 60px 0px 10px;
     margin:0;
 
+  }
+  footer {
+      margin: 40px 0 0 0;
+      text-align: center;
+  }
+  .button{
+    border-radius: 2em;
+    border: 3px solid #fff;
+    // background-color: transparent;
+    // color: #fff;
+    background-color: #fff;
+    color: rgb(24, 24, 58);
+    font-weight:700;
+    font-size: 1.2em;
+    padding: 15px 60px;
   }
   .sample_p{
     font-size: 1.2em;
@@ -1678,6 +1647,8 @@ background-color: #17183a;
 ////////////////////////////////////////////////////////////////////////
 .l__usercard{
   padding:0 15px;
+  max-width: 580px;
+  margin: auto;
 }
 .list__usercard{
   display: table;
@@ -1932,8 +1903,22 @@ background-color: #17183a;
 
 .l__tabbox__account{
   max-width: 580px;
-  margin:30px auto;
+  margin: 0 auto;
+  padding: 0 15px;
+  .mylist_area{
+    margin:30px auto;
+  }
+  
+  .playlist_area{
+    h2{
+      font-size: 1.2em;
+      // font-weight: 400;
+      margin-bottom: 30px;
+    }
+  }
+  
 }
+
 
 
 .no_playlist, .no_purchase{
@@ -2036,121 +2021,6 @@ background-color: #17183a;
 //////////////////////////////////////////////////////////////////////////////////
 
 
-// .l-genre-search{
-//   max-width: 600px;
-//   form{
-//     position: relative;
-//     input[type="text"]{
-//       border-radius: 0;
-//       padding: 15px 5px;
-//       font-size: 22px;
-//       border: none;
-//       border-bottom: 1px solid #ccc;
-//       background-color: inherit;
-//       transition:0;
-//       &:focus{
-//         border-bottom:2px solid #333;
-//         transition:0;
-//       }
-//     }
-//     input[type="submit"]{
-//       display: none;
-//     }
-//     i{
-//       position: absolute;
-//       right: 15px;
-//       top: 15px;
-//       font-size: 35px;
-//       color: #ccc;
-//     }
-//   }
-// }
-
-// #genre_search{
-//   .genre-list {
-//     max-width: 600px;
-
-//     li{
-//       position: relative;
-//       list-style-type: none;
-//       padding: 10px;
-//       display: table;
-//       width: 100%;
-//       border-bottom: 1px solid #ebebeb;
-
-//       &:before {
-//         line-height: 1;
-//         padding: 15px;
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//       }
-
-//       .title{
-//         display: table-cell;
-//         font-size:18px;
-//       }
-
-//       .number{
-//         display: table-cell;
-//         width: 60px;
-//       }
-//     }
-//   }
-// }
-
-
-
-// .l-genre-ranking{
-//   .genre-list {
-//     counter-reset: ranking-mark;
-//     max-width: 600px;
-
-//     li{
-//       position: relative;
-//       list-style-type: none;
-//       padding: 10px 0 10px 60px;
-//       display: table;
-//       width: 100%;
-//       border-bottom: 1px solid #ebebeb;
-//       &:before {
-//         content: counter(ranking-mark, decimal);
-//         counter-increment: ranking-mark;
-//         line-height: 1;
-//         padding: 15px;
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//       }
-//       &:nth-child(1):before{
-//         color: #33a02c;
-//         font-weight: 700;
-//       }
-//       &:nth-child(2):before{
-//         color: #33a02c;
-//         font-weight: 700;
-//       }
-//       &:nth-child(3):before{
-//         color: #33a02c;
-//         font-weight: 700;
-//       }
-//       .title{
-//         display: table-cell;
-//         font-size:18px;
-//       }
-//       .number{
-//         display: table-cell;
-//         width: 60px;
-//       }
-//     }
-//   }
-// }
-
-
-
-
-
-
 .border-left{
   border-left: 5px solid #33a02c;
   padding: 15px 5px 15px 15px;
@@ -2169,54 +2039,6 @@ background-color: #17183a;
   font-size: 12px;
 }
 
-
-
-
-
-
-
-
-
-// .l-new-playlist{
-//   display: table;
-//   width: 100%;
-//   padding: 10px;
-//   margin-bottom: 15px;
-//   .ll-new-playlist{
-//     display: table-cell;
-//     width: 300px;
-//     height: 100%;
-//     vertical-align: top;
-//     padding: 15px;
-//     img{
-//       overflow: hidden;
-//       width: 300px;
-//     }
-//     .input{
-//       margin:10px;
-//       input{
-//         line-height: 1;
-//       }
-//     }
-//   }
-//   .rr-new-playlist{
-//     display: table-cell;
-//     height: 100%;
-//     vertical-align: top;
-//     padding: 15px;
-
-//     label{
-//       font-weight:700;
-//       color:#ccc;
-//       font-size: 1em;
-//       margin:30px 0 0;
-//       display: block;
-//     }
-//     .list_price select{
-//       width:100px;
-//     }
-//   }
-// }
 
 
 
@@ -2957,7 +2779,7 @@ table.minimum{
 
 .l__listEdit{
   .playlist__title,
-  .list_genre,
+  .list_mood,
   .playlist__price{
     margin:15px 0;
   }
@@ -3057,13 +2879,6 @@ table.minimum{
   cursor: pointer;
 }
 
-
-.usergenre_area,
-.listgenre_area{
-  margin: 15px auto;
-    max-width: 580px;
-    text-align: center;
-}
 
 #listRelease{
   position: relative;
@@ -3425,6 +3240,96 @@ table.minimum{
 
 
 
+
+
+
+//users/playlist のムードボタンのデザイン　１１パターン
+
+.moodButtons {
+    // margin: 10%;
+    // text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+
+.moodBtn-hover {
+    // width: 130px;
+    padding: 5px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    // height: 55px;
+    display: inline-block;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.moodBtn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.moodBtn-hover:focus {
+    outline: none;
+}
+
+.moodBtn-hover.color-1 {
+    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+.moodBtn-hover.color-2 {
+    background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
+    box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+}
+.moodBtn-hover.color-3 {
+    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+.moodBtn-hover.color-4 {
+    background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
+    box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+}
+.moodBtn-hover.color-5 {
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+.moodBtn-hover.color-6 {
+    background-image: linear-gradient(to right, #009245, #FCEE21, #00A8C5, #D9E021);
+    box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
+}
+.moodBtn-hover.color-7 {
+    background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #F24645);
+    box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+}
+.moodBtn-hover.color-8 {
+    background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+.moodBtn-hover.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+.moodBtn-hover.color-10 {
+        background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+    box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+.moodBtn-hover.color-11 {
+       background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+}
 
 
 

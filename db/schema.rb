@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_095206) do
+ActiveRecord::Schema.define(version: 2019_07_18_021152) do
 
   create_table "areas", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postal_code", null: false
@@ -29,15 +29,6 @@ ActiveRecord::Schema.define(version: 2019_04_08_095206) do
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "item_services", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "music_service_id"
-    t.integer "track_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["music_service_id"], name: "index_item_services_on_music_service_id"
-    t.index ["track_id"], name: "index_item_services_on_track_id"
   end
 
   create_table "list_favorites", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -64,13 +55,6 @@ ActiveRecord::Schema.define(version: 2019_04_08_095206) do
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_lists_on_deleted_at"
     t.index ["user_id"], name: "index_lists_on_user_id"
-  end
-
-  create_table "music_services", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.text "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "person_infos", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -231,8 +215,6 @@ ActiveRecord::Schema.define(version: 2019_04_08_095206) do
   end
 
   add_foreign_key "areas", "prefectures"
-  add_foreign_key "item_services", "music_services"
-  add_foreign_key "item_services", "tracks"
   add_foreign_key "list_favorites", "lists"
   add_foreign_key "list_favorites", "users"
   add_foreign_key "lists", "users"

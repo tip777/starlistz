@@ -4,9 +4,6 @@ class Track < ApplicationRecord
   
   belongs_to :list, inverse_of: :tracks
 
-  has_many :item_services, dependent: :destroy
-  has_many :music_servises, through: :item_services
-
   #sortable用
   include RankedModel
   ranks :row_order

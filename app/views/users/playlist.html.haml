@@ -3,7 +3,7 @@
 .l__tabbox__account
   - if is_signin && is_signed(current_user.id, @user.id)
     .mylist_area
-      - if @mylist != nil and not @mylist.empty?
+      - if @mylists != nil and not @mylists.empty?
         = render "lists/list", lists: @mylist_pages, customer: @customer
       -else
         .no_playlist
@@ -13,4 +13,23 @@
           = paginate @mylist_pages, param_name: 'mylist_page'
 
   -else
-    = render "lists/list", lists: @mylist, customer: @customer
+    
+    .playlist_area
+      - if !params[:mood].nil?
+        %h2 #{params[:mood]}　のプレイリスト一覧
+        = render "lists/list", lists: @moodlists, customer: @customer
+        
+        -if @moodlist_pages != nil
+          #mylist_paginator
+            = paginate @moodlist_pages, param_name: 'mylist_page'
+            
+      - else
+        %h2 ムード
+        .moodButtons
+          - if !@btn_patterns.nil?
+            - @user.lists.tag_counts.each_with_index do |mood, i|
+              // %button{class: "moodBtn-hover color-#{@btn_patterns[i]}"}= mood.name
+              = link_to mood.name, users_playlist_path(@user, mood: mood.name),{ class: "moodBtn-hover color-#{@btn_patterns[i]}" }
+          
+          
+          

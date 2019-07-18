@@ -71,7 +71,7 @@ $(document).ready(function(){
       width: 200
   });
 
-  $(".js-search").val($(".js-search").val()).trigger("change");//genre set value
+  $(".js-search").val($(".js-search").val()).trigger("change");//mood set value
 
   $('.select-main').on('change', param_change);
 
@@ -79,14 +79,14 @@ $(document).ready(function(){
 
   //select tag parameter send
   function param_change () {
-      var genre = ""
+      var mood = ""
       if (!$(".js-search").val()){
-        genre = "All"
+        mood = "All"
       }else{
-        genre = $(".js-search").val();
+        mood = $(".js-search").val();
       }
       var url = 'sort=' + $('.select-main').val();
-      url = url + '&genre=' + genre
+      url = url + '&mood=' + mood
       window.location.search = url
   }
   

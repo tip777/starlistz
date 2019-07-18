@@ -11,12 +11,6 @@ class UsersController < ApplicationController
     else
       @following = @user.following_relationships.count
       @follower = @user.follower_relationships.count
-      #マイページだったら非公開プレイリストも表示する
-      if @user == current_user
-        @mylist = @user.lists
-      else
-        @mylist = @user.lists.is_status
-      end
 
       if current_user != nil
         #Customer取得
@@ -56,7 +50,29 @@ class UsersController < ApplicationController
   end
 
   def playlist
-    @mylist_pages = @mylist.includes(:user, :taggings).page(params[:mylist_page])
+    if current_user != nil && current_user.id == @user.id
+      @mylists = @user.lists
+      @mylist_pages = @mylists.includes(:user, :taggings).page(params[:mylist_page])
+    
+    else
+      if !@user.lists.empty?
+        if !params[:mood].nil?
+          moodlist_ids = @user.lists.is_status.tagged_with(params[:mood]).pluck(:id) #moodの対象のリストのIDの一覧取得
+          @moodlists = List.includes(:user, :taggings).where(id: moodlist_ids).order(:created_at)
+          @moodlist_pages = @moodlists.page(params[:mylist_page])
+          
+        else
+          @btn_patterns = []
+          #登録しているmood分回してボタンパターンをランダムで決める
+          for i in 1..@user.lists.tag_counts.count do
+            @btn_patterns.push(rand(1..11))
+          end
+          
+        end
+      end
+      
+    end
+    
   end
 
   def purchasehistory

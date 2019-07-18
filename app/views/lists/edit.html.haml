@@ -20,14 +20,13 @@
         .playlist__text
           .playlist__title
             = f.input :title, label: "プレイリスト名", placeholder: 'プレイリスト名（必須５０文字まで）'
-          .list_genre
-            = f.label :playlist_genre, "ジャンル"
+          .list_mood
+            = f.label :playlist_mood, "ムード"
             - if f.object.tag_list.empty?
               - delimiter_char = ''
             -else
               - delimiter_char = '# '
-            // = f.input :tag_list, value: delimiter_char + f.object.tag_list.to_s, :as => :text, label: false, placeholder: 'ジャンル（#HIPHOP #RAP...）', input_html: {rows: 1}
-            = f.text_field :tag_list, value: delimiter_char + f.object.tag_list.to_s, label: false, placeholder: 'ジャンル（#HIPHOP #RAP...）', input_html: {rows: 1}
+            = f.text_field :tag_list, value: delimiter_char + f.object.tag_list.to_s, label: false, placeholder: 'ムード（#ワークアウト #チル...）', input_html: {rows: 1}
           .span.playlist__price
             = f.label :price do
               価格
