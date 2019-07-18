@@ -74,7 +74,7 @@ group :development do
   gem 'byebug', platform: :mri
   gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
   gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
-  # gem 'rails-erd' # ER図自動生成
+  gem 'rails-erd' # ER図自動生成
 end
 
 # herokuでのログ表示のため
