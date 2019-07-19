@@ -4,10 +4,10 @@
       - @mail_notice.errors.full_messages.each do |message|
         %li= message
 
-.l__personInfo
+.l__mailNotice
   %h2 メール通知
   
-  .l__personInfo__inner
+  .l__mailNotice__inner
     
     = simple_form_for [@user, @mail_notice], url: mail_notice_path do |f|
 
