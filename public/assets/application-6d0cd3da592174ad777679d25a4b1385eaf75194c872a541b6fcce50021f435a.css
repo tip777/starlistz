@@ -23325,7 +23325,48 @@ table.minimum td {
   margin: 0;
 }
 
-/* line 3016, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3008, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+.l__mailNotice {
+  max-width: 580px;
+  margin: 30px auto;
+}
+/* line 3011, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+.l__mailNotice h2 {
+  text-align: center;
+}
+/* line 3014, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+.l__mailNotice h3 {
+  font-size: 1.2em;
+  margin: 15px 0;
+  text-align: center;
+  font-weight: 400;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+/* line 3022, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+.l__mailNotice h3 span {
+  font-size: 1.6em;
+  padding: 0 15px;
+}
+
+/* line 3030, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+.l__mailNotice__inner {
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* line 3035, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+.l__mailNotice__inner .input,
+.l__mailNotice__inner .personInfoContentHeader {
+  margin: 0 0 20px 0;
+}
+/* line 3040, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+.l__mailNotice__inner input {
+  margin: 0;
+}
+
+/* line 3062, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei,
 .l__about,
 .l__privacy,
@@ -23337,7 +23378,7 @@ table.minimum td {
   padding: 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
-/* line 3026, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3072, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei h3,
 .l__about h3,
 .l__privacy h3,
@@ -23345,7 +23386,7 @@ table.minimum td {
 .l__contact h3 {
   margin: 30px 0 7px;
 }
-/* line 3029, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3075, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei p,
 .l__about p,
 .l__privacy p,
@@ -23353,7 +23394,7 @@ table.minimum td {
 .l__contact p {
   margin: 0 0 20px;
 }
-/* line 3032, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3078, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei ul,
 .l__about ul,
 .l__privacy ul,
@@ -23361,7 +23402,7 @@ table.minimum td {
 .l__contact ul {
   list-style-type: disc;
 }
-/* line 3035, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3081, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei dd,
 .l__about dd,
 .l__privacy dd,
@@ -23369,7 +23410,7 @@ table.minimum td {
 .l__contact dd {
   padding-left: 30px;
 }
-/* line 3038, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3084, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__tokutei a,
 .l__about a,
 .l__privacy a,
@@ -23379,13 +23420,13 @@ table.minimum td {
   text-decoration: underline;
 }
 
-/* line 3044, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3090, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__contact h2 {
   text-align: center;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 3049, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+  /* line 3095, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
   .l__tokutei,
   .l__about,
   .l__privacy,
@@ -23394,58 +23435,58 @@ table.minimum td {
     margin: 0;
   }
 }
-/* line 3059, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3105, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .form__contact .input {
   margin: 0 0 20px 0;
 }
-/* line 3062, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3108, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .form__contact input {
   margin: 0;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 3068, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+  /* line 3114, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
   .form__contact input {
     width: 100%;
   }
 }
-/* line 3113, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3159, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment {
   max-width: 580px;
   margin: 30px auto;
 }
-/* line 3116, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3162, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment a {
   color: #2895f1;
 }
-/* line 3119, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3165, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment h2 {
   text-align: center;
 }
-/* line 3122, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3168, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment h3 {
   text-align: left;
 }
-/* line 3125, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3171, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .paymentContentHeader {
   margin: 0 0 20px 0;
 }
-/* line 3128, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3174, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc {
   padding: 30px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
-/* line 3132, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3178, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc h3 {
   margin: 0;
   padding: 10px 0;
 }
-/* line 3136, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3182, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc hr {
   margin: 0 0 20px;
 }
-/* line 3139, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3185, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__innertext {
   color: #c09853;
   padding: 7px 10px 5px;
@@ -23455,25 +23496,25 @@ table.minimum td {
   border: 1px solid #fbeed5;
   border-radius: 4px;
 }
-/* line 3147, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3193, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__innertext p {
   margin: 20px 0;
 }
-/* line 3150, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3196, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__innertext .attention {
   font-weight: 700;
   color: red;
 }
-/* line 3154, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3200, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__innertext img {
   padding: 0 10px;
   width: 60px;
 }
-/* line 3159, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3205, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__btn {
   margin-bottom: 15px;
 }
-/* line 3161, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3207, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__btn a {
   border-color: #2480c2;
   color: #fff;
@@ -23487,25 +23528,25 @@ table.minimum td {
   background: -ms-linear-gradient(top, #54b3ff 0, #0078d9 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#54b3ff',endColorstr='#0078d9',GradientType=0);
 }
-/* line 3175, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3221, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__stripeinfo {
   padding: 10px 10px 15px;
   margin-bottom: 15px;
   border-radius: 3px;
 }
-/* line 3179, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3225, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__stripeinfo h4 {
   color: #2895f1;
   font-size: 16px;
   margin: 0 0 10px;
   float: left;
 }
-/* line 3185, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3231, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__stripeinfo table {
   background-color: #fff;
   border: 1px solid #ddd;
 }
-/* line 3188, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3234, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__stripeinfo table td {
   padding: 8px;
   line-height: 20px;
@@ -23513,53 +23554,53 @@ table.minimum td {
   vertical-align: top;
   border: 1px solid #ddd;
 }
-/* line 3196, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3242, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__stripeinfo .state {
   font-weight: bold;
 }
-/* line 3199, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3245, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__stripeinfo.success {
   background-color: #f0f7ff;
 }
-/* line 3201, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3247, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__stripeinfo.success .state {
   color: #63bc01;
 }
-/* line 3205, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3251, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__stripeinfo.failed {
   background-color: #fbf0ee;
 }
-/* line 3207, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3253, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .l__stripeinfo.failed .state {
   color: #be3034;
 }
-/* line 3212, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3258, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .pull__right {
   float: right;
 }
-/* line 3214, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3260, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .l__payment .l__disc .pull__right p {
   font-weight: bold;
   display: inline;
 }
 @media only screen and (max-width: 767px) {
-  /* line 3221, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+  /* line 3267, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
   .l__payment .l__disc .l__stripeinfo h4 {
     float: none;
   }
-  /* line 3224, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+  /* line 3270, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
   .l__payment .l__disc .l__stripeinfo .pull__right {
     float: none;
   }
 }
 
 @media screen and (man-width: 767px) {
-  /* line 3232, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+  /* line 3278, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
   .l__payment {
     margin: 0;
   }
 }
-/* line 3248, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3294, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodButtons {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -23567,7 +23608,7 @@ table.minimum td {
   margin-bottom: 30px;
 }
 
-/* line 3257, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3303, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover {
   padding: 5px 30px;
   font-size: 16px;
@@ -23586,7 +23627,7 @@ table.minimum td {
   transition: all .4s ease-in-out;
 }
 
-/* line 3278, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3324, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover:hover {
   background-position: 100% 0;
   moz-transition: all .4s ease-in-out;
@@ -23595,72 +23636,72 @@ table.minimum td {
   transition: all .4s ease-in-out;
 }
 
-/* line 3286, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3332, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover:focus {
   outline: none;
 }
 
-/* line 3290, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3336, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-1 {
   background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
   box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
 }
 
-/* line 3294, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3340, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-2 {
   background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
   box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
 }
 
-/* line 3298, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3344, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-3 {
   background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
   box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
 }
 
-/* line 3302, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3348, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-4 {
   background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
   box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
 }
 
-/* line 3306, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3352, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-5 {
   background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
   box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
 }
 
-/* line 3310, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3356, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-6 {
   background-image: linear-gradient(to right, #009245, #FCEE21, #00A8C5, #D9E021);
   box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
 }
 
-/* line 3314, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3360, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-7 {
   background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #F24645);
   box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
 }
 
-/* line 3318, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3364, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-8 {
   background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
   box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
 
-/* line 3322, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3368, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-9 {
   background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
   box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 }
 
-/* line 3326, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3372, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-10 {
   background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a, #FBB03B);
   box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
 }
 
-/* line 3330, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
+/* line 3376, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodBtn-hover.color-11 {
   background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);
   box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);

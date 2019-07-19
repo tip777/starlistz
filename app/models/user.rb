@@ -39,6 +39,8 @@ class User < ApplicationRecord
 
   has_many :social_profiles, dependent: :destroy
 
+  has_one :mail_notice, dependent: :destroy
+
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
       user.provider = auth["provider"]

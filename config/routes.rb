@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   # resources :person_infos, expect: [:show, :new, :edit] #個人情報
   
   resources :relationships, only: [:create, :destroy]   #フォロー、アンフォロー
-  resources :favorites, only: [:create, :destroy]       #プレイリストお気に入り、解除
+  resources :favorites, only: [:create, :destroy]       #プレイリストお気に入り、解除 
 
   #ユーザー確認画面
   get "users/:id/playlist" => "users#playlist", as: 'users_playlist'
@@ -42,7 +42,12 @@ Rails.application.routes.draw do
   post 'users/:id/person_info', to: 'person_info#create'
   patch 'users/:id/person_info', to: 'person_info#update'
   put 'users/:id/person_info', to: 'person_info#update'
-  get "users/:id/list_release" => "users#list_release", as: 'list_release'                #プレイリスト公開設定
+  #メール通知、ON/OFF
+  get 'users/:id/mail_notice', to: 'mail_notice#index', as: 'mail_notice' 
+  patch 'users/:id/mail_notice', to: 'mail_notice#update'
+  put 'users/:id/mail_notice', to: 'mail_notice#update'
+  #プレイリスト公開設定
+  get "users/:id/list_release" => "users#list_release", as: 'list_release'                
 
   #検索
   get 'searches/all_result'

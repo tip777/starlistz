@@ -21,7 +21,9 @@
           .playlist__title
             = f.input :title, label: "プレイリスト名", placeholder: 'プレイリスト名（必須５０文字まで）'
           .list_mood
-            = f.label :playlist_mood, "ムード"
+            = f.label :playlist_mood do
+              ムード
+              %span.form-require 必須
             = f.text_field :tag_list, value: f.object.tag_list.to_s, placeholder: 'ムード（#ワークアウト #チル...）'
           .span.playlist__price
             = f.label :price do

@@ -61,7 +61,9 @@ class ChargesController < ApplicationController
       
       #購入者、販売者にメールを送る
       PurchaseMailer.buyer(purchase, current_user).deliver
-      PurchaseMailer.seller(purchase, list.user).deliver
+      if list.user.mail_notice.list_sold == true
+        PurchaseMailer.seller(purchase, list.user).deliver
+      end
 
       # TODO add more detailed error messages
     rescue Stripe::APIConnectionError => e
