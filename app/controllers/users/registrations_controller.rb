@@ -15,6 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.save
         signup_user = User.find(resource.id)
         signup_user.create_user_profile #user_profile 作成
+        signup_user.create_mail_notice  #mail_notice 作成
         #規約への同意フラグ、同意日時を保存
         signup_user.tos_acceptance = true
         signup_user.tos_acceptance_date = Time.now

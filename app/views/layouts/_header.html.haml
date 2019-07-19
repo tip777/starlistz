@@ -75,6 +75,8 @@
             = link_to "アカウント情報", person_info_path(current_user)
           %li
             = link_to "決済設定", users_payment_path(current_user)
+          %li
+            = link_to "メール通知", mail_notice_path(current_user)
           
         %li
           = link_to "お問い合わせ", contact_path

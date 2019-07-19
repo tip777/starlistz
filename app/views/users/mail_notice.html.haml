@@ -1,0 +1,8 @@
+= render "users/show_header"
+
+.l__tabbox__account
+  - if is_signin && is_signed(current_user.id, @user.id)
+    = link_to mail_notice(list_id: list.id), method: :patch, remote: true do
+      = button_tag :type => "button", :class =>"btn btn__favorite__square" do
+          %i.material-icons star
+          お気に入り

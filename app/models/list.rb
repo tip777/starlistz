@@ -16,7 +16,7 @@ class List < ApplicationRecord
   has_many :purchases, dependent: :destroy
   # has_many :users, through: :users
 
-  #プレイリストお気に入り機構
+  #プレイリストお気に入り機能
   has_many :list_favorites, dependent: :destroy
   has_many :favorite_lists, through: :list_favorites, source: :user
 

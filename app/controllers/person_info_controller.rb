@@ -74,11 +74,6 @@ class PersonInfoController < ApplicationController
   end
   
   private
-  
-  def set_personInfo(personinfo_id)
-    @person_info.tap { @person_info = nil }
-    @person_info = PersonInfo.with_deleted.find_by(id: personinfo_id)
-  end
 
   def personinfo_params
     params.require(:person_info).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :birthday,

@@ -1,0 +1,19 @@
+- if @mail_notice.errors.any?
+  #error_explanation.alert.alert-danger
+    %ul
+      - @mail_notice.errors.full_messages.each do |message|
+        %li= message
+
+.l__personInfo
+  %h2 メール通知
+  
+  .l__personInfo__inner
+    
+    = simple_form_for [@user, @mail_notice], url: mail_notice_path do |f|
+
+      = f.input :list_sold, label: 'プレイリストが購入された時', as: :boolean
+
+      = f.input :news_letter, label: 'StarListzからのお知らせ', as: :boolean
+          
+      = f.submit '変更する'
+      
