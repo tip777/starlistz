@@ -21526,7 +21526,7 @@ input[type="email"] {
 }
 /* line 1016, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .top__copy {
-  padding: 200px 0 150px;
+  padding: 80px 0 150px;
   background-color: #fff;
 }
 @media only screen and (min-width: 767px) {
@@ -21560,7 +21560,7 @@ input[type="email"] {
 @media only screen and (max-width: 767px) {
   /* line 1044, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
   .top__copy {
-    padding: 80px 0;
+    padding: 40px 0;
   }
 }
 /* line 1050, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */

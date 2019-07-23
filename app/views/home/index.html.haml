@@ -9,13 +9,11 @@
   .inner
 
     %h2 
-      曲と思いをシェアする、
-      %br/
-      プレイリスト
+      曲への気持ちが知りたいあなたへ
     
     - if !user_signed_in?
-      %p
-        無料登録をしてプレイリストを作成してみよう！
+      -# %p
+      -#   無料登録をしてプレイリストを作成してみよう！
       
       %footer
         = link_to "新規登録する", new_user_registration_path,{ class: "button" }
@@ -37,7 +35,7 @@
 
   %section.top__copy
     %h2 StarListzとは？
-    %p あなたが好きな曲や思い入れのある曲たちに説明を加えたプレイリストをシェア出来るサービスです。
+    %p 曲への気持ち、聴く理由にフォーカスしたプレイリストを売り買いできるサービスです。
   
   
   %section.top__discription
@@ -45,32 +43,23 @@
       .l__block
         %img.l__l{:src => "/images/tp-scene-private.jpg"}
         .l__r
-          %h2 みんなが普段聞いてきた曲が知れる
-          %p 「普段どんな曲を聴いているんだろう」
-          %p 「どんな曲を聴いて影響を受けているんだろう」
-          %p 意外と知らないみんなが普段聞いている曲を知ることができます。
-        
-    .l__discription
-      .l__block
-        %img.l__r{:src => "/images/tp-scene-root.jpg"}
-        .l__l
-          %h2 みんなのルーツに近づける
-          %p 曲にいつ、どうやって出会ったか、
-          %p 何を感じたかを見ることで
-          %p みんなの深いところまで知ることができます。
+          %h2 １曲の価値って？
+          %p その曲を聴く最高のシチュエーション、
+          %p まつわるエピソード、思い入れ等があるはず。
+          %p 聞き慣れた曲の新しい一面が知れるかも？
         
     .l__discription
       .l__block
         %img.l__l{:src => "/images/tp-scene-funn.jpg"}
         .l__r
-          %h2 違う音楽の楽しみ方がある
-          %p みんなの曲への気持ちから
-          %p 知らない曲への興味が湧き、
-          %p 聴くのとは違う形の楽しみ方があります。
-  
+          %h2 音楽の聴き方が変わる
+          %p 知っていても今まで聴いてこなかった曲
+          %p それは誰かの大切な曲かもしれません。
+          %p 今まで知らなかった音楽の新しい楽しみ方
+          %p を体験しませんか？
   
   %section.top__newRegist
-    %h2 新しい体験をはじめよう
+    %h2 音楽の楽しみ方を変えましょう
     %footer
       = link_to "新規登録する", new_user_registration_path,{ class: "button" }
   
