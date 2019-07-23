@@ -28,7 +28,7 @@
               - delimiter_char = ''
             -else
               - delimiter_char = '# '
-            = f.text_field :tag_list, value: delimiter_char + f.object.tag_list.to_s, label: false, placeholder: 'ムード（#ワークアウト #チル...）', input_html: {rows: 1}
+            = f.text_field :tag_list, value: delimiter_char + f.object.tag_list.to_s, label: false, placeholder: '気分（#ワークアウト #チル #ドライブ...）', input_html: {rows: 1}
           .span.playlist__price
             = f.label :price do
               価格
@@ -41,7 +41,7 @@
         = f.label :description do
           プレイリスト説明
           %span.form-require 必須
-        = f.input :description, label: false, placeholder: 'プレイリストの説明（400文字以内）' + "\n" + '例)　このリストは自分が特にインスピレーションもらった曲を集めました。', :input_html => {:rows => 5}
+        = f.input :description, label: false, placeholder: 'プレイリストの説明（400文字以内）', :input_html => {:rows => 5}
 
     // #track_section.table-sortable
     #track_section.table-sortable
@@ -59,7 +59,7 @@
               %td
                 %a.modal-syncer.js__listBack{"data-target" => "modal-content-0"}
                   %span.trackComment
-                    曲の説明
+                    曲への気持ち
       
       = f.fields_for :tracks, @tracks do |track|
         - if track.object.deleted_at.nil?
