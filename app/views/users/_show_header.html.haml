@@ -47,7 +47,10 @@
         = "#{@follower}"
         %span フォロワー
 
-      
+.bg__w
+  %ul.l__profile__tab
+    %li{ class: controller.action_name == 'playlist' ? 'active' : '' }
+      = link_to "気分", users_playlist_path(@user)
 
 - if is_signin && is_signed(current_user.id, @user.id)
   .bg__w

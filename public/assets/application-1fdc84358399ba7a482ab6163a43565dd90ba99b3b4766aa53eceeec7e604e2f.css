@@ -23602,10 +23602,10 @@ table.minimum td {
 }
 /* line 3294, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
 .moodButtons {
+  margin: 30px 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  margin-bottom: 30px;
 }
 
 /* line 3303, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
