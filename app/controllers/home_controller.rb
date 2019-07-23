@@ -13,7 +13,7 @@ class HomeController < ApplicationController
       end
       
       @newusers = User.includes(:user_profile).order(created_at: :desc).limit(5)
-      @newlists = List.is_status.includes({user: [:user_profile]}, :taggings).order('created_at').first(10) #新着のプレイリスト
+      @newlists = List.is_status.includes({user: [:user_profile]}, :taggings).order(created_at: :desc).first(10) #新着のプレイリスト
       
       
       #Customer取得
@@ -42,14 +42,14 @@ class HomeController < ApplicationController
     #パラメータからリスト抽出
     if chart_params[:mood] == "All mood" || chart_params[:mood].nil? #ジャンルが空だったら
       if chart_params[:sort] == "new" || chart_params[:sort].nil? #sortが新着or空欄の場合
-        @mood_list = List.is_status.includes({user: [:user_profile]}, :taggings).order(:created_at)
+        @mood_list = List.is_status.includes({user: [:user_profile]}, :taggings).order(created_at: :desc)
       else  # ランキングの場合
         @mood_list = List.is_status.includes({user: [:user_profile]}, :taggings).joins(:list_favorites).group(:list_id).order('count(list_id) desc')
       end
     else
       listMood_ids = List.tagged_with(chart_params[:mood]).pluck(:id)#ジャンルの対象のリストのIDの一覧取得
       if chart_params[:sort] == "new" || chart_params[:sort].nil? #sortが新着or空欄の場合
-        @mood_list = List.is_status.includes({user: [:user_profile]}, :taggings).where(id: listMood_ids).order(:created_at)
+        @mood_list = List.is_status.includes({user: [:user_profile]}, :taggings).where(id: listMood_ids).order(created_at: :desc)
       else  # ランキングの場合
         @mood_list = List.is_status.includes({user: [:user_profile]}, :taggings).joins(:list_favorites).where(id: listMood_ids).group(:list_id).order('count(list_id) desc')
       end
