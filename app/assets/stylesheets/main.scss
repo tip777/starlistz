@@ -98,6 +98,9 @@ h2{
 h3{
   font-size: 1.2em
 }
+h4{
+  font-size: 1em
+}
 
 @media only screen and (max-width: 767px) {
   h2{
@@ -1751,8 +1754,19 @@ background-color: #17183a;
 
 
 
-
-
+//term
+////////////////////////////////////////////////////////
+.l__wrapper .l__term{
+  h4{
+    margin: 30px 0 7px;
+  }
+  dt{
+    font-weight: normal;
+  }
+  dd{
+    padding: 0;
+  }
+}
 
 
 
