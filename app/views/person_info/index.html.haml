@@ -38,7 +38,7 @@
       = raw sprintf(f.input(:birthday, label:false, as: :date, use_month_numbers: true, :date_separator => '%s', start_year: Date.today.year, end_year: Date.today.year - 100), ' / ',' / ')
       
       = f.label :zipcode do
-        郵便番号
+        郵便番号(ハイフンなし)
         %span.form-require 必須
       = f.input :zipcode, label: false, error: false, placeholder: "例) 1234567"
       
