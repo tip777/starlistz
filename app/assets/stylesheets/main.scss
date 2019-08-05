@@ -223,11 +223,6 @@ input[type="reset"],
 
 //input??
 /////////////////////////////////////////////////////////////////
-//iphone input のフォーカス無効用
-input[type=text] {
-  font-size: 16px;
-}
-
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -242,6 +237,7 @@ textarea{
   padding: 0.5em 1em;
   text-decoration: none;
   width: 100%;
+  font-size: 16px; //iphone input のフォーカス無効用
   outline: 0;
   font-weight: 400;
 }
