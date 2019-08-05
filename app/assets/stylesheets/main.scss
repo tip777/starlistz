@@ -223,6 +223,11 @@ input[type="reset"],
 
 //input??
 /////////////////////////////////////////////////////////////////
+//iphone input のフォーカス無効用
+input[type=text] {
+  font-size: 16px;
+  transform: scale(0.8);
+}
 
 input[type="text"],
 input[type="password"],
