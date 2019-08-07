@@ -928,11 +928,21 @@ input[type="email"] {
     z-index: 3;
     position: relative ;
 
-    h2 {
-      font-size: 1.8em;
-      margin: 20px 0 10px;
-      padding:0;
-      position: relative;
+    @media only screen and (max-width: 767px) {
+      h2 {
+        font-size: 1.8em;
+        margin: 20px 0 10px;
+        padding:0;
+        position: relative;
+      }
+    }
+    @media only screen and (min-width: 767px) {
+      h2 {
+        font-size: 50px;
+        margin: 20px 0 10px;
+        padding:0;
+        position: relative;
+      }
     }
 
     p {
@@ -2676,6 +2686,23 @@ table.minimum{
   margin:10px 0 30px 0 ;
   padding-left: 15px;
 }
+
+.icon__discription{
+  margin: 15px 0;
+
+  a{
+    display: inline-block;
+    // border: 1px solid #808080;
+    padding: 5px 15px;
+    border: 2px solid #0099e8;
+    color: #0099e8;
+    font-weight: 700;
+  }
+  i, span{
+    vertical-align: middle;
+  }
+}
+
 .favchange{
   margin: 10px 0 0 0;
 }
@@ -2853,6 +2880,45 @@ table.minimum{
   font-size: 1.2em;
 }
 .modal_artist{
+  color:#888;
+}
+
+//アイコンの説明
+.l__iconDesc{
+  display: none;
+}
+.modal__iconDesc{
+  padding: 30px 20px;
+  .modal_title, .modal_desc{
+    display: block;
+  }
+}
+.iconDesc{
+  margin-bottom:20px;
+}
+.iconDesc__left{
+  float: left;
+  width: 40px;
+  display: block;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .l__icon{
+    i{
+      vertical-align: middle;
+    }
+  }
+}
+.iconDesc__right{
+  margin: 0 0 0 40px;
+  padding:0 0 0 15px;
+  overflow: hidden;
+}
+.modal_title{
+  font-weight: 700;
+}
+.modal_desc{
   color:#888;
 }
 

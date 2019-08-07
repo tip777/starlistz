@@ -1,0 +1,46 @@
+.l__iconDesc
+  .icon__discription
+    = link_to "", :class => 'modal-syncer js__listBack', "data-toggle" => "modal", 'data-target' => 'modal-iconDec' do
+      %i.material-icons help_outline
+      %span.iconHelp__title アイコンの説明
+
+  -# アイコンの説明モーダルウィンドウ
+  .modal-content.modal__iconDesc{:id => "modal-iconDec"}
+    -# モーダルウィンドウのコンテンツ開始
+    .r__modalContent
+    .l__iconDescCore.clearfix
+      .iconDesc
+        .iconDesc__left
+          .l__icon
+            %i.material-icons star_border
+        .iconDesc__right
+          %span.modal_title　お気に入り
+          %span.modal_desc　プレイリストの中でもお気に入りの曲はこのアイコンを選択しましょう。
+      
+      .iconDesc
+        .iconDesc__left
+          .l__icon
+            %i.material-icons add_comment
+        .iconDesc__right
+          %span.modal_title　曲の説明
+          %span.modal_desc　曲の説明の入力欄が表示されます。
+
+      .iconDesc
+        .iconDesc__left
+          .l__icon
+            %i.material-icons delete_forever
+        .iconDesc__right
+          %span.modal_title　曲の削除
+          %span.modal_desc　曲を削除することができます。
+
+      .iconDesc
+        .iconDesc__left
+          .l__icon
+            %i.material-icons dehaze
+        .iconDesc__right
+          %span.modal_title　並び替え
+          %span.modal_desc　ドラッグまたはタップしながら曲を移動させることが出来ます。
+        
+    -# モーダルウィンドウのコンテンツ終了
+    %p.text-center
+      %a#modal-close.button-link 閉じる
