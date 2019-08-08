@@ -897,7 +897,9 @@ input[type="email"] {
 
 //home after login
 ///////////////////////////////////////////////////////////////////////////////
-
+#banner.signed {
+  padding: 2em 0;
+}
 
 #banner {
   background-image: url(/images/191329715.jpg);
@@ -921,6 +923,7 @@ input[type="email"] {
     z-index: 2;
     background: linear-gradient(to right, rgba(150, 184, 3, 0.35), rgba(192, 175, 4, 0.4));
   }
+
 
   .inner {
     padding: 3em 0.5em;
@@ -2058,9 +2061,20 @@ background-color: #17183a;
   border: none;
   border-radius: 0;
   font-weight: 700;
-  background-color: rgba(0, 0, 0, 0.5);
+  // background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   font-size: 12px;
+}
+.alert-notice{
+  background-color: rgba(4, 180, 132, 0.7);
+}
+
+.alert-alert{
+  background-color: rgba(236, 154, 4, 0.7);
+}
+
+.alert-error{
+  background-color: rgba(236, 36, 4, 0.7);
 }
 
 
@@ -2886,6 +2900,13 @@ table.minimum{
 //アイコンの説明
 .l__iconDesc{
   display: none;
+  h4{
+    padding: 10px 15px 8px;
+    background-color: #efefef;
+    border-radius: 4px;
+    margin: 15px 0;
+    color: red;
+  }
 }
 .modal__iconDesc{
   padding: 30px 20px;
