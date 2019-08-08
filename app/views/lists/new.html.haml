@@ -38,24 +38,10 @@
           プレイリスト説明
           %span.form-require 必須
         = f.input :description, label: false, placeholder: 'プレイリストの説明（400文字以内）', :input_html => {:rows => 5}
-      
+    
+    = render partial: 'icon_desc'
+
     #track_section.table-sortable
-      #cont_desc_newedit.l__tracks
-        %table
-          %tbody
-            %tr
-              %td
-                %span.favoriteStar
-                  おすすめ
-              %td.track_no_sample
-              %td
-                %span 曲名（必須９０文字まで）
-                %span.trackArtist アーティスト名（必須５０文字まで）
-              %td
-                %a.modal-syncer.js__listBack{"data-target" => "modal-content-0"}
-                  %span.trackComment
-                    曲への気持ち
-      
       = f.fields_for :tracks, @list.tracks.sort_by(&:row_order) do |track|
         = render 'track_fields', f: track
           

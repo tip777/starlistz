@@ -43,24 +43,9 @@
           %span.form-require 必須
         = f.input :description, label: false, placeholder: 'プレイリストの説明（400文字以内）', :input_html => {:rows => 5}
 
-    // #track_section.table-sortable
+    = render partial: 'icon_desc'
+
     #track_section.table-sortable
-      #cont_desc_newedit.l__tracks
-        %table
-          %tbody
-            %tr
-              %td
-                %span.favoriteStar
-                  おすすめ
-              %td.track_no_sample
-              %td
-                %span 曲名（必須９０文字まで）
-                %span.trackArtist アーティスト名（必須５０文字まで）
-              %td
-                %a.modal-syncer.js__listBack{"data-target" => "modal-content-0"}
-                  %span.trackComment
-                    曲への気持ち
-      
       = f.fields_for :tracks, @tracks do |track|
         - if track.object.deleted_at.nil?
           = render 'track_fields', f: track
@@ -75,4 +60,5 @@
         = link_to "削除", @list, method: :delete, data: { confirm: "#{@list.title}を削除してもよろしいですか?" }
     
     
+
     

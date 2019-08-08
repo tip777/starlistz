@@ -40448,18 +40448,19 @@ $(document).ready(function(){
 (function() {
   var agent;
 
+  $(document).ready(function() {
+    if ($('div').hasClass('track_item') && $('div').hasClass('l__iconDesc')) {
+      $('.l__iconDesc').show();
+    }
+  });
+
   $('.field_track_add').on('cocoon:before-insert', function(e, track_to_be_added) {
-    console.log('before insert');
     return track_to_be_added.fadeIn('slow');
   }).on('cocoon:after-insert', function(e, added_track) {
-    console.log('after insert');
     return added_track.css("background", "red");
   }).on('cocoon:before-remove', function(e, track_to_be_removed) {
-    console.log('before remove');
     return track_to_be_removed.fadeOut('slow');
-  }).on('cocoon:after-remove', function(e, removed_track) {
-    return console.log('after remove');
-  });
+  }).on('cocoon:after-remove', function(e, removed_track) {});
 
   agent = navigator.userAgent;
 
@@ -40608,7 +40609,12 @@ $(document).ready(function(){
       rerollNumber();
       listSort();
       $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index());
-      return $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
+      $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
+      if ($('div').hasClass('track_item')) {
+        if ($('.l__iconDesc').css('display') === 'none') {
+          return $('.l__iconDesc').show();
+        }
+      }
     });
     return $('#track_section').on('cocoon:after-remove', function(e, insertedItem) {
       rerollNumber();

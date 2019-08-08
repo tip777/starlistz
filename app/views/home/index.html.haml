@@ -1,25 +1,19 @@
-
-%section#banner
-  /
-    ".inner" is set up as an inline-block so it automatically expands
-    in both directions to fit whatever's inside it. This means it won't
-    automatically wrap lines, so be sure to use line breaks where
-    appropriate (<br />).
-  .overlay
-  .inner
-
-    %h2 
-      曲への気持ちという
-      %br
-      音楽の新しい楽しみ方
-    
-    - if !user_signed_in?
-      -# %p
-      -#   無料登録をしてプレイリストを作成してみよう！
-      
+- if !user_signed_in?
+  %section#banner
+    .overlay
+    .inner
+      %h2 
+        音楽の新しい楽しみ方
+        
       %footer
         = link_to "新規登録する", new_user_registration_path,{ class: "button" }
-    - else
+- else
+  %section#banner.signed
+    .overlay
+    .inner
+      %h2 
+        音楽の新しい楽しみ方
+
       %footer
         %p.button.noButton ベータ版
 
