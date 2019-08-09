@@ -1,6 +1,25 @@
 module ApplicationHelper
     
     include StripeCreate #Stripe 作成部分
+
+    def default_meta_tags
+    {
+        reverse: true,
+        title: "StarListz",
+        description: "曲への気持ち、聴く理由にフォーカスしたプレイリストを売り買いできるサービスです。",
+        keywords: "starlistz,プレイリスト,曲,気持ち",
+        canonical: request.original_url,
+        og: {
+        title: :title,
+        type: "website",
+        url: request.original_url,
+        image: "#{asset_path "Logo.png"}",
+        site_name: "StarListz",
+        description: :description,
+        locale: 'ja_JP'
+        }
+    }
+    end
     
     #Stripe 認証ページのURLを編集 
     def stripe_url_header(current_user)
