@@ -4,10 +4,13 @@
   %h2 決済設定
 
   .l__disc
-    - if @stripe_email.nil?
-      .paymentContentHeader
-        %p.detail プレイリストを公開するにはStripeとの連携が必要です
-    
+    .paymentContentHeader
+      %p.detail
+        売上金の入金やクレジットカードによる支払いを受け付けるためにStripeアカウントと連携します。 詳しい設定方法は
+        %a{href: "https://help.starlistz.com/81stripe%e9%80%a3%e6%90%ba%e6%96%b9%e6%b3%95/", target: "_blank"} こちら
+        をご覧ください。
+
+
     %h3 Stripeとの連携
     %hr
     
@@ -47,16 +50,25 @@
               %td.state 公開中
     
     .l__innertext
-      %p 
-        %a{href: 'https://stripe.com', target: "_blank"} Stripe社(ストライプ)
-        は、個人や企業がインターネットを通して料金を受納する方法を提供するサービスを提供している企業です。
-      %p Facebook、Twitterといった大手サービスでも採用されている世界最大手のオンライン決済サービスです。
-      %p あなたがStripeのアカウントを作成すれば、StarListzと連携させてプレイリストの収益を受け取っていただくことが出来るようになります。
+      -# %p 
+      -#   %a{href: 'https://stripe.com', target: "_blank"} Stripe社(ストライプ)
+      -#   は、個人や企業がインターネットを通して料金を受納する方法を提供するサービスを提供している企業です。
+      -# %p Facebook、Twitterといった大手サービスでも採用されている世界最大手のオンライン決済サービスです。
+      -# %p あなたがStripeのアカウントを作成すれば、StarListzと連携させてプレイリストの収益を受け取っていただくことが出来るようになります。
+      -# %p.attention ※StarListzとStripeアカウントを連携させなければ収益の受け取りが出来ないため、作成したプレイリストは非公開となります。
+      -# %img{:src => "/images/visa.png"}
+      -# %img{:src => "/images/mastercard.png"}
+      -# %img{:src => "/images/americanExpress.png"}
+      -# %p 下の「決済代行サービス「Stripe」アカウントを作成/連携する」からStripeのアカウントを作成します。あるいはすでにお持ちのStripeアカウントと連携させます。
+      -# %p Stripe連携を行いStarListzでプレイリストを公開しましょう！
+
+      %p プレイリストを公開するにはStripeとの連携が必要です。
       %p.attention ※StarListzとStripeアカウントを連携させなければ収益の受け取りが出来ないため、作成したプレイリストは非公開となります。
+      %p 上の「決済代行サービス「Stripe」アカウントを作成/連携する」からStripeのアカウントを作成します。あるいはすでにお持ちのStripeアカウントと連携させます。
+      %p Stripe連携を行いStarListzでプレイリストを公開しましょう！
+
       %img{:src => "/images/visa.png"}
       %img{:src => "/images/mastercard.png"}
       %img{:src => "/images/americanExpress.png"}
-      %p 下の「決済代行サービス「Stripe」アカウントを作成/連携する」からStripeのアカウントを作成します。あるいはすでにお持ちのStripeアカウントと連携させます。
-      %p Stripe連携を行いStarListzでプレイリストを公開しましょう！
     
     
