@@ -43,9 +43,9 @@ Rails.application.routes.draw do
   patch 'users/:id/person_info', to: 'person_info#update'
   put 'users/:id/person_info', to: 'person_info#update'
   #メール通知、ON/OFF
-  get 'users/:id/mail_notice', to: 'mail_notice#index', as: 'mail_notice' 
-  patch 'users/:id/mail_notice', to: 'mail_notice#update'
-  put 'users/:id/mail_notice', to: 'mail_notice#update'
+  get '/mail_notice', to: 'mail_notice#index', as: 'mail_notice' 
+  patch 'mail_notice', to: 'mail_notice#update'
+  put '/mail_notice', to: 'mail_notice#update'
   #プレイリスト公開設定
   get "users/:id/list_release" => "users#list_release", as: 'list_release'                
 

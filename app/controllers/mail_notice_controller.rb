@@ -1,15 +1,11 @@
 class MailNoticeController < ApplicationController
 
     def index
-        @user = User.find(params[:id])
-        
         if current_user.nil?
           redirect_to new_user_session_path
           
-        elsif current_user.id != @user.id
-          reject_page
-          
         else
+          @user = current_user
           user_mailNotice = @user.mail_notice
           if user_mailNotice.nil?
             @user.create_mail_notice
