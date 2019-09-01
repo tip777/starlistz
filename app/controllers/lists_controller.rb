@@ -5,6 +5,7 @@ class ListsController < ApplicationController
   def show
     @list = List.with_deleted.find_by(id: params[:id])
     @display_list = true
+    @user = @list.user
     if @list.nil?
       reject_page
     else
@@ -132,6 +133,6 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title, :description, :price, :image, :tag_list, tracks_attributes:[:id, :artist, :song, :description, :recommend, :row_order, :_destroy])
+    params.require(:list).permit(:title, :description, :price, :tag_list, tracks_attributes:[:id, :artist, :song, :description, :recommend, :row_order, :_destroy])
   end
 end

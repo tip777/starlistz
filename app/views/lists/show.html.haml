@@ -16,7 +16,7 @@
     .l__playlistCore.clearfix
       .playlist__topimg
         .l__img
-          = image_tag @list.image.url(:thumb)
+          = image_tag @user.user_profile.avatar.url(:thumb)
         .span.trackCount #{@list.tracks.count}曲
       
       .playlist__text
@@ -127,7 +127,7 @@
           .l__playlistCore.clearfix
             .playlist__img
               .l__img
-                = image_tag @list.image.url(:thumb)
+                = image_tag @user.user_profile.avatar.url(:thumb)
             .playlist__text
               %span.modal_song= track.song
               %span.modal_artist= track.artist

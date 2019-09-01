@@ -2643,37 +2643,11 @@ table.minimum{
   }
 }
 
-.playlist__img{
-  @media only screen and (min-width: 767px) {
-    float: left;
-    width: 120px;
-    .l__img{
-    margin:0 0 15px;
-  }
-    img{
-      width:100%;
-      border-radius: 7px;
-    }
-  }
-  @media only screen and (max-width: 767px) {
-    float: none;
-    width: 150px;
-    margin:auto;
-    img{
-      width:100%;
-      border-radius: 7px;
-    }
-  }
-}
-
 .trackCount{
   color: #999;
 }
 
 .playlist__text{
-  @media only screen and (min-width: 767px) {
-    margin: 0 0 0 120px;
-  }
   padding:0 0 0 15px;
   overflow: hidden;
 }
@@ -2688,6 +2662,7 @@ table.minimum{
     font-weight: 600;
     font-size: 2em;
     margin: 10px 0 0 0;
+    float: right;
   }
 }
 
@@ -2804,7 +2779,6 @@ table.minimum{
   padding:0 15px;
 }
 .playlist__price{
-  float: right;
   margin:0;
 }
 .l__tracks{

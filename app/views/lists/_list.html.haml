@@ -5,7 +5,7 @@
         //purchased
         .l__upper
           .l__img
-            = render 'lists/is_image', list: list
+            = image_tag list.user.user_profile.avatar.url(:thumb)
           %span.listtitle= link_to trun_str(list.title, 21), list_path(list) , class: "testclass"
           %span.author= link_to trun_str(list.user.name, 23), users_playlist_path(list.user)
         .l__bottom
@@ -31,7 +31,7 @@
         = link_to list_path(list) do
           .l__upper
             .l__img
-              = render 'lists/is_image', list: list
+              = image_tag list.user.user_profile.avatar.url(:thumb)
 
             -if is_signin && is_signed(current_user.id, list.user.id)
               - if !is_release_list?(list)

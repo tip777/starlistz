@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_072013) do
+ActiveRecord::Schema.define(version: 2019_09_01_140836) do
 
   create_table "areas", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postal_code", null: false
@@ -48,10 +48,6 @@ ActiveRecord::Schema.define(version: 2019_07_18_072013) do
     t.string "status", default: "closed", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.bigint "image_file_size"
-    t.datetime "image_updated_at"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_lists_on_deleted_at"
     t.index ["user_id"], name: "index_lists_on_user_id"

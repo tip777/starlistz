@@ -22,19 +22,6 @@ class List < ApplicationRecord
 
   # #gem acts-as-taggable-on タグ機能
   acts_as_taggable
-
-  #paperclip設定
-  has_attached_file :image,
-                    :storage => :s3,
-                    :s3_credentials => Proc.new{|a| a.instance.s3_credentials },
-                    :styles => {
-                      :thumb => "100x100#",
-                      :medium => '300x240#'
-                    }, default_url: "/default/thumb_noimage.png"
-
-  def s3_credentials
-      {:bucket => ENV["S3_BUCKET_NAME"], :aws_access_key_id => ENV["AWS_ACCESS_KEY_ID"], :aws_secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]}
-  end
   
 
   ## Validation
@@ -47,10 +34,6 @@ class List < ApplicationRecord
   validates :price, presence: true, numericality: true
   validates_numericality_of :price,  greater_than_or_equal_to: 100
   validates_numericality_of :price,  less_than_or_equal_to: 5000
-  
-  #プレイリスト画像 validate
-  validates_attachment_content_type :image, :content_type => ["image/png", "image/jpg", "image/jpeg"]
-  do_not_validate_attachment_file_type :image
   
   #５曲以上入っているか確認　validation作業に入ったらコメント外す（削除済みの曲は除外）
   after_save do

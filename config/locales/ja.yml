@@ -63,10 +63,6 @@ ja:
         title: プレイリスト名
         description: 説明
         price: 金額
-        image: プレイリスト画像
-        image_file_name: プレイリスト画像名
-        image_content_type: プレイリスト画像形式
-        image_file_size: プレイリスト画像サイズ
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
