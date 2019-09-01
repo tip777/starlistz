@@ -2857,11 +2857,41 @@ table.minimum{
   .modal_song,.modal_artist{
     display: block;
   }
+
   @media only screen and (min-width: 767px) {
     .playlist__text{
       padding: 40px 15px 10px;
     }
   }
+
+  .playlist__img{
+    @media only screen and (min-width: 767px) {
+      float: left;
+      width: 120px;
+      .l__img{
+      margin:0 0 15px;
+    }
+      img{
+        overflow: hidden;
+        width: 90px;
+        border-radius: 50%;
+      }
+    }
+    @media only screen and (max-width: 767px) {
+      float: none;
+      width: 150px;
+      margin:auto;
+      .l__img{
+        text-align: center;
+      }
+      img{
+        overflow: hidden;
+        width: 90px;
+        border-radius: 50%;
+      }
+    }
+  }
+
 }
 .modal_song{
   font-weight: 700;
