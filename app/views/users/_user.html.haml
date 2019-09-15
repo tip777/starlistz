@@ -1,7 +1,7 @@
 .l__usercard
     - users.each do |user|
         =link_to users_playlist_path(user), {class: "list__usercard" } do
-            .img= image_tag user.user_profile.avatar.url(:thumb)
+            .img= render 'users/is_image', user: user
 
             .l-text
                 %h2.name 

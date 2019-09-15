@@ -17,7 +17,7 @@
       .field_name
         = f.fields_for :user_profile do |m|
           .field_profile_image.text-center
-            = image_tag resource.user_profile.avatar.url(:thumb)
+            = render 'users/is_image', user: resource
             = m.input :avatar, as: :file, label: false
 
           .field_profile

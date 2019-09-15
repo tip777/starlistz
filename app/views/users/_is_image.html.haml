@@ -1,0 +1,4 @@
+- if user.user_profile.avatar.file.nil?
+  = image_tag '/default/thumb_noavatar.jpg'
+- else
+  = image_tag user.user_profile.avatar.thumb.to_s 
