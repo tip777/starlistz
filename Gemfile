@@ -41,7 +41,6 @@ gem 'haml-rails'
 gem 'erb2haml'
 gem 'ransack', '~> 2.1.1'
 gem 'kaminari', '~> 0.17.0'
-gem 'paperclip'
 # gem 'aws-sdk', '~> 2.3'
 gem 'aws-sdk-s3', '~> 1'
 gem "paranoia", "~> 2.2"
