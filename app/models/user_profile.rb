@@ -12,6 +12,7 @@ class UserProfile < ApplicationRecord
                       :thumb => "100x100#",
                       :medium => '300x240#'
                     }, default_url: "/default/thumb_noavatar.jpg"
+                    
 
   def s3_credentials
       {:bucket => ENV["S3_BUCKET_NAME"], :aws_access_key_id => ENV["AWS_ACCESS_KEY_ID"], :aws_secret_access_key => ENV["AWS_SECRET_ACCESS_KEY"]}
