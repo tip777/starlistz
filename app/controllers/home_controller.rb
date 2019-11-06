@@ -35,6 +35,12 @@ class HomeController < ApplicationController
         song_title = []
 
         searchTxt = params[:term].gsub(" ", "")
+        searchFirstStr = params[:term][0].upcase
+        if searchFirstStr.match(/[0-9]/)
+          searchFirstStr = "Num"
+        elsif !searchFirstStr.match(/[A-Z]/)
+          searchFirstStr = "Other"
+        end
         
         creds = Google::Cloud::Bigquery::Credentials.new Rails.application.credentials.gcs_starlistz_key
         bigquery = Google::Cloud::Bigquery.new(
@@ -42,7 +48,8 @@ class HomeController < ApplicationController
           keyfile: creds #認証用JSONキーファイル
         )
 
-        sql = "SELECT title FROM `starlistz.discogs_data.track` WHERE REGEXP_CONTAINS(REPLACE(title,' ',''), '^(?i)#{searchTxt}.*$') LIMIT 5;"
+        sql = "SELECT title FROM `starlistz.discogs_track.track_#{searchFirstStr}` WHERE REGEXP_CONTAINS(REPLACE(title,' ',''), '^(?i)#{searchTxt}.*$') LIMIT 5;"
+
 
         # Location must match that of the dataset(s) referenced in the query.
         results = bigquery.query sql do |config|
@@ -54,7 +61,6 @@ class HomeController < ApplicationController
         end
 
       rescue => e
-        puts e.message + "***************!!!!!!!!!!!!!"
       end
     end
 
@@ -63,9 +69,36 @@ class HomeController < ApplicationController
 
   def auto_complete_artist
     begin
+      # artist_title = []
+
+      # searchTxt = params[:term].gsub(" ", "")
+
+      # creds = Google::Cloud::Bigquery::Credentials.new Rails.application.credentials.gcs_starlistz_key
+
+      # bigquery = Google::Cloud::Bigquery.new(
+      #   project: "starlistz",
+      #   keyfile: creds #認証用JSONキーファイル
+      # )
+
+      # sql = "SELECT name FROM `starlistz.discogs_data.artist` WHERE REGEXP_CONTAINS(REPLACE(name,' ',''), '^(?i)#{searchTxt}.*$') LIMIT 5;"
+
+      # # Location must match that of the dataset(s) referenced in the query.
+      # results = bigquery.query sql do |config|
+      #   config.location = "US"
+      # end
+
+      # results.each do |row|
+      #   artist_title.push(row[:name])
+      # end
+
+      #アルファベットごとに分けて検索
       artist_title = []
 
       searchTxt = params[:term].gsub(" ", "")
+      searchFirstStr = params[:term][0].upcase
+      if !searchFirstStr.match(/[A-Z]/)
+        searchFirstStr = "Other"
+      end
 
       creds = Google::Cloud::Bigquery::Credentials.new Rails.application.credentials.gcs_starlistz_key
 
@@ -73,8 +106,8 @@ class HomeController < ApplicationController
         project: "starlistz",
         keyfile: creds #認証用JSONキーファイル
       )
-
-      sql = "SELECT name FROM `starlistz.discogs_data.artist` WHERE REGEXP_CONTAINS(REPLACE(name,' ',''), '^(?i)#{searchTxt}.*$') LIMIT 5;"
+      # binding.pry
+      sql = "SELECT name FROM `starlistz.discogs_multi_data.artist_#{searchFirstStr}` WHERE REGEXP_CONTAINS(REPLACE(name,' ',''), '^(?i)#{searchTxt}.*$') LIMIT 5;"
 
       # Location must match that of the dataset(s) referenced in the query.
       results = bigquery.query sql do |config|
@@ -86,7 +119,6 @@ class HomeController < ApplicationController
       end
 
     rescue => e
-      puts e.message
     end
 
     render json: artist_title.to_json
@@ -148,13 +180,5 @@ class HomeController < ApplicationController
     params.permit(:mood, :sort)
   end
 
-  # def name_check(name)
-  #   ch = false
-  #   if User.group(:name).where(name: name).count > 0
-  #     ch = true
-  #   end
-  #   render nothing: true
-  #   return ch
-  # end
 
 end
