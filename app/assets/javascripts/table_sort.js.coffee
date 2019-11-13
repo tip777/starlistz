@@ -1,31 +1,5 @@
 # プレイリストの曲を並び替える系ののコード
 
-$(document).ready ->
-  rerollNumber()
-  listSort()
-  autocomplete_setup()
-  
-  #曲を新規で追加時
-  $('#track_section').on 'cocoon:after-insert', (e, insertedItem) ->
-    rerollNumber()
-    listSort()
-    #曲のrecommendのid
-    $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index())
-    $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index())
-
-    if $('div').hasClass('track_item')
-      if $('.l__iconDesc').css('display') == 'none'
-        $('.l__iconDesc').show()
-
-    autocomplete_setup()
-
-  #曲を削除時
-  $('#track_section').on 'cocoon:after-remove', (e, insertedItem) ->
-    rerollNumber()
-    autocomplete_setup()
-    return
-
-
 #曲の番号を振りなおす
 rerollNumber = ->
   n = 0
@@ -39,8 +13,7 @@ rerollNumber = ->
       $(elem).val  h
       h = h + 1
       return
-
-  
+      
 listSort = ->
   agent = navigator.userAgent
   #スマホやタブレットの場合
@@ -75,14 +48,27 @@ listSort = ->
       # console.log 'マウスあうと'
       return
   return
+      
+$(document).ready ->
+  rerollNumber()
+  listSort()
+  
+  #曲を新規で追加時
+  $('#track_section').on 'cocoon:after-insert', (e, insertedItem) ->
+    rerollNumber()
+    listSort()
+    #曲のrecommendのid
+    $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index())
+    $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index())
 
-#autocomplete部分を曲の追加、削除時に読み込み直せるように
-autocomplete_setup = ->
-  $('.song_auto').autocomplete
-    source: window.location.protocol + '//' + window.location.host + '/auto_complete_song.json'
-    minLength: 2
-    delay: 1000
-  $('.artist_auto').autocomplete
-    source: window.location.protocol + '//' + window.location.host + '/auto_complete_artist.json'
-    minLength: 2
-    delay: 1000
+    if $('div').hasClass('track_item')
+      if $('.l__iconDesc').css('display') == 'none'
+        $('.l__iconDesc').show()
+
+  #曲を削除時
+  $('#track_section').on 'cocoon:after-remove', (e, insertedItem) ->
+    rerollNumber()
+    return
+  
+  
+  

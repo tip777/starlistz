@@ -58,7 +58,6 @@ gem 'gon'
 gem 'rails-i18n'
 gem "bootsnap", ">= 1.1.0", require: false #rails 5.2.2 で標準で必要なよう
 gem 'meta-tags'
-gem 'google-cloud-bigquery'
 
 gem 'carrierwave'
 gem 'fog'
