@@ -15,9 +15,6 @@ Rails.application.routes.draw do
   #著作権どうするか
   # get 'copyright' , to: 'home#copyright'
 
-  get 'auto_complete_song', to: 'home#auto_complete_song'
-  get 'auto_complete_artist', to: 'home#auto_complete_artist'
-
   #お問い合わせ
   get 'contact' => 'contact#index'
   post 'contact/thanks' => 'contact#thanks'

@@ -40546,29 +40546,7 @@ $(document).ready(function(){
 
 }).call(this);
 (function() {
-  var autocomplete_setup, listSort, rerollNumber;
-
-  $(document).ready(function() {
-    rerollNumber();
-    listSort();
-    autocomplete_setup();
-    $('#track_section').on('cocoon:after-insert', function(e, insertedItem) {
-      rerollNumber();
-      listSort();
-      $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index());
-      $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
-      if ($('div').hasClass('track_item')) {
-        if ($('.l__iconDesc').css('display') === 'none') {
-          $('.l__iconDesc').show();
-        }
-      }
-      return autocomplete_setup();
-    });
-    return $('#track_section').on('cocoon:after-remove', function(e, insertedItem) {
-      rerollNumber();
-      autocomplete_setup();
-    });
-  });
+  var listSort, rerollNumber;
 
   rerollNumber = function() {
     var h, n;
@@ -40624,18 +40602,24 @@ $(document).ready(function(){
     }
   };
 
-  autocomplete_setup = function() {
-    $('.song_auto').autocomplete({
-      source: window.location.protocol + '//' + window.location.host + '/auto_complete_song.json',
-      minLength: 2,
-      delay: 1000
+  $(document).ready(function() {
+    rerollNumber();
+    listSort();
+    $('#track_section').on('cocoon:after-insert', function(e, insertedItem) {
+      rerollNumber();
+      listSort();
+      $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index());
+      $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
+      if ($('div').hasClass('track_item')) {
+        if ($('.l__iconDesc').css('display') === 'none') {
+          return $('.l__iconDesc').show();
+        }
+      }
     });
-    return $('.artist_auto').autocomplete({
-      source: window.location.protocol + '//' + window.location.host + '/auto_complete_artist.json',
-      minLength: 2,
-      delay: 1000
+    return $('#track_section').on('cocoon:after-remove', function(e, insertedItem) {
+      rerollNumber();
     });
-  };
+  });
 
 }).call(this);
 (function() {
