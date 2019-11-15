@@ -147,6 +147,43 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #google suggestqueriesで予測変換
+  def auto_complete_word
+    begin
+      artist_title = []
+
+      searchTxt = params[:term]
+      resource_url = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=#{searchTxt}"
+
+      str = URI.encode(resource_url)
+      uri = URI.parse(str)
+
+      response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+        http.open_timeout = 5
+        http.read_timeout = 10
+        http.get(uri.request_uri)
+      end
+
+      case response
+      when Net::HTTPSuccess
+        json = response.body
+        results = JSON.parse(json)
+
+        results[1].each do |item|
+          artist_title.push(item)
+        end
+      else
+        puts("HTTP ERROR: code=#{response.code} message=#{response.message}")
+      end
+
+    rescue => e
+      puts "Error_autocomplete : " + [uri.to_s, e.class, e].join(" : ")
+      nil
+    end
+    
+    render json: artist_title.to_json
+  end
+
   private
 
   def search_params

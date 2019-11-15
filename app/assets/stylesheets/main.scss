@@ -2289,216 +2289,6 @@ display: block;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// お支払い方法
-
-.l__payment_info{
-  max-width: 580px;
-  margin: auto;
-  h2{
-    text-align: center;
-  }
-  h3{
-    font-size: 1.2em;
-    margin: 15px 0;
-    text-align: center;
-    font-weight: 400;
-    background-color: #fff;
-    padding: 30px;
-    span{
-    font-size: 1.6em;
-    padding: 0 15px;
-  }
-  
-  }
-}
-
-.l__payment_info__inner{
-  background-color: #fff;
-  padding: 30px;
-  button{
-    margin-top:30px;
-  }
-  
-  // Stripe Element部分 
-
-  #payment-form {
-    max-width: 496px !important;
-    padding: 0 15px;
-    button{
-      padding: 5px;
-      border: 1px solid #444;
-      display: inline-block;
-      margin-top:30px;
-    }
-  }
-}
-
-//Stripe Element
-
-.StripeElement {
-  background-color: white;
-  padding: 8px 12px;
-  border-radius: 4px;
-  border: 1px solid transparent;
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
-}
-
-.StripeElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
-}
-
-.StripeElement--invalid {
-  border-color: #fa755a;
-}
-
-.StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
-}
-
-#card-errors{
-  color: #e25950;
-}
-
-
-// 販売者情報画面
-
-.l__acc_info{
-  max-width: 580px;
-  margin: auto;
-  h2{
-    text-align: center;
-  }
-  h3{
-    font-size: 1.2em;
-    margin: 15px 0;
-    text-align: center;
-    font-weight: 400;
-    background-color: #fff;
-    padding: 30px;
-    span{
-    font-size: 1.6em;
-    padding: 0 15px;
-  }
-  
-  }
-}
-
-.l__acc_info__inner{
-  background-color: #fff;
-  padding: 30px;
-  button{
-    margin-top:30px;
-  }
-}
-
-
-// 販売事業者情報画面
-
-.l__com_info{
-  max-width: 580px;
-  margin: auto;
-  h2{
-    text-align: center;
-  }
-  h3{
-    font-size: 1.2em;
-    margin: 15px 0;
-    text-align: center;
-    font-weight: 400;
-    background-color: #fff;
-    padding: 30px;
-    span{
-    font-size: 1.6em;
-    padding: 0 15px;
-  }
-  
-  }
-}
-
-.l__com_info__inner{
-  background-color: #fff;
-  padding: 30px;
-  button{
-    margin-top:30px;
-  }
-}
-
-
-// 販売事業者情報画面
-
-.l__bank_info{
-  max-width: 580px;
-  margin: auto;
-  h2{
-    text-align: center;
-  }
-  h3{
-    font-size: 1.2em;
-    margin: 15px 0;
-    text-align: center;
-    font-weight: 400;
-    background-color: #fff;
-    padding: 30px;
-    span{
-    font-size: 1.6em;
-    padding: 0 15px;
-  }
-  
-  }
-}
-
-.l__bank_info__inner{
-  background-color: #fff;
-  padding: 30px;
-  button{
-    margin-top:30px;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 売上管理画面
 /////////////////////////////////////////////////////////////////////////
 
@@ -2545,11 +2335,6 @@ table.minimum{
   }
 
 }
-
-
-
-
-
 
 
 
@@ -3489,3 +3274,22 @@ table.minimum{
 
 
 
+//*************************jquery ui autocomplete
+
+/* 各リスト項目のパディング設定 */
+.ui-menu .ui-menu-item-wrapper {
+  position: relative; padding: 3px 1em 3px .4em;
+}
+/* リスト全体の背景 */
+.ui-widget-content {
+  border: 1px solid #c5c5c5;
+  background: #ffffff;
+  color: #333333;
+}
+/* リスト hover 時のカラー */
+.ui-state-active {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: normal;
+  color: #ffffff;
+}  
