@@ -40546,7 +40546,29 @@ $(document).ready(function(){
 
 }).call(this);
 (function() {
-  var listSort, rerollNumber;
+  var autocomplete_setup, listSort, rerollNumber;
+
+  $(document).ready(function() {
+    rerollNumber();
+    listSort();
+    autocomplete_setup();
+    $('#track_section').on('cocoon:after-insert', function(e, insertedItem) {
+      rerollNumber();
+      listSort();
+      $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index());
+      $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
+      if ($('div').hasClass('track_item')) {
+        if ($('.l__iconDesc').css('display') === 'none') {
+          $('.l__iconDesc').show();
+        }
+      }
+      return autocomplete_setup();
+    });
+    return $('#track_section').on('cocoon:after-remove', function(e, insertedItem) {
+      rerollNumber();
+      autocomplete_setup();
+    });
+  });
 
   rerollNumber = function() {
     var h, n;
@@ -40602,24 +40624,30 @@ $(document).ready(function(){
     }
   };
 
-  $(document).ready(function() {
-    rerollNumber();
-    listSort();
-    $('#track_section').on('cocoon:after-insert', function(e, insertedItem) {
-      rerollNumber();
-      listSort();
-      $(insertedItem).find('.custom-check-box').attr('id', "custom-checkbox" + $(insertedItem).index());
-      $(insertedItem).find('.track_recommend').attr('for', "custom-checkbox" + $(insertedItem).index());
-      if ($('div').hasClass('track_item')) {
-        if ($('.l__iconDesc').css('display') === 'none') {
-          return $('.l__iconDesc').show();
-        }
+  autocomplete_setup = function() {
+    return $('.auto_word').autocomplete({
+      source: function(request, response) {
+        $.ajax({
+          url: window.location.protocol + '//' + window.location.host + '/auto_complete_word.json',
+          dataType: 'json',
+          cache: false,
+          data: {
+            term: request.term
+          },
+          success: function(data) {
+            response(data);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            response(['']);
+          }
+        });
+        return {
+          delay: 1000,
+          minLength: 2
+        };
       }
     });
-    return $('#track_section').on('cocoon:after-remove', function(e, insertedItem) {
-      rerollNumber();
-    });
-  });
+  };
 
 }).call(this);
 (function() {
