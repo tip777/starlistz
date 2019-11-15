@@ -211,6 +211,9 @@ ja:
       header:
         one: "%{model}にエラーが発生しました"
         other: "%{model}に%{count}個のエラーが発生しました"
+  recaptcha:
+    errors:
+      verification_failed: 'reCAPTCHA 認証失敗しました。しばらくしてからもう一度お試しください。'
   helpers:
     select:
       prompt: 選択してください

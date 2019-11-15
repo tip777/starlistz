@@ -7,13 +7,16 @@ class ContactController < ApplicationController
   def thanks
     begin
       @contact = Contact.new(contact_params)
-      if @contact.valid?
+      if verify_recaptcha(model: @contact) && @contact.valid?
         ContactMailer.received_email(@contact, current_user).deliver
         redirect_to root_path, notice: "お問い合わせを送信しました"
         log_supportContact(@contact, current_user)
+
       else
-        render "index"
+        render 'index'
+
       end
+
     rescue StandardError => e
       log_error(e, Constants::LOG_Fatal_LEVEL, "ContactController : StandardError")
       flash.now[:alert] = "お問い合わせの送信に失敗しました"

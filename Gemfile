@@ -62,6 +62,8 @@ gem 'meta-tags'
 gem 'carrierwave'
 gem 'fog'
 
+gem "recaptcha"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

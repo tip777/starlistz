@@ -457,6 +457,8 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       optimist (~> 3.0)
+    recaptcha (5.2.1)
+      json
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
@@ -582,6 +584,7 @@ DEPENDENCIES
   rails-i18n
   ranked-model (~> 0.4.0)
   ransack (~> 2.1.1)
+  recaptcha
   sass-rails (~> 5.0)
   select2-rails
   simple_form
