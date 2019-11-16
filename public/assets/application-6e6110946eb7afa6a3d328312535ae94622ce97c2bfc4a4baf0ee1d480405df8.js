@@ -40446,66 +40446,11 @@ $(document).ready(function(){
 
 
 (function() {
-  var agent;
-
   $(document).ready(function() {
     if ($('div').hasClass('track_item') && $('div').hasClass('l__iconDesc')) {
       $('.l__iconDesc').show();
     }
   });
-
-  $('.field_track_add').on('cocoon:before-insert', function(e, track_to_be_added) {
-    return track_to_be_added.fadeIn('slow');
-  }).on('cocoon:after-insert', function(e, added_track) {
-    return added_track.css("background", "red");
-  }).on('cocoon:before-remove', function(e, track_to_be_removed) {
-    return track_to_be_removed.fadeOut('slow');
-  }).on('cocoon:after-remove', function(e, removed_track) {});
-
-  agent = navigator.userAgent;
-
-  if (agent.search(/iPhone/) !== -1 || agent.search(/iPad/) !== -1 || agent.search(/iPod/) !== -1 || agent.search(/Android/) !== -1) {
-    $(document).on('touchstart', '.comment', function(e) {
-      var des_elem, elem;
-      elem = e.target;
-      des_elem = $(elem).parents("tr").find("#description");
-      if (des_elem.children("textarea").val().length > 0) {
-        $(elem).text("comment");
-        $(elem).removeClass().addClass("material-icons comment_add already");
-      } else {
-        $(elem).text("add_comment");
-        $(elem).removeClass().addClass("material-icons comment_add still");
-      }
-      if (des_elem.is(':hidden')) {
-        des_elem.show();
-      } else if (des_elem.is(':visible')) {
-        des_elem.hide();
-      } else {
-        alert('not find');
-      }
-      event.preventDefault();
-    });
-  } else {
-    $(document).on('click', '.comment', function(e) {
-      var des_elem, elem;
-      elem = e.target;
-      des_elem = $(elem).parents("tr").find("#description");
-      if (des_elem.children("textarea").val().length > 0) {
-        $(elem).text("comment");
-        $(elem).removeClass().addClass("material-icons comment_add already");
-      } else {
-        $(elem).text("add_comment");
-        $(elem).removeClass().addClass("material-icons comment_add still");
-      }
-      if (des_elem.is(':hidden')) {
-        des_elem.show();
-      } else if (des_elem.is(':visible')) {
-        des_elem.hide();
-      } else {
-        alert('not find');
-      }
-    });
-  }
 
   $(document).ready(function() {
     jQuery(function($) {
@@ -40636,6 +40581,10 @@ $(document).ready(function(){
           },
           success: function(data) {
             response(data);
+          },
+          select: function(event, ui) {
+            this.value = '';
+            return false;
           },
           error: function(XMLHttpRequest, textStatus, errorThrown) {
             response(['']);
