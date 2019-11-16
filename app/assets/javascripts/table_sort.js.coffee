@@ -87,40 +87,13 @@ autocomplete_setup = ->
       success: (data) ->
         response data
         return
+      select: (event, ui) ->
+        @value = ''
+        false
       error: (XMLHttpRequest, textStatus, errorThrown) ->
         response [ '' ]
         return
     delay: 1000
     minLength: 2
 
-  # $('.song_auto').autocomplete
-  #   source: window.location.protocol + '//' + window.location.host + '/auto_complete_song.json'
-  #   minLength: 2
-  #   delay: 1000
-  # $('.artist_auto').autocomplete
-  #   source: window.location.protocol + '//' + window.location.host + '/auto_complete_artist.json'
-  #   minLength: 2
-  #   delay: 1000
-
-  # try
-  #   $('.song_auto').autocomplete
-  #     source: window.location.protocol + '//' + window.location.host + '/auto_complete_song.json'
-  #     minLength: 2
-  #     delay: 1000
-    # $('.artist_auto').autocomplete
-    #   source: (req, res) ->
-    #     $.ajax
-    #       url: window.location.protocol + '//' + window.location.host + '/auto_complete_artist.json'
-    #       dataType: 'json'
-    #       success: (data) ->
-    #         res data
-    #         return
-    #     return
-    #   delay: 1000
-    #   minLength: 2
-  #   $('.artist_auto').autocomplete
-  #     source: window.location.protocol + '//' + window.location.host + '/auto_complete_artist.json'
-  #     minLength: 2
-  #     delay: 1000
-  # catch error
-  #   consle.log 'エラー内容 : ' + error
+    

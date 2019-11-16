@@ -2545,15 +2545,8 @@ table.minimum{
     width: 50px;
     // border-top: 1px solid #eee;
   }
-  td .comment,
   td .track_sorticon{
     cursor: pointer;
-  }
-  td .comment i, td .trackComment i{
-    color: #e8e54c;
-  }
-  td .comment i.still{
-    color: #000;
   }
 }
 @media only screen and (min-width: 767px) {
@@ -2609,14 +2602,17 @@ table.minimum{
   td:nth-of-type(3) span{
     margin:5px 0;
   }
-  td:nth-of-type(4){
-        width: 30px;
+  td:nth-of-type(4),
+  td:nth-of-type(5){
+    width: 50px;
     padding: 0 5px;
+    text-align: center;
+    .material-icons{
+      font-size: 30px;
+    }
   }
-  td:nth-of-type(5),
   td:nth-of-type(6){
-        width: 30px;
-    padding: 0 5px;
+    display: none;
   }
   input[type="text"],
   textarea{
