@@ -15,20 +15,7 @@
   -else
     
     .playlist_area
-      - if !params[:mood].nil?
-        %h2 #{params[:mood]}　のプレイリスト一覧
-        = render "lists/list", lists: @moodlists, customer: @customer
-        
-        -if @moodlist_pages != nil
-          #mylist_paginator
-            = paginate @moodlist_pages, param_name: 'mylist_page'
-            
-      - else
-        .moodButtons
-          - if !@btn_patterns.nil?
-            - @user.lists.tag_counts.each_with_index do |mood, i|
-              // %button{class: "moodBtn-hover color-#{@btn_patterns[i]}"}= mood.name
-              = link_to mood.name, users_playlist_path(@user, mood: mood.name),{ class: "moodBtn-hover color-#{@btn_patterns[i]}" }
+      = render "lists/list", lists: @mylists, customer: @customer
           
           
           

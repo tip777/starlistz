@@ -50,28 +50,8 @@ class UsersController < ApplicationController
   end
 
   def playlist
-    if current_user != nil && current_user.id == @user.id
-      @mylists = @user.lists
-      @mylist_pages = @mylists.includes(:user, :taggings).page(params[:mylist_page])
-    
-    else
-      if !@user.lists.empty?
-        if !params[:mood].nil?
-          moodlist_ids = @user.lists.is_status.tagged_with(params[:mood]).pluck(:id) #moodの対象のリストのIDの一覧取得
-          @moodlists = List.includes(:user, :taggings).where(id: moodlist_ids).order(:created_at)
-          @moodlist_pages = @moodlists.page(params[:mylist_page])
-          
-        else
-          @btn_patterns = []
-          #登録しているmood分回してボタンパターンをランダムで決める
-          for i in 1..@user.lists.tag_counts.count do
-            @btn_patterns.push(rand(1..11))
-          end
-          
-        end
-      end
-      
-    end
+      @mylists = @user.lists.includes(:user, :taggings)
+      @mylist_pages = @mylists.page(params[:mylist_page])
     
   end
 

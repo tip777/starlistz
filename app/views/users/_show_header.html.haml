@@ -60,6 +60,6 @@
         = link_to "お気に入り", users_favplaylist_path(current_user)
 - else
   .bg__w
-  %ul.l__profile__tab
-    %li{ class: controller.action_name == 'playlist' ? 'active' : '' }
-      = link_to "気分", users_playlist_path(@user)
+    %ul.l__profile__tab
+      %li{ class: controller.action_name == 'playlist' ? 'active' : '' }
+        = link_to "プレイリスト", users_playlist_path(@user)
