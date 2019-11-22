@@ -98,10 +98,8 @@ class UsersController < ApplicationController
         @year_list.each_with_index {|val, i| @year_list[i] =  val.strftime("%-Y")} #日付の形式変更
   
         # 全期間の合計売上額
-        calc_count = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id), status: "succeeded").group(:list_id).count
-        @all_amount = 0
-        calc_count.each_pair { |key, value| @all_amount = List.with_deleted.find(key).price * value + @all_amount }
-  
+        @all_amount = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id), status: "succeeded").sum(:purchase_price)
+
         if params[:year].nil? and !@year_list.empty? #params[:year]が空だったら
           params[:year] = @year_list.first
         elsif @year_list.empty?
@@ -117,10 +115,8 @@ class UsersController < ApplicationController
           for i in 1..month.to_i do
             i = month.to_i - (i - 1) #for 逆から回す
             month_amount = 0
-            calc_count = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id), status: "succeeded", order_date: Time.zone.local(@year, i, 1).in_time_zone.all_month ).group(:list_id).count
-            # 一月の合計売上額　
-            calc_count.each_pair { |key, value| month_amount = List.with_deleted.find(key).price * value + month_amount }
-  
+            month_amount = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id), status: "succeeded", order_date: Time.zone.local(@year, i, 1).in_time_zone.all_month ).sum(:purchase_price)
+
             if month_amount > 0 # 売り上げがあったら
               @all_month_amount.store(i, month_amount)
             end
@@ -134,10 +130,8 @@ class UsersController < ApplicationController
           for i in 1..month.to_i do
             i = month.to_i - (i - 1) #for 逆から回す
             month_amount = 0
-            calc_count = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id), status: "succeeded", order_date: Time.zone.local(@year, i, 1).in_time_zone.all_month ).group(:list_id).count
-  
-            # 一月の合計売上額　
-            calc_count.each_pair { |key, value| month_amount = List.with_deleted.find(key).price * value + month_amount }
+            month_amount = Purchase.unscope(:where).where(list_id: @sales_list.pluck(:id), status: "succeeded", order_date: Time.zone.local(@year, i, 1).in_time_zone.all_month ).sum(:purchase_price)
+            
             if month_amount > 0 # 売り上げがあったら
               @all_month_amount.store(i, month_amount)
             end
@@ -170,14 +164,14 @@ class UsersController < ApplicationController
         @date = Time.zone.local(params[:year], params[:month], 1)
         year = @date.strftime("%-Y")
         month = @date.strftime("%-m")
-  
-        list_amount = Purchase.unscope(:where).where(list_id: list.pluck(:id), status: "succeeded", order_date: Time.zone.local(year, month, 1).in_time_zone.all_month ).group(:list_id).count
-  
+
+        list_amount = Purchase.unscope(:where).where(list_id: list.pluck(:id), status: "succeeded", order_date: Time.zone.local(year, month, 1).in_time_zone.all_month ).group(:list_id).sum(:purchase_price)
+        
         # 対象月のプレイリスト毎の売上額
         @month_amount = 0
-        list_amount.each_with_index do |(key,value),i|
+        list_amount.each_with_index do |(key,price),i|
           target_list = List.with_deleted.find(key)
-          amount = target_list.price * value
+          amount = price
           #削除済みリストだったら後尾に「(削除済)」と付ける
           if target_list.deleted_at.nil?
             @list_amount.store(target_list.title, amount)
@@ -187,6 +181,7 @@ class UsersController < ApplicationController
           @sales_list.push(key)
           @month_amount = @month_amount + amount
         end
+
       else
         reject_page
       end

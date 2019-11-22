@@ -57,7 +57,7 @@ class ChargesController < ApplicationController
       }, :stripe_account => list.user.stripe_acct_id)
       
       # 購入履歴のステータスを成功に変更
-      purchase.update!(stripe_charge_id: charge.id, status: "succeeded")
+      purchase.update!(stripe_charge_id: charge.id, status: "succeeded", purchase_price: @amount)
       
       #購入者、販売者にメールを送る
       PurchaseMailer.buyer(purchase, current_user).deliver
