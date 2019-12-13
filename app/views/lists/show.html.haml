@@ -76,7 +76,12 @@
 
           .span.playlist__price ￥#{@list.price}
 
-    .span.playlist__discription= simple_format(@list.description)
+    -if @list.description.try(:split, "\n").nil?
+      .span.playlist__discription= text_url_to_link(@list.description).html_safe
+    -else
+      .span.playlist__discription= text_url_to_link(safe_join(@list.description.split("\n"), tag(:br))).html_safe
+      
+    
     
     .span
       - @list.tag_list.each.with_index(0) do |listmood, i|
@@ -120,7 +125,7 @@
                       %span.trackComment
                         %i.material-icons.already comment
   
-        // ここからトラックの説明のモーダルウィンドウ
+
         .modal-content.modal__comment{:id => "modal-content-#{i}"}
           // モーダルウィンドウのコンテンツ開始
           .r__modalContent
@@ -132,7 +137,12 @@
               %span.modal_song= track.song
               %span.modal_artist= track.artist
           %hr
-          %p= simple_format(track.description)
+          .playlist__song_description
+            -if track.description.try(:split, "\n").nil?
+              %p= text_url_to_link(track.description).html_safe
+            -else
+              %p= text_url_to_link(safe_join(track.description.split("\n"), tag(:br))).html_safe
+          
           // モーダルウィンドウのコンテンツ終了
           %p.text-center
             %a#modal-close.button-link 閉じる

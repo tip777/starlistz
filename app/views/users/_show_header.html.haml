@@ -3,7 +3,6 @@
     = render 'users/is_image', user: @user
   
   .l__r
-    //ログインしていたら編集できる
     - if is_signin
       - if is_signed(current_user.id, @user.id)
         .l__edit
@@ -14,7 +13,6 @@
     %h2
       #{@user.name}
     
-      // 本人確認バッジ
       - if is_identity?(@user)
         = render "users/identity"
 
@@ -34,11 +32,14 @@
             %img{:src => "#{asset_path "Twitter_Icon_Rounded_Square_Already.svg"}"}
             %span @#{@user.social_profiles[0].nickname}
 
-    //　ログインしていたらフォローボタン
     = render 'follow_form', user: @user if user_signed_in?
 
+    
     .description
-      = simple_format(@user.user_profile.description)
+      -if @user.user_profile.description.try(:split, "\n").nil?
+        = text_url_to_link(@user.user_profile.description).html_safe
+      -else
+        = text_url_to_link(safe_join(@user.user_profile.description.split("\n"), tag(:br))).html_safe
 
     = render 'layouts/tag_list', tag_list: @user.tag_list
 

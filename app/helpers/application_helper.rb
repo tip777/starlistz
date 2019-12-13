@@ -2,6 +2,8 @@ module ApplicationHelper
     
     include StripeCreate #Stripe 作成部分
 
+    require "uri" #　URLをリンクに変換する際に使用
+
     def default_meta_tags
     {
         reverse: true,
@@ -76,5 +78,22 @@ module ApplicationHelper
         else
             return false
         end
+    end
+
+    #　URLをリンクに変換する
+    def text_url_to_link link_text
+        #登録されているテキストがあったら
+        if !link_text.nil?
+            URI.extract(link_text, ["http", "https"]).uniq.each do |url|
+                sub_text = ""
+                sub_text << "<a href=" << url << " target=\"_blank\">" << url << "</a>"
+
+                link_text.gsub!(url, sub_text)
+            end
+        else
+            link_text = ""
+        end
+
+        return link_text
     end
 end
