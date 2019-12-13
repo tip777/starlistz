@@ -11,7 +11,7 @@ class Track < ApplicationRecord
   #validate
   validates :artist, presence: true, length: { maximum: 90 } 
   validates :song, presence: true, length: { maximum: 50 } 
-  validates :description, length: { maximum: 400 } 
+  validates :description, length: { maximum: 1000 } 
   validates :recommend, inclusion: {in: [true, false]}
   validates :row_order, numericality: true
 end
