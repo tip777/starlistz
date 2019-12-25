@@ -16,6 +16,11 @@ class ListsController < ApplicationController
                           <a id='listRelease' href='#{list_release_path(current_user)}'>プレイリストを公開する</a>".html_safe
         end
       else
+        #非公開リストは行けないように
+        if @list.status == "closed"
+          reject_page
+        end
+
         unless is_purchase?(current_user, @list) 
           if @list.paranoia_destroyed?
             reject_page
