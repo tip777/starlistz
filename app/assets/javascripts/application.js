@@ -186,12 +186,68 @@ $(document).ready(function(){
     }
     e.preventDefault();
   });
+
+  
+
+  function execCopy(string){
+
+    
+  }
   
   
   
 });
 
 $(document).ready(function(){
+  
+  // 曲説明のコピーボタンを押した時
+  $('.clipbtn').on('click', function(e){
+
+    // 曲名、アーティスト名取得
+    var docModal = $(this).closest('.modal-content');
+    var songName = docModal.find(".modal_song")[0].textContent;
+    var artistName = docModal.find(".modal_artist")[0].textContent;
+    
+    // 空div 生成
+    var tmp = document.createElement("div");
+    // 選択用のタグ生成
+    var pre = document.createElement('pre');
+
+    // 親要素のCSSで user-select: none だとコピーできないので書き換える
+    pre.style.webkitUserSelect = 'auto';
+    pre.style.userSelect = 'auto';
+
+    tmp.appendChild(pre).textContent = artistName + " " + songName;
+
+    // 要素を画面外へ
+    var s = tmp.style;
+    s.position = 'fixed';
+    s.right = '200%';
+
+    // body に追加
+    document.body.appendChild(tmp);
+    // 要素を選択
+    document.getSelection().selectAllChildren(tmp);
+
+    // クリップボードにコピー
+    var result = document.execCommand("copy");
+
+    // 要素削除
+    document.body.removeChild(tmp);
+
+    // ボタンのテキスト変更
+    $(this)[0].innerHTML = "<i class=\"material-icons\">file_copy</i>コピーしました";
+
+    // ２秒後ボタンのテキストを戻す
+    setTimeout(() => {
+      $(this)[0].innerHTML = "<i class=\"material-icons\">file_copy</i>曲名、アーティスト名をコピー";
+    },2000);
+
+    return result;
+
+    
+  });
+
   // checkoutの本当のボタンは非表示
   $('.hide_checkout').hide();
 

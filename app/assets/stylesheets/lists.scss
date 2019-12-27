@@ -31,3 +31,66 @@
         font-size: 12px;
     }
 }
+
+
+#tool-btn{
+    display: inline-block;
+}
+#tool-btn a {
+    position: relative;
+    display: block;
+    float: left;
+    // width:100px;
+    margin: 10px;
+    padding: 0 10px 0 50px;
+    color: #fff;
+    text-decoration: none;
+    text-align:center;
+    line-height: 40px;
+}
+#tool-btn .btn1 {
+    background: #282748;
+    @media only screen and (max-width: 767px) {
+        font-size: 10px;
+    }
+}
+#tool-btn .btn2 {
+    background: #FF0000;
+    @media only screen and (max-width: 767px) {
+        font-size: 10px;
+    }
+}
+#tool-btn .btn1 i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    background: #fff;
+    color: #282748;
+    line-height: 40px;
+    text-align: center;
+}
+#tool-btn span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    background: #fff;
+    color: #181739;
+    line-height: 40px;
+    text-align: center;
+}
+#tool-btn img {
+    width: 20px;
+    height: 14px;
+    margin: 0;
+    line-height: 40px;
+    text-align: center;
+}
+#tool-btn a:hover i { background: #9b99c3; }
+#tool-btn a:hover span { background: #e09292; }
+  

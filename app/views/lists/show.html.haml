@@ -142,7 +142,18 @@
               %p= text_url_to_link(track.description).html_safe
             -else
               %p= text_url_to_link(safe_join(track.description.split("\n"), tag(:br))).html_safe
-          
+
+          #tool-btn.clear
+            %a.clipbtn.btn1{:href => "#"} 
+              %i.material-icons
+                file_copy
+              曲名、アーティスト名をコピー
+            %a.btn2{href: "#{"https://www.youtube.com/results?search_query=" + track.artist + " " + track.song}", target: "_blank"}
+              %span
+                %img{:src => "/images/yt_icon_rgb.png"}
+              曲をYouTubeで検索
+          -# %p.text-center　アイウエオ
+
           // モーダルウィンドウのコンテンツ終了
           %p.text-center
             %a#modal-close.button-link 閉じる
