@@ -50,9 +50,13 @@ class UsersController < ApplicationController
   end
 
   def playlist
+    if current_user != nil && current_user.id == @user.id
       @mylists = @user.lists.includes(:user, :taggings)
-      @mylist_pages = @mylists.page(params[:mylist_page])
-    
+    else
+      @mylists = @user.lists.includes(:user, :taggings).where.not(status: "closed")
+    end
+
+    @mylist_pages = @mylists.page(params[:mylist_page])
   end
 
   def purchasehistory
