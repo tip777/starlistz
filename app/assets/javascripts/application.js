@@ -199,7 +199,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-  
+
   // 曲説明のコピーボタンを押した時
   $('.clipbtn').on('click', function(e){
 
@@ -245,6 +245,32 @@ $(document).ready(function(){
 
     return result;
 
+    
+  });
+
+  // twitterシェアボタンを押した時
+  $('.SocialMediaShareButton--twitter').on('click', function(e){
+    var text = document.getElementsByClassName("playlist__title")[0].textContent;
+    var url = location.href;
+    var hashtags = [
+      "StarListz"
+    ].join(",");
+
+    window.open("https://twitter.com/intent/tweet?" + [
+      "text=" + encodeURIComponent(text),
+      "url=" + encodeURIComponent(url),
+      "hashtags=" + encodeURIComponent(hashtags)
+    ].join("&"));
+    
+  });
+
+  // facebookシェアボタンを押した時
+  $('.SocialMediaShareButton--facebook').on('click', function(e){
+    var url = location.href;
+
+    window.open("https://www.facebook.com/sharer/sharer.php?" + [
+      "u=" + encodeURIComponent(url)
+    ].join("&"));
     
   });
 

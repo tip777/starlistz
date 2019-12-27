@@ -93,4 +93,18 @@
 }
 #tool-btn a:hover i { background: #9b99c3; }
 #tool-btn a:hover span { background: #e09292; }
+
+// SNSシェアボタン
+.it-Footer_social{
+    text-align: right;
+    max-width: 580px;
+    margin:30px auto;
+}
+.SocialMediaShareButton{
+    display: inline-block;
+    margin: 0 20px;
+}
+svg.social-icon circle{
+    fill: #aaa;
+}
   

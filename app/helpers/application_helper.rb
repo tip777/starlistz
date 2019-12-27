@@ -9,16 +9,20 @@ module ApplicationHelper
         reverse: true,
         title: "StarListz",
         description: "曲への気持ち、聴く理由にフォーカスしたプレイリストを売り買いできるサービスです。",
-        keywords: "starlistz,プレイリスト,曲,気持ち",
+        keywords: "starlistz,プレイリスト,曲,気持ち,新しい出会い",
         canonical: request.original_url,
         og: {
-        title: :title,
-        type: "website",
-        url: request.original_url,
-        image: "#{asset_path "Logo.png"}",
-        site_name: "StarListz",
-        description: :description,
-        locale: 'ja_JP'
+            title: :title,
+            type: "website",
+            url: request.original_url,
+            image: "#{asset_path "Logo.png"}",
+            site_name: "StarListz",
+            description: :description,
+            locale: 'ja_JP'
+        },
+        twitter: {
+            card: "summary",
+            site: "@StarListz"
         }
     }
     end
