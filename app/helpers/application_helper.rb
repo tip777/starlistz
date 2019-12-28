@@ -15,7 +15,7 @@ module ApplicationHelper
             title: :title,
             type: "website",
             url: request.original_url,
-            image: image_url("Logo.png"),
+            image: image_url("Logo_isbackcolor.png"),
             site_name: "StarListz",
             description: :description,
             locale: 'ja_JP'
