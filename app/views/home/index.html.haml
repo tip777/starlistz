@@ -20,14 +20,16 @@
         %p.button.noButton ベータ版
 
 - if user_signed_in?
+  .top__playlist
+    %h2 NEWプレイリスト
+    = render "lists/list", lists: @newlists, customer: @customer
+
   .top__user
     %h2.top__title NEWユーザー
     - if @newusers != nil and not @newusers.empty?
       = render "users/user", users: @newusers
   
-  .top__playlist
-    %h2 NEWプレイリスト
-    = render "lists/list", lists: @newlists, customer: @customer
+  
 
 - else
 
