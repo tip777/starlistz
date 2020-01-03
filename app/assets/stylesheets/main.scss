@@ -919,9 +919,7 @@ input[type="email"] {
     }
     .banner2{
       background-image: url(/images/login-screen-designer.jpg);
-      @media only screen and (max-width: 767px) {
-        background-position: center center;
-      }
+      background-position: center center;
       background-size: cover;
     }
     /*slick setting*/
