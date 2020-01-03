@@ -2,6 +2,9 @@ class HomeController < ApplicationController
   before_action :gon_current_user, only: [:index, :show, :chart, :search]
 
   def index
+    # お勧めしたいリストを取得
+    @recommend_list = List.find_by(id: 162)
+    
     if !current_user.nil?
       # 初めてのログイン、オンボーディング対応後にログインした場合はオンボーディングへ
       if current_user.sign_in_count == 1 || current_user.last_sign_in_at < Date.new(2019, 5 , 3) 

@@ -1,23 +1,39 @@
 - set_meta_tags title: "ホーム"
 
+
+
+
 - if !user_signed_in?
   %section#banner
-    .overlay
-    .inner
-      %h2 
-        音楽の新しい楽しみ方
-        
-      %footer
-        = link_to "新規登録する", new_user_registration_path,{ class: "button" }
+    %ul.slider
+      %li.banner1
+        .inner
+          %h2 
+            音楽の新しい楽しみ方
+            
+          %footer
+            = link_to "新規登録する", new_user_registration_path,{ class: "button" }
+      - if !@recommend_list.nil?
+        %li.banner2
+          = link_to list_path(@recommend_list) do
+            .inner
+          
+    
+
 - else
   %section#banner.signed
-    .overlay
-    .inner
-      %h2 
-        音楽の新しい楽しみ方
-
-      %footer
-        %p.button.noButton ベータ版
+    %ul.slider
+      %li.banner1
+        .inner
+          %h2 
+            音楽の新しい楽しみ方
+            
+          %footer
+            %p.button.noButton ベータ版
+      - if !@recommend_list.nil?
+        %li.banner2
+          = link_to list_path(@recommend_list) do
+            .inner
 
 - if user_signed_in?
   .top__playlist
@@ -80,3 +96,4 @@
       %p A. はい、プレイリストは100円～価格を設定できます。
 
 
+%script{:src => "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"}

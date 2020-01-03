@@ -388,4 +388,13 @@ $(document).ready(function(){
 
   }
 
-} ) ;
+  //トップページスライドショーの設定
+  $('.slider').slick({
+    autoplay: true,
+    autoplaySpeed: 4000,
+    dots: true,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  });
+
+});

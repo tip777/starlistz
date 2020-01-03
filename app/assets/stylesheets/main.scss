@@ -897,31 +897,57 @@ input[type="email"] {
 
 //home after login
 ///////////////////////////////////////////////////////////////////////////////
-#banner.signed {
-  padding: 2em 0;
-}
 
 #banner {
-  background-image: url(/images/191329715.jpg);
+  // background-image: url(/images/191329715.jpg);
   @media only screen and (max-width: 767px) {
     background-position: center right;
   }
   background-size: cover;
   cursor: default;
-  padding: 6em 0;
   text-align: center;
   position: relative ;
   margin-bottom:0;
   color:#fff;
-  .overlay{
-    content:"";
-    position: absolute;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    z-index: 2;
-    background: linear-gradient(to right, rgba(150, 184, 3, 0.35), rgba(192, 175, 4, 0.4));
+  .slider{
+    .banner1{
+      background-image: url(/images/login-screen-image.jpg);
+      @media only screen and (max-width: 767px) {
+        background-position: center left;
+      }
+      background-size: cover;
+    }
+    .banner2{
+      background-image: url(/images/login-screen-designer.jpg);
+      @media only screen and (max-width: 767px) {
+        background-position: center center;
+      }
+      background-size: cover;
+    }
+    /*slick setting*/
+    .slick-prev:before,
+    .slick-next:before {
+        position: relative;
+        color: #000;
+    }
+    @media only screen and (min-width: 767px) {
+      .slick-prev{
+          left: 80px;
+          z-index:99;
+      }
+      .slick-next{
+          right: 80px;
+      }
+    }
+    @media only screen and (max-width: 767px) {
+      .slick-prev{
+          left: 30px;
+          z-index:99;
+      }
+      .slick-next{
+          right: 30px;
+      }
+    }
   }
 
 
@@ -930,6 +956,7 @@ input[type="email"] {
     text-align: center;
     z-index: 3;
     position: relative ;
+    height: 350px;
 
     @media only screen and (max-width: 767px) {
       h2 {
