@@ -8,7 +8,7 @@ class ChargesController < ApplicationController
           redirect_to :back, alert: 'プレイリストが存在しません。トップページから操作をやり直してください。'
       end
       
-      # ここstatus: "succeed"のものしか抽出しないが大丈夫か
+      # ここstatus: "succeeded"のものしか抽出しないが大丈夫か
       if is_purchase?(current_user, list)
         list_purchase = true
         return
@@ -64,6 +64,9 @@ class ChargesController < ApplicationController
       if list.user.mail_notice.list_sold == true
         PurchaseMailer.seller(purchase, list.user).deliver
       end
+
+      # 購入されたらログをとる
+      log_purchasedList(purchase.uid)
 
       # TODO add more detailed error messages
     rescue Stripe::APIConnectionError => e

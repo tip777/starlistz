@@ -37,4 +37,9 @@ module ErrorUtility
     Rails.logger.info("Unsubscribe_contact_message: #{contact.message}")
   end
 
+  # プレイリストが購入されたログ
+  def log_purchasedList(purchase_uid)
+    Rails.logger.info("ListPurchased || PurchaseUid: #{purchase_uid}")
+  end
+
 end
