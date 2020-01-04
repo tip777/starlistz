@@ -78,11 +78,29 @@
                     :src => "https://checkout.stripe.com/checkout.js"}
 
           .span.playlist__price ￥#{@list.price}
+    -if @list.description.length >= 140
+      -if @list.description.try(:split, "\n").nil?
+        .span.playlist__discription
+          .grad-wrap
+            %input#trigger1.grad-trigger{:type => "checkbox"}/
+            %label.grad-btn{:for => "trigger1"}
+              %i.material-icons keyboard_arrow_down
+            .grad-item
+              = text_url_to_link(@list.description).html_safe
+      -else
+        .span.playlist__discription
+          .grad-wrap
+            %input#trigger1.grad-trigger{:type => "checkbox"}/
+            %label.grad-btn{:for => "trigger1"}
+              %i.material-icons keyboard_arrow_down
+            .grad-item
+              = text_url_to_link(safe_join(@list.description.split("\n"), tag(:br))).html_safe
 
-    -if @list.description.try(:split, "\n").nil?
-      .span.playlist__discription= text_url_to_link(@list.description).html_safe
     -else
-      .span.playlist__discription= text_url_to_link(safe_join(@list.description.split("\n"), tag(:br))).html_safe
+      -if @list.description.try(:split, "\n").nil?
+        .span.playlist__discription= text_url_to_link(@list.description).html_safe
+      -else
+        .span.playlist__discription= text_url_to_link(safe_join(@list.description.split("\n"), tag(:br))).html_safe
       
     
     
