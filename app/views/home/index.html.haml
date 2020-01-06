@@ -6,6 +6,10 @@
 - if !user_signed_in?
   %section#banner
     %ul.slider
+      - if !@recommend_list.nil?
+        %li.banner2
+          = link_to list_path(@recommend_list) do
+            .inner
       %li.banner1
         .inner
           %h2 
@@ -13,16 +17,17 @@
             
           %footer
             = link_to "新規登録する", new_user_registration_path,{ class: "button" }
-      - if !@recommend_list.nil?
-        %li.banner2
-          = link_to list_path(@recommend_list) do
-            .inner
+      
           
     
 
 - else
   %section#banner.signed
     %ul.slider
+      - if !@recommend_list.nil?
+        %li.banner2
+          = link_to list_path(@recommend_list) do
+            .inner
       %li.banner1
         .inner
           %h2 
@@ -30,10 +35,6 @@
             
           %footer
             %p.button.noButton ベータ版
-      - if !@recommend_list.nil?
-        %li.banner2
-          = link_to list_path(@recommend_list) do
-            .inner
 
 - if user_signed_in?
   .top__playlist
