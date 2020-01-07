@@ -2440,6 +2440,29 @@ table.minimum{
     margin-top:40px;
     margin-bottom:20px;
   }
+  .l__tracks{
+    td:nth-of-type(4){
+      a{
+        position: relative;
+        width: 40px;
+        height: 40px;
+        background: #525252;
+        border: 1px solid #c9d2d2;
+        border-radius: 70px;
+        -moz-border-radius: 70px;
+        -webkit-border-radius: 70px;
+        display: block;
+        
+        img{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform : translate(-50%,-50%);
+          transform : translate(-50%,-50%);
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -2575,7 +2598,6 @@ table.minimum{
   }
   td:nth-of-type(4){
     width: 60px;
-    // border-top: 1px solid #eee;
   }
   td:nth-of-type(5){
     width: 50px;

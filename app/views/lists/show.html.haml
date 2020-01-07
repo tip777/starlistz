@@ -123,9 +123,9 @@
                 %span.trackSong 曲名
                 %span.trackArtist アーティスト名
               %td
-                %a.modal-syncer.js__listBack{"data-target" => "modal-content-0"}
-                  %span.trackComment
-                    曲への気持ち
+                %span.trackComment
+                  曲への気持ち
+                  
 
       - @list.tracks.sort_by(&:row_order).each_with_index do |track, i|
         .l__tracks
@@ -143,8 +143,8 @@
                 %td
                   - if track.description != nil && track.description.length > 0
                     %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"} 
-                      %span.trackComment
-                        %i.material-icons.already comment
+                      %img{:src => "#{asset_path "chat.png"}", :width => "24", :height => "24"} 
+
 
         .modal-content.modal__comment{:id => "modal-content-#{i}"}
           // モーダルウィンドウのコンテンツ開始
