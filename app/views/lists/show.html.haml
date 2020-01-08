@@ -1,4 +1,9 @@
-- set_meta_tags og:{ title: @list.title, description: @list.description } 
+- if @user.user_profile.avatar.file.nil?
+  - set_meta_tags og:{ title: @list.title, description: @list.description, image: image_url("/default/thumb_noavatar.jpg") } 
+- else
+  - set_meta_tags og:{ title: @list.title, description: @list.description, image: image_url(@user.user_profile.avatar.thumb.to_s ) } 
+
+
 
 
 // 購入ボタンのモーダルウィンドウ　紐づけ用
