@@ -14180,7 +14180,7 @@ table.minimum td {
   margin-bottom: 20px;
 }
 /* line 2445, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
-.l__listShow .l__tracks td:nth-of-type(4) a {
+.l__listShow .l__tracks td:nth-of-type(4) a.trackComment {
   position: relative;
   width: 40px;
   height: 40px;
@@ -14192,7 +14192,7 @@ table.minimum td {
   display: block;
 }
 /* line 2456, /Users/ikedatakashinao/Desktop/starlistz/app/assets/stylesheets/main.scss */
-.l__listShow .l__tracks td:nth-of-type(4) a img {
+.l__listShow .l__tracks td:nth-of-type(4) a.trackComment img {
   position: absolute;
   top: 50%;
   left: 50%;

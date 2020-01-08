@@ -147,7 +147,7 @@
                   %span.trackArtist= track.artist
                 %td
                   - if track.description != nil && track.description.length > 0
-                    %a.modal-syncer.js__listBack{"data-target" => "modal-content-#{i}"} 
+                    %a.modal-syncer.js__listBack.trackComment{"data-target" => "modal-content-#{i}"} 
                       %img{:src => "#{asset_path "chat.png"}", :width => "24", :height => "24"} 
 
 
