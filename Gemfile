@@ -64,6 +64,9 @@ gem 'fog'
 
 gem "recaptcha"
 
+#mimemagic railsでエラー問題
+gem "mimemagic", "~> 0.3.10"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
